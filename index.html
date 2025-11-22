@@ -71,7 +71,9 @@
             modules: [],
             progress: JSON.parse(localStorage.getItem('acad_progress') || '[]'),
             userVocab: JSON.parse(localStorage.getItem('acad_user_vocab') || '[]'),
-            currentLessonData: null, 
+            currentLessonData: null,
+            // Define the remote base URL
+            baseUrl: 'https://clement-torti.github.io/french-quest/',
 
             async init() {
                 await this.discoverModules();
@@ -79,15 +81,18 @@
                 window.addEventListener('resize', () => this.drawMapPath());
             },
 
-            // --- AUTO DISCOVERY ENGINE ---
+            // --- AUTO DISCOVERY ENGINE (REMOTE) ---
             async discoverModules() {
                 let id = 1;
                 let keepSearching = true;
 
                 while (keepSearching) {
-                    const filename = `lesson${id}.html`;
+                    // Construct the remote URL
+                    const url = `${this.baseUrl}lesson${id}.html`;
+                    
                     try {
-                        const response = await fetch(filename);
+                        const response = await fetch(url);
+                        
                         if (response.ok) {
                             const text = await response.text();
                             const parser = new DOMParser();
@@ -98,7 +103,7 @@
                                 const data = JSON.parse(jsonScript.textContent);
                                 this.modules.push({
                                     id: id,
-                                    filename: filename,
+                                    filename: url, // Store the full remote URL
                                     title: data.title,
                                     icon: data.icon || 'fa-book',
                                     desc: data.desc
@@ -106,15 +111,17 @@
                             }
                             id++;
                         } else {
+                            // 404 or other error stops the search
                             keepSearching = false;
                         }
                     } catch (e) {
+                        console.warn("Scanner stopped:", e);
                         keepSearching = false;
                     }
                 }
                 
                 if (this.modules.length === 0) {
-                    this.container.innerHTML = `<div class="p-10 text-center text-red-500 font-bold">No lessons found.<br>Check file names and server.</div>`;
+                    this.container.innerHTML = `<div class="p-10 text-center text-red-500 font-bold">No lessons found at remote URL.<br>${this.baseUrl}</div>`;
                 } else {
                     this.renderMap();
                 }
@@ -187,7 +194,7 @@
                     const nextNode = document.getElementById(`node-${i+1}`);
 
                     if (currNode && nextNode) {
-                        // Get center positions of the buttons (approximate based on button size)
+                        // Get center positions of the buttons
                         const r1 = currNode.getBoundingClientRect();
                         const r2 = nextNode.getBoundingClientRect();
 
@@ -199,7 +206,6 @@
                         const endY = r2.top + r2.height / 2 - containerRect.top + this.container.scrollTop;
 
                         // Create a Bezier curve (C)
-                        // Control points create the "S" shape
                         const cp1X = startX; 
                         const cp1Y = startY + (endY - startY) * 0.5; 
                         const cp2X = endX; 
@@ -213,11 +219,11 @@
             },
 
             // --- LESSON LOADER ---
-            async loadLesson(id, filename) {
+            async loadLesson(id, url) {
                 this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
 
                 try {
-                    const response = await fetch(filename);
+                    const response = await fetch(url);
                     const htmlText = await response.text();
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(htmlText, 'text/html');
@@ -229,7 +235,7 @@
                     this.renderLessonUI();
                 } catch (error) {
                     console.error(error);
-                    this.container.innerHTML = `<p class="text-center p-10 text-red-500">Error loading lesson.</p>`;
+                    this.container.innerHTML = `<p class="text-center p-10 text-red-500">Error loading lesson from remote server.</p>`;
                 }
             },
 
