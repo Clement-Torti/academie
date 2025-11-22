@@ -154,6 +154,37 @@
     
             // --- 2. MAP RENDERING ---
             renderMap() {
+                // 1. Intro Card (The "Emily in Paris" style welcome)
+                const introCard = `
+                <div class="w-full px-6 pt-8 pb-4 relative z-20">
+                    <div class="bg-white p-6 rounded-2xl shadow-card border border-blue-100 text-center relative overflow-hidden">
+                        <!-- Flag stripe top decoration -->
+                        <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-frBlue via-white to-frRed"></div>
+                        
+                        <h2 class="text-xl font-serif font-bold text-frBlue mb-3 mt-1">Bienvenue à Paris! 🇫🇷</h2>
+                        
+                        <p class="text-sm text-gray-600 leading-relaxed mb-3">
+                            He creado esta plataforma con todo el <i class="fa-solid fa-heart text-frRed animate-pulse"></i> para ayudarte a mejorar tu francés <strong>de verdad</strong>.
+                        </p>
+                        
+                        <p class="text-xs text-gray-500 mb-5 leading-relaxed">
+                            Olvídate de la superficialidad de la app del búho 🦉. Aquí, en el universo de <em>Emily in Paris</em>, buscamos elegancia y profundidad. Si te gusta este proyecto, puedes invitarme un croissant abajo a travès de una pequeñ donación.
+                        </p>
+
+
+
+                        <!-- REPLACE THE # WITH YOUR PAYMENT LINK BELOW -->
+                        <a href="#" target="_blank" class="inline-flex items-center gap-2 bg-frCream text-frBlue px-5 py-2.5 rounded-full text-xs font-bold border border-gold hover:bg-gold hover:text-white transition shadow-sm active:scale-95">
+                            <i class="fa-solid fa-croissant"></i>
+                            <span>Invítame un croissant</span>
+                        </a>
+
+                            <br><br>
+                            <p class="text-xs text-gray-500  leading-relaxed"> Y recuerda que para mejorar de verdad: constancia diaria y repetir cada lección hasta 3 veces para alcanzar el oro.</p>
+                    </div>
+                </div>`;
+
+                // 2. Build Nodes
                 let nodes = '';
                 this.modules.forEach((mod, i) => {
                     const count = this.progress[mod.id] || 0;
@@ -210,10 +241,16 @@
                 </div>`;
 
                 this.container.innerHTML = `
-                    <div class="min-h-full py-10 relative overflow-x-hidden bg-[#fdfbf7]">
+                    <div class="min-h-full relative overflow-x-hidden bg-[#fdfbf7]">
                         <svg id="map-svg" class="absolute inset-0 w-full h-full pointer-events-none"><path id="map-path" d="" fill="none" stroke="#cbd5e1" stroke-width="4" stroke-dasharray="8 8" stroke-linecap="round"/></svg>
-                        <div class="max-w-md mx-auto flex flex-col items-center w-full overflow-hidden">${nodes}</div>
+                        <div class="max-w-md mx-auto flex flex-col items-center w-full overflow-hidden">
+                            ${introCard}
+                            <div class="w-full pt-6">
+                                ${nodes}
+                            </div>
+                        </div>
                     </div>`;
+                
                 setTimeout(() => this.drawMapPath(), 100);
             },
 
