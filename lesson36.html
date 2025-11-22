@@ -3,40 +3,34 @@
 <!-- 1. METADATA & EXERCISES -->
 <script type="application/json" id="lesson-data">
     {
-        "title": "Lección 36: Le Déménagement - Mudanza y Trámites",
-        "desc": "Vocabulario para sobrevivir al día de la mudanza, firmar el contrato, gestionar la fianza y el temido 'État des lieux'.",
+        "title": "Lección 36: Le Déménagement - Adiós Chambre de Bonne",
+        "desc": "El caos de mudarse en París. Cómo proteger tu fianza de una casera estricta, cargar cajas en tacones y sobrevivir al 'État des lieux'.",
         "icon": "fa-truck-moving",
         "vocabulary": [
-            { "fr": "Déménager", "es": "Mudarse (General)" },
-            { "fr": "Emménager", "es": "Instalarse / Entrar a vivir" },
-            { "fr": "Le carton", "es": "La caja de cartón (mudanza)" },
-            { "fr": "Le camion de déménagement", "es": "El camión de mudanzas" },
-            { "fr": "Le scotch / Le ruban adhésif", "es": "La cinta adhesiva" },
-            { "fr": "Emballer", "es": "Empaquetar / Envolver" },
-            { "fr": "Le bail", "es": "El contrato de alquiler" },
-            { "fr": "Le locataire", "es": "El inquilino" },
+            { "fr": "Déménager", "es": "Mudarse (Irse)" },
+            { "fr": "Emménager", "es": "Instalarse (Llegar)" },
+            { "fr": "Le carton", "es": "La caja de cartón" },
+            { "fr": "La caution", "es": "La fianza (El dinero que quieres recuperar)" },
+            { "fr": "L'état des lieux", "es": "La inspección final (El juicio final)" },
             { "fr": "Le propriétaire", "es": "El propietario / Casero" },
-            { "fr": "La caution / Le dépôt de garantie", "es": "La fianza / El depósito" },
-            { "fr": "L'état des lieux (m)", "es": "El inventario del estado del piso (Crucial)" },
-            { "fr": "L'assurance habitation (f)", "es": "El seguro de hogar (Obligatorio)" },
-            { "fr": "Les charges (f)", "es": "Los gastos de comunidad/servicios" },
-            { "fr": "Le chauffage", "es": "La calefacción" },
-            { "fr": "L'ampoule (f)", "es": "La bombilla" },
-            { "fr": "La fuite d'eau", "es": "La fuga de agua" },
-            { "fr": "Une rayure", "es": "Un arañazo / rayón (en suelo o pared)" },
+            { "fr": "Le locataire", "es": "El inquilino (Tú)" },
+            { "fr": "Une rayure", "es": "Un rayón (En el suelo de madera)" },
             { "fr": "Une tache", "es": "Una mancha" },
-            { "fr": "Le compteur", "es": "El contador (luz/agua)" },
-            { "fr": "Signer", "es": "Firmar" },
-            { "fr": "Lourd / Léger", "es": "Pesado / Ligero" },
-            { "fr": "Le voisin / La voisine", "es": "El vecino / La vecina" },
-            { "fr": "Rez-de-chaussée", "es": "Planta baja" }
+            { "fr": "L'ascenseur (m)", "es": "El ascensor (Probablemente muy pequeño)" },
+            { "fr": "C'est lourd !", "es": "¡Pesa mucho!" },
+            { "fr": "Fragile", "es": "Frágil (Como el ego de Pierre Cadault)" },
+            { "fr": "Le camion", "es": "El camión" },
+            { "fr": "Emballer", "es": "Empaquetar" },
+            { "fr": "Le bail", "es": "El contrato de alquiler" },
+            { "fr": "Le voisin / La voisine", "es": "El vecino (Gabriel)" },
+            { "fr": "Le préavis", "es": "El preaviso (Avisar antes de irte)" }
         ],
         "exercises": [
-            { "q": "Documento legal que firmas con el propietario para alquilar el piso:", "a": "bail", "hint": "Palabra corta, masculina. Rima con 'ail'." },
-            { "q": "Objeto de cartón donde metes tus libros y ropa para moverlos:", "a": "carton", "hint": "No digas 'boîte' en este contexto." },
-            { "q": "La inspección detallada para ver si hay daños antes de entrar o salir:", "a": "état des lieux", "hint": "Literalmente: 'Estado de los lugares'" },
-            { "q": "Dinero que das al inicio para cubrir posibles daños:", "a": "caution", "hint": "También se llama 'Dépôt de garantie'" },
-            { "q": "Si haces una marca en el suelo de madera al mover un mueble, has hecho una...", "a": "rayure", "hint": "Femenino. Similar a 'rayar'" }
+            { "q": "Emily rayó el suelo con sus tacones. Ahora el dueño se quedará con su...", "a": "caution", "hint": "Dinero de depósito (Femenino)" },
+            { "q": "Documento de terror donde anotan cada defecto del apartamento:", "a": "état des lieux", "hint": "Literalmente: Estado de los lugares" },
+            { "q": "Objeto marrón donde Emily guarda sus bolsos para el transporte:", "a": "carton", "hint": "No es 'boîte'" },
+            { "q": "Gabriel ayuda a Emily porque las cajas son demasiado...", "a": "lourdes", "hint": "Adjetivo: Pesadas (Plural)" },
+            { "q": "Marca en el parqué causada por arrastrar una maleta:", "a": "rayure", "hint": "Empieza por R" }
         ]
     }
     </script>
@@ -47,177 +41,163 @@
         <!-- MODULE 1: THE CONTEXT -->
         <section>
             <div class="bg-indigo-50 p-5 rounded-xl border-l-4 border-indigo-600 shadow-sm">
-                <h2 class="text-2xl font-bold text-indigo-700 mb-3">1. La Pesadilla Burocrática: L'État des Lieux</h2>
-                <p class="mb-3">Mudar casas en Francia es un deporte de riesgo. No solo por subir un sofá por una escalera de caracol del siglo XIX, sino por el trámite más importante de todos: <strong>L'État des Lieux</strong>.</p>
-                <p>Es un documento oficial que describe milímetro a milímetro el estado del apartamento. Se hace dos veces:</p>
+                <h2 class="text-2xl font-bold text-indigo-700 mb-3">1. El Terror del "État des Lieux"</h2>
+                <p class="mb-3">Mudarse en Chicago es fácil: alquilas una furgoneta, compras pizza y listo. En París, <strong>le déménagement</strong> es una operación militar. Pero el verdadero enemigo no son las escaleras de caracol, sino <strong>L'État des Lieux de Sortie</strong>.</p>
+                <p>Imagina a una señora francesa con gafas (tipo Sylvie pero con menos estilo y más mala leche) inspeccionando con lupa cada rincón de tu apartamento.</p>
                 <ul class="list-disc list-inside mt-2 space-y-2 ml-4">
-                    <li><strong>À l'entrée (Entrada):</strong> Debes anotar CADA defecto. Si hay una mancha en la pared y no la anotas, al irte te cobrarán pintarla entera.</li>
-                    <li><strong>À la sortie (Salida):</strong> Comparan el estado actual con el de entrada. Si hay diferencias, pierdes tu <strong>caution</strong> (fianza).</li>
+                    <li>Si hay una <strong>tache</strong> (mancha) en la pared: <em>Adiós Caution.</em></li>
+                    <li>Si hay una <strong>rayure</strong> (rayón) en el parqué por tus tacones: <em>Adiós Caution.</em></li>
+                    <li>Si no limpiaste la cal de la ducha: <em>Juicio moral y adiós Caution.</em></li>
                 </ul>
-                <p class="mt-3 text-sm text-gray-600 italic"><strong>Consejo de supervivencia:</strong> Durante el "état des lieux", sé exigente. Señala cada <em>rayure</em> (arañazo) y cada <em>tache</em> (mancha). Es tu dinero el que está en juego.</p>
+                <p class="mt-3 text-sm text-gray-600 italic"><strong>Regla de oro de Emily:</strong> Nunca hagas una mudanza sin un vecino guapo (Gabriel) que cargue lo <strong>lourd</strong> (pesado) y distraiga a la propietaria con su sonrisa.</p>
             </div>
         </section>
         
         <!-- MODULE 2: VOCABULARY DEEP DIVE -->
         <section>
-            <h3 class="text-xl font-bold text-gray-800 border-b-2 border-frRed inline-block mb-4">2. Vocabulario de Supervivencia</h3>
+            <h3 class="text-xl font-bold text-gray-800 border-b-2 border-frRed inline-block mb-4">2. Vocabulario de Alto Riesgo</h3>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Moving Day -->
+                <!-- Logistics Column -->
                 <div class="bg-white p-4 rounded shadow border border-gray-200">
-                    <h4 class="text-lg font-bold text-frBlue mb-2 text-center">LE JOUR J (La Mudanza)</h4>
+                    <h4 class="text-lg font-bold text-frBlue mb-2 text-center">LA LOGISTIQUE (La Misión)</h4>
                     <ul class="space-y-3 text-sm">
                         <li class="flex justify-between border-b pb-1">
-                            <span>El camión</span>
+                            <span>📦 La caja</span>
+                            <span class="font-bold text-indigo-600">Le carton</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-1">
+                            <span>🚛 El camión</span>
                             <span class="font-bold text-indigo-600">Le camion</span>
                         </li>
                         <li class="flex justify-between border-b pb-1">
-                            <span>Las cajas</span>
-                            <span class="font-bold text-indigo-600">Les cartons</span>
+                            <span>🏋️ Pesado</span>
+                            <span class="font-bold text-indigo-600">Lourd</span>
                         </li>
                         <li class="flex justify-between border-b pb-1">
-                            <span>Cinta adhesiva</span>
-                            <span class="font-bold text-indigo-600">Le scotch</span>
+                            <span>🪶 Ligero</span>
+                            <span class="font-bold text-indigo-600">Léger</span>
                         </li>
                         <li class="flex justify-between border-b pb-1">
-                            <span>Pesado / Ligero</span>
-                            <span class="font-bold text-indigo-600">Lourd / Léger</span>
-                        </li>
-                        <li class="flex justify-between border-b pb-1">
-                            <span>Frágil</span>
-                            <span class="font-bold text-indigo-600">Fragile (se pronuncia 'frajil')</span>
-                        </li>
-                        <li class="flex justify-between border-b pb-1">
-                            <span>Ascensor</span>
+                            <span>🪜 Ascensor</span>
                             <span class="font-bold text-indigo-600">L'ascenseur</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-1">
+                            <span>🏘️ Vecinos</span>
+                            <span class="font-bold text-indigo-600">Les voisins</span>
                         </li>
                     </ul>
                 </div>
     
-                <!-- Admin & Utilities -->
+                <!-- Money & Damage Column -->
                 <div class="bg-white p-4 rounded shadow border border-gray-200">
-                    <h4 class="text-lg font-bold text-green-600 mb-2 text-center">L'ADMINISTRATION (Papeleo)</h4>
+                    <h4 class="text-lg font-bold text-pink-500 mb-2 text-center">L'ARGENT ET LES DÉGÂTS (El Drama)</h4>
                     <table class="w-full text-sm">
                         <tr class="border-b bg-gray-50">
                             <td class="py-2 px-2 font-semibold">Concepto</td>
                             <td class="py-2 px-2">Francés</td>
                         </tr>
                         <tr class="border-b">
-                            <td class="py-2 px-2">Alquiler + Gastos</td>
-                            <td class="py-2 px-2">Loyer + <strong>Charges</strong></td>
+                            <td class="py-2 px-2">La Fianza (Depósito)</td>
+                            <td class="py-2 px-2 text-red-600 font-bold">La caution</td>
                         </tr>
                         <tr class="border-b">
-                            <td class="py-2 px-2">Fianza</td>
-                            <td class="py-2 px-2">La <strong>caution</strong></td>
+                            <td class="py-2 px-2">Inspección final</td>
+                            <td class="py-2 px-2">L'état des lieux</td>
                         </tr>
                         <tr class="border-b">
-                            <td class="py-2 px-2">Seguro de hogar</td>
-                            <td class="py-2 px-2">Assurance <strong>habitation</strong></td>
+                            <td class="py-2 px-2">El contrato</td>
+                            <td class="py-2 px-2">Le bail</td>
                         </tr>
                         <tr class="border-b">
-                            <td class="py-2 px-2">Inquilino / Dueño</td>
-                            <td class="py-2 px-2">Locataire / Propriétaire</td>
+                            <td class="py-2 px-2">Rayón / Arañazo</td>
+                            <td class="py-2 px-2">Une rayure</td>
                         </tr>
                         <tr>
-                            <td class="py-2 px-2">Recibo / Factura</td>
-                            <td class="py-2 px-2">La quittance / La facture</td>
+                            <td class="py-2 px-2">Agujero (en la pared)</td>
+                            <td class="py-2 px-2">Un trou</td>
                         </tr>
                     </table>
                 </div>
             </div>
 
-            <!-- Prepositions Visual Aid -->
-            <div class="mt-6 bg-red-50 p-4 rounded-lg border border-red-200">
-                <h4 class="font-bold text-red-800 mb-2">⚠️ Expresiones con "Ménagement"</h4>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-700">
-                    <div class="bg-white p-2 rounded border">
-                        <strong>Déménager</strong>
-                        <br>La acción de irse de una casa o el proceso general de mudarse.
-                    </div>
-                    <div class="bg-white p-2 rounded border">
-                        <strong>Emménager</strong>
-                        <br>La acción de entrar e instalarse en la nueva casa.
-                    </div>
-                    <div class="bg-white p-2 rounded border">
-                        <strong>L'aménagement</strong>
-                        <br>La distribución o planificación del espacio interior.
-                    </div>
-                </div>
+             <div class="mt-4 bg-yellow-50 p-4 rounded border border-yellow-200 text-sm">
+                <strong>🇫🇷 Diferencia Cultural: "Meublé" vs "Vide"</strong>
+                <br>
+                Emily vive en un <em>meublé</em> (amueblado). El inventario incluye hasta las cucharas. Si pierdes una cucharilla, te la cobran.
+                En un piso <em>vide</em> (vacío), solo miran paredes y suelos.
             </div>
         </section>
     
         <!-- MODULE 3: READING COMPREHENSION (LONG) -->
        <section>
             <h3 class="text-xl font-bold text-gray-800 border-b-2 border-frRed inline-block mb-4">
-                3. Lectura: Adieu, petit appartement (La Despedida)
+                3. Lectura: Le Jour du Jugement (El Día del Juicio)
             </h3>
 
             <p class="mb-4 text-gray-600">
-                Lee la siguiente historia. Marc está dejando su estudio en Montmartre para mudarse con su novia. 
-                Hoy es el día de la inspección final (État des lieux de sortie) con la propietaria, Madame Dufour, una mujer conocida por ser extremadamente estricta.
+                Lee el guion. Emily ayuda a Mindy a mudarse de su pequeño apartamento a uno nuevo. Están en medio del "État des lieux" con la Madame Brossard, la propietaria más temida del distrito 5.
             </p>
 
             <div class="bg-gray-50 p-6 rounded-lg border border-gray-300 font-serif leading-loose">
 
-                <p><strong>Marc:</strong> (Mirando su reloj nervioso) Vamos, vamos... todo tiene que estar perfecto. He pasado tres horas limpiando. He usado el producto especial para el parqué. No pueden quedarse con mi <strong>caution</strong>.</p>
+                <p><strong>Mindy:</strong> (Susurrando) Emily, no te muevas de ahí. Estás tapando una mancha de vino en la alfombra con tus botas.</p>
 
-                <p>El timbre suena. Es Madame Dufour, con una carpeta gruesa bajo el brazo y gafas en la punta de la nariz.</p>
+                <p><strong>Emily:</strong> (Sonrisa tensa) Entendido. Soy una estatua. <em>Bonjour Madame Brossard !</em> ¡Qué día tan bonito para una mudanza!</p>
 
-                <p><strong>Mme Dufour:</strong> <em>Bonjour, Monsieur Marc.</em> ¿Listo para la inspección? Espero que el apartamento esté en el mismo estado impecable en que se lo entregué hace dos años.</p>
+                <p><strong>Mme Brossard:</strong> (Ignorando a Emily, escribiendo en una libreta) Hmmm. La limpieza deja mucho que desear. Veo polvo sobre el marco de la puerta. </p>
 
-                <p><strong>Marc:</strong> <em>Bonjour, Madame.</em> Sí, por supuesto. He limpiado a fondo. He vaciado todos los <strong>placards</strong> y he bajado los últimos <strong>cartons</strong> al camión.</p>
+                <p><strong>Gabriel:</strong> (Entrando con una caja enorme al hombro) <em>Pardon, pardon !</em> Cuidado, esto es <strong>lourd</strong>. Son todos los zapatos de Mindy.</p>
 
-                <p>Mme Dufour entra y pasa un dedo (con un guante blanco imaginario) sobre el marco de la puerta. Luego, camina hacia el salón. Se detiene bruscamente.</p>
+                <p><strong>Mme Brossard:</strong> ¡Alto! ¡Cuidado con la pared! Si hace una marca con esa caja, lo descontaré de <strong>la caution</strong>.</p>
 
-                <p><strong>Mme Dufour:</strong> Monsieur... ¿qué es esto en la pared? Veo una pequeña <strong>tache</strong> gris aquí, cerca de la ventana.</p>
+                <p><strong>Gabriel:</strong> Tranquila, Madame. Soy chef, tengo manos precisas. (Gabriel deja la caja suavemente, guiñándole un ojo a la señora Brossard).</p>
 
-                <p><strong>Marc:</strong> (Sudando frío) ¿Dónde? Ah, eso... creo que es solo una sombra. Mire, paso el trapo y... ¡voilà! Desapareció.</p>
+                <p><strong>Mme Brossard:</strong> (Suavizándose un poco) Hmph. Muy bien. Sigamos. El suelo... veo muchas <strong>rayures</strong> aquí en el parqué. ¿Han estado bailando claqué con tacones?</p>
 
-                <p><strong>Mme Dufour:</strong> Hmmm. De acuerdo. Pasemos a la cocina. ¿Funcionan bien los fogones? ¿Y el <strong>robinet</strong> (grifo)? No quiero sorpresas con <strong>fugas d'eau</strong>.</p>
+                <p><strong>Mindy:</strong> ¡Oh, no! Eso... eso ya estaba ahí cuando llegué. ¿Verdad, Emily?</p>
 
-                <p><strong>Marc:</strong> Todo funciona perfectamente. Cambié la <strong>ampoule</strong> de la lámpara ayer, así que hay buena luz para que lo vea.</p>
+                <p><strong>Emily:</strong> ¡Absolutamente! Es... pátina. Es "vintage charm". Muy chic.</p>
 
-                <p>Mme Dufour abre el horno. Lo mira con desconfianza. Luego mira el suelo de baldosas.</p>
+                <p><strong>Mme Brossard:</strong> Aquí no cobramos por el encanto, Mademoiselle. Cobramos por el barniz. Voy a anotar: "Suelo degradado".</p>
 
-                <p><strong>Mme Dufour:</strong> ¡Ajá! Mire esto. Hay una <strong>rayure</strong> (un rayón) bastante profunda en esta baldosa. Esto no estaba en el <strong>état des lieux d'entrée</strong>.</p>
+                <p><strong>Mindy:</strong> (Aterrada) ¿Degradado? ¡Pero si solo son dos rayitas! ¡Necesito mi <strong>caution</strong> para pagar el primer mes del nuevo piso!</p>
 
-                <p><strong>Marc:</strong> Espere un momento. Tengo el documento aquí. (Marc saca un papel arrugado). Mire la página 3: "Cocina: Suelo desgastado, pequeña marca cerca del frigorífico". ¡Ya estaba ahí!</p>
+                <p><strong>Emily:</strong> Madame, por favor. Mire qué vistas tan bonitas tiene. Y Mindy ha cuidado mucho las plantas.</p>
 
-                <p><strong>Mme Dufour:</strong> (Ajustándose las gafas) ¿Ah, sí? Déjeme ver... Vaya. Tiene usted razón. Muy bien, Monsieur Marc. Veo que es usted un <strong>locataire</strong> organizado.</p>
+                <p><strong>Mme Brossard:</strong> Las plantas están muertas. Pero... (mira a Gabriel, que está sonriendo y sosteniendo otra caja marcando bíceps) dado que han vaciado el apartamento rápido y han dejado las llaves a tiempo... seré benevolente. Solo descontaré 50 euros por la limpieza.</p>
 
-                <p><strong>Marc:</strong> (Suspirando aliviado) Intento serlo. ¿Entonces todo está en orden?</p>
+                <p><strong>Mindy:</strong> ¡Sí! ¡Gracias, Madame!</p>
 
-                <p><strong>Mme Dufour:</strong> Parece que sí. Firme aquí para cerrar el contrato. Le devolveré su depósito por transferencia bancaria en un plazo de un mes, menos los <strong>charges</strong> de regularización de agua, por supuesto.</p>
+                <p><strong>Emily:</strong> (Moviéndose por fin y revelando la mancha de vino) ¡Uf, qué alivio!</p>
 
-                <p><strong>Marc:</strong> Por supuesto. <em>Au revoir, Madame.</em> Y adiós, pequeño estudio.</p>
+                <p><strong>Mme Brossard:</strong> (Entrecerrando los ojos al ver la alfombra) Un momento... ¿Qué es esa mancha roja?</p>
 
-                <p>Marc cierra la puerta, baja las escaleras corriendo y se sube al <strong>camion de déménagement</strong> donde su amigo le espera.</p>
-
-                <p><strong>Amigo:</strong> ¿Sobreviviste?</p>
-
-                <p><strong>Marc:</strong> ¡He salvado la fianza! ¡Arranca, vámonos a mi nueva casa!</p>
+                <p><strong>Emily:</strong> ¡Corred! ¡Al camión!</p>
 
             </div>
 
             <!-- Interactive Translation Toggle -->
             <details class="mt-4 bg-white p-4 rounded shadow-sm group">
                 <summary class="cursor-pointer text-indigo-600 font-semibold flex items-center justify-between">
-                    <span>🔍 Vocabulario y Claves Culturales</span>
+                    <span>🔍 Análisis del Texto y Vocabulario</span>
                     <span class="group-open:rotate-180 transition-transform">▼</span>
                 </summary>
 
                 <div class="mt-4 text-sm text-gray-700 space-y-2 border-t pt-3">
-                    <p><strong>El conflicto:</strong></p>
-                    <p>La tensión entre propietario y locatario es clásica. Mme Dufour busca defectos (taches, rayures) para deducir dinero del depósito. Marc se salva porque tenía la copia del inventario de entrada ("État des lieux d'entrée") donde el defecto ya figuraba.</p>
+                    <p><strong>Claves del episodio:</strong></p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li><strong>La estrategia:</strong> Usar a Gabriel para distraer (funciona parcialmente) y tapar manchas físicamente (falla al final).</li>
+                        <li><strong>El conflicto:</strong> "Rayures" (rayones) en el parqué parisino son sagrados. Repararlos es muy caro.</li>
+                    </ul>
                     
                     <hr class="my-2">
                     
                     <p><strong>Vocabulario útil:</strong></p>
-                    <ul class="list-disc pl-5 space-y-1">
-                        <li><em>Robinet:</em> Grifo.</li>
-                        <li><em>Ampoule:</em> Bombilla (¡revisan si funden!).</li>
-                        <li><em>Impecable:</em> Perfecto/Limpio.</li>
-                        <li><em>Regularización de charges:</em> Ajuste final de gastos de agua/comunidad al irte.</li>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        <li><em>Lourd:</em> Pesado (físicamente).</li>
+                        <li><em>Degradado:</em> Dañado / En mal estado.</li>
+                        <li><em>Benevolente:</em> Comprensiva (Raro en caseros parisinos).</li>
                     </ul>
                 </div>
             </details>
@@ -225,19 +205,21 @@
 
         <!-- MODULE 4: ACTIVE WRITING/THINKING -->
         <section>
-            <h3 class="text-xl font-bold text-gray-800 mb-4">4. Trámites Finales: Electricidad e Internet</h3>
-            <p class="mb-4">Ya estás en la nueva casa. Tienes que hablar por teléfono. ¿Qué dices?</p>
+            <h3 class="text-xl font-bold text-gray-800 mb-4">4. Situaciones de Crisis</h3>
+            <p class="mb-4">¿Cómo reaccionarías tú en estas situaciones parisinas?</p>
             
             <div class="space-y-4">
-                <div class="bg-green-50 p-4 rounded border border-green-200">
-                    <strong>Situación A: EDF (Electricidad)</strong>
-                    <p class="text-sm mt-2">Llamas para poner la luz a tu nombre. Necesitas dar el número del contador.</p>
-                    <p class="text-sm text-gray-600 italic mt-1">"Bonjour, je viens d'<strong>emménager</strong>. Je voudrais ouvrir un contrat d'électricité. Le numéro du <strong>compteur</strong> est le..."</p>
+                <div class="bg-red-50 p-4 rounded border border-red-200">
+                    <strong>Crisis A: El ascensor minúsculo</strong>
+                    <p class="text-sm mt-2">Tienes una maleta gigante y vives en un 6º piso. El ascensor es para 2 personas (máximo 150kg). Gabriel ya está dentro.</p>
+                    <p class="text-sm text-gray-600 mt-1">¿Qué dices?</p>
+                    <p class="text-sm font-bold text-indigo-600 mt-1">"C'est trop lourd ! Tu peux m'aider avec mes cartons ?"</p>
                 </div>
-                <div class="bg-green-50 p-4 rounded border border-green-200">
-                    <strong>Situación B: La Box Internet</strong>
-                    <p class="text-sm mt-2">El técnico viene a instalar la fibra óptica.</p>
-                    <p class="text-sm text-gray-600 italic mt-1">"Bonjour. La prise (el enchufe) est dans le salon, derrière le canapé. C'est facile d'accès ?"</p>
+                <div class="bg-red-50 p-4 rounded border border-red-200">
+                    <strong>Crisis B: La copa rota</strong>
+                    <p class="text-sm mt-2">Durante la mudanza, rompes una lámpara fea del dueño.</p>
+                    <p class="text-sm text-gray-600 mt-1">Tienes que confesarlo en el <em>État des lieux</em>.</p>
+                    <p class="text-sm font-bold text-indigo-600 mt-1">"Désolée, j'ai cassé la lampe. Vous pouvez le déduire de ma caution." (Lo siento, rompí la lámpara. Puede deducirlo de mi fianza).</p>
                 </div>
             </div>
         </section>
@@ -245,20 +227,20 @@
         <!-- MODULE 5: ORAL EXPRESSION -->
         <section>
             <h3 class="text-xl font-bold text-gray-800 mb-4">5. Laboratorio de Pronunciación</h3>
-            <p>Términos administrativos que debes pronunciar con seguridad para que te tomen en serio.</p>
+            <p>Palabras que valen dinero. Pronúncialas bien para que no te timen.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center mt-4">
                 <div class="p-4 bg-white shadow rounded-full w-full aspect-square flex flex-col justify-center items-center">
                     <strong class="text-xl text-frBlue block mb-2">CAU-TION</strong>
-                    <span class="text-xs text-gray-500">"Ko-sio_n". La 'au' es una O cerrada. La 'tion' es nasal SI-ON. No digas "cau-chion".</span>
+                    <span class="text-xs text-gray-500">Es "Ko-sio_n". No digas "Coshion". Suena elegante, aunque duela pagarla.</span>
                 </div>
                 <div class="p-4 bg-white shadow rounded-full w-full aspect-square flex flex-col justify-center items-center">
-                    <strong class="text-xl text-frRed block mb-2">LO-YER</strong>
-                    <span class="text-xs text-gray-500">"Lua-yé". La O e Y se combinan. Suena casi como dos palabras.</span>
+                    <strong class="text-xl text-frRed block mb-2">RAY-URE</strong>
+                    <span class="text-xs text-gray-500">La "R" francesa al principio y el sonido "U" francés. "Rei-iur". Practica la U poniendo boca de silbido.</span>
                 </div>
                 <div class="p-4 bg-white shadow rounded-full w-full aspect-square flex flex-col justify-center items-center">
                     <strong class="text-sm text-gray-800 block mb-2">DÉ-MÉ-NA-GE-MENT</strong>
-                    <span class="text-xs text-gray-500">Palabra larga. 5 sílabas. Los acentos agudos (É) son cerrados. La E muda de "ge" casi no suena. "De-me-na-jmon".</span>
+                    <span class="text-xs text-gray-500">El trabalenguas. 5 sílabas. Rítmico. "De-me-na-jmon". ¡Dilo rápido y pareces nativo!</span>
                 </div>
             </div>
         </section>
