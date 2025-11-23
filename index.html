@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>L'Académie</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Montserrat:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link rel="icon" type="image/x-icon" href="academie.png">
@@ -15,10 +18,10 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ['Montserrat', 'sans-serif'], serif: ['Merriweather', 'serif'] },
-                    colors: { 
-                        frBlue: '#002654', 
-                        frRed: '#ED2939', 
-                        frCream: '#F5F5DC', 
+                    colors: {
+                        frBlue: '#002654',
+                        frRed: '#ED2939',
+                        frCream: '#F5F5DC',
                         gold: '#D4AF37',
                         bronze: '#CD7F32',
                         silver: '#C0C0C0'
@@ -29,29 +32,110 @@
         }
     </script>
 
-<style>
-    body { overscroll-behavior-y: none; -webkit-tap-highlight-color: transparent; }
-    .perspective-1000 { perspective: 1000px; }
-    .transform-style-3d { transform-style: preserve-3d; }
-    .backface-hidden { backface-visibility: hidden; }
-    .rotate-y-180 { transform: rotateY(180deg); }
-    .loader { border: 4px solid #f3f3f3; border-top: 4px solid #002654; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .animate-slide-in { animation: slideIn 0.3s ease-out forwards; }
-    
-    /* Styles for Content */
-    .lesson-step h2 { color: #002654; font-weight: 700; margin-bottom: 0.5em; font-size: 1.25em; font-family: 'Merriweather', serif; }
-    .lesson-step p { margin-bottom: 1em; line-height: 1.6; color: #374151; font-size: 1rem; }
-    .lesson-step ul { list-style-type: disc; padding-left: 1.2em; margin-bottom: 1em; }
-    .lesson-step strong { color: #ED2939; font-weight: 700; }
-    textarea, input { font-size: 16px !important; }
-    
-    /* Modal Animation */
-    .modal-enter { opacity: 0; transform: scale(0.95); }
-    .modal-enter-active { opacity: 1; transform: scale(1); transition: all 0.2s ease-out; }
-</style>
+    <style>
+        body {
+            overscroll-behavior-y: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #002654;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+
+        /* Styles for Content */
+        .lesson-step h2 {
+            color: #002654;
+            font-weight: 700;
+            margin-bottom: 0.5em;
+            font-size: 1.25em;
+            font-family: 'Merriweather', serif;
+        }
+
+        .lesson-step p {
+            margin-bottom: 1em;
+            line-height: 1.6;
+            color: #374151;
+            font-size: 1rem;
+        }
+
+        .lesson-step ul {
+            list-style-type: disc;
+            padding-left: 1.2em;
+            margin-bottom: 1em;
+        }
+
+        .lesson-step strong {
+            color: #ED2939;
+            font-weight: 700;
+        }
+
+        textarea,
+        input {
+            font-size: 16px !important;
+        }
+
+        /* Modal Animation */
+        .modal-enter {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        .modal-enter-active {
+            opacity: 1;
+            transform: scale(1);
+            transition: all 0.2s ease-out;
+        }
+    </style>
 </head>
+
 <body class="bg-gray-50 text-gray-800 h-[100dvh] flex flex-col overflow-hidden">
 
     <!-- NAVBAR -->
@@ -61,15 +145,22 @@
                 <i class="fa-solid fa-landmark text-gold text-xl"></i>
                 <h1 class="font-bold text-base tracking-wider uppercase">L'Académie</h1>
             </div>
-            <button onclick="app.renderFlashcards()" class="bg-white/10 active:bg-white/20 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2">
+            <button onclick="app.renderFlashcards()"
+                class="bg-white/10 active:bg-white/20 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2">
                 <i class="fa-solid fa-layer-group text-gold"></i> <span>Révisions</span>
             </button>
         </div>
-        <div class="h-1 w-full flex"><div class="w-1/3 bg-blue-600"></div><div class="w-1/3 bg-white"></div><div class="w-1/3 bg-red-600"></div></div>
+        <div class="h-1 w-full flex">
+            <div class="w-1/3 bg-blue-600"></div>
+            <div class="w-1/3 bg-white"></div>
+            <div class="w-1/3 bg-red-600"></div>
+        </div>
     </nav>
 
     <!-- MODAL OVERLAY -->
-    <div id="selection-modal" class="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4" onclick="app.closeModal(event)">
+    <div id="selection-modal"
+        class="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4"
+        onclick="app.closeModal(event)">
         <!-- Content injected by JS -->
     </div>
 
@@ -86,19 +177,19 @@
             container: document.getElementById('app-container'),
             modal: document.getElementById('selection-modal'),
             modules: [],
-            progress: {}, 
+            progress: {},
             userVocab: JSON.parse(localStorage.getItem('acad_user_vocab') || '[]'),
-            baseUrl: 'https://clement-torti.github.io/academie/', 
-            
+            baseUrl: 'https://clement-torti.github.io/academie/',
+
             // State
             lessonSteps: [],
             currentStepIdx: 0,
             currentLessonMeta: null,
-            
+
             // Review State
             reviewDeck: [],
             reviewIndex: 0,
-    
+
             async init() {
                 // Migration logic
                 const rawProgress = JSON.parse(localStorage.getItem('acad_progress') || '{}');
@@ -118,63 +209,63 @@
                     resizeTimer = setTimeout(() => this.drawMapPath(), 100);
                 });
             },
-    
-            // --- 1. DISCOVERY ---
-// --- 1. DISCOVERY ---
-async discoverModules() {
-    this.modules = []; // Reset
-    let id = 1;
-    let searching = true;
-    while (searching) {
-        const url = `${this.baseUrl}lesson${id}.html`;
-        try {
-            const res = await fetch(url);
-            if (res.ok) {
-                const text = await res.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(text, 'text/html');
-                const jsonScript = doc.getElementById('lesson-data');
-                
-                if (jsonScript) {
-                    const data = JSON.parse(jsonScript.textContent);
-                    
-                    // PUSH 1: THEORY NODE
-                    this.modules.push({ 
-                        id: id, 
-                        uid: `${id}_theory`, // Unique ID for progress
-                        type: 'theory', 
-                        url: url, 
-                        title: `Leçon ${id}`, 
-                        topic: data.title,
-                        icon: data.icon
-                    });
 
-                    // PUSH 2: PRACTICE NODE
-                    this.modules.push({ 
-                        id: id, 
-                        uid: `${id}_practice`, // Unique ID for progress
-                        type: 'practice', 
-                        url: url, // We pass lesson URL, loadPractice handles the rest
-                        title: `Exercice ${id}`, 
-                        topic: "Practica",
-                        icon: 'fa-dumbbell' 
-                    });
+            // --- 1. DISCOVERY ---
+            // --- 1. DISCOVERY ---
+            async discoverModules() {
+                this.modules = []; // Reset
+                let id = 1;
+                let searching = true;
+                while (searching) {
+                    const url = `${this.baseUrl}lesson${id}.html`;
+                    try {
+                        const res = await fetch(url);
+                        if (res.ok) {
+                            const text = await res.text();
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(text, 'text/html');
+                            const jsonScript = doc.getElementById('lesson-data');
+
+                            if (jsonScript) {
+                                const data = JSON.parse(jsonScript.textContent);
+
+                                // PUSH 1: THEORY NODE
+                                this.modules.push({
+                                    id: id,
+                                    uid: `${id}_theory`, // Unique ID for progress
+                                    type: 'theory',
+                                    url: url,
+                                    title: `Leçon ${id}`,
+                                    topic: data.title,
+                                    icon: data.icon
+                                });
+
+                                // PUSH 2: PRACTICE NODE
+                                this.modules.push({
+                                    id: id,
+                                    uid: `${id}_practice`, // Unique ID for progress
+                                    type: 'practice',
+                                    url: url, // We pass lesson URL, loadPractice handles the rest
+                                    title: `Exercice ${id}`,
+                                    topic: "Practica",
+                                    icon: 'fa-dumbbell'
+                                });
+                            }
+                            id++;
+                        } else { searching = false; }
+                    } catch (e) { searching = false; }
                 }
-                id++;
-            } else { searching = false; }
-        } catch (e) { searching = false; }
-    }
-    
-    if (this.modules.length === 0) this.container.innerHTML = `<div class="p-10 text-center">No lessons found.</div>`;
-    else this.renderMap();
-},
-    
+
+                if (this.modules.length === 0) this.container.innerHTML = `<div class="p-10 text-center">No lessons found.</div>`;
+                else this.renderMap();
+            },
+
             // --- 2. MAP RENDERING ---
-renderMap() {
-    this.modal.classList.add('hidden');
-    
-    // Intro Card (Keep as is)
-    const introCard = `
+            renderMap() {
+                this.modal.classList.add('hidden');
+
+                // Intro Card (Keep as is)
+                const introCard = `
     <div class="w-full px-6 pt-8 pb-4 relative z-20">
         <div class="bg-white p-6 rounded-2xl shadow-card border border-blue-100 text-center relative overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-frBlue via-white to-frRed"></div>
@@ -192,72 +283,72 @@ renderMap() {
         </div>
     </div>`;
 
-    let nodes = '';
+                let nodes = '';
 
-    this.modules.forEach((mod, i) => {
-        // GET MASTERY LEVEL (0, 1, 2, or 3+)
-        const masteryLevel = this.progress[mod.uid] || 0;
-        
-        // CHECK LOCK STATUS
-        // It is locked if it is NOT the first one AND the previous one has 0 progress
-        let isLocked = false;
-    
-        const isComplete = this.progress[mod.uid] ? true : false;
-        
-        // Zigzag offset
-        const offset = i % 2 === 0 ? '-translate-x-8 sm:-translate-x-12' : 'translate-x-8 sm:translate-x-12';
-        
-        // VISUAL STYLES based on Mastery Level
-        let colorClass, borderClass, opacityClass, clickAction, iconHtml;
+                this.modules.forEach((mod, i) => {
+                    // GET MASTERY LEVEL (0, 1, 2, or 3+)
+                    const masteryLevel = this.progress[mod.uid] || 0;
 
-        if (isLocked) {
-            colorClass = 'bg-gray-200 text-gray-400';
-            borderClass = 'border-gray-300';
-            opacityClass = 'opacity-70 grayscale';
-            clickAction = ''; 
-            iconHtml = '<i class="fa-solid fa-lock text-sm"></i>';
-        } else {
-            clickAction = mod.type === 'theory' ? `app.loadLesson(${i})` : `app.loadPractice(${i})`;
-            opacityClass = ''; // Active
-            
-            // Define colors based on mastery
-            if (masteryLevel === 0) {
-                // Not started yet
-                if (mod.type === 'theory') {
-                    colorClass = 'bg-frBlue text-white';
-                    borderClass = 'border-blue-900';
-                } else {
-                    colorClass = 'bg-white text-frBlue border-2 border-frBlue';
-                    borderClass = 'border-blue-200';
-                }
-                opacityClass = 'scale-110'; // Highlight next step
-            } else if (masteryLevel === 1) {
-                // BRONZE
-                colorClass = 'bg-bronze text-white';
-                borderClass = 'border-[#8B4513]'; // Darker brown border
-            } else if (masteryLevel === 2) {
-                // SILVER
-                colorClass = 'bg-silver text-white'; // Or text-gray-700 if contrast is bad
-                borderClass = 'border-gray-400';
-            } else {
-                // GOLD (3 or more)
-                colorClass = 'bg-gold text-white';
-                borderClass = 'border-yellow-600';
-            }
+                    // CHECK LOCK STATUS
+                    // It is locked if it is NOT the first one AND the previous one has 0 progress
+                    let isLocked = false;
 
-            // Icon Logic
-            if (masteryLevel > 0) {
-                // Show checkmark or crown for gold
-                const icon = masteryLevel >= 3 ? 'fa-crown' : 'fa-check';
-                iconHtml = `<i class="fa-solid ${icon}"></i>`;
-            } else {
-                // Show module icon
-                iconHtml = `<i class="fa-solid ${mod.icon}"></i>`;
-            }
-        }
+                    const isComplete = this.progress[mod.uid] ? true : false;
 
-        // Generate Node HTML
-        nodes += `
+                    // Zigzag offset
+                    const offset = i % 2 === 0 ? '-translate-x-8 sm:-translate-x-12' : 'translate-x-8 sm:translate-x-12';
+
+                    // VISUAL STYLES based on Mastery Level
+                    let colorClass, borderClass, opacityClass, clickAction, iconHtml;
+
+                    if (isLocked) {
+                        colorClass = 'bg-gray-200 text-gray-400';
+                        borderClass = 'border-gray-300';
+                        opacityClass = 'opacity-70 grayscale';
+                        clickAction = '';
+                        iconHtml = '<i class="fa-solid fa-lock text-sm"></i>';
+                    } else {
+                        clickAction = mod.type === 'theory' ? `app.loadLesson(${i})` : `app.loadPractice(${i})`;
+                        opacityClass = ''; // Active
+
+                        // Define colors based on mastery
+                        if (masteryLevel === 0) {
+                            // Not started yet
+                            if (mod.type === 'theory') {
+                                colorClass = 'bg-frBlue text-white';
+                                borderClass = 'border-blue-900';
+                            } else {
+                                colorClass = 'bg-white text-frBlue border-2 border-frBlue';
+                                borderClass = 'border-blue-200';
+                            }
+                            opacityClass = 'scale-110'; // Highlight next step
+                        } else if (masteryLevel === 1) {
+                            // BRONZE
+                            colorClass = 'bg-bronze text-white';
+                            borderClass = 'border-[#8B4513]'; // Darker brown border
+                        } else if (masteryLevel === 2) {
+                            // SILVER
+                            colorClass = 'bg-silver text-white'; // Or text-gray-700 if contrast is bad
+                            borderClass = 'border-gray-400';
+                        } else {
+                            // GOLD (3 or more)
+                            colorClass = 'bg-gold text-white';
+                            borderClass = 'border-yellow-600';
+                        }
+
+                        // Icon Logic
+                        if (masteryLevel > 0) {
+                            // Show checkmark or crown for gold
+                            const icon = masteryLevel >= 3 ? 'fa-crown' : 'fa-check';
+                            iconHtml = `<i class="fa-solid ${icon}"></i>`;
+                        } else {
+                            // Show module icon
+                            iconHtml = `<i class="fa-solid ${mod.icon}"></i>`;
+                        }
+                    }
+
+                    // Generate Node HTML
+                    nodes += `
   <div class="flex flex-col items-center mb-16 relative z-10 pointer-events-none w-full">
       <div class="pointer-events-auto flex flex-col items-center transition-all duration-300 ${offset} ${opacityClass}" id="node-${i}">
           <!-- Main Button -->
@@ -266,11 +357,11 @@ renderMap() {
               ${iconHtml}
               
               <!-- Stars/Dots indicator for progress -->
-              ${!isLocked && masteryLevel > 0 && masteryLevel < 3 ? 
-                  `<div class="absolute -bottom-2 flex gap-0.5">
+              ${!isLocked && masteryLevel > 0 && masteryLevel < 3 ?
+                            `<div class="absolute -bottom-2 flex gap-0.5">
                       ${Array(masteryLevel).fill('<div class="w-1.5 h-1.5 rounded-full bg-frBlue border border-white"></div>').join('')}
-                   </div>` 
-               : ''}
+                   </div>`
+                            : ''}
           </button>
           
           <!-- Title below -->
@@ -283,9 +374,9 @@ renderMap() {
       </div>
   </div>`;
 
-    });
+                });
 
-    this.container.innerHTML = `
+                this.container.innerHTML = `
         <div class="min-h-full relative overflow-x-hidden bg-[#fdfbf7]">
             <svg id="map-svg" class="absolute inset-0 w-full h-full pointer-events-none"><path id="map-path" d="" fill="none" stroke="#cbd5e1" stroke-width="4" stroke-dasharray="8 8" stroke-linecap="round"/></svg>
             <div class="max-w-md mx-auto flex flex-col items-center w-full overflow-hidden">
@@ -295,9 +386,9 @@ renderMap() {
                 </div>
             </div>
         </div>`;
-    
-    setTimeout(() => this.drawMapPath(), 100);
-},
+
+                setTimeout(() => this.drawMapPath(), 100);
+            },
 
             // --- MODAL LOGIC ---
             openLessonModal(index) {
@@ -344,253 +435,253 @@ renderMap() {
                     this.modal.classList.add('hidden');
                 }
             },
-    
+
             drawMapPath() {
                 const path = document.getElementById('map-path');
-                if(!path || this.modules.length < 2) return;
+                if (!path || this.modules.length < 2) return;
                 const contRect = this.container.getBoundingClientRect();
                 let d = '';
-                for(let i=0; i<this.modules.length-1; i++) {
+                for (let i = 0; i < this.modules.length - 1; i++) {
                     const currEl = document.getElementById(`node-${i}`);
-                    const nextEl = document.getElementById(`node-${i+1}`);
-                    if(!currEl || !nextEl) continue;
+                    const nextEl = document.getElementById(`node-${i + 1}`);
+                    if (!currEl || !nextEl) continue;
                     const curr = currEl.getBoundingClientRect();
                     const next = nextEl.getBoundingClientRect();
-                    const x1 = curr.left + curr.width/2;
-                    const y1 = curr.top + curr.height/2 - contRect.top + this.container.scrollTop;
-                    const x2 = next.left + next.width/2;
-                    const y2 = next.top + next.height/2 - contRect.top + this.container.scrollTop;
-                    if(i===0) d += `M ${x1} ${y1} `;
-                    d += `C ${x1} ${y1 + (y2-y1)/2}, ${x2} ${y1 + (y2-y1)/2}, ${x2} ${y2} `;
+                    const x1 = curr.left + curr.width / 2;
+                    const y1 = curr.top + curr.height / 2 - contRect.top + this.container.scrollTop;
+                    const x2 = next.left + next.width / 2;
+                    const y2 = next.top + next.height / 2 - contRect.top + this.container.scrollTop;
+                    if (i === 0) d += `M ${x1} ${y1} `;
+                    d += `C ${x1} ${y1 + (y2 - y1) / 2}, ${x2} ${y1 + (y2 - y1) / 2}, ${x2} ${y2} `;
                 }
                 path.setAttribute('d', d);
             },
-    
+
             // --- 3A. LESSON ENGINE (Standard) ---
-async loadLesson(index) {
-    const mod = this.modules[index];
-    this.currentModIndex = index;
-    this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
+            async loadLesson(index) {
+                const mod = this.modules[index];
+                this.currentModIndex = index;
+                this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
 
-    this.lessonSteps = [];
+                this.lessonSteps = [];
 
-    // ---------------------------------
-    // 1. LOAD PREVIOUS LESSON (Rappel)
-    // ---------------------------------
-    if (index > 0) {
-        try {
-            const previousLessonRes = await fetch(this.modules[index - 1].url);
-            if (!previousLessonRes.ok) throw new Error("Previous lesson missing");
+                // ---------------------------------
+                // 1. LOAD PREVIOUS LESSON (Rappel)
+                // ---------------------------------
+                if (index > 0) {
+                    try {
+                        const previousLessonRes = await fetch(this.modules[index - 1].url);
+                        if (!previousLessonRes.ok) throw new Error("Previous lesson missing");
 
-            const previousLessonHtml = await previousLessonRes.text();
-            const parser = new DOMParser();
-            const prevDoc = parser.parseFromString(previousLessonHtml, "text/html");
-            
-            const prevSections = prevDoc.querySelectorAll("section");
+                        const previousLessonHtml = await previousLessonRes.text();
+                        const parser = new DOMParser();
+                        const prevDoc = parser.parseFromString(previousLessonHtml, "text/html");
 
-            if (prevSections.length >= 2) {
-                this.lessonSteps.push({
-                    type: 'read',
-                    html: `
+                        const prevSections = prevDoc.querySelectorAll("section");
+
+                        if (prevSections.length >= 2) {
+                            this.lessonSteps.push({
+                                type: 'read',
+                                html: `
                         <div class="mb-4 pb-2 border-b border-gray-100">
                             <span class="bg-frBlue text-white px-2 py-1 rounded text-[10px] font-bold uppercase">Rappel</span>
                         </div>
                         ${prevSections[1].innerHTML}
                     `
-                });
-            }
-        } catch(e) {
-            console.warn("Previous lesson could not be loaded:", e.message);
-        }
-    }
+                            });
+                        }
+                    } catch (e) {
+                        console.warn("Previous lesson could not be loaded:", e.message);
+                    }
+                }
 
-    // ---------------------------------
-    // 2. LOAD CURRENT LESSON (Normal)
-    // ---------------------------------
-    try {
-        const res = await fetch(mod.url);
-        const html = await res.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
+                // ---------------------------------
+                // 2. LOAD CURRENT LESSON (Normal)
+                // ---------------------------------
+                try {
+                    const res = await fetch(mod.url);
+                    const html = await res.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
 
-        // Extract sections
-        const contentDiv = doc.getElementById('lesson-content');
-        let sections = Array.from(contentDiv.querySelectorAll('section'));
-        if (sections.length === 0) sections = [contentDiv];
+                    // Extract sections
+                    const contentDiv = doc.getElementById('lesson-content');
+                    let sections = Array.from(contentDiv.querySelectorAll('section'));
+                    if (sections.length === 0) sections = [contentDiv];
 
-        const readSteps = sections.map(s => ({
-            type: 'read',
-            html: s.innerHTML
-        }));
+                    const readSteps = sections.map(s => ({
+                        type: 'read',
+                        html: s.innerHTML
+                    }));
 
-        // Add them after the rappel step
-        this.lessonSteps.push(...readSteps);
+                    // Add them after the rappel step
+                    this.lessonSteps.push(...readSteps);
 
-        // Load metadata
-        const data = JSON.parse(doc.getElementById('lesson-data').textContent);
+                    // Load metadata
+                    const data = JSON.parse(doc.getElementById('lesson-data').textContent);
 
-        // Insert vocab section as the 4th step (index 3)
-        if (data.vocabulary && data.vocabulary.length > 0) {
+                    // Insert vocab section as the 4th step (index 3)
+                    if (data.vocabulary && data.vocabulary.length > 0) {
 
-            let vocabListHtml = `<div class="grid grid-cols-1 gap-2">`;
-            data.vocabulary.forEach(word => {
-                vocabListHtml += `
+                        let vocabListHtml = `<div class="grid grid-cols-1 gap-2">`;
+                        data.vocabulary.forEach(word => {
+                            vocabListHtml += `
                     <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg border border-gray-100">
                         <span class="font-bold text-frBlue">${word.fr}</span>
                         <span class="text-gray-500 text-sm italic">${word.es}</span>
                     </div>`;
-            });
-            vocabListHtml += `</div>`;
+                        });
+                        vocabListHtml += `</div>`;
 
-            const vocabSection = {
-                type: "read",
-                html: `
+                        const vocabSection = {
+                            type: "read",
+                            html: `
                     <div class="text-center mb-6">
                         <i class="fa-solid fa-book-bookmark text-4xl text-gold mb-2"></i>
                         <h2 class="text-xl font-bold text-frBlue">Vocabulaire</h2>
                     </div>
                     ${vocabListHtml}
                 `
-            };
+                        };
 
-            // Insert at index 3 (4th position)
-            const insertIndex = (this.currentModIndex === 0) ? 2 : 3;
-            this.lessonSteps.splice(insertIndex, 0, vocabSection);
-        }
-
-
+                        // Insert at index 3 (4th position)
+                        const insertIndex = (this.currentModIndex === 0) ? 2 : 3;
+                        this.lessonSteps.splice(insertIndex, 0, vocabSection);
+                    }
 
 
-        this.currentLessonMeta = {
-            ...data,
-            id: mod.id,
-            uid: mod.uid,
-            type: 'theory',
-            moduleIndex: index
-        };
 
-        this.currentStepIdx = 0;
-        this.renderStep();
 
-    } catch (e) {
-        console.error(e);
-        this.container.innerHTML = `
+                    this.currentLessonMeta = {
+                        ...data,
+                        id: mod.id,
+                        uid: mod.uid,
+                        type: 'theory',
+                        moduleIndex: index
+                    };
+
+                    this.currentStepIdx = 0;
+                    this.renderStep();
+
+                } catch (e) {
+                    console.error(e);
+                    this.container.innerHTML = `
             <div class="p-10 text-center text-red-500">
                 Error loading lesson.
             </div>`;
-    }
-},
+                }
+            },
 
             // --- 3B. PRACTICE ENGINE (New) ---
-    async loadPractice(index) {
-        const mod = this.modules[index];
-        this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
+            async loadPractice(index) {
+                const mod = this.modules[index];
+                this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
 
-        try {
-            // 1. Load Lesson X (for Vocab + Section 2)
-            const lessonRes = await fetch(mod.url);
-            if(!lessonRes.ok) throw new Error("Lesson not found");
-            const lessonHtml = await lessonRes.text();
-            const parser = new DOMParser();
-            const lessonDoc = parser.parseFromString(lessonHtml, 'text/html');
-            const lessonData = JSON.parse(lessonDoc.getElementById('lesson-data').textContent);
+                try {
+                    // 1. Load Lesson X (for Vocab + Section 2)
+                    const lessonRes = await fetch(mod.url);
+                    if (!lessonRes.ok) throw new Error("Lesson not found");
+                    const lessonHtml = await lessonRes.text();
+                    const parser = new DOMParser();
+                    const lessonDoc = parser.parseFromString(lessonHtml, 'text/html');
+                    const lessonData = JSON.parse(lessonDoc.getElementById('lesson-data').textContent);
 
-            // 2. Load Exercices X
-            const exUrl = `${this.baseUrl}exercices${mod.id}.html`;
-            const exRes = await fetch(exUrl);
-            if(!exRes.ok) throw new Error("Exercices file not found");
-            const exHtml = await exRes.text();
-            const exDoc = parser.parseFromString(exHtml, 'text/html');
-            
-            // Parse JSON Data
-            const exScript = exDoc.getElementById('exercise-data');
-            if(!exScript) throw new Error("No JSON data found in exercise file");
-            const exData = JSON.parse(exScript.textContent);
+                    // 2. Load Exercices X
+                    const exUrl = `${this.baseUrl}exercices${mod.id}.html`;
+                    const exRes = await fetch(exUrl);
+                    if (!exRes.ok) throw new Error("Exercices file not found");
+                    const exHtml = await exRes.text();
+                    const exDoc = parser.parseFromString(exHtml, 'text/html');
 
-            // BUILD STEPS
-            this.lessonSteps = [];
+                    // Parse JSON Data
+                    const exScript = exDoc.getElementById('exercise-data');
+                    if (!exScript) throw new Error("No JSON data found in exercise file");
+                    const exData = JSON.parse(exScript.textContent);
 
-            // Step 1: Vocabulary (Visual)
-            if (lessonData.vocabulary && lessonData.vocabulary.length > 0) {
-                let vocabListHtml = `<div class="grid grid-cols-1 gap-2">`;
-                lessonData.vocabulary.forEach(word => {
-                    vocabListHtml += `
+                    // BUILD STEPS
+                    this.lessonSteps = [];
+
+                    // Step 1: Vocabulary (Visual)
+                    if (lessonData.vocabulary && lessonData.vocabulary.length > 0) {
+                        let vocabListHtml = `<div class="grid grid-cols-1 gap-2">`;
+                        lessonData.vocabulary.forEach(word => {
+                            vocabListHtml += `
                         <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg border border-gray-100">
                             <span class="font-bold text-frBlue">${word.fr}</span>
                             <span class="text-gray-500 text-sm italic">${word.es}</span>
                         </div>`;
-                });
-                vocabListHtml += `</div>`;
-                
-                this.lessonSteps.push({
-                    type: 'read',
-                    html: `
+                        });
+                        vocabListHtml += `</div>`;
+
+                        this.lessonSteps.push({
+                            type: 'read',
+                            html: `
                         <div class="text-center mb-6"><i class="fa-solid fa-book-bookmark text-4xl text-gold mb-2"></i><h2 class="text-xl font-bold text-frBlue">Vocabulaire</h2></div>
                         ${vocabListHtml}
                     `
-                });
-            }
+                        });
+                    }
 
-            // Step 2: Section 2 of Lesson (Refresher)
-            const lessonSections = lessonDoc.querySelectorAll('section');
-            if (lessonSections.length >= 2) {
-                this.lessonSteps.push({
-                    type: 'read',
-                    html: `
+                    // Step 2: Section 2 of Lesson (Refresher)
+                    const lessonSections = lessonDoc.querySelectorAll('section');
+                    if (lessonSections.length >= 2) {
+                        this.lessonSteps.push({
+                            type: 'read',
+                            html: `
                         <div class="mb-4 pb-2 border-b border-gray-100">
                             <span class="bg-frBlue text-white px-2 py-1 rounded text-[10px] font-bold uppercase">Rappel</span>
                         </div>
                         ${lessonSections[1].innerHTML}
                     `
-                });
-            }
+                        });
+                    }
 
-            // Step 3: Interactive JSON Exercises
-            if (exData.interactive_exercises) {
-                exData.interactive_exercises.forEach(ex => {
-                    this.lessonSteps.push({
-                        type: 'interactive_practice',
-                        data: ex
-                    });
-                });
-            }
+                    // Step 3: Interactive JSON Exercises
+                    if (exData.interactive_exercises) {
+                        exData.interactive_exercises.forEach(ex => {
+                            this.lessonSteps.push({
+                                type: 'interactive_practice',
+                                data: ex
+                            });
+                        });
+                    }
 
-            this.currentLessonMeta = { ...lessonData, id: mod.id, uid: mod.uid, mode: 'practice', type: 'practice', moduleIndex: index };
-            this.currentStepIdx = 0;
-            this.renderStep();
+                    this.currentLessonMeta = { ...lessonData, id: mod.id, uid: mod.uid, mode: 'practice', type: 'practice', moduleIndex: index };
+                    this.currentStepIdx = 0;
+                    this.renderStep();
 
-        } catch (e) {
-            console.error(e);
-            this.container.innerHTML = `<div class="p-10 text-center flex flex-col items-center">
+                } catch (e) {
+                    console.error(e);
+                    this.container.innerHTML = `<div class="p-10 text-center flex flex-col items-center">
                 <i class="fa-solid fa-triangle-exclamation text-4xl text-frRed mb-4"></i>
                 <p class="text-gray-600">Erreur de chargement.</p>
                 <p class="text-xs text-gray-400 mt-2">${e.message}</p>
                 <button onclick="app.renderMap()" class="mt-6 font-bold text-frBlue underline">Retour</button>
             </div>`;
-        }
-    },
+                }
+            },
 
-    prevStep() {
-    if (this.currentStepIdx > 0) {
-        this.currentStepIdx--;
-        this.renderStep();
-    }
-},
+            prevStep() {
+                if (this.currentStepIdx > 0) {
+                    this.currentStepIdx--;
+                    this.renderStep();
+                }
+            },
 
 
-renderStep() {
-        if (this.currentStepIdx >= this.lessonSteps.length) {
-            this.prepareEndReview(); 
-            return;
-        }
+            renderStep() {
+                if (this.currentStepIdx >= this.lessonSteps.length) {
+                    this.prepareEndReview();
+                    return;
+                }
 
-        const step = this.lessonSteps[this.currentStepIdx];
-        const progress = ((this.currentStepIdx + 0.5) / this.lessonSteps.length) * 100;
-        const navBtn = `<button onclick="app.prevStep()" class="text-gray-400 p-2 hover:text-frBlue transition">
+                const step = this.lessonSteps[this.currentStepIdx];
+                const progress = ((this.currentStepIdx + 0.5) / this.lessonSteps.length) * 100;
+                const navBtn = `<button onclick="app.prevStep()" class="text-gray-400 p-2 hover:text-frBlue transition">
             <i class="fa-solid fa-arrow-left text-xl"></i>
         </button>`;
 
-        let html = `
+                let html = `
             <div class="h-full flex flex-col bg-frCream relative">
                 <div class="px-4 py-3 flex items-center gap-3 max-w-2xl mx-auto w-full bg-frCream z-30 shrink-0 border-b border-gray-100/50">
                     ${navBtn}
@@ -602,79 +693,79 @@ renderStep() {
                     <div class="max-w-2xl mx-auto w-full flex flex-col justify-start pb-36 pt-4">
         `;
 
-        if (step.type === 'read') {
-            html += `<div class="lesson-section bg-white p-5 sm:p-8 rounded-xl shadow-sm border border-gray-100 text-lg leading-relaxed">${step.html}</div>`;
-        } 
-        // --- THE FIX STARTS HERE ---
-        else if (step.type === 'interactive_practice') {
-            // We call the helper function we created to generate the HTML
-            html += `<div class="lesson-section bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                if (step.type === 'read') {
+                    html += `<div class="lesson-section bg-white p-5 sm:p-8 rounded-xl shadow-sm border border-gray-100 text-lg leading-relaxed">${step.html}</div>`;
+                }
+                // --- THE FIX STARTS HERE ---
+                else if (step.type === 'interactive_practice') {
+                    // We call the helper function we created to generate the HTML
+                    html += `<div class="lesson-section bg-white p-5 rounded-xl shadow-sm border border-gray-100">
                         ${this.renderInteractiveExercise(step.data)}
                      </div>`;
-        } 
-        // --- THE FIX ENDS HERE ---
-        else if (step.type === 'quiz') {
-            html += `
+                }
+                // --- THE FIX ENDS HERE ---
+                else if (step.type === 'quiz') {
+                    html += `
                 <div class="bg-white p-5 rounded-xl shadow-card border border-gray-100 mb-4">
                     <div class="text-lg text-gray-800 mb-4 font-serif">${step.q}</div>
                     <textarea id="inp-quiz" class="w-full p-3 text-lg border-2 border-gray-200 rounded-lg focus:border-frBlue focus:outline-none transition bg-gray-50 resize-none" rows="2"></textarea>
                 </div>
                 <div id="feedback" class="hidden rounded-lg p-4 font-bold text-center text-sm"></div>`;
-        }
+                }
 
-        // ... (rest of the function remains the same)
-        html += `
+                // ... (rest of the function remains the same)
+                html += `
                     </div>
                 </div>
                 <div class="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur border-t border-gray-200 p-4 z-40 safe-pb">
                     <div class="max-w-2xl mx-auto">
-                        ${step.type === 'read' 
-                            ? `<button onclick="app.nextStep()" class="w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">Continuer</button>`
-                            : `<button id="btn-check" onclick="app.checkInteractive()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">Vérifier</button>
+                        ${step.type === 'read'
+                        ? `<button onclick="app.nextStep()" class="w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">Continuer</button>`
+                        : `<button id="btn-check" onclick="app.checkInteractive()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">Vérifier</button>
                                <button id="btn-next" onclick="app.nextStep()" class="hidden w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">Continuer</button>`
-                        }
+                    }
                     </div>
                 </div>
             </div>
         `;
-        this.container.innerHTML = html;
-    },
+                this.container.innerHTML = html;
+            },
 
-// --- GENERATE HTML FOR NEW EXERCISE TYPES ---
-    renderInteractiveExercise(ex) {
-        let contentHtml = '';
-        const instruction = `<div class="flex items-center gap-2 mb-4"><span class="bg-gold text-white px-2 py-0.5 rounded text-xs font-bold uppercase">Exercice</span><span class="text-xs text-gray-500 font-bold uppercase tracking-widest">${ex.instruction}</span></div>`;
-        const prompt = ex.prompt ? `<div class="text-xl font-serif text-frBlue font-bold mb-6 text-center">${ex.prompt.replace('______', '<span class="border-b-2 border-frBlue w-12 inline-block mx-1"></span>')}</div>` : '';
-        
-        switch(ex.type) {
-            case 'selection_single':
-                contentHtml = `<div class="grid gap-3">`;
-                ex.content.options.forEach(opt => {
-                    contentHtml += `<button onclick="app.selectOption(this, '${opt.id}')" class="option-btn w-full text-left p-4 rounded-xl border-2 border-gray-100 hover:border-frBlue/50 bg-white font-semibold text-lg transition relative group">
+            // --- GENERATE HTML FOR NEW EXERCISE TYPES ---
+            renderInteractiveExercise(ex) {
+                let contentHtml = '';
+                const instruction = `<div class="flex items-center gap-2 mb-4"><span class="bg-gold text-white px-2 py-0.5 rounded text-xs font-bold uppercase">Exercice</span><span class="text-xs text-gray-500 font-bold uppercase tracking-widest">${ex.instruction}</span></div>`;
+                const prompt = ex.prompt ? `<div class="text-xl font-serif text-frBlue font-bold mb-6 text-center">${ex.prompt.replace('______', '<span class="border-b-2 border-frBlue w-12 inline-block mx-1"></span>')}</div>` : '';
+
+                switch (ex.type) {
+                    case 'selection_single':
+                        contentHtml = `<div class="grid gap-3">`;
+                        ex.content.options.forEach(opt => {
+                            contentHtml += `<button onclick="app.selectOption(this, '${opt.id}')" class="option-btn w-full text-left p-4 rounded-xl border-2 border-gray-100 hover:border-frBlue/50 bg-white font-semibold text-lg transition relative group">
                         ${opt.text}
                         <div class="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-gray-300 group-hover:border-frBlue"></div>
                     </button>`;
-                });
-                contentHtml += `</div>`;
-                break;
+                        });
+                        contentHtml += `</div>`;
+                        break;
 
-            case 'sentence_builder':
-                const allWords = [...ex.content.segments || []].sort(() => Math.random() - 0.5);
-                contentHtml = `
+                    case 'sentence_builder':
+                        const allWords = [...ex.content.segments || []].sort(() => Math.random() - 0.5);
+                        contentHtml = `
                     <div id="build-area" class="min-h-[60px] bg-white border-b-2 border-frBlue mb-6 p-2 flex flex-wrap gap-2 items-center justify-center transition-colors rounded-t-lg"></div>
                     <div id="word-bank" class="flex flex-wrap justify-center gap-2">
                         ${allWords.map((w, i) => `<button onclick="app.moveWord(this)" class="word-chip bg-white border border-gray-200 shadow-sm px-3 py-2 rounded-lg font-bold text-frBlue active:scale-95 transition">${w}</button>`).join('')}
                     </div>`;
-                break;
+                        break;
 
-            case 'full_translation':
-                // Special characters buttons
-                const specialChars = ex.content.special_characters || [];
-                const charButtons = specialChars.map(char => 
-                    `<button onclick="document.getElementById('inp-blank').value += '${char}'; document.getElementById('inp-blank').focus();" class="w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded shadow-sm font-serif text-lg text-frBlue transition">${char}</button>`
-                ).join('');
+                    case 'full_translation':
+                        // Special characters buttons
+                        const specialChars = ex.content.special_characters || [];
+                        const charButtons = specialChars.map(char =>
+                            `<button onclick="document.getElementById('inp-blank').value += '${char}'; document.getElementById('inp-blank').focus();" class="w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded shadow-sm font-serif text-lg text-frBlue transition">${char}</button>`
+                        ).join('');
 
-                contentHtml = `
+                        contentHtml = `
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
                         <textarea id="inp-blank" rows="2" class="w-full text-center text-xl p-2 border-b-2 border-gray-300 focus:border-frBlue focus:outline-none bg-transparent placeholder-gray-300 resize-none" placeholder="${ex.content.placeholder}"></textarea>
                         
@@ -692,155 +783,155 @@ renderStep() {
                             <div class="mt-2 text-sm text-gray-500 italic">${ex.feedback?.correct || ''}</div>
                         </div>
                     </div>`;
-                break;
+                        break;
 
-            case 'true_false':
-                contentHtml = `
+                    case 'true_false':
+                        contentHtml = `
                     <div class="grid grid-cols-2 gap-4 h-32">
                         <button onclick="app.selectBool(this, true)" class="bool-btn h-full rounded-xl border-2 border-gray-100 bg-white text-green-600 font-bold text-xl flex flex-col items-center justify-center gap-2 hover:bg-green-50 transition"><i class="fa-solid fa-check"></i> Vrai</button>
                         <button onclick="app.selectBool(this, false)" class="bool-btn h-full rounded-xl border-2 border-gray-100 bg-white text-red-600 font-bold text-xl flex flex-col items-center justify-center gap-2 hover:bg-red-50 transition"><i class="fa-solid fa-xmark"></i> Faux</button>
                     </div>`;
-                break;
-        }
+                        break;
+                }
 
-        return `
+                return `
             ${instruction}
             ${prompt}
             <div class="w-full mb-4" id="ex-container">${contentHtml}</div>
             <div id="feedback" class="hidden rounded-lg p-4 font-bold text-center text-sm sm:text-base mb-20"></div>
         `;
-    },
+            },
 
-    // --- REVEAL ANSWER LOGIC (New) ---
-    revealAnswer() {
-        const ansDisplay = document.getElementById('answer-display');
-        const btnReveal = document.getElementById('btn-reveal-local');
-        const btnCheck = document.getElementById('btn-check');
-        const btnNext = document.getElementById('btn-next');
-        const input = document.getElementById('inp-blank');
+            // --- REVEAL ANSWER LOGIC (New) ---
+            revealAnswer() {
+                const ansDisplay = document.getElementById('answer-display');
+                const btnReveal = document.getElementById('btn-reveal-local');
+                const btnCheck = document.getElementById('btn-check');
+                const btnNext = document.getElementById('btn-next');
+                const input = document.getElementById('inp-blank');
 
-        // Show answer UI
-        if (ansDisplay) ansDisplay.classList.remove('hidden');
-        if (btnReveal) btnReveal.classList.add('hidden');
-        if (input) {
-            input.disabled = true;
-            input.classList.add('opacity-50');
-        }
+                // Show answer UI
+                if (ansDisplay) ansDisplay.classList.remove('hidden');
+                if (btnReveal) btnReveal.classList.add('hidden');
+                if (input) {
+                    input.disabled = true;
+                    input.classList.add('opacity-50');
+                }
 
-        // Manage global navigation
-        if (btnCheck) btnCheck.classList.add('hidden');
-        if (btnNext) btnNext.classList.remove('hidden');
-    },
+                // Manage global navigation
+                if (btnCheck) btnCheck.classList.add('hidden');
+                if (btnNext) btnNext.classList.remove('hidden');
+            },
 
-    // --- INTERACTION HELPERS ---
-selectOption(btn, id) {
-    // Remove old selection completely
-    document.querySelectorAll('.option-btn').forEach(b => {
-        b.classList.remove('border-frBlue', 'bg-blue-50', 'selected');
-        b.classList.add('border-gray-100', 'bg-white');
-        b.querySelector('div').classList.remove('bg-frBlue', 'border-frBlue');
-    });
+            // --- INTERACTION HELPERS ---
+            selectOption(btn, id) {
+                // Remove old selection completely
+                document.querySelectorAll('.option-btn').forEach(b => {
+                    b.classList.remove('border-frBlue', 'bg-blue-50', 'selected');
+                    b.classList.add('border-gray-100', 'bg-white');
+                    b.querySelector('div').classList.remove('bg-frBlue', 'border-frBlue');
+                });
 
-    // Apply new selection
-    btn.classList.remove('border-gray-100', 'bg-white');
-    btn.classList.add('border-frBlue', 'bg-blue-50', 'selected');
-    btn.querySelector('div').classList.add('bg-frBlue', 'border-frBlue');
+                // Apply new selection
+                btn.classList.remove('border-gray-100', 'bg-white');
+                btn.classList.add('border-frBlue', 'bg-blue-50', 'selected');
+                btn.querySelector('div').classList.add('bg-frBlue', 'border-frBlue');
 
-    btn.dataset.selectedId = id;
-},
+                btn.dataset.selectedId = id;
+            },
 
 
-    moveWord(btn) {
-        const bank = document.getElementById('word-bank');
-        const area = document.getElementById('build-area');
-        if (btn.parentElement === bank) {
-            area.appendChild(btn);
-            btn.classList.add('bg-frBlue', 'text-white');
-            btn.classList.remove('bg-white', 'text-frBlue');
-        } else {
-            bank.appendChild(btn);
-            btn.classList.remove('bg-frBlue', 'text-white');
-            btn.classList.add('bg-white', 'text-frBlue');
-        }
-    },
+            moveWord(btn) {
+                const bank = document.getElementById('word-bank');
+                const area = document.getElementById('build-area');
+                if (btn.parentElement === bank) {
+                    area.appendChild(btn);
+                    btn.classList.add('bg-frBlue', 'text-white');
+                    btn.classList.remove('bg-white', 'text-frBlue');
+                } else {
+                    bank.appendChild(btn);
+                    btn.classList.remove('bg-frBlue', 'text-white');
+                    btn.classList.add('bg-white', 'text-frBlue');
+                }
+            },
 
-    selectBool(btn, val) {
-        document.querySelectorAll('.bool-btn').forEach(b => b.classList.remove('ring-4', 'ring-frBlue/30', 'border-frBlue', 'selected'));
-        btn.classList.add('ring-4', 'ring-frBlue/30', 'border-frBlue', 'selected');
-        btn.dataset.val = val;
-    },
+            selectBool(btn, val) {
+                document.querySelectorAll('.bool-btn').forEach(b => b.classList.remove('ring-4', 'ring-frBlue/30', 'border-frBlue', 'selected'));
+                btn.classList.add('ring-4', 'ring-frBlue/30', 'border-frBlue', 'selected');
+                btn.dataset.val = val;
+            },
 
-    // --- VALIDATION LOGIC ---
-    checkInteractive() {
-        const step = this.lessonSteps[this.currentStepIdx];
-        const ex = step.data;
-        const feed = document.getElementById('feedback');
-        const btnCheck = document.getElementById('btn-check');
-        const btnNext = document.getElementById('btn-next');
-        let isCorrect = false;
-        let feedbackMsg = '';
+            // --- VALIDATION LOGIC ---
+            checkInteractive() {
+                const step = this.lessonSteps[this.currentStepIdx];
+                const ex = step.data;
+                const feed = document.getElementById('feedback');
+                const btnCheck = document.getElementById('btn-check');
+                const btnNext = document.getElementById('btn-next');
+                let isCorrect = false;
+                let feedbackMsg = '';
 
-        // SPECIAL CASE: Fill in blank (Translation) - No validation, just reveal
-        if (ex.type === 'full_translation') {
-            this.revealAnswer();
-            return;
-        }
+                // SPECIAL CASE: Fill in blank (Translation) - No validation, just reveal
+                if (ex.type === 'full_translation') {
+                    this.revealAnswer();
+                    return;
+                }
 
-        // 1. VALIDATE BASED ON TYPE
-        switch(ex.type) {
-            case 'selection_single':
-                const selBtn = document.querySelector('.option-btn.selected');
-                if (!selBtn) return; 
-                isCorrect = selBtn.dataset.selectedId === ex.content.correct_option_id;
-                feedbackMsg = isCorrect ? (ex.feedback?.correct || "Correct !") : (ex.feedback?.incorrect || "Incorrect.");
-                break;
+                // 1. VALIDATE BASED ON TYPE
+                switch (ex.type) {
+                    case 'selection_single':
+                        const selBtn = document.querySelector('.option-btn.selected');
+                        if (!selBtn) return;
+                        isCorrect = selBtn.dataset.selectedId === ex.content.correct_option_id;
+                        feedbackMsg = isCorrect ? (ex.feedback?.correct || "Correct !") : (ex.feedback?.incorrect || "Incorrect.");
+                        break;
 
-            case 'sentence_builder':
-                const userOrder = Array.from(document.getElementById('build-area').children).map(b => b.innerText.trim());
-                const correctOrder = ex.content.correct_order;
-                isCorrect = JSON.stringify(userOrder) === JSON.stringify(correctOrder);
-                feedbackMsg = isCorrect ? (ex.feedback?.correct || "Phrase correcte !") : `Ordre correct : "${correctOrder.join(' ')}"`;
-                break;
+                    case 'sentence_builder':
+                        const userOrder = Array.from(document.getElementById('build-area').children).map(b => b.innerText.trim());
+                        const correctOrder = ex.content.correct_order;
+                        isCorrect = JSON.stringify(userOrder) === JSON.stringify(correctOrder);
+                        feedbackMsg = isCorrect ? (ex.feedback?.correct || "Phrase correcte !") : `Ordre correct : "${correctOrder.join(' ')}"`;
+                        break;
 
-            case 'true_false':
-                const boolBtn = document.querySelector('.bool-btn.selected');
-                if (!boolBtn) return;
-                const userBool = boolBtn.dataset.val === 'true';
-                isCorrect = userBool === ex.content.is_correct;
-                feedbackMsg = isCorrect ? "Exact !" : (ex.content.explanation || "Ce n'est pas correct.");
-                break;
-        }
+                    case 'true_false':
+                        const boolBtn = document.querySelector('.bool-btn.selected');
+                        if (!boolBtn) return;
+                        const userBool = boolBtn.dataset.val === 'true';
+                        isCorrect = userBool === ex.content.is_correct;
+                        feedbackMsg = isCorrect ? "Exact !" : (ex.content.explanation || "Ce n'est pas correct.");
+                        break;
+                }
 
-        // 2. SHOW FEEDBACK
-        if (isCorrect) {
-            feed.innerHTML = `<div class="flex items-center justify-center gap-2 text-green-700"><i class="fa-solid fa-circle-check text-xl"></i> <span>${feedbackMsg}</span></div>`;
-            feed.className = "mb-4 rounded-xl p-4 font-bold text-center bg-green-100 animate-bounce";
-            const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3');
-            audio.volume = 0.3; audio.play().catch(e=>{});
-            
-            btnCheck.classList.add('hidden');
-            btnNext.classList.remove('hidden');
-            
-            const con = document.getElementById('ex-container');
-            con.style.pointerEvents = 'none';
-            con.style.opacity = '0.8';
+                // 2. SHOW FEEDBACK
+                if (isCorrect) {
+                    feed.innerHTML = `<div class="flex items-center justify-center gap-2 text-green-700"><i class="fa-solid fa-circle-check text-xl"></i> <span>${feedbackMsg}</span></div>`;
+                    feed.className = "mb-4 rounded-xl p-4 font-bold text-center bg-green-100 animate-bounce";
+                    const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3');
+                    audio.volume = 0.3; audio.play().catch(e => { });
 
-        } else {
-            feed.innerHTML = `<div class="flex flex-col gap-1 text-red-700"><div class="flex items-center justify-center gap-2"><i class="fa-solid fa-circle-xmark"></i> <span>Oups !</span></div><div class="text-xs font-normal">${feedbackMsg}</div></div>`;
-            feed.className = "mb-4 rounded-xl p-4 font-bold text-center bg-red-100";
-            feed.classList.remove('hidden');
-        }
-    },
-    
+                    btnCheck.classList.add('hidden');
+                    btnNext.classList.remove('hidden');
+
+                    const con = document.getElementById('ex-container');
+                    con.style.pointerEvents = 'none';
+                    con.style.opacity = '0.8';
+
+                } else {
+                    feed.innerHTML = `<div class="flex flex-col gap-1 text-red-700"><div class="flex items-center justify-center gap-2"><i class="fa-solid fa-circle-xmark"></i> <span>Oups !</span></div><div class="text-xs font-normal">${feedbackMsg}</div></div>`;
+                    feed.className = "mb-4 rounded-xl p-4 font-bold text-center bg-red-100";
+                    feed.classList.remove('hidden');
+                }
+            },
+
             nextStep() { this.currentStepIdx++; this.renderStep(); },
-    
-prepareEndReview() {
+
+            prepareEndReview() {
                 const isPractice = this.currentLessonMeta.type === 'practice';
                 // 1. Save to Global Vocab (Only if Theory/Lesson)
                 if (!isPractice && this.currentLessonMeta.vocabulary) {
                     const existing = this.userVocab.map(v => v.fr);
                     this.currentLessonMeta.vocabulary.forEach(w => {
-                        if(!existing.includes(w.fr)) this.userVocab.push(w);
+                        if (!existing.includes(w.fr)) this.userVocab.push(w);
                     });
                     localStorage.setItem('acad_user_vocab', JSON.stringify(this.userVocab));
                 }
@@ -869,7 +960,7 @@ prepareEndReview() {
                     this.renderLessonVocabReview();
                 } else {
                     // No vocab to review (or empty global vocab in practice), finish immediately
-                    this.completeLesson(); 
+                    this.completeLesson();
                 }
             },
 
@@ -882,7 +973,7 @@ prepareEndReview() {
                 const word = this.reviewDeck[this.reviewIndex];
                 const isLast = this.reviewIndex === this.reviewDeck.length - 1;
                 const progressText = `Mot ${this.reviewIndex + 1} sur ${this.reviewDeck.length}`;
-                
+
                 // Dynamic Title based on type
                 const isPractice = this.currentLessonMeta.type === 'practice';
                 const titleText = isPractice ? "Révision Globale" : "Mémorisation";
@@ -943,68 +1034,68 @@ prepareEndReview() {
                 this.renderLessonVocabReview();
             },
 
-           markCardWrong() {
-    const currentWord = this.reviewDeck[this.reviewIndex];
+            markCardWrong() {
+                const currentWord = this.reviewDeck[this.reviewIndex];
 
-    // Reinsertar palabra al final
-    this.reviewDeck.push(currentWord);
+                // Reinsertar palabra al final
+                this.reviewDeck.push(currentWord);
 
-    // Avanzar a la siguiente
-    this.reviewIndex++;
+                // Avanzar a la siguiente
+                this.reviewIndex++;
 
-    this.renderLessonVocabReview();
-},
- 
-    
-completeLesson() {
-    // 1. Logic: Increment Progress
-    const uid = this.currentLessonMeta.uid;
-    const currentLevel = this.progress[uid] || 0;
-    
-    // Increment, but you can cap it at 3 if you want, or let it grow
-    // Here we assume 3 is max for visual change, but we track attempts
-    const newLevel = currentLevel + 1;
-    this.progress[uid] = newLevel;
-    
-    localStorage.setItem('acad_progress', JSON.stringify(this.progress));
-    
-    // 2. Visuals & Messages
-    const isPractice = this.currentLessonMeta.type === 'practice';
-    
-    let colorText = "";
-    let medalIcon = "";
-    
-    if (newLevel === 1) {
-        colorText = "text-bronze"; 
-        medalIcon = "fa-medal"; // Bronze
-    } else if (newLevel === 2) {
-        colorText = "text-silver";
-        medalIcon = "fa-medal"; // Silver
-    } else {
-        colorText = "text-gold";
-        medalIcon = "fa-crown"; // Gold
-    }
+                this.renderLessonVocabReview();
+            },
 
-    const msg = isPractice ? "Exercice Terminé" : "Leçon Terminée";
-    
-    // Confetti
-    confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
 
-    // 3. Determine Next Step
-    // Check if there is a next module in the array
-    const nextIndex = this.currentLessonMeta.moduleIndex + 1;
-    let btnAction = `app.renderMap()`;
-    let btnText = "Volver al Mapa";
+            completeLesson() {
+                // 1. Logic: Increment Progress
+                const uid = this.currentLessonMeta.uid;
+                const currentLevel = this.progress[uid] || 0;
 
-    // Optional: Direct link to next node if it exists
-    if (nextIndex < this.modules.length) {
-        const nextMod = this.modules[nextIndex];
-        const fn = nextMod.type === 'theory' ? 'loadLesson' : 'loadPractice';
-        btnAction = `app.${fn}(${nextIndex})`;
-        btnText = `Siguiente: ${nextMod.type === 'theory' ? 'Théorie' : 'Pratique'}`;
-    }
+                // Increment, but you can cap it at 3 if you want, or let it grow
+                // Here we assume 3 is max for visual change, but we track attempts
+                const newLevel = currentLevel + 1;
+                this.progress[uid] = newLevel;
 
-    this.container.innerHTML = `
+                localStorage.setItem('acad_progress', JSON.stringify(this.progress));
+
+                // 2. Visuals & Messages
+                const isPractice = this.currentLessonMeta.type === 'practice';
+
+                let colorText = "";
+                let medalIcon = "";
+
+                if (newLevel === 1) {
+                    colorText = "text-bronze";
+                    medalIcon = "fa-medal"; // Bronze
+                } else if (newLevel === 2) {
+                    colorText = "text-silver";
+                    medalIcon = "fa-medal"; // Silver
+                } else {
+                    colorText = "text-gold";
+                    medalIcon = "fa-crown"; // Gold
+                }
+
+                const msg = isPractice ? "Exercice Terminé" : "Leçon Terminée";
+
+                // Confetti
+                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+
+                // 3. Determine Next Step
+                // Check if there is a next module in the array
+                const nextIndex = this.currentLessonMeta.moduleIndex + 1;
+                let btnAction = `app.renderMap()`;
+                let btnText = "Volver al Mapa";
+
+                // Optional: Direct link to next node if it exists
+                if (nextIndex < this.modules.length) {
+                    const nextMod = this.modules[nextIndex];
+                    const fn = nextMod.type === 'theory' ? 'loadLesson' : 'loadPractice';
+                    btnAction = `app.${fn}(${nextIndex})`;
+                    btnText = `Siguiente: ${nextMod.type === 'theory' ? 'Théorie' : 'Pratique'}`;
+                }
+
+                this.container.innerHTML = `
         <div class="h-full flex flex-col items-center justify-center bg-frCream p-6 text-center animate-step">
             <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg mb-6 text-4xl ${colorText} border-4 border-gray-100 relative">
                 <i class="fa-solid ${medalIcon}"></i>
@@ -1015,9 +1106,9 @@ completeLesson() {
             <h1 class="text-3xl font-serif font-bold text-frBlue mb-6">${msg}</h1>
             
             <p class="mb-8 text-gray-500 max-w-xs mx-auto">
-                ${newLevel === 1 ? "Has conseguido el <strong class='text-bronze'>Bronce</strong>. ¡Repite para obtener la Plata!" : 
-                  newLevel === 2 ? "Has conseguido la <strong class='text-silver'>Plata</strong>. ¡Una vez más para el Oro!" : 
-                  "¡Increíble! Has alcanzado el nivel <strong class='text-gold'>Oro</strong>."}
+                ${newLevel === 1 ? "Has conseguido el <strong class='text-bronze'>Bronce</strong>. ¡Repite para obtener la Plata!" :
+                        newLevel === 2 ? "Has conseguido la <strong class='text-silver'>Plata</strong>. ¡Una vez más para el Oro!" :
+                            "¡Increíble! Has alcanzado el nivel <strong class='text-gold'>Oro</strong>."}
             </p>
             
             <div class="w-full max-w-sm space-y-4">
@@ -1029,39 +1120,39 @@ completeLesson() {
                 </button>
             </div>
         </div>`;
-},
+            },
 
             renderFlashcards() {
-                if(this.userVocab.length === 0) {
+                if (this.userVocab.length === 0) {
                     this.container.innerHTML = `<div class="h-full flex items-center justify-center flex-col p-6 text-center"><p class="text-gray-500 mb-4">No tienes vocabulario guardado aún.</p><button class="text-frBlue font-bold border border-frBlue px-4 py-2 rounded-lg" onclick="app.renderMap()">Volver</button></div>`;
                     return;
                 }
-                this.deck = [...this.userVocab].sort(()=>Math.random()-0.5).slice(0, 30);
+                this.deck = [...this.userVocab].sort(() => Math.random() - 0.5).slice(0, 30);
                 this.cardIdx = 0;
                 this.renderVoluntaryCard();
             },
-            
+
             renderVoluntaryCard() {
-    if (this.cardIdx >= this.deck.length) {
-        this.container.innerHTML = `
+                if (this.cardIdx >= this.deck.length) {
+                    this.container.innerHTML = `
             <div class="h-full flex items-center justify-center flex-col bg-frBlue text-white">
                 <h2 class="text-xl font-bold mb-4">¡Repaso terminado!</h2>
                 <button onclick="app.renderMap()" class="bg-white/20 px-6 py-3 rounded-lg hover:bg-white/30 transition">Volver</button>
             </div>`;
-        return;
-    }
+                    return;
+                }
 
-    const word = this.deck[this.cardIdx];
-    const isFrenchFront = Math.random() > 0.5;
-    const frontLang = isFrenchFront ? 'Français' : 'Español';
-    const frontText = isFrenchFront ? word.fr : word.es;
-    const backLang = isFrenchFront ? 'Español' : 'Français';
-    const backText = isFrenchFront ? word.es : word.fr;
+                const word = this.deck[this.cardIdx];
+                const isFrenchFront = Math.random() > 0.5;
+                const frontLang = isFrenchFront ? 'Français' : 'Español';
+                const frontText = isFrenchFront ? word.fr : word.es;
+                const backLang = isFrenchFront ? 'Español' : 'Français';
+                const backText = isFrenchFront ? word.es : word.fr;
 
-    // Progress text: "3/30"
-    const progressText = `${this.cardIdx + 1} / ${this.deck.length}`;
+                // Progress text: "3/30"
+                const progressText = `${this.cardIdx + 1} / ${this.deck.length}`;
 
-    this.container.innerHTML = `
+                this.container.innerHTML = `
         <div class="h-full flex flex-col bg-gray-100">
             
             <!-- TOP BAR WITH EXIT + PROGRESS -->
@@ -1105,18 +1196,18 @@ completeLesson() {
 
 
         </div>`;
-},
-markVoluntaryWrong() {
-    const current = this.deck[this.cardIdx];
+            },
+            markVoluntaryWrong() {
+                const current = this.deck[this.cardIdx];
 
-    // Reinsertar la tarjeta al final del mazo
-    this.deck.push(current);
+                // Reinsertar la tarjeta al final del mazo
+                this.deck.push(current);
 
-    // Avanzar a la siguiente
-    this.cardIdx++;
+                // Avanzar a la siguiente
+                this.cardIdx++;
 
-    this.renderVoluntaryCard();
-},
+                this.renderVoluntaryCard();
+            },
 
 
 
@@ -1125,4 +1216,5 @@ markVoluntaryWrong() {
         app.init();
     </script>
 </body>
+
 </html>
