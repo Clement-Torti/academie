@@ -156,7 +156,7 @@ async discoverModules() {
                         type: 'practice', 
                         url: url, // We pass lesson URL, loadPractice handles the rest
                         title: `Exercice ${id}`, 
-                        topic: "Pratique",
+                        topic: "Practica",
                         icon: 'fa-dumbbell' 
                     });
                 }
@@ -226,12 +226,6 @@ renderMap() {
         nodes += `
         <div class="flex flex-col items-center mb-16 relative z-10 pointer-events-none w-full">
             <div class="pointer-events-auto flex flex-col items-center transition-all duration-300 ${offset} ${opacityClass}" id="node-${i}">
-                
-                <!-- Label -->
-                <div class="mb-2 bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm text-[10px] font-bold text-gray-600 border border-gray-100 uppercase tracking-widest">
-                    ${mod.type === 'theory' ? 'LECCIÓN' : 'PRACTICA'}
-                </div>
-
                 <!-- Main Button -->
                 <button onclick="${clickAction}" 
                     class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full text-2xl flex items-center justify-center border-b-4 shadow-xl active:scale-95 transition-all active:translate-y-1 ${colorClass} ${borderClass}">
@@ -242,8 +236,8 @@ renderMap() {
                 </button>
                 
                 <!-- Title below -->
-                <div class="mt-2 text-center w-32">
-                     <div class="text-xs font-bold text-frBlue leading-tight">${mod.topic}</div>
+                <div class="mt-2 text-center w-75">
+                     <div class="mb-2 bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm text-[10px] font-bold text-gray-600 border border-gray-100 uppercase tracking-widest">${mod.topic}</div>
                 </div>
             </div>
         </div>`;
