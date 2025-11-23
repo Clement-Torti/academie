@@ -733,17 +733,22 @@ renderStep() {
     },
 
     // --- INTERACTION HELPERS ---
-    selectOption(btn, id) {
-        document.querySelectorAll('.option-btn').forEach(b => {
-            b.classList.remove('border-frBlue', 'bg-blue-50');
-            b.classList.add('border-gray-100', 'bg-white');
-            b.querySelector('div').classList.remove('bg-frBlue', 'border-frBlue');
-        });
-        btn.classList.remove('border-gray-100', 'bg-white');
-        btn.classList.add('border-frBlue', 'bg-blue-50', 'selected');
-        btn.querySelector('div').classList.add('bg-frBlue', 'border-frBlue');
-        btn.dataset.selectedId = id;
-    },
+selectOption(btn, id) {
+    // Remove old selection completely
+    document.querySelectorAll('.option-btn').forEach(b => {
+        b.classList.remove('border-frBlue', 'bg-blue-50', 'selected');
+        b.classList.add('border-gray-100', 'bg-white');
+        b.querySelector('div').classList.remove('bg-frBlue', 'border-frBlue');
+    });
+
+    // Apply new selection
+    btn.classList.remove('border-gray-100', 'bg-white');
+    btn.classList.add('border-frBlue', 'bg-blue-50', 'selected');
+    btn.querySelector('div').classList.add('bg-frBlue', 'border-frBlue');
+
+    btn.dataset.selectedId = id;
+},
+
 
     moveWord(btn) {
         const bank = document.getElementById('word-bank');
