@@ -367,35 +367,88 @@ renderMap() {
             },
     
             // --- 3A. LESSON ENGINE (Standard) ---
-            async loadLesson(index) {
-                const mod = this.modules[index];
-                this.currentModIndex = index;
-                this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
-                
-                try {
-                    const res = await fetch(mod.url);
-                    const html = await res.text();
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    
-                    const contentDiv = doc.getElementById('lesson-content');
-                    let sections = Array.from(contentDiv.querySelectorAll('section'));
-                    if(sections.length === 0) sections = [contentDiv];
-                    
-                    const readSteps = sections.map(s => ({ type: 'read', html: s.innerHTML }));
-                    
-                    const data = JSON.parse(doc.getElementById('lesson-data').textContent);
+// --- 3A. LESSON ENGINE (Standard) ---
+async loadLesson(index) {
+    const mod = this.modules[index];
+    this.currentModIndex = index;
+    this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
 
-                    this.lessonSteps = [...readSteps];
-                    this.currentLessonMeta = { ...data, id: mod.id, uid: mod.uid, type: 'theory', moduleIndex: index };
-                    this.currentStepIdx = 0;
-                    this.renderStep();
+    this.lessonSteps = [];
 
-                } catch(e) { 
-                    console.error(e);
-                    this.container.innerHTML = `<div class="p-10 text-center text-red-500">Error loading lesson.</div>`;
-                }
-            },
+    // ---------------------------------
+    // 1. LOAD PREVIOUS LESSON (Rappel)
+    // ---------------------------------
+    if (index > 0) {
+        try {
+            const previousLessonRes = await fetch(this.modules[index - 1].url);
+            if (!previousLessonRes.ok) throw new Error("Previous lesson missing");
+
+            const previousLessonHtml = await previousLessonRes.text();
+            const parser = new DOMParser();
+            const prevDoc = parser.parseFromString(previousLessonHtml, "text/html");
+            
+            const prevSections = prevDoc.querySelectorAll("section");
+
+            if (prevSections.length >= 2) {
+                this.lessonSteps.push({
+                    type: 'read',
+                    html: `
+                        <div class="mb-4 pb-2 border-b border-gray-100">
+                            <span class="bg-frBlue text-white px-2 py-1 rounded text-[10px] font-bold uppercase">Rappel</span>
+                        </div>
+                        ${prevSections[1].innerHTML}
+                    `
+                });
+            }
+        } catch(e) {
+            console.warn("Previous lesson could not be loaded:", e.message);
+        }
+    }
+
+    // ---------------------------------
+    // 2. LOAD CURRENT LESSON (Normal)
+    // ---------------------------------
+    try {
+        const res = await fetch(mod.url);
+        const html = await res.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
+        // Extract sections
+        const contentDiv = doc.getElementById('lesson-content');
+        let sections = Array.from(contentDiv.querySelectorAll('section'));
+        if (sections.length === 0) sections = [contentDiv];
+
+        const readSteps = sections.map(s => ({
+            type: 'read',
+            html: s.innerHTML
+        }));
+
+        // Add them after the rappel step
+        this.lessonSteps.push(...readSteps);
+
+        // Load metadata
+        const data = JSON.parse(doc.getElementById('lesson-data').textContent);
+
+        this.currentLessonMeta = {
+            ...data,
+            id: mod.id,
+            uid: mod.uid,
+            type: 'theory',
+            moduleIndex: index
+        };
+
+        this.currentStepIdx = 0;
+        this.renderStep();
+
+    } catch (e) {
+        console.error(e);
+        this.container.innerHTML = `
+            <div class="p-10 text-center text-red-500">
+                Error loading lesson.
+            </div>`;
+    }
+},
 
             // --- 3B. PRACTICE ENGINE (New) ---
     async loadPractice(index) {
