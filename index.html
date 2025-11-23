@@ -886,11 +886,18 @@ prepareEndReview() {
                             <div class="mt-8 text-sm font-bold text-gray-400">${progressText}</div>
                         </div>
 
-                        <div class="p-6 bg-white border-t border-gray-200">
-                            <button onclick="app.nextLessonReviewCard()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">
-                                ${isLast ? 'Terminer' : 'Suivant'}
-                            </button>
-                        </div>
+                        <div class="p-6 bg-white border-t border-gray-200 flex gap-3">
+    <button onclick="app.markCardWrong()" 
+            class="w-1/2 bg-red-500 hover:bg-red-600 text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">
+        Incorrecto
+    </button>
+
+    <button onclick="app.nextLessonReviewCard()" 
+            class="w-1/2 bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">
+        ${isLast ? 'Terminer' : 'Suivant'}
+    </button>
+</div>
+
                     </div>`;
             },
 
@@ -898,6 +905,19 @@ prepareEndReview() {
                 this.reviewIndex++;
                 this.renderLessonVocabReview();
             },
+
+           markCardWrong() {
+    const currentWord = this.reviewDeck[this.reviewIndex];
+
+    // Reinsertar palabra al final
+    this.reviewDeck.push(currentWord);
+
+    // Avanzar a la siguiente
+    this.reviewIndex++;
+
+    this.renderLessonVocabReview();
+},
+ 
     
 completeLesson() {
     // 1. Logic: Increment Progress
@@ -1035,13 +1055,33 @@ completeLesson() {
             </div>
 
             <div class="p-6 pb-8 flex gap-4 justify-center">
-                <button onclick="app.nextVoluntaryCard()" class="bg-white border-2 border-gray-200 px-8 py-4 rounded-xl font-bold text-gray-600 w-full shadow-sm">
-                    Siguiente
-                </button>
-            </div>
+    <button onclick="app.markVoluntaryWrong()" 
+            class="bg-red-500 hover:bg-red-600 text-white font-bold px-6 py-4 rounded-xl w-full shadow-sm">
+        Me equivoqué
+    </button>
+
+    <button onclick="app.nextVoluntaryCard()" 
+            class="bg-white border-2 border-gray-200 px-6 py-4 rounded-xl font-bold text-gray-600 w-full shadow-sm">
+        Siguiente
+    </button>
+</div>
+
 
         </div>`;
 },
+markVoluntaryWrong() {
+    const current = this.deck[this.cardIdx];
+
+    // Reinsertar la tarjeta al final del mazo
+    this.deck.push(current);
+
+    // Avanzar a la siguiente
+    this.cardIdx++;
+
+    this.renderVoluntaryCard();
+},
+
+
 
             nextVoluntaryCard() { this.cardIdx++; this.renderVoluntaryCard(); }
         };
