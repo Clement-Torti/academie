@@ -792,7 +792,6 @@ renderStep() {
     
 prepareEndReview() {
                 const isPractice = this.currentLessonMeta.type === 'practice';
-console.log(this.currentLessonMeta.type);
                 // 1. Save to Global Vocab (Only if Theory/Lesson)
                 if (!isPractice && this.currentLessonMeta.vocabulary) {
                     const existing = this.userVocab.map(v => v.fr);
