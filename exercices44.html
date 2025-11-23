@@ -1,0 +1,408 @@
+
+<script type="application/json" id="exercise-data">
+    {
+    "interactive_exercises": [
+    {
+    "id": "ex_001",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "Elige la opción gramaticalmente correcta (Adjetivo largo).",
+    "prompt": "C'est la robe ______ du magasin.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "la plus chère" },
+    { "id": "opt_2", "text": "plus chère" },
+    { "id": "opt_3", "text": "la plus cher" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "¡Exacto! Al ir después del sustantivo, repetimos el artículo: 'La robe LA plus chère'.",
+    "incorrect": "Falta el segundo artículo. Recuerda: Sustantivo + LE/LA/LES + Plus + Adjetivo."
+    }
+    },
+    {
+    "id": "ex_002",
+    "type": "selection_single",
+    "difficulty": "easy",
+    "instruction": "Selecciona el superlativo irregular correcto (Bueno -> El mejor).",
+    "prompt": "Ce boulanger fait ______ pain de Paris.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "le plus bon" },
+    { "id": "opt_2", "text": "le meilleur" },
+    { "id": "opt_3", "text": "le mieux" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "¡Correcto! Bon -> Le meilleur.",
+    "incorrect": "'Le plus bon' no existe. 'Le mieux' es un adverbio, aquí necesitamos el adjetivo para 'pain'."
+    }
+    },
+    {
+    "id": "ex_003",
+    "type": "sentence_builder",
+    "difficulty": "hard",
+    "instruction": "Ordena la frase (Adjetivo corto va ANTES del nombre).",
+    "prompt": null,
+    "content": {
+    "segments": ["C'est", "le", "plus", "grand", "parc", "de", "la", "ville"],
+    "correct_order": ["C'est", "le", "plus", "grand", "parc", "de", "la", "ville"],
+    "distractors": ["le"]
+    },
+    "feedback": {
+    "correct": "¡Muy bien! 'Grand' es un adjetivo corto, así que va entre 'Le plus' y 'Parc'.",
+    "incorrect": "Recuerda: Los adjetivos cortos (como Grand, Petit, Beau) van antes del sustantivo."
+    }
+    },
+    {
+    "id": "ex_004",
+    "type": "true_false",
+    "difficulty": "medium",
+    "instruction": "¿Esta frase es correcta? Fíjate en el orden.",
+    "prompt": "C'est le plus célèbre acteur.",
+    "content": {
+    "is_correct": false,
+    "explanation": "Falso. 'Célèbre' es un adjetivo largo. Debe ser: 'C'est l'acteur le plus célèbre'."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_005",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Completa con el superlativo de 'Mauvais' (Malo).",
+    "prompt": "Ne mange pas ici, c'est ______ restaurant du quartier.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "le pire" },
+    { "id": "opt_2", "text": "le plus mauvais" },
+    { "id": "opt_3", "text": "le mal" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto. 'Le pire' es el superlativo de 'Mauvais' (aunque 'le plus mauvais' se acepta, 'le pire' es más enfático).",
+    "incorrect": "La forma superlativa estándar de 'Mauvais' es 'Le pire'."
+    }
+    },
+    {
+    "id": "ex_006",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce la frase completa (Cuidado con la repetición del artículo).",
+    "prompt": "Es la idea más interesante.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["C'est l'idée la plus intéressante."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "¡Excelente! 'C'est l'idée LA plus intéressante'.",
+    "incorrect": "No olvides repetir el artículo: L'idée LA plus..."
+    }
+    },
+    {
+    "id": "ex_007",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "Identifica la palabra para 'Imprescindible'.",
+    "prompt": "La Tour Eiffel est un monument ______ à Paris.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "incontournable" },
+    { "id": "opt_2", "text": "abordable" },
+    { "id": "opt_3", "text": "médiocre" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "¡Exacto! Incontournable (que no se puede rodear/evitar).",
+    "incorrect": "Abordable es 'asequible'. Médiocre es 'malo'."
+    }
+    },
+    {
+    "id": "ex_008",
+    "type": "sentence_builder",
+    "difficulty": "hard",
+    "instruction": "Forma la frase con superlativo de inferioridad (El menos caro).",
+    "prompt": null,
+    "content": {
+    "segments": ["C'est", "l'hôtel", "le", "moins", "cher", "du", "centre"],
+    "correct_order": ["C'est", "l'hôtel", "le", "moins", "cher", "du", "centre"],
+    "distractors": ["plus"]
+    },
+    "feedback": {
+    "correct": "Bien hecho. 'L'hôtel LE moins cher'.",
+    "incorrect": "Repetimos 'le' después de hotel porque el adjetivo va detrás."
+    }
+    },
+    {
+    "id": "ex_009",
+    "type": "true_false",
+    "difficulty": "hard",
+    "instruction": "¿Es correcto el uso de 'Mieux'?",
+    "prompt": "C'est lui qui chante le mieux.",
+    "content": {
+    "is_correct": true,
+    "explanation": "Correcto. 'Mieux' es el superlativo del adverbio 'Bien'. Modifica al verbo cantar."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_010",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "¿Qué significa 'Époustouflant'?",
+    "prompt": "La vue est époustouflante !",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "Asombrosa / Sin aliento" },
+    { "id": "opt_2", "text": "Mediocre / Normal" },
+    { "id": "opt_3", "text": "Cara / Costosa" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "¡Sí! Significa que te deja sin aliento (Breathtaking).",
+    "incorrect": "Es un adjetivo muy positivo y extremo."
+    }
+    },
+    {
+    "id": "ex_011",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce usando 'Le moindre' (El más mínimo).",
+    "prompt": "No tengo la menor idea.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["Je n'ai pas la moindre idée.", "Je n'ai pas la moindre idée !"],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "¡Perfecto! 'La moindre idée'.",
+    "incorrect": "Para 'la menor/mínima' usamos el superlativo 'Le/La moindre'."
+    }
+    },
+    {
+    "id": "ex_012",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Elige la concordancia correcta para 'Chansons' (Fem. Plural).",
+    "prompt": "Ce sont les ______ chansons de l'album.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "plus belle" },
+    { "id": "opt_2", "text": "plus belles" },
+    { "id": "opt_3", "text": "plus beaux" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "Correcto. 'Les plus belles' (porque va antes del sustantivo y concuerda en género/número).",
+    "incorrect": "Chansons es femenino plural -> Belles."
+    }
+    },
+    {
+    "id": "ex_013",
+    "type": "sentence_builder",
+    "difficulty": "hard",
+    "instruction": "Ordena la frase sobre 'Una obra maestra'.",
+    "prompt": null,
+    "content": {
+    "segments": ["Ce", "tableau", "est", "un", "véritable", "chef-d'œuvre"],
+    "correct_order": ["Ce", "tableau", "est", "un", "véritable", "chef-d'œuvre"],
+    "distractors": ["le"]
+    },
+    "feedback": {
+    "correct": "Bien. Chef-d'œuvre = Obra maestra.",
+    "incorrect": "Sujeto + Verbo + Artículo + Adjetivo + Sustantivo."
+    }
+    },
+    {
+    "id": "ex_014",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "Selecciona el antónimo de 'Le gagnant' (El ganador).",
+    "prompt": "Il n'a pas gagné, c'est le ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "perdant" },
+    { "id": "opt_2", "text": "sommet" },
+    { "id": "opt_3", "text": "choix" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto. Le perdant (El perdedor).",
+    "incorrect": "Sommet es cima. Choix es elección."
+    }
+    },
+    {
+    "id": "ex_015",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce la frase superlativa (Adjetivo corto).",
+    "prompt": "Es la chica más guapa.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["C'est la plus belle fille.", "C'est la fille la plus belle."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "¡Muy bien! Lo ideal es 'La plus belle fille' (adjetivo corto antes).",
+    "incorrect": "Belle es un adjetivo corto, suele ir antes del sustantivo: La plus belle fille."
+    }
+    },
+    {
+    "id": "ex_016",
+    "type": "true_false",
+    "difficulty": "medium",
+    "instruction": "¿Está bien colocado el adjetivo 'Intelligent'?",
+    "prompt": "C'est le plus intelligent étudiant.",
+    "content": {
+    "is_correct": false,
+    "explanation": "Falso. Intelligent es largo. Debe ser: 'C'est l'étudiant le plus intelligent'."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_017",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Elige la opción que significa 'Asequible'.",
+    "prompt": "Ce prix est très ______ pour la qualité.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "bruyant" },
+    { "id": "opt_2", "text": "luxueux" },
+    { "id": "opt_3", "text": "abordable" }
+    ],
+    "correct_option_id": "opt_3"
+    },
+    "feedback": {
+    "correct": "¡Exacto! Abordable (que se puede pagar).",
+    "incorrect": "Bruyant es ruidoso. Luxueux es lujoso."
+    }
+    },
+    {
+    "id": "ex_018",
+    "type": "sentence_builder",
+    "difficulty": "hard",
+    "instruction": "Construye la frase: 'Es la ciudad más turística'.",
+    "prompt": null,
+    "content": {
+    "segments": ["C'est", "la", "ville", "la", "plus", "touristique", "le"],
+    "correct_order": ["C'est", "la", "ville", "la", "plus", "touristique"],
+    "distractors": ["le"]
+    },
+    "feedback": {
+    "correct": "Correcto. Repetimos 'La' porque 'Touristique' va después.",
+    "incorrect": "Ville (fem) -> La. Touristique (largo) -> va después -> La ville LA plus touristique."
+    }
+    },
+    {
+    "id": "ex_019",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "Completa con el superlativo de 'Bien' (Adverbio).",
+    "prompt": "De toute l'équipe, c'est Luc qui travaille ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "le mieux" },
+    { "id": "opt_2", "text": "le meilleur" },
+    { "id": "opt_3", "text": "la meilleure" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "¡Sí! Modifica al verbo trabajar, así que usamos el adverbio 'Le mieux'.",
+    "incorrect": "No usamos 'Meilleur' (adjetivo) para describir cómo trabaja alguien."
+    }
+    },
+    {
+    "id": "ex_020",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce la decepción.",
+    "prompt": "Es una decepción total.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["C'est une déception totale.", "C'est une totale déception."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "Bien. 'Déception' es la palabra.",
+    "incorrect": "Atención al género femenino de 'Déception'."
+    }
+    },
+    {
+    "id": "ex_021",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Elige la opción correcta para 'El Ranking'.",
+    "prompt": "Qui est le premier dans le ______ ?",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "classement" },
+    { "id": "opt_2", "text": "sommet" },
+    { "id": "opt_3", "text": "choix" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto. Le classement (La clasificación/Ranking).",
+    "incorrect": "Sommet es la cima (físico o figurado), pero la lista ordenada es 'Classement'."
+    }
+    },
+    {
+    "id": "ex_022",
+    "type": "sentence_builder",
+    "difficulty": "medium",
+    "instruction": "Ordena la frase: 'Es mi mejor elección'.",
+    "prompt": null,
+    "content": {
+    "segments": ["C'est", "mon", "meilleur", "choix", "mieux"],
+    "correct_order": ["C'est", "mon", "meilleur", "choix"],
+    "distractors": ["mieux"]
+    },
+    "feedback": {
+    "correct": "¡Perfecto! Meilleur precede al sustantivo 'Choix'.",
+    "incorrect": "Usamos el adjetivo 'Meilleur' con 'Choix'."
+    }
+    },
+    {
+    "id": "ex_023",
+    "type": "true_false",
+    "difficulty": "hard",
+    "instruction": "Analiza la concordancia: 'Ce sont les pires erreurs'.",
+    "prompt": "Ce sont les pires erreurs.",
+    "content": {
+    "is_correct": true,
+    "explanation": "Correcto. 'Pire' lleva S en plural (Pires) y es válido para masculino y femenino."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_024",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Selecciona el artículo correcto.",
+    "prompt": "C'est la voiture ______ rapide du monde.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "la plus" },
+    { "id": "opt_2", "text": "le plus" },
+    { "id": "opt_3", "text": "plus" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "¡Excelente! 'La voiture LA plus rapide'.",
+    "incorrect": "Como 'Voiture' es femenino, el artículo repetido debe ser 'LA'."
+    }
+    }
+    ]
+    }
+    </script>

@@ -1,0 +1,405 @@
+
+<script type="application/json" id="exercise-data">
+    {
+    "interactive_exercises": [
+    {
+    "id": "ex_001",
+    "type": "selection_single",
+    "difficulty": "easy",
+    "instruction": "Selecciona la palabra correcta para la talla de zapatos.",
+    "prompt": "Excusez-moi, je cherche ce modèle en ______ 39.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "taille" },
+    { "id": "opt_2", "text": "mesure" },
+    { "id": "opt_3", "text": "pointure" }
+    ],
+    "correct_option_id": "opt_3"
+    },
+    "feedback": {
+    "correct": "¡Exacto! Para el calzado siempre usamos 'Pointure'.",
+    "incorrect": "'Taille' se usa para ropa o altura. Para pies, la palabra única es 'Pointure'."
+    }
+    },
+    {
+    "id": "ex_002",
+    "type": "sentence_builder",
+    "difficulty": "medium",
+    "instruction": "Ordena la frase para comparar precios (Superioridad).",
+    "prompt": null,
+    "content": {
+    "segments": ["Ce", "sac", "est", "plus", "cher", "que", "la", "valise"],
+    "correct_order": ["Ce", "sac", "est", "plus", "cher", "que", "la", "valise"],
+    "distractors": ["le", "bon"]
+    },
+    "feedback": {
+    "correct": "¡Muy bien! Estructura: Sujeto + Verbo + Plus + Adjetivo + Que.",
+    "incorrect": "Recuerda el orden del comparativo: Plus ... que ..."
+    }
+    },
+    {
+    "id": "ex_003",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Elige la forma comparativa correcta (Irregular).",
+    "prompt": "La soie est ______ que le polyester.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "plus bonne" },
+    { "id": "opt_2", "text": "meilleure" },
+    { "id": "opt_3", "text": "mieux" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "¡Excelente! 'Meilleure' es el comparativo de 'Bonne' (La soie es femenino).",
+    "incorrect": "Nunca digas 'plus bonne'. Usa 'Meilleure' para sustantivos/adjetivos y cuidado con el género."
+    }
+    },
+    {
+    "id": "ex_004",
+    "type": "true_false",
+    "difficulty": "easy",
+    "instruction": "¿Esta frase es correcta gramaticalmente?",
+    "prompt": "Ces chaussures sont bon marché.",
+    "content": {
+    "is_correct": true,
+    "explanation": "Correcto. 'Bon marché' es invariable, no cambia en plural."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_005",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce: 'Puedo pagar con tarjeta?'",
+    "prompt": "¿Puedo pagar con tarjeta?",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["Je peux payer par carte ?", "Puis-je payer par carte ?", "Je peux payer par carte bancaire ?"],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "¡Parfait! 'Je peux payer par carte ?'",
+    "incorrect": "Usa la preposición 'par' con 'carte' (par carte)."
+    }
+    },
+    {
+    "id": "ex_006",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "Completa la frase con la preposición adecuada.",
+    "prompt": "Désolé, je n'ai pas de monnaie, je vais payer ______ espèces.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "en" },
+    { "id": "opt_2", "text": "par" },
+    { "id": "opt_3", "text": "à" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto. Se dice 'En espèces' o 'En liquide'.",
+    "incorrect": "Para efectivo usamos 'En'. Para tarjeta usamos 'Par'."
+    }
+    },
+    {
+    "id": "ex_007",
+    "type": "sentence_builder",
+    "difficulty": "medium",
+    "instruction": "Forma la frase: 'Hago escaparates' (Window shopping).",
+    "prompt": null,
+    "content": {
+    "segments": ["Je", "fais", "du", "lèche-vitrine", "le"],
+    "correct_order": ["Je", "fais", "du", "lèche-vitrine"],
+    "distractors": ["le"]
+    },
+    "feedback": {
+    "correct": "¡Bien! Faire du lèche-vitrine.",
+    "incorrect": "La expresión usa el partitivo 'du' (Faire du lèche-vitrine)."
+    }
+    },
+    {
+    "id": "ex_008",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Elige la opción que indica inferioridad (-).",
+    "prompt": "Ce magasin est ______ grand que l'autre.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "moins" },
+    { "id": "opt_2", "text": "plus" },
+    { "id": "opt_3", "text": "aussi" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto. 'Moins' indica que es menos grande.",
+    "incorrect": "Plus = Más. Aussi = Igual. Moins = Menos."
+    }
+    },
+    {
+    "id": "ex_009",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce la frase completa.",
+    "prompt": "Este modelo está agotado.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["Ce modèle est épuisé."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "¡Exacto! 'Ce modèle est épuisé'.",
+    "incorrect": "La palabra clave para 'agotado' en tiendas es 'épuisé'."
+    }
+    },
+    {
+    "id": "ex_010",
+    "type": "true_false",
+    "difficulty": "medium",
+    "instruction": "Verdadero o Falso: 'Pire' es el comparativo de 'Mauvais'.",
+    "prompt": "C'est pire que l'année dernière.",
+    "content": {
+    "is_correct": true,
+    "explanation": "Verdadero. Mauvais -> Pire (Peor)."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_011",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Selecciona la concordancia correcta para 'Baskets' (femenino plural).",
+    "prompt": "Ces baskets sont ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "cher" },
+    { "id": "opt_2", "text": "chers" },
+    { "id": "opt_3", "text": "chères" }
+    ],
+    "correct_option_id": "opt_3"
+    },
+    "feedback": {
+    "correct": "¡Muy bien! Femenino plural: Chères.",
+    "incorrect": "'Baskets' es femenino plural en francés (une basket). Necesitas la terminación -es."
+    }
+    },
+    {
+    "id": "ex_012",
+    "type": "sentence_builder",
+    "difficulty": "hard",
+    "instruction": "Ordena la frase: 'Él canta mejor que yo' (Adverbio).",
+    "prompt": null,
+    "content": {
+    "segments": ["Il", "chante", "mieux", "que", "moi", "meilleur"],
+    "correct_order": ["Il", "chante", "mieux", "que", "moi"],
+    "distractors": ["meilleur"]
+    },
+    "feedback": {
+    "correct": "¡Perfecto! Usamos MIEUX porque modifica al verbo (cantar).",
+    "incorrect": "Recuerda: Bon -> Meilleur (Adjetivo). Bien -> Mieux (Adverbio)."
+    }
+    },
+    {
+    "id": "ex_013",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "¿Qué necesitas si quieres devolver un producto?",
+    "prompt": "Pour un remboursement, il faut le ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "ticket de caisse" },
+    { "id": "opt_2", "text": "sac à main" },
+    { "id": "opt_3", "text": "cuir" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto. El 'Ticket de caisse' es el recibo.",
+    "incorrect": "Necesitas el recibo (ticket de caisse) para probar la compra."
+    }
+    },
+    {
+    "id": "ex_014",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce usando la estructura de igualdad.",
+    "prompt": "Es tan caro como el otro.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["C'est aussi cher que l'autre.", "Il est aussi cher que l'autre."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "Bien hecho. 'Aussi cher que'.",
+    "incorrect": "Para igualdad usamos 'Aussi + adjetivo + que'."
+    }
+    },
+    {
+    "id": "ex_015",
+    "type": "true_false",
+    "difficulty": "hard",
+    "instruction": "Analiza la corrección: 'Ce prix est plus bon'.",
+    "prompt": "Non, ce prix est plus bon.",
+    "content": {
+    "is_correct": false,
+    "explanation": "Falso. Debes decir 'Ce prix est MEILLEUR'."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_016",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "Selecciona el material correcto.",
+    "prompt": "J'adore ce sac, il est en ______ véritable.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "cuir" },
+    { "id": "opt_2", "text": "soldes" },
+    { "id": "opt_3", "text": "talons" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "¡Sí! Cuir véritable (Cuero auténtico).",
+    "incorrect": "Talons son tacones y soldes son rebajas. El material es 'Cuir'."
+    }
+    },
+    {
+    "id": "ex_017",
+    "type": "sentence_builder",
+    "difficulty": "hard",
+    "instruction": "Forma la frase: 'Ellas gastan mucho dinero'.",
+    "prompt": null,
+    "content": {
+    "segments": ["Elles", "dépensent", "beaucoup", "d'argent", "cher"],
+    "correct_order": ["Elles", "dépensent", "beaucoup", "d'argent"],
+    "distractors": ["cher"]
+    },
+    "feedback": {
+    "correct": "Correcto. 'Dépenser' es el verbo para gastar.",
+    "incorrect": "Sujeto (Elles) + Verbo (dépensent) + Cantidad."
+    }
+    },
+    {
+    "id": "ex_018",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "¿Cómo se dice 'tacones'?",
+    "prompt": "Elle porte des chaussures à ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "baskets" },
+    { "id": "opt_2", "text": "talons" },
+    { "id": "opt_3", "text": "vitrine" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "Oui. Chaussures à talons.",
+    "incorrect": "Baskets son tenis/zapatillas. Talons son tacones."
+    }
+    },
+    {
+    "id": "ex_019",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce la frase completa (Rebajas).",
+    "prompt": "Los bolsos están en rebaja.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["Les sacs sont en solde.", "Les sacs à main sont en solde."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "¡Muy bien! 'Les sacs sont en solde'.",
+    "incorrect": "La expresión es 'Être en solde'."
+    }
+    },
+    {
+    "id": "ex_020",
+    "type": "sentence_builder",
+    "difficulty": "hard",
+    "instruction": "Ordena la pregunta sobre la ubicación de la caja.",
+    "prompt": null,
+    "content": {
+    "segments": ["Où", "est", "la", "caisse", "s'il", "vous", "plaît"],
+    "correct_order": ["Où", "est", "la", "caisse", "s'il", "vous", "plaît"],
+    "distractors": []
+    },
+    "feedback": {
+    "correct": "Correcto. ¿Dónde está la caja?",
+    "incorrect": "Empieza con el pronombre interrogativo 'Où'."
+    }
+    },
+    {
+    "id": "ex_021",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Elige la opción correcta para 'Mejor' (Adjetivo comparativo).",
+    "prompt": "Cette qualité est ______ que l'autre.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "mieux" },
+    { "id": "opt_2", "text": "meilleure" },
+    { "id": "opt_3", "text": "pire" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "¡Exacto! 'Qualité' es femenino, usamos 'Meilleure'.",
+    "incorrect": "'Mieux' es adverbio (hacerlo mejor). Para cosas/calidad usamos 'Meilleur/e'."
+    }
+    },
+    {
+    "id": "ex_022",
+    "type": "true_false",
+    "difficulty": "medium",
+    "instruction": "¿Significa lo mismo 'Réduction' y 'Remboursement'?",
+    "prompt": "Une réduction est un remboursement.",
+    "content": {
+    "is_correct": false,
+    "explanation": "Falso. Réduction es descuento. Remboursement es devolver el dinero."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_023",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce usando 'Avoir' y el comparativo.",
+    "prompt": "Tú tienes zapatos más bonitos que yo.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["Tu as des chaussures plus jolies que moi.", "Tu as des chaussures plus belles que moi."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "¡Excelente trabajo! Concordancia perfecta (jolies/belles).",
+    "incorrect": "Estructura: Sujeto + Verbo + Objeto + Plus + Adjetivo + Que + Pronombre tónico (moi)."
+    }
+    },
+    {
+    "id": "ex_024",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "Identifica el pronombre tónico correcto para comparar.",
+    "prompt": "Elle est plus grande que ______ (Yo).",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "je" },
+    { "id": "opt_2", "text": "me" },
+    { "id": "opt_3", "text": "moi" }
+    ],
+    "correct_option_id": "opt_3"
+    },
+    "feedback": {
+    "correct": "Correcto. Después de 'que' en comparativos, usamos pronombres tónicos (moi, toi, lui...).",
+    "incorrect": "No puedes usar 'Je' al final de la comparación. Usa 'Moi'."
+    }
+    }
+    ]
+    }
+    </script>
