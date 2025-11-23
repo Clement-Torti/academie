@@ -486,6 +486,14 @@ renderMap() {
         }
     },
 
+    prevStep() {
+    if (this.currentStepIdx > 0) {
+        this.currentStepIdx--;
+        this.renderStep();
+    }
+},
+
+
 renderStep() {
         if (this.currentStepIdx >= this.lessonSteps.length) {
             this.prepareEndReview(); 
@@ -494,7 +502,9 @@ renderStep() {
 
         const step = this.lessonSteps[this.currentStepIdx];
         const progress = ((this.currentStepIdx + 0.5) / this.lessonSteps.length) * 100;
-        const navBtn = `<button onclick="app.renderMap()" class="text-gray-400 p-2 hover:text-frBlue transition"><i class="fa-solid fa-xmark text-xl"></i></button>`;
+        const navBtn = `<button onclick="app.prevStep()" class="text-gray-400 p-2 hover:text-frBlue transition">
+            <i class="fa-solid fa-arrow-left text-xl"></i>
+        </button>`;
 
         let html = `
             <div class="h-full flex flex-col bg-frCream relative">
