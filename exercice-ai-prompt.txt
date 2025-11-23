@@ -391,5 +391,6 @@ Here is an example of script exercices:
 }
 </script>
 
-respect the exact format of the example, and create a lot of script exercices related to this lesson:
+respect the exact format of the example, and create a lot of script exercices related to the lesson bellow.
+The exercices should be of level B1, so a bit harder than the exemple. No question about the lesson reading comprehension.
 XXX
