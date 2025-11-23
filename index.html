@@ -30,36 +30,26 @@
     </script>
 
 <style>
-    /* Mobile optimization */
     body { overscroll-behavior-y: none; -webkit-tap-highlight-color: transparent; }
-    
     .perspective-1000 { perspective: 1000px; }
     .transform-style-3d { transform-style: preserve-3d; }
     .backface-hidden { backface-visibility: hidden; }
     .rotate-y-180 { transform: rotateY(180deg); }
-    
     .loader { border: 4px solid #f3f3f3; border-top: 4px solid #002654; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    
     @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     .animate-slide-in { animation: slideIn 0.3s ease-out forwards; }
     
-    /* Content Styles */
+    /* Styles for Content */
     .lesson-step h2 { color: #002654; font-weight: 700; margin-bottom: 0.5em; font-size: 1.25em; font-family: 'Merriweather', serif; }
-    @media(min-width: 640px) { .lesson-step h2 { font-size: 1.5em; } }
-    
     .lesson-step p { margin-bottom: 1em; line-height: 1.6; color: #374151; font-size: 1rem; }
-    @media(min-width: 640px) { .lesson-step p { font-size: 1.1rem; line-height: 1.8; } }
-
     .lesson-step ul { list-style-type: disc; padding-left: 1.2em; margin-bottom: 1em; }
     .lesson-step strong { color: #ED2939; font-weight: 700; }
-    
-    /* Tables */
-    .conjugation-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.9rem; }
-    .conjugation-table td, .conjugation-table th { border: 1px solid #e5e7eb; padding: 6px; }
-    .conjugation-table th { background-color: #f3f4f6; color: #002654; }
-    
     textarea, input { font-size: 16px !important; }
+    
+    /* Modal Animation */
+    .modal-enter { opacity: 0; transform: scale(0.95); }
+    .modal-enter-active { opacity: 1; transform: scale(1); transition: all 0.2s ease-out; }
 </style>
 </head>
 <body class="bg-gray-50 text-gray-800 h-[100dvh] flex flex-col overflow-hidden">
@@ -75,9 +65,13 @@
                 <i class="fa-solid fa-layer-group text-gold"></i> <span>Révisions</span>
             </button>
         </div>
-        <!-- Flag Strip -->
         <div class="h-1 w-full flex"><div class="w-1/3 bg-blue-600"></div><div class="w-1/3 bg-white"></div><div class="w-1/3 bg-red-600"></div></div>
     </nav>
+
+    <!-- MODAL OVERLAY -->
+    <div id="selection-modal" class="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4" onclick="app.closeModal(event)">
+        <!-- Content injected by JS -->
+    </div>
 
     <!-- MAIN CONTENT -->
     <main id="app-container" class="flex-1 overflow-y-auto relative bg-[#fdfbf7] w-full">
@@ -90,8 +84,8 @@
     <script>
         const app = {
             container: document.getElementById('app-container'),
+            modal: document.getElementById('selection-modal'),
             modules: [],
-            // Progress is now an Object { lessonId: count }
             progress: {}, 
             userVocab: JSON.parse(localStorage.getItem('acad_user_vocab') || '[]'),
             baseUrl: 'https://clement-torti.github.io/academie/', 
@@ -106,10 +100,9 @@
             reviewIndex: 0,
     
             async init() {
-                // --- MIGRATION LOGIC ---
+                // Migration logic
                 const rawProgress = JSON.parse(localStorage.getItem('acad_progress') || '{}');
                 if (Array.isArray(rawProgress)) {
-                    // Convert old array format [1, 2] to object {1: 1, 2: 1}
                     const newProgress = {};
                     rawProgress.forEach(id => newProgress[id] = 1);
                     this.progress = newProgress;
@@ -117,7 +110,6 @@
                 } else {
                     this.progress = rawProgress;
                 }
-                // -----------------------
 
                 await this.discoverModules();
                 let resizeTimer;
@@ -154,35 +146,20 @@
     
             // --- 2. MAP RENDERING ---
             renderMap() {
-                // 1. Intro Card (The "Emily in Paris" style welcome)
+                this.modal.classList.add('hidden');
+                
                 const introCard = `
                 <div class="w-full px-6 pt-8 pb-4 relative z-20">
                     <div class="bg-white p-6 rounded-2xl shadow-card border border-blue-100 text-center relative overflow-hidden">
-                        <!-- Flag stripe top decoration -->
                         <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-frBlue via-white to-frRed"></div>
-                        
                         <h2 class="text-xl font-serif font-bold text-frBlue mb-3 mt-1">Bienvenue à Paris! 🇫🇷</h2>
-                        
-                        <p class="text-sm text-gray-600 leading-relaxed mb-3">
-                            He creado esta plataforma para ayudarte a mejorar tu francés <strong>de verdad</strong>.
-                        </p>
-                        
-                        <p class="text-xs text-gray-500 mb-5 leading-relaxed">
-                            Olvídate de la superficialidad de la app del búho 🦉. Aquí, en el universo de <em>Emily in Paris</em>, buscamos elegancia y profundidad. Si te gusta este proyecto, puedes invitarme un croissant abajo a travès de una pequeña donación.
-                        </p>
-
-                        <!-- REPLACE THE # WITH YOUR PAYMENT LINK BELOW -->
+                        <p class="text-sm text-gray-600 leading-relaxed mb-3">He creado esta plataforma para ayudarte a mejorar tu francés <strong>de verdad</strong>.</p>
                         <a href="#" target="_blank" class="inline-flex items-center gap-2 bg-frCream text-frBlue px-5 py-2.5 rounded-full text-xs font-bold border border-gold hover:bg-gold hover:text-white transition shadow-sm active:scale-95">
-                            <i class="fa-solid fa-croissant"></i>
-                            <span>Invítame un croissant</span>
+                            <i class="fa-solid fa-croissant"></i><span>Invítame un croissant</span>
                         </a>
-
-                            <br><br>
-                            <p class="text-xs text-gray-500  leading-relaxed"> Y recuerda que para mejorar de verdad: constancia diaria y repetir cada lección hasta 3 veces para alcanzar el oro. Bonne chance !</p>
                     </div>
                 </div>`;
 
-                // 2. Build Nodes
                 let nodes = '';
                 this.modules.forEach((mod, i) => {
                     const count = this.progress[mod.id] || 0;
@@ -191,59 +168,38 @@
                     let colorClass, iconClass, borderClass, medalLabel;
 
                     if (count === 0) {
-                        // Default (Not started)
-                        colorClass = 'bg-frBlue text-white';
-                        borderClass = 'border-blue-900';
-                        iconClass = mod.icon || 'fa-star';
-                        medalLabel = '';
+                        colorClass = 'bg-frBlue text-white'; borderClass = 'border-blue-900'; iconClass = mod.icon || 'fa-star'; medalLabel = '';
                     } else if (count === 1) {
-                        // BRONZE
-                        colorClass = 'bg-bronze text-white';
-                        borderClass = 'border-[#8b4513]';
-                        iconClass = 'fa-check';
+                        colorClass = 'bg-bronze text-white'; borderClass = 'border-[#8b4513]'; iconClass = 'fa-check';
                         medalLabel = '<div class="absolute -top-2 -right-2 bg-bronze text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white shadow-sm">I</div>';
                     } else if (count === 2) {
-                        // SILVER
-                        colorClass = 'bg-silver text-gray-700';
-                        borderClass = 'border-gray-500';
-                        iconClass = 'fa-check-double';
+                        colorClass = 'bg-silver text-gray-700'; borderClass = 'border-gray-500'; iconClass = 'fa-check-double';
                         medalLabel = '<div class="absolute -top-2 -right-2 bg-silver text-gray-700 text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white shadow-sm">II</div>';
                     } else {
-                        // GOLD (3+)
-                        colorClass = 'bg-gold text-white';
-                        borderClass = 'border-yellow-600';
-                        iconClass = 'fa-trophy';
+                        colorClass = 'bg-gold text-white'; borderClass = 'border-yellow-600'; iconClass = 'fa-trophy';
                         medalLabel = '<div class="absolute -top-2 -right-2 bg-gold text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full border border-white shadow-sm"><i class="fa-solid fa-crown text-[8px]"></i></div>';
                     }
 
+                    // Updated OnClick to open Modal
                     nodes += `
                     <div class="flex flex-col items-center mb-16 relative z-10 pointer-events-none w-full">
                         <div class="pointer-events-auto flex flex-col items-center transition-transform duration-300 ${offset}" id="node-${i}">
                             <div class="mb-2 bg-white/90 backdrop-blur px-2 py-1 rounded shadow text-[10px] font-bold text-frBlue uppercase tracking-wider border border-gray-100">${mod.title}</div>
-                            <button onclick="app.loadLesson(${i})" 
+                            <button onclick="app.openLessonModal(${i})" 
                                 class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full text-2xl sm:text-3xl border-b-4 shadow-xl active:scale-95 transition-all active:translate-y-1 ${colorClass} ${borderClass}">
                                 <i class="fa-solid ${iconClass}"></i>
                                 ${medalLabel}
                             </button>
-                            ${count > 0 ? `<div class="mt-1 text-[10px] font-bold text-gray-400 uppercase tracking-widest">${count === 1 ? 'Bronce' : (count === 2 ? 'Plata' : 'Oro')}</div>` : ''}
                         </div>
                     </div>`;
                 });
-
-                nodes += `
-                <div class="w-full flex justify-center pb-12 relative z-20">
-                    <button onclick="app.copyPlan(this)" class="bg-white border border-gray-300 text-gray-600 px-6 py-3 rounded-full text-xs font-bold shadow-md active:scale-95 transition flex items-center gap-2">
-                        <i class="fa-solid fa-copy text-frBlue"></i>
-                        <span>Copier le programme</span>
-                    </button>
-                </div>`;
 
                 this.container.innerHTML = `
                     <div class="min-h-full relative overflow-x-hidden bg-[#fdfbf7]">
                         <svg id="map-svg" class="absolute inset-0 w-full h-full pointer-events-none"><path id="map-path" d="" fill="none" stroke="#cbd5e1" stroke-width="4" stroke-dasharray="8 8" stroke-linecap="round"/></svg>
                         <div class="max-w-md mx-auto flex flex-col items-center w-full overflow-hidden">
                             ${introCard}
-                            <div class="w-full pt-6">
+                            <div class="w-full pt-6 pb-24">
                                 ${nodes}
                             </div>
                         </div>
@@ -252,31 +208,49 @@
                 setTimeout(() => this.drawMapPath(), 100);
             },
 
-            async copyPlan(btnElement) {
-                if (this.modules.length === 0) return;
-                let content = "L'ACADÉMIE - PROGRAMME COMPLET\n================================\n\n";
-                this.modules.forEach(mod => {
-                    const count = this.progress[mod.id] || 0;
-                    const status = count === 0 ? "[ ]" : (count === 1 ? "[BRONCE]" : (count === 2 ? "[PLATA]" : "[ORO]"));
-                    const desc = mod.desc ? mod.desc : "Pas de description disponible.";
-                    content += `${status} LEÇON ${mod.id}: ${mod.title.toUpperCase()}\n`;
-                    content += `Description: ${desc}\n`;
-                    content += `--------------------------------\n`;
-                });
+            // --- MODAL LOGIC ---
+            openLessonModal(index) {
+                const mod = this.modules[index];
+                this.modal.innerHTML = `
+                    <div class="bg-white rounded-2xl p-6 w-full max-w-sm shadow-2xl border-2 border-frCream relative animate-enter" onclick="event.stopPropagation()">
+                        <button onclick="app.closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-times text-xl"></i></button>
+                        
+                        <div class="text-center mb-6">
+                            <span class="text-xs font-bold text-gold uppercase tracking-widest">Leçon ${mod.id}</span>
+                            <h2 class="text-2xl font-serif font-bold text-frBlue mt-1">${mod.title}</h2>
+                        </div>
 
-                try {
-                    await navigator.clipboard.writeText(content);
-                    const originalContent = btnElement.innerHTML;
-                    const originalClasses = btnElement.className;
-                    btnElement.innerHTML = `<i class="fa-solid fa-check text-green-600"></i> <span class="text-green-600">Copié !</span>`;
-                    btnElement.classList.add('border-green-500', 'bg-green-50');
-                    setTimeout(() => {
-                        btnElement.innerHTML = originalContent;
-                        btnElement.className = originalClasses;
-                    }, 2000);
-                } catch (err) {
-                    console.error('Failed to copy: ', err);
-                    alert("Impossible de copier le texte automatiquement.");
+                        <div class="grid gap-3">
+                            <button onclick="app.loadLesson(${index})" class="flex items-center justify-between w-full p-4 bg-frBlue text-white rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-lg"><i class="fa-solid fa-book-open"></i></div>
+                                    <div class="text-left">
+                                        <div class="font-bold text-sm">Théorie</div>
+                                        <div class="text-[10px] opacity-80">Lección completa</div>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+
+                            <button onclick="app.loadPractice(${index})" class="flex items-center justify-between w-full p-4 bg-white border-2 border-frBlue text-frBlue rounded-xl shadow-sm active:bg-gray-50 transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-frBlue/10 rounded-full flex items-center justify-center text-lg"><i class="fa-solid fa-dumbbell"></i></div>
+                                    <div class="text-left">
+                                        <div class="font-bold text-sm">Pratique</div>
+                                        <div class="text-[10px] opacity-80">Ejercicios intensivos</div>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                this.modal.classList.remove('hidden');
+            },
+
+            closeModal(e) {
+                if (!e || e.target === this.modal || e.target.closest('button')) {
+                    this.modal.classList.add('hidden');
                 }
             },
     
@@ -301,41 +275,13 @@
                 path.setAttribute('d', d);
             },
     
-            // --- 3. LESSON ENGINE ---
+            // --- 3A. LESSON ENGINE (Standard) ---
             async loadLesson(index) {
+                this.closeModal();
                 const mod = this.modules[index];
                 this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
                 
                 try {
-                    let summaryStep = null;
-                    if (index > 0) {
-                        try {
-                            const prevMod = this.modules[index - 1];
-                            const prevRes = await fetch(prevMod.url);
-                            if (prevRes.ok) {
-                                const prevHtml = await prevRes.text();
-                                const prevParser = new DOMParser();
-                                const prevDoc = prevParser.parseFromString(prevHtml, 'text/html');
-                                const prevContent = prevDoc.getElementById('lesson-content');
-                                const prevSections = prevContent.querySelectorAll('section');
-                                if (prevSections.length >= 2) {
-                                    const summaryContent = prevSections[1].innerHTML;
-                                    summaryStep = { 
-                                        type: 'read', 
-                                        html: `
-                                            <div class="mb-4 pb-4 border-b border-gray-200">
-                                                <span class="bg-gold text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">Résumé</span>
-                                                <h3 class="text-frBlue font-bold mt-2">Précédemment...</h3>
-                                            </div>
-                                            <div class="opacity-90 text-sm sm:text-base">
-                                                ${summaryContent}
-                                            </div>` 
-                                    };
-                                }
-                            }
-                        } catch (err) { console.warn("Could not load previous lesson summary", err); }
-                    }
-
                     const res = await fetch(mod.url);
                     const html = await res.text();
                     const parser = new DOMParser();
@@ -351,8 +297,6 @@
                     const quizSteps = (data.exercises || []).map(ex => ({ type: 'quiz', ...ex }));
 
                     this.lessonSteps = [...readSteps, ...quizSteps];
-                    if (summaryStep) this.lessonSteps.unshift(summaryStep);
-
                     this.currentLessonMeta = { ...data, id: mod.id };
                     this.currentStepIdx = 0;
                     this.renderStep();
@@ -360,6 +304,99 @@
                 } catch(e) { 
                     console.error(e);
                     this.container.innerHTML = `<div class="p-10 text-center text-red-500">Error loading lesson.</div>`;
+                }
+            },
+
+            // --- 3B. PRACTICE ENGINE (New) ---
+            async loadPractice(index) {
+                this.closeModal();
+                const mod = this.modules[index];
+                this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
+
+                try {
+                    // 1. Load Lesson X (for Vocab + Section 2)
+                    const lessonRes = await fetch(mod.url);
+                    if(!lessonRes.ok) throw new Error("Lesson not found");
+                    const lessonHtml = await lessonRes.text();
+                    const parser = new DOMParser();
+                    const lessonDoc = parser.parseFromString(lessonHtml, 'text/html');
+                    const lessonData = JSON.parse(lessonDoc.getElementById('lesson-data').textContent);
+
+                    // 2. Load Exercises X
+                    const exUrl = `${this.baseUrl}exercices${mod.id}.html`;
+                    const exRes = await fetch(exUrl);
+                    if(!exRes.ok) throw new Error("Exercices file not found");
+                    const exHtml = await exRes.text();
+                    const exDoc = parser.parseFromString(exHtml, 'text/html');
+
+                    // BUILD STEPS
+                    this.lessonSteps = [];
+
+                    // Step 1: Vocabulary (Visual)
+                    if (lessonData.vocabulary && lessonData.vocabulary.length > 0) {
+                        let vocabListHtml = `<div class="grid grid-cols-1 gap-2">`;
+                        lessonData.vocabulary.forEach(word => {
+                            vocabListHtml += `
+                                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg border border-gray-100">
+                                    <span class="font-bold text-frBlue">${word.fr}</span>
+                                    <span class="text-gray-500 text-sm italic">${word.es}</span>
+                                </div>`;
+                        });
+                        vocabListHtml += `</div>`;
+                        
+                        this.lessonSteps.push({
+                            type: 'read',
+                            html: `
+                                <div class="text-center mb-6"><i class="fa-solid fa-book-bookmark text-4xl text-gold mb-2"></i><h2 class="text-xl font-bold text-frBlue">Vocabulaire</h2></div>
+                                ${vocabListHtml}
+                            `
+                        });
+                    }
+
+                    // Step 2: Section 2 of Lesson (Refresher)
+                    const lessonSections = lessonDoc.querySelectorAll('section');
+                    if (lessonSections.length >= 2) {
+                        this.lessonSteps.push({
+                            type: 'read',
+                            html: `
+                                <div class="mb-4 pb-2 border-b border-gray-100">
+                                    <span class="bg-frBlue text-white px-2 py-1 rounded text-[10px] font-bold uppercase">Rappel</span>
+                                </div>
+                                ${lessonSections[1].innerHTML}
+                            `
+                        });
+                    }
+
+                    // Step 3: Exercises from exercicesX.html
+                    const exSections = exDoc.querySelectorAll('section');
+                    exSections.forEach(sec => {
+                        const answer = sec.getAttribute('data-answer');
+                        if (answer) {
+                            // Interactive Quiz
+                            this.lessonSteps.push({
+                                type: 'quiz',
+                                q: sec.innerHTML.replace(/<[^>]*>?/gm, '').trim(), // strip html for prompt if needed, or keep
+                                a: answer,
+                                htmlContent: sec.innerHTML // store full html if needed
+                            });
+                        } else {
+                            // Just reading
+                            this.lessonSteps.push({ type: 'read', html: sec.innerHTML });
+                        }
+                    });
+
+                    this.currentLessonMeta = { ...lessonData, id: mod.id, mode: 'practice' };
+                    this.currentStepIdx = 0;
+                    this.renderStep();
+
+                } catch (e) {
+                    console.error(e);
+                    this.container.innerHTML = `<div class="p-10 text-center flex flex-col items-center">
+                        <i class="fa-solid fa-triangle-exclamation text-4xl text-frRed mb-4"></i>
+                        <p class="text-gray-600">Impossible de charger les exercices.</p>
+                        <p class="text-xs text-gray-400 mt-2">Vérifiez que 'exercices${mod.id}.html' existe.</p>
+                        <button onclick="app.renderMap()" class="mt-6 font-bold text-frBlue underline">Retour</button>
+                    </div>`;
                 }
             },
     
@@ -372,10 +409,7 @@
                 const step = this.lessonSteps[this.currentStepIdx];
                 const progress = ((this.currentStepIdx + 0.5) / this.lessonSteps.length) * 100;
                 
-                const isStart = this.currentStepIdx === 0;
-                const navBtn = isStart 
-                    ? `<button onclick="app.renderMap()" class="text-gray-400 p-2"><i class="fa-solid fa-xmark text-xl"></i></button>`
-                    : `<button onclick="app.prevStep()" class="text-gray-400 p-2"><i class="fa-solid fa-arrow-left text-xl"></i></button>`;
+                const navBtn = `<button onclick="app.renderMap()" class="text-gray-400 p-2 hover:text-frBlue transition"><i class="fa-solid fa-xmark text-xl"></i></button>`;
     
                 let html = `
                     <div class="h-full flex flex-col bg-frCream relative">
@@ -390,13 +424,17 @@
                 `;
     
                 if (step.type === 'read') {
-                    html += `<div class="lesson-section bg-white p-5 sm:p-8 rounded-xl shadow-sm border border-gray-100">${step.html}</div>`;
+                    html += `<div class="lesson-section bg-white p-5 sm:p-8 rounded-xl shadow-sm border border-gray-100 text-lg leading-relaxed">${step.html}</div>`;
                 } else if (step.type === 'quiz') {
+                    // Determine if we show pure text or HTML content
+                    const displayContent = step.htmlContent || step.q;
                     html += `
-                        <h2 class="text-xl font-bold text-frBlue mb-4 font-serif mt-2">Comment dit-on...</h2>
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="bg-gold text-white px-2 py-0.5 rounded text-xs font-bold uppercase">Exercice</span>
+                        </div>
                         <div class="bg-white p-5 sm:p-8 rounded-xl shadow-card border border-gray-100 mb-4">
-                            <p class="text-lg italic text-gray-600 mb-4 font-serif">"${step.q}"</p>
-                            <textarea id="inp-quiz" class="w-full p-3 text-lg border-2 border-gray-200 rounded-lg focus:border-frBlue focus:outline-none transition bg-gray-50 resize-none" rows="3" placeholder="Tapez en français..."></textarea>
+                            <div class="text-lg text-gray-800 mb-4 font-serif">${displayContent}</div>
+                            <textarea id="inp-quiz" class="w-full p-3 text-lg border-2 border-gray-200 rounded-lg focus:border-frBlue focus:outline-none transition bg-gray-50 resize-none" rows="2" placeholder="Votre réponse..."></textarea>
                         </div>
                         <div id="feedback" class="hidden rounded-lg p-4 font-bold text-center text-sm sm:text-base"></div>
                     `;
@@ -418,16 +456,7 @@
                 `;
                 this.container.innerHTML = html;
                 if(step.type === 'quiz') {
-                    setTimeout(() => {
-                        if(window.innerWidth > 768) document.getElementById('inp-quiz').focus();
-                    }, 100);
-                }
-            },
-    
-            prevStep() {
-                if (this.currentStepIdx > 0) {
-                    this.currentStepIdx--;
-                    this.renderStep();
+                    setTimeout(() => { if(window.innerWidth > 768) document.getElementById('inp-quiz').focus(); }, 100);
                 }
             },
     
@@ -437,8 +466,10 @@
                 const btnCheck = document.getElementById('btn-check');
                 const btnNext = document.getElementById('btn-next');
                 
-                const user = inp.value.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
-                const ans = correct.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+                // Simple normalization
+                const normalize = (str) => str.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                const user = normalize(inp.value);
+                const ans = normalize(correct);
     
                 if (user === ans) {
                     inp.classList.add('border-green-500', 'bg-green-50');
@@ -460,129 +491,46 @@
     
             nextStep() { this.currentStepIdx++; this.renderStep(); },
     
-            // --- 4. END LESSON & REVIEW ---
-    
             prepareEndReview() {
-                if (this.currentLessonMeta.vocabulary) {
+                // If practice mode, we might skip adding vocab or add specific logic
+                // For now, we treat it same as lesson completion
+                if (this.currentLessonMeta.vocabulary && this.currentLessonMeta.mode !== 'practice') {
                     const existing = this.userVocab.map(v => v.fr);
                     this.currentLessonMeta.vocabulary.forEach(w => {
                         if(!existing.includes(w.fr)) this.userVocab.push(w);
                     });
                     localStorage.setItem('acad_user_vocab', JSON.stringify(this.userVocab));
                 }
-    
-                if (this.userVocab.length === 0) {
-                    this.completeLesson(); 
-                    return;
-                }
-    
-                this.reviewDeck = [...this.userVocab].sort(() => Math.random() - 0.5).slice(0, 40);
-                this.reviewIndex = 0;
-    
-                this.container.innerHTML = `
-                    <div class="h-full flex flex-col items-center justify-center bg-frBlue text-white p-6 text-center animate-slide-in">
-                        <i class="fa-solid fa-brain text-5xl mb-6 text-gold animate-pulse"></i>
-                        <h2 class="text-2xl font-serif font-bold mb-4">Repaso Final</h2>
-                        <p class="mb-8 max-w-xs text-sm opacity-90">Para completar la lección, debes repasar ${this.reviewDeck.length} palabras.</p>
-                        <button onclick="app.renderReviewCard()" class="bg-gold text-frBlue font-bold py-3 px-10 rounded-xl shadow-lg active:scale-95 transition">Comenzar</button>
-                    </div>
-                `;
-            },
-    
-            renderReviewCard() {
-                if (this.reviewIndex >= this.reviewDeck.length) {
-                    this.completeLesson();
-                    return;
-                }
-    
-                const word = this.reviewDeck[this.reviewIndex];
-                const progress = ((this.reviewIndex) / this.reviewDeck.length) * 100;
-
-                const isFrenchFront = Math.random() > 0.5;
-                
-                const frontLang = isFrenchFront ? 'Français' : 'Español';
-                const frontText = isFrenchFront ? word.fr : word.es;
-                
-                const backLang = isFrenchFront ? 'Español' : 'Français';
-                const backText = isFrenchFront ? word.es : word.fr;
-    
-                this.container.innerHTML = `
-                    <div class="h-full flex flex-col bg-gray-100">
-                        <div class="bg-frBlue p-4 text-white flex justify-between items-center shrink-0">
-                            <span class="font-bold text-gold text-sm">REPASO</span>
-                            <span class="text-xs opacity-75">${this.reviewIndex + 1} / ${this.reviewDeck.length}</span>
-                        </div>
-                        <div class="h-1 w-full bg-gray-300 shrink-0">
-                            <div class="h-full bg-gold transition-all" style="width: ${progress}%"></div>
-                        </div>
-                        
-                        <div class="flex-1 flex items-center justify-center perspective-1000 cursor-pointer group p-4 overflow-hidden" onclick="document.querySelector('.card-inner').classList.toggle('rotate-y-180')">
-                            <div class="card-inner w-[85vw] max-w-xs h-[50vh] min-h-[300px] relative transform-style-3d transition-transform duration-500">
-                                <!-- Front -->
-                                <div class="absolute inset-0 bg-white rounded-2xl shadow-xl flex flex-col items-center justify-center backface-hidden border-b-4 border-gray-200 p-4 text-center">
-                                    <span class="text-[10px] uppercase tracking-widest text-gray-400 mb-2">${frontLang}</span>
-                                    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-frBlue break-words max-w-full">${frontText}</h2>
-                                    <p class="mt-8 text-gray-300 text-xs flex items-center gap-1"><i class="fa-solid fa-hand-pointer"></i> Toca para voltear</p>
-                                </div>
-                                <!-- Back -->
-                                <div class="absolute inset-0 bg-frBlue rounded-2xl shadow-xl flex flex-col items-center justify-center backface-hidden rotate-y-180 text-white border-b-4 border-blue-900 p-4 text-center">
-                                    <span class="text-[10px] uppercase tracking-widest text-blue-300 mb-2">${backLang}</span>
-                                    <h2 class="text-2xl sm:text-3xl font-serif font-bold break-words max-w-full">${backText}</h2>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="p-4 bg-white border-t border-gray-200 shrink-0 safe-pb">
-                            <button onclick="app.nextReviewCard()" class="w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">Siguiente</button>
-                        </div>
-                    </div>`;
-            },
-    
-            nextReviewCard() {
-                this.reviewIndex++;
-                this.renderReviewCard();
+                this.completeLesson(); 
             },
     
             completeLesson() {
                 const id = this.currentLessonMeta.id;
                 
-                // Increment count
+                // Only update progress if not in practice mode (optional logic, keeping simple here)
                 this.progress[id] = (this.progress[id] || 0) + 1;
                 localStorage.setItem('acad_progress', JSON.stringify(this.progress));
                 
                 const count = this.progress[id];
-                let medalTitle = "¡Nivel Bronce!";
-                let medalColor = "text-bronze";
-                let icon = "fa-check";
+                let medalTitle = "¡Felicitaciones!";
+                let medalColor = "text-gold";
                 
-                if(count === 2) {
-                    medalTitle = "¡Nivel Plata!";
-                    medalColor = "text-gray-400"; // Silver look
-                    icon = "fa-check-double";
-                } else if (count >= 3) {
-                    medalTitle = "¡Nivel ORO!";
-                    medalColor = "text-gold";
-                    icon = "fa-trophy";
-                }
-    
                 confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
     
                 this.container.innerHTML = `
                     <div class="h-full flex flex-col items-center justify-center bg-frCream p-6 text-center animate-step">
-                        <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg mb-6 text-4xl ${medalColor} border-4 border-gray-100"><i class="fa-solid ${icon}"></i></div>
-                        <h2 class="text-xl text-frBlue font-bold uppercase tracking-wider mb-1">Lección Completada</h2>
+                        <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg mb-6 text-4xl ${medalColor} border-4 border-gray-100"><i class="fa-solid fa-trophy"></i></div>
+                        <h2 class="text-xl text-frBlue font-bold uppercase tracking-wider mb-1">Terminé</h2>
                         <h1 class="text-3xl font-serif font-bold ${medalColor} mb-6">${medalTitle}</h1>
                         <p class="text-gray-500 mb-8 text-sm max-w-xs">
-                            Has completado esta lección ${count} ${count === 1 ? 'vez' : 'veces'}. 
-                            ${count < 3 ? '<br>¡Repite para subir de nivel!' : '<br>¡Eres un maestro!'}
+                            Has completado la sesión.
                         </p>
                         <div class="w-full max-w-sm space-y-4">
                             <button onclick="app.renderMap()" class="w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-lg active:scale-95 transition">Volver al Mapa</button>
                         </div>
                     </div>`;
             },
-            
-            // --- 5. VOLUNTARY FLASHCARDS ---
+
             renderFlashcards() {
                 if(this.userVocab.length === 0) {
                     this.container.innerHTML = `<div class="h-full flex items-center justify-center flex-col p-6 text-center"><p class="text-gray-500 mb-4">No tienes vocabulario guardado aún.</p><button class="text-frBlue font-bold border border-frBlue px-4 py-2 rounded-lg" onclick="app.renderMap()">Volver</button></div>`;
@@ -599,12 +547,9 @@
                     return;
                 }
                 const word = this.deck[this.cardIdx];
-
                 const isFrenchFront = Math.random() > 0.5;
-                
                 const frontLang = isFrenchFront ? 'Français' : 'Español';
                 const frontText = isFrenchFront ? word.fr : word.es;
-                
                 const backLang = isFrenchFront ? 'Español' : 'Français';
                 const backText = isFrenchFront ? word.es : word.fr;
 
