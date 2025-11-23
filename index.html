@@ -429,6 +429,38 @@ async loadLesson(index) {
         // Load metadata
         const data = JSON.parse(doc.getElementById('lesson-data').textContent);
 
+        // Insert vocab section as the 4th step (index 3)
+        if (data.vocabulary && data.vocabulary.length > 0) {
+
+            let vocabListHtml = `<div class="grid grid-cols-1 gap-2">`;
+            data.vocabulary.forEach(word => {
+                vocabListHtml += `
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg border border-gray-100">
+                        <span class="font-bold text-frBlue">${word.fr}</span>
+                        <span class="text-gray-500 text-sm italic">${word.es}</span>
+                    </div>`;
+            });
+            vocabListHtml += `</div>`;
+
+            const vocabSection = {
+                type: "read",
+                html: `
+                    <div class="text-center mb-6">
+                        <i class="fa-solid fa-book-bookmark text-4xl text-gold mb-2"></i>
+                        <h2 class="text-xl font-bold text-frBlue">Vocabulaire</h2>
+                    </div>
+                    ${vocabListHtml}
+                `
+            };
+
+            // Insert at index 3 (4th position)
+            const insertIndex = (this.currentModIndex === 0) ? 2 : 3;
+            this.lessonSteps.splice(insertIndex, 0, vocabSection);
+        }
+
+
+
+
         this.currentLessonMeta = {
             ...data,
             id: mod.id,
