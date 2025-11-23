@@ -1,217 +1,448 @@
-<!-- EXERCISES FILE: exercices1.html -->
+<!-- AUTO-DETECTABLE EXERCISE FILE -->
 
-<!-- 1. EXERCISE CONTENT -->
-<div id="exercises-content" class="space-y-12">
+<!-- 1. METADATA & CONFIG -->
+<script type="application/json" id="exercise-data">
+{
+    "title": "Ejercicios Lección 1: Práctica Intensiva",
+    "desc": "Pon a prueba tu identidad profesional, domina Être vs. Avoir y evita las trampas de principiante.",
+    "icon": "fa-pencil-alt",
+    "estimated_time": "30 min",
+    "difficulty": "Básico"
+}
+</script>
 
-    <!-- HELPER: CHARACTER TOOLBAR (Inserted dynamically via JS below, but defined here for structure) -->
-    <style>
-        .char-btn {
-            background-color: #f3f4f6; border: 1px solid #d1d5db; color: #002654;
-            font-weight: bold; border-radius: 6px; width: 32px; height: 32px;
-            display: inline-flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 0 rgba(0,0,0,0.1);
-        }
-        .char-btn:active { transform: translateY(2px); box-shadow: none; }
-        .char-btn:hover { background-color: #e5e7eb; border-color: #9ca3af; }
-    </style>
+<!-- 2. CONTENT (HTML) -->
+<div id="exercise-content" class="space-y-12 text-gray-800 font-sans leading-relaxed">
 
-    <!-- EXERCISE 1: ÊTRE vs AVOIR (The Dialogue) -->
-    <section data-answer="nous sommes en retard">
-        
-        <!-- Context / Rule Reminder -->
-        <div class="mb-6 bg-blue-50 p-5 rounded-xl border-l-4 border-frBlue">
-            <h3 class="text-lg font-bold text-frBlue mb-2"><i class="fa-solid fa-graduation-cap"></i> Rappel: Être vs Avoir</h3>
-            <p class="text-sm text-gray-700 mb-3">
-                No confundas el estado (<strong>Être</strong>) con la posesión o sensaciones (<strong>Avoir</strong>).
-            </p>
-            <div class="grid grid-cols-2 gap-4 text-sm">
-                <div class="bg-white p-2 rounded border">
-                    <strong class="text-indigo-600 block mb-1">Être (Ser/Estar)</strong>
-                    <ul class="list-disc ml-4 text-xs text-gray-600">
-                        <li>Je suis (Yo soy)</li>
-                        <li>Tu es (Tú eres)</li>
-                        <li>Nous <strong>sommes</strong> (Nosotros somos/estamos)</li>
-                    </ul>
-                </div>
-                <div class="bg-white p-2 rounded border">
-                    <strong class="text-pink-600 block mb-1">Avoir (Tener)</strong>
-                    <ul class="list-disc ml-4 text-xs text-gray-600">
-                        <li>J'ai (Yo tengo)</li>
-                        <li>Tu as (Tú tienes)</li>
-                        <li>Nous <strong>avons</strong> (Nosotros tenemos)</li>
-                    </ul>
-                </div>
-            </div>
+    <!-- INTRO -->
+    <div class="text-center border-b pb-6">
+        <h1 class="text-3xl font-bold text-indigo-700">Ejercicios: Identidad y Verbos Clave</h1>
+        <p class="text-gray-500 mt-2">Completa las 4 secciones. Recuerda: la precisión es clave en Savoir.</p>
+    </div>
+
+    <!-- GLOBAL TOOL: FRENCH KEYBOARD HELPER (Visible for text inputs) -->
+    <div id="french-keyboard" class="sticky top-4 z-50 bg-white p-2 rounded-lg shadow-lg border border-indigo-100 flex justify-center gap-2 hidden transition-all duration-300">
+        <span class="text-xs font-bold text-gray-400 self-center mr-2">Teclado FR:</span>
+        <button onclick="insertChar('é')" class="w-8 h-8 bg-gray-100 hover:bg-indigo-100 rounded text-indigo-700 font-bold border">é</button>
+        <button onclick="insertChar('è')" class="w-8 h-8 bg-gray-100 hover:bg-indigo-100 rounded text-indigo-700 font-bold border">è</button>
+        <button onclick="insertChar('à')" class="w-8 h-8 bg-gray-100 hover:bg-indigo-100 rounded text-indigo-700 font-bold border">à</button>
+        <button onclick="insertChar('ç')" class="w-8 h-8 bg-gray-100 hover:bg-indigo-100 rounded text-indigo-700 font-bold border">ç</button>
+        <button onclick="insertChar('ê')" class="w-8 h-8 bg-gray-100 hover:bg-indigo-100 rounded text-indigo-700 font-bold border">ê</button>
+        <button onclick="insertChar('ô')" class="w-8 h-8 bg-gray-100 hover:bg-indigo-100 rounded text-indigo-700 font-bold border">ô</button>
+        <button onclick="insertChar('\'')" class="w-8 h-8 bg-gray-100 hover:bg-indigo-100 rounded text-indigo-700 font-bold border">'</button>
+    </div>
+
+    <!-- EXERCISE 1: VOCABULARY & RULES -->
+    <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <div class="flex items-center mb-4">
+            <div class="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold mr-3">1</div>
+            <h2 class="text-xl font-bold text-gray-800">Corrección de Errores y Vocabulario</h2>
         </div>
-
-        <!-- The Challenge -->
-        <h2 class="text-xl font-bold text-gray-800 mb-3 font-serif">1. La llegada a la oficina</h2>
-        <p class="mb-4 text-gray-600 leading-relaxed">
-            Sylvie está molesta porque la reunión comienza a las 9:00 AM y son las 9:15 AM. 
-            Ella mira a todo el equipo y dice una frase clave usando el verbo <em>Être</em>.
-        </p>
-        <p class="mb-4 italic text-gray-500 border-l-2 border-gray-300 pl-3">
-            "¡Rápido! El cliente espera. Nosotros estamos retrasados."
-        </p>
         
-        <div class="mb-2">
-            <p class="font-bold text-sm text-gray-700 mb-2">Traduce la frase exacta "Nosotros estamos retrasados":</p>
-            <!-- Character Toolbar -->
-            <div class="flex gap-2 mb-2 select-none">
-                <button type="button" class="char-btn" onclick="insertChar('é')">é</button>
-                <button type="button" class="char-btn" onclick="insertChar('è')">è</button>
-                <button type="button" class="char-btn" onclick="insertChar('à')">à</button>
-                <button type="button" class="char-btn" onclick="insertChar('ê')">ê</button>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- EXERCISE 2: PROFESSIONS (The Article Trap) -->
-    <section data-answer="elle est stagiaire">
-        
-        <!-- Context / Rule Reminder -->
-        <div class="mb-6 bg-red-50 p-5 rounded-xl border-l-4 border-frRed">
-            <h3 class="text-lg font-bold text-frRed mb-2"><i class="fa-solid fa-triangle-exclamation"></i> La Trampa del Artículo</h3>
-            <p class="text-sm text-gray-700 mb-2">
-                En español decimos "Ella es <strong>una</strong> pasante". <br>
-                En francés, <strong>NUNCA</strong> uses "un" o "une" para profesiones después de "il/elle est" o "je suis".
-            </p>
-            <div class="bg-white p-3 rounded text-center border border-red-100">
-                <span class="text-red-400 line-through text-xs block">C'est une stagiaire</span>
-                <span class="text-green-600 font-bold text-sm block">Elle est stagiaire <i class="fa-solid fa-check"></i></span>
-            </div>
-        </div>
-
-        <!-- The Challenge -->
-        <h2 class="text-xl font-bold text-gray-800 mb-3 font-serif">2. Presentando al equipo</h2>
-        <p class="mb-4 text-gray-600 leading-relaxed">
-            Un cliente pregunta quién es la chica joven que trae el café. Tú respondes con profesionalismo para explicar su cargo (Pasante / Becaria).
-        </p>
-        
-        <div class="mb-2">
-            <p class="font-bold text-sm text-gray-700 mb-2">Traduce "Ella es pasante" (Cuidado con el artículo):</p>
-             <!-- Character Toolbar -->
-             <div class="flex gap-2 mb-2 select-none">
-                <button type="button" class="char-btn" onclick="insertChar('é')">é</button>
-                <button type="button" class="char-btn" onclick="insertChar('è')">è</button>
-                <button type="button" class="char-btn" onclick="insertChar('ç')">ç</button>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- EXERCISE 3: VOCABULARY (Definitions) -->
-    <section data-answer="le comptable">
-        
-        <!-- Context / Rule Reminder -->
-        <div class="mb-6 bg-yellow-50 p-5 rounded-xl border-l-4 border-gold">
-            <h3 class="text-lg font-bold text-yellow-700 mb-2"><i class="fa-solid fa-book-open"></i> Vocabulario: Los Roles</h3>
-            <ul class="text-sm text-gray-700 space-y-2">
-                <li><strong>Le Directeur / La Directrice:</strong> El jefe(a).</li>
-                <li><strong>Le Chargé de clientèle:</strong> Ejecutivo de cuentas.</li>
-                <li><strong>Le Comptable:</strong> El que controla el dinero.</li>
+        <!-- Rule Summary -->
+        <div class="bg-indigo-50 p-4 rounded-lg mb-6 text-sm border-l-4 border-indigo-500">
+            <strong>Recordatorio:</strong> 
+            <ul class="list-disc ml-4 mt-1">
+                <li>Profesiones: NO usan artículo (<em>Je suis docteur</em>, NO <del>Je suis un docteur</del>).</li>
+                <li>Edad: Usa el verbo AVOIR (<em>J'ai 20 ans</em>).</li>
             </ul>
         </div>
 
-        <!-- The Challenge -->
-        <h2 class="text-xl font-bold text-gray-800 mb-3 font-serif">3. ¿Quién hace qué?</h2>
-        <p class="mb-4 text-gray-600 leading-relaxed">
-            Estás en una reunión y alguien pregunta: <br>
-            <em>"Qui s'occupe de l'argent et des factures ?"</em> (¿Quién se ocupa del dinero y las facturas?).
-        </p>
-        <p class="mb-4 text-gray-600">
-            Tú señalas a Luc. ¿Cuál es su puesto?
-        </p>
-        
-        <div class="mb-2">
-            <p class="font-bold text-sm text-gray-700 mb-2">Escribe la profesión con su artículo (El contador):</p>
-        </div>
-    </section>
-
-
-    <!-- EXERCISE 4: NATIONALITIES & GENDER -->
-    <section data-answer="elle est américaine">
-        
-        <!-- Context / Rule Reminder -->
-        <div class="mb-6 bg-indigo-50 p-5 rounded-xl border-l-4 border-indigo-500">
-            <h3 class="text-lg font-bold text-indigo-700 mb-2"><i class="fa-solid fa-venus-mars"></i> Nacionalidades</h3>
-            <p class="text-sm text-gray-700 mb-2">
-                Para formar el femenino de la mayoría de las nacionalidades, se añade una <strong>"e"</strong> al final.
-            </p>
-            <div class="grid grid-cols-2 gap-2 text-sm text-center">
-                <div class="bg-white p-1 rounded text-gray-500">Masculino: <br><strong>Américain</strong></div>
-                <div class="bg-white p-1 rounded text-indigo-600 font-bold">Femenino: <br><strong>Américaine</strong></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Q1 -->
+            <div class="space-y-2">
+                <label class="font-semibold text-gray-700">1. Selecciona la forma correcta para decir "Soy abogada":</label>
+                <select class="w-full p-2 border rounded bg-gray-50" onchange="validateSelect(this, 'correct')">
+                    <option value="">Elige una opción...</option>
+                    <option value="wrong">Je suis une avocate</option>
+                    <option value="correct">Je suis avocate</option>
+                    <option value="wrong">Je suis la avocate</option>
+                </select>
+                <p class="feedback hidden text-xs mt-1"></p>
             </div>
-        </div>
 
-        <!-- The Challenge -->
-        <h2 class="text-xl font-bold text-gray-800 mb-3 font-serif">4. Origen Internacional</h2>
-        <p class="mb-4 text-gray-600 leading-relaxed">
-            Luc está presentando a Emily a un nuevo socio. Él dice: "Voici Emily. Ella es estadounidense."
-        </p>
-        <p class="text-xs text-gray-500 italic mb-4">Nota: Recuerda la regla del artículo (no digas "una") y la regla del femenino.</p>
-        
-        <div class="mb-2">
-            <p class="font-bold text-sm text-gray-700 mb-2">Traduce "Ella es estadounidense":</p>
-             <!-- Character Toolbar -->
-             <div class="flex gap-2 mb-2 select-none">
-                <button type="button" class="char-btn" onclick="insertChar('é')">é</button>
-                <button type="button" class="char-btn" onclick="insertChar('è')">è</button>
-                <button type="button" class="char-btn" onclick="insertChar('ï')">ï</button>
+            <!-- Q2 -->
+            <div class="space-y-2">
+                <label class="font-semibold text-gray-700">2. ¿Cómo se dice "Pasante / Becario"?</label>
+                <select class="w-full p-2 border rounded bg-gray-50" onchange="validateSelect(this, 'stagiaire')">
+                    <option value="">Elige una opción...</option>
+                    <option value="wrong">Le Chef</option>
+                    <option value="stagiaire">Le Stagiaire</option>
+                    <option value="wrong">Le Comptable</option>
+                </select>
+                <p class="feedback hidden text-xs mt-1"></p>
             </div>
-        </div>
-    </section>
 
+            <!-- Q3 -->
+            <div class="space-y-2">
+                <label class="font-semibold text-gray-700">3. Encuentra el error: "Je suis 25 ans".</label>
+                <select class="w-full p-2 border rounded bg-gray-50" onchange="validateSelect(this, 'verb')">
+                    <option value="">Elige una opción...</option>
+                    <option value="wrong">El número está mal escrito.</option>
+                    <option value="verb">El verbo es incorrecto (debe ser 'avoir').</option>
+                    <option value="wrong">Falta la palabra 'años'.</option>
+                </select>
+                <p class="feedback hidden text-xs mt-1"></p>
+            </div>
 
-    <!-- EXERCISE 5: AGE (The Ultimate Trap) -->
-    <section data-answer="j'ai 25 ans">
-        
-        <!-- Context / Rule Reminder -->
-        <div class="mb-6 bg-pink-50 p-5 rounded-xl border-l-4 border-pink-500">
-            <h3 class="text-lg font-bold text-pink-700 mb-2"><i class="fa-solid fa-cake-candles"></i> La Edad: Avoir vs Être</h3>
-            <p class="text-sm text-gray-700">
-                ¡Alerta Roja! 🚨 En francés, tú no "eres" tus años. Tú <strong>tienes</strong> tus años.
-                <br>Incorrecto: <span class="line-through text-gray-400">Je suis 20 ans.</span>
-                <br>Correcto: <strong>J'ai 20 ans.</strong>
-            </p>
-        </div>
+            <!-- Q4 -->
+            <div class="space-y-2">
+                <label class="font-semibold text-gray-700">4. Traduce al francés: "El contador".</label>
+                <input type="text" class="w-full p-2 border rounded focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none js-input" placeholder="Ej: Le..." data-answer="le comptable">
+                <p class="feedback hidden text-xs mt-1"></p>
+            </div>
 
-        <!-- The Challenge -->
-        <h2 class="text-xl font-bold text-gray-800 mb-3 font-serif">5. Formulario de inscripción</h2>
-        <p class="mb-4 text-gray-600 leading-relaxed">
-            Estás completando tu perfil en la intranet de Savoir. Hay un campo que pregunta: "Âge?".
-            Debes escribir la frase completa para decir "Tengo 25 años".
-        </p>
-        
-        <div class="mb-2">
-            <p class="font-bold text-sm text-gray-700 mb-2">Escribe "Tengo 25 años" en francés:</p>
-            <!-- Character Toolbar -->
-            <div class="flex gap-2 mb-2 select-none">
-                <button type="button" class="char-btn" onclick="insertChar('é')">é</button>
-                <button type="button" class="char-btn" onclick="insertChar('ç')">ç</button>
-                <button type="button" class="char-btn" onclick="insertChar('\'')">'</button>
+            <!-- Q5 -->
+            <div class="space-y-2">
+                <label class="font-semibold text-gray-700">5. Femenino de "Directeur":</label>
+                <input type="text" class="w-full p-2 border rounded focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none js-input" data-answer="directrice">
+                <p class="feedback hidden text-xs mt-1"></p>
+            </div>
+
+            <!-- Q6 -->
+            <div class="space-y-2">
+                <label class="font-semibold text-gray-700">6. "Estar de acuerdo" se dice:</label>
+                <select class="w-full p-2 border rounded bg-gray-50" onchange="validateSelect(this, 'accord')">
+                    <option value="">Elige una opción...</option>
+                    <option value="wrong">Être en retard</option>
+                    <option value="accord">Être d'accord</option>
+                    <option value="wrong">Avoir besoin</option>
+                </select>
+                <p class="feedback hidden text-xs mt-1"></p>
             </div>
         </div>
     </section>
+
+    <!-- EXERCISE 2: GRAMMAR (ÊTRE VS AVOIR) -->
+    <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <div class="flex items-center mb-4">
+            <div class="w-8 h-8 bg-frBlue rounded-full flex items-center justify-center text-white font-bold mr-3">2</div>
+            <h2 class="text-xl font-bold text-gray-800">Gramática: Conjugación</h2>
+        </div>
+
+        <!-- Rule Summary -->
+        <div class="bg-blue-50 p-4 rounded-lg mb-6 text-sm border-l-4 border-frBlue grid grid-cols-2 gap-4">
+            <div>
+                <strong class="text-indigo-700">ÊTRE (Ser/Estar)</strong><br>
+                Je suis, Tu es, Il est<br>
+                Nous sommes, Vous êtes, Ils sont
+            </div>
+            <div>
+                <strong class="text-pink-600">AVOIR (Tener)</strong><br>
+                J'ai, Tu as, Il a<br>
+                Nous avons, Vous avez, Ils ont
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Q1 -->
+            <div class="space-y-1">
+                <label class="text-gray-600 text-sm">1. Je _______ (être) américain.</label>
+                <input type="text" class="w-full p-2 border-b-2 border-gray-300 bg-transparent focus:border-frBlue outline-none js-input" data-answer="suis">
+                <p class="feedback hidden text-xs font-bold"></p>
+            </div>
+
+            <!-- Q2 -->
+            <div class="space-y-1">
+                <label class="text-gray-600 text-sm">2. Tu _______ (avoir) une réunion ?</label>
+                <input type="text" class="w-full p-2 border-b-2 border-gray-300 bg-transparent focus:border-frBlue outline-none js-input" data-answer="as">
+                <p class="feedback hidden text-xs font-bold"></p>
+            </div>
+
+            <!-- Q3 -->
+            <div class="space-y-1">
+                <label class="text-gray-600 text-sm">3. Nous _______ (être) au bureau.</label>
+                <input type="text" class="w-full p-2 border-b-2 border-gray-300 bg-transparent focus:border-frBlue outline-none js-input" data-answer="sommes">
+                <p class="feedback hidden text-xs font-bold"></p>
+            </div>
+
+            <!-- Q4 -->
+            <div class="space-y-1">
+                <label class="text-gray-600 text-sm">4. Vous _______ (avoir) faim ?</label>
+                <input type="text" class="w-full p-2 border-b-2 border-gray-300 bg-transparent focus:border-frBlue outline-none js-input" data-answer="avez">
+                <p class="feedback hidden text-xs font-bold"></p>
+            </div>
+
+            <!-- Q5 -->
+            <div class="space-y-1">
+                <label class="text-gray-600 text-sm">5. Elles _______ (être) intelligentes.</label>
+                <input type="text" class="w-full p-2 border-b-2 border-gray-300 bg-transparent focus:border-frBlue outline-none js-input" data-answer="sont">
+                <p class="feedback hidden text-xs font-bold"></p>
+            </div>
+
+            <!-- Q6 -->
+            <div class="space-y-1">
+                <label class="text-gray-600 text-sm">6. Marc (Il) _______ (avoir) 30 ans.</label>
+                <input type="text" class="w-full p-2 border-b-2 border-gray-300 bg-transparent focus:border-frBlue outline-none js-input" data-answer="a">
+                <p class="feedback hidden text-xs font-bold"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXERCISE 3: COMPREHENSION (THE MEETING) -->
+    <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <div class="flex items-center mb-4">
+            <div class="w-8 h-8 bg-frRed rounded-full flex items-center justify-center text-white font-bold mr-3">3</div>
+            <h2 class="text-xl font-bold text-gray-800">Comprensión: La Reunión</h2>
+        </div>
+
+        <p class="text-sm text-gray-500 mb-4 italic">Basado en la historia de Emily y Monsieur Dubois de la lección.</p>
+
+        <div class="space-y-4">
+            <!-- Q1 -->
+            <div class="border-b pb-3">
+                <p class="font-semibold mb-2">1. ¿Por qué estaban nerviosos al principio?</p>
+                <div class="space-y-1">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="rc1" class="text-frRed focus:ring-frRed" onchange="checkRadio(this, false)">
+                        <span>Porque Emily no habla francés.</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="rc1" class="text-frRed focus:ring-frRed" onchange="checkRadio(this, true)">
+                        <span>Porque estaban retrasados (en retard).</span>
+                    </label>
+                    <p class="feedback hidden text-xs ml-6"></p>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="border-b pb-3">
+                <p class="font-semibold mb-2">2. ¿Cuál es la profesión de Luc?</p>
+                <div class="space-y-1">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="rc2" class="text-frRed focus:ring-frRed" onchange="checkRadio(this, true)">
+                        <span>Comptable (Contador).</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="rc2" class="text-frRed focus:ring-frRed" onchange="checkRadio(this, false)">
+                        <span>Directeur (Director).</span>
+                    </label>
+                    <p class="feedback hidden text-xs ml-6"></p>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="border-b pb-3">
+                <p class="font-semibold mb-2">3. ¿Cómo describe Sylvie a Emily ante el cliente?</p>
+                <div class="space-y-1">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="rc3" class="text-frRed focus:ring-frRed" onchange="checkRadio(this, false)">
+                        <span>La stagiaire américaine.</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="rc3" class="text-frRed focus:ring-frRed" onchange="checkRadio(this, true)">
+                        <span>Consultante américaine.</span>
+                    </label>
+                    <p class="feedback hidden text-xs ml-6"></p>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="border-b pb-3">
+                <p class="font-semibold mb-2">4. ¿De dónde es Emily?</p>
+                <div class="space-y-1">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="rc4" class="text-frRed focus:ring-frRed" onchange="checkRadio(this, true)">
+                        <span>Elle est de Chicago.</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="rc4" class="text-frRed focus:ring-frRed" onchange="checkRadio(this, false)">
+                        <span>Elle est de New York.</span>
+                    </label>
+                    <p class="feedback hidden text-xs ml-6"></p>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="border-b pb-3">
+                <p class="font-semibold mb-2">5. Verdadero o Falso: M. Dubois odia la franqueza (directness) de Emily.</p>
+                <div class="space-y-1">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="rc5" class="text-frRed focus:ring-frRed" onchange="checkRadio(this, false)">
+                        <span>Verdadero.</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="rc5" class="text-frRed focus:ring-frRed" onchange="checkRadio(this, true)">
+                        <span>Falso (Le gusta).</span>
+                    </label>
+                    <p class="feedback hidden text-xs ml-6"></p>
+                </div>
+            </div>
+            
+             <!-- Q6 -->
+             <div class="pb-3">
+                <p class="font-semibold mb-2">6. ¿Qué verbo usa M. Dubois en: "J'___ une question"?</p>
+                <div class="space-y-1">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="rc6" class="text-frRed focus:ring-frRed" onchange="checkRadio(this, false)">
+                        <span>Être (Suis).</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="rc6" class="text-frRed focus:ring-frRed" onchange="checkRadio(this, true)">
+                        <span>Avoir (Ai).</span>
+                    </label>
+                    <p class="feedback hidden text-xs ml-6"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXERCISE 4: WRITING / PRODUCTION -->
+    <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <div class="flex items-center mb-4">
+            <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white font-bold mr-3">4</div>
+            <h2 class="text-xl font-bold text-gray-800">Escritura: Traduce las Frases</h2>
+        </div>
+
+        <div class="bg-green-50 p-4 rounded-lg mb-6 text-sm text-green-800">
+            <i class="fas fa-keyboard mr-2"></i> Usa los botones de arriba si necesitas acentos (é, è, ê). 
+            No te preocupes por las mayúsculas.
+        </div>
+
+        <div class="space-y-4">
+            <!-- Q1 -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                <span class="font-semibold text-gray-700">1. "Yo tengo una reunión."</span>
+                <input type="text" class="col-span-2 p-2 border rounded focus:ring-green-500 focus:border-green-500 js-input" data-answer="j'ai une réunion">
+                <p class="feedback hidden col-span-3 text-xs text-right"></p>
+            </div>
+
+            <!-- Q2 -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                <span class="font-semibold text-gray-700">2. "Tú (informal) estás de vacaciones."</span>
+                <input type="text" class="col-span-2 p-2 border rounded focus:ring-green-500 focus:border-green-500 js-input" data-answer="tu es en vacances">
+                <p class="feedback hidden col-span-3 text-xs text-right"></p>
+            </div>
+
+            <!-- Q3 -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                <span class="font-semibold text-gray-700">3. "Usted es el director."</span>
+                <input type="text" class="col-span-2 p-2 border rounded focus:ring-green-500 focus:border-green-500 js-input" data-answer="vous êtes le directeur">
+                <p class="feedback hidden col-span-3 text-xs text-right"></p>
+            </div>
+
+            <!-- Q4 -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                <span class="font-semibold text-gray-700">4. "Nosotros estamos tarde."</span>
+                <input type="text" class="col-span-2 p-2 border rounded focus:ring-green-500 focus:border-green-500 js-input" data-answer="nous sommes en retard">
+                <p class="feedback hidden col-span-3 text-xs text-right"></p>
+            </div>
+
+            <!-- Q5 -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                <span class="font-semibold text-gray-700">5. "Ella es alemana."</span>
+                <input type="text" class="col-span-2 p-2 border rounded focus:ring-green-500 focus:border-green-500 js-input" data-answer="elle est allemande">
+                <p class="feedback hidden col-span-3 text-xs text-right"></p>
+            </div>
+
+            <!-- Q6 -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 items-center">
+                <span class="font-semibold text-gray-700">6. "Ellos tienen 20 años."</span>
+                <input type="text" class="col-span-2 p-2 border rounded focus:ring-green-500 focus:border-green-500 js-input" data-answer="ils ont 20 ans">
+                <p class="feedback hidden col-span-3 text-xs text-right"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTION BUTTON -->
+    <div class="text-center pt-6">
+        <button onclick="checkAllAnswers()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105">
+            ✅ Validar Todas las Respuestas
+        </button>
+        <p id="final-score" class="mt-4 font-bold text-xl text-gray-800 hidden"></p>
+    </div>
 
 </div>
 
-<!-- SCRIPT TO MAKE CHARACTER BUTTONS WORK -->
+<!-- 3. INTERACTIVE SCRIPT -->
 <script>
+    // 1. Keyboard Helper Logic
+    let activeInput = null;
+    
+    document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.addEventListener('focus', () => {
+            activeInput = input;
+            document.getElementById('french-keyboard').classList.remove('hidden');
+        });
+        // Optional: Hide keyboard on blur, but checking if click was on keyboard button is complex, 
+        // so we'll keep it simple and leave it sticky or hide on outside click logic if needed.
+    });
+
     function insertChar(char) {
-        // Find the visible textarea (the one in the active step)
-        const activeTextarea = document.querySelector('.lesson-section textarea, #inp-quiz'); 
-        
-        // If we are in the main app flow, the ID is usually #inp-quiz
-        if (activeTextarea) {
-            const start = activeTextarea.selectionStart;
-            const end = activeTextarea.selectionEnd;
-            const text = activeTextarea.value;
-            
-            activeTextarea.value = text.substring(0, start) + char + text.substring(end);
-            activeTextarea.focus();
-            activeTextarea.selectionStart = activeTextarea.selectionEnd = start + 1;
+        if (activeInput) {
+            activeInput.value += char;
+            activeInput.focus();
         }
+    }
+
+    // 2. Validation Logic
+    function normalize(str) {
+        // Remove accents, special chars, and lowercase for validation comparison
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                  .replace(/[^a-zA-Z0-9]/g, "") // Remove spaces and punctuation
+                  .toLowerCase();
+    }
+
+    function validateSelect(selectElem, correctVal) {
+        const p = selectElem.nextElementSibling;
+        p.classList.remove('hidden');
+        if (selectElem.value === correctVal) {
+            selectElem.classList.add('border-green-500', 'bg-green-50');
+            selectElem.classList.remove('border-red-500', 'bg-red-50');
+            p.textContent = "¡Correcto!";
+            p.className = "feedback text-xs mt-1 text-green-600 font-bold";
+        } else {
+            selectElem.classList.add('border-red-500', 'bg-red-50');
+            selectElem.classList.remove('border-green-500', 'bg-green-50');
+            p.textContent = "Inténtalo de nuevo.";
+            p.className = "feedback text-xs mt-1 text-red-600";
+        }
+    }
+
+    function checkRadio(radioElem, isCorrect) {
+        const p = radioElem.closest('.space-y-1').querySelector('.feedback');
+        p.classList.remove('hidden');
+        
+        if (isCorrect) {
+            p.textContent = "¡Correcto!";
+            p.className = "feedback text-xs ml-6 text-green-600 font-bold";
+        } else {
+            p.textContent = "Incorrecto.";
+            p.className = "feedback text-xs ml-6 text-red-600";
+        }
+    }
+
+    function checkAllAnswers() {
+        let correctCount = 0;
+        let totalQuestions = 0;
+
+        // Check Text Inputs
+        document.querySelectorAll('.js-input').forEach(input => {
+            totalQuestions++;
+            const userAnswer = normalize(input.value);
+            const correctAnswer = normalize(input.dataset.answer);
+            const p = input.nextElementSibling;
+            
+            p.classList.remove('hidden');
+            
+            if (userAnswer === correctAnswer && userAnswer.length > 0) {
+                correctCount++;
+                input.classList.add('border-green-500', 'bg-green-50');
+                p.textContent = "¡Bien hecho!";
+                p.className = "feedback text-xs text-green-600 font-bold";
+            } else {
+                input.classList.add('border-red-500', 'bg-red-50');
+                p.textContent = `Respuesta sugerida: ${input.dataset.answer}`;
+                p.className = "feedback text-xs text-red-600";
+            }
+        });
+
+        // Check Selects & Radios (Manual check for total score)
+        // Note: For this simplified script, we rely on the visual feedback triggers above.
+        // To count properly, we'd iterate all select/radio states.
+        
+        const scoreBoard = document.getElementById('final-score');
+        scoreBoard.textContent = "Revisa tus respuestas marcadas en Rojo y Verde.";
+        scoreBoard.classList.remove('hidden');
     }
 </script>
