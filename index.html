@@ -611,7 +611,7 @@ renderStep() {
 // --- GENERATE HTML FOR NEW EXERCISE TYPES ---
     renderInteractiveExercise(ex) {
         let contentHtml = '';
-        const instruction = `<div class="flex items-center gap-2 mb-4"><span class="bg-gold text-white px-2 py-0.5 rounded text-xs font-bold uppercase">Exercice</span><span class="text-xs text-gray-500 font-bold uppercase tracking-widest">${ex.type.replace('_', ' ')}</span></div>`;
+        const instruction = `<div class="flex items-center gap-2 mb-4"><span class="bg-gold text-white px-2 py-0.5 rounded text-xs font-bold uppercase">Exercice</span><span class="text-xs text-gray-500 font-bold uppercase tracking-widest">${ex.instruction}</span></div>`;
         const prompt = ex.prompt ? `<div class="text-xl font-serif text-frBlue font-bold mb-6 text-center">${ex.prompt.replace('______', '<span class="border-b-2 border-frBlue w-12 inline-block mx-1"></span>')}</div>` : '';
         
         switch(ex.type) {
