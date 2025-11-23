@@ -635,7 +635,7 @@ renderStep() {
                     </div>`;
                 break;
 
-            case 'fill_in_blank':
+            case 'full_translation':
                 // Special characters buttons
                 const specialChars = ex.content.special_characters || [];
                 const charButtons = specialChars.map(char => 
@@ -744,7 +744,7 @@ renderStep() {
         let feedbackMsg = '';
 
         // SPECIAL CASE: Fill in blank (Translation) - No validation, just reveal
-        if (ex.type === 'fill_in_blank') {
+        if (ex.type === 'full_translation') {
             this.revealAnswer();
             return;
         }
