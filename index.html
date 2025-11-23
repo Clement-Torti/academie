@@ -170,33 +170,36 @@ async discoverModules() {
 },
     
             // --- 2. MAP RENDERING ---
-// --- 2. MAP RENDERING ---
 renderMap() {
     this.modal.classList.add('hidden');
     
     // Intro Card (Keep as is)
-const introCard = `
-<div class="w-full px-6 pt-8 pb-4 relative z-20">
-    <div class="bg-white p-6 rounded-2xl shadow-card border border-blue-100 text-center relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-frBlue via-white to-frRed"></div>
+    const introCard = `
+    <div class="w-full px-6 pt-8 pb-4 relative z-20">
+        <div class="bg-white p-6 rounded-2xl shadow-card border border-blue-100 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-frBlue via-white to-frRed"></div>
         
-        <h2 class="text-xl font-serif font-bold text-frBlue mb-3 mt-1">Bienvenue à Paris! 🇫🇷</h2>
+            <h2 class="text-xl font-serif font-bold text-frBlue mb-3 mt-1">Bienvenue à Paris! 🇫🇷</h2>
 
-        <p class="text-xs text-gray-500 mb-2 leading-relaxed">
+            <p class="text-xs text-gray-500 mb-2 leading-relaxed">
             Olvídate de la superficialidad de la app del búho 🦉. Aquí, en el universo de <em>Emily in Paris</em>, buscamos elegancia y profundidad. Si te gusta este proyecto, puedes invitarme un croissant abajo a través de una pequeña donación.
-        </p>
+            </p>
         <a href="TU_ENLACE_DE_DONACIÓN" target="_blank"
            class="inline-block mt-2 px-4 py-2 bg-frBlue text-white text-xs font-semibold rounded-xl shadow hover:bg-blue-700 transition">
            Invitar un croissant 🥐
         </a>
 
-    </div>
-</div>`;
+        </div>
+    </div>`;
 
     let nodes = '';
 
     this.modules.forEach((mod, i) => {
+        // GET MASTERY LEVEL (0, 1, 2, or 3+)
+        const masteryLevel = this.progress[mod.uid] || 0;
+        
         // CHECK LOCK STATUS
+        // It is locked if it is NOT the first one AND the previous one has 0 progress
         let isLocked = false;
     
         const isComplete = this.progress[mod.uid] ? true : false;
@@ -204,52 +207,82 @@ const introCard = `
         // Zigzag offset
         const offset = i % 2 === 0 ? '-translate-x-8 sm:-translate-x-12' : 'translate-x-8 sm:translate-x-12';
         
-        // VISUAL STYLES based on Type & Status
-        let colorClass, borderClass, opacityClass, clickAction;
+        // VISUAL STYLES based on Mastery Level
+        let colorClass, borderClass, opacityClass, clickAction, iconHtml;
 
         if (isLocked) {
             colorClass = 'bg-gray-200 text-gray-400';
             borderClass = 'border-gray-300';
             opacityClass = 'opacity-70 grayscale';
-            clickAction = ''; // No action
-        } else if (isComplete) {
-            colorClass = 'bg-gold text-white';
-            borderClass = 'border-yellow-600';
-            opacityClass = '';
-            // Allow re-playing
-            clickAction = mod.type === 'theory' ? `app.loadLesson(${i})` : `app.loadPractice(${i})`; 
+            clickAction = ''; 
+            iconHtml = '<i class="fa-solid fa-lock text-sm"></i>';
         } else {
-            // Active / Current
-            if (mod.type === 'theory') {
-                colorClass = 'bg-frBlue text-white';
-                borderClass = 'border-blue-900';
-            } else {
-                colorClass = 'bg-white text-frBlue border-2 border-frBlue'; // Distinct look for practice
-                borderClass = 'border-blue-200';
-            }
-            opacityClass = 'scale-110'; // Highlight next step
             clickAction = mod.type === 'theory' ? `app.loadLesson(${i})` : `app.loadPractice(${i})`;
+            opacityClass = ''; // Active
+            
+            // Define colors based on mastery
+            if (masteryLevel === 0) {
+                // Not started yet
+                if (mod.type === 'theory') {
+                    colorClass = 'bg-frBlue text-white';
+                    borderClass = 'border-blue-900';
+                } else {
+                    colorClass = 'bg-white text-frBlue border-2 border-frBlue';
+                    borderClass = 'border-blue-200';
+                }
+                opacityClass = 'scale-110'; // Highlight next step
+            } else if (masteryLevel === 1) {
+                // BRONZE
+                colorClass = 'bg-bronze text-white';
+                borderClass = 'border-[#8B4513]'; // Darker brown border
+            } else if (masteryLevel === 2) {
+                // SILVER
+                colorClass = 'bg-silver text-white'; // Or text-gray-700 if contrast is bad
+                borderClass = 'border-gray-400';
+            } else {
+                // GOLD (3 or more)
+                colorClass = 'bg-gold text-white';
+                borderClass = 'border-yellow-600';
+            }
+
+            // Icon Logic
+            if (masteryLevel > 0) {
+                // Show checkmark or crown for gold
+                const icon = masteryLevel >= 3 ? 'fa-crown' : 'fa-check';
+                iconHtml = `<i class="fa-solid ${icon}"></i>`;
+            } else {
+                // Show module icon
+                iconHtml = `<i class="fa-solid ${mod.icon}"></i>`;
+            }
         }
 
         // Generate Node HTML
         nodes += `
-        <div class="flex flex-col items-center mb-16 relative z-10 pointer-events-none w-full">
-            <div class="pointer-events-auto flex flex-col items-center transition-all duration-300 ${offset} ${opacityClass}" id="node-${i}">
-                <!-- Main Button -->
-                <button onclick="${clickAction}" 
-                    class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full text-2xl flex items-center justify-center border-b-4 shadow-xl active:scale-95 transition-all active:translate-y-1 ${colorClass} ${borderClass}">
-                    <i class="fa-solid ${isComplete ? 'fa-check' : mod.icon}"></i>
-                    
-                    <!-- Lock Overlay -->
-                    ${isLocked ? '<div class="absolute inset-0 flex items-center justify-center bg-black/10 rounded-full"><i class="fa-solid fa-lock text-xs text-gray-500"></i></div>' : ''}
-                </button>
-                
-                <!-- Title below -->
-                <div class="mt-2 text-center w-75">
-                     <div class="mb-2 bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm text-[10px] font-bold text-gray-600 border border-gray-100 uppercase tracking-widest">${mod.topic}</div>
-                </div>
-            </div>
-        </div>`;
+  <div class="flex flex-col items-center mb-16 relative z-10 pointer-events-none w-full">
+      <div class="pointer-events-auto flex flex-col items-center transition-all duration-300 ${offset} ${opacityClass}" id="node-${i}">
+          <!-- Main Button -->
+          <button onclick="${clickAction}" 
+              class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full text-2xl flex items-center justify-center border-b-4 shadow-xl active:scale-95 transition-all active:translate-y-1 ${colorClass} ${borderClass}">
+              ${iconHtml}
+              
+              <!-- Stars/Dots indicator for progress -->
+              ${!isLocked && masteryLevel > 0 && masteryLevel < 3 ? 
+                  `<div class="absolute -bottom-2 flex gap-0.5">
+                      ${Array(masteryLevel).fill('<div class="w-1.5 h-1.5 rounded-full bg-frBlue border border-white"></div>').join('')}
+                   </div>` 
+               : ''}
+          </button>
+          
+          <!-- Title below -->
+          <div class="mt-2 text-center w-full">
+              <div class="inline-block mb-2 bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm text-[10px] font-bold text-gray-600 border border-gray-100 uppercase tracking-widest max-w-[16rem] sm:max-w-[18rem] whitespace-normal break-words leading-tight">
+                  ${mod.topic}
+              </div>
+          </div>
+
+      </div>
+  </div>`;
+
     });
 
     this.container.innerHTML = `
@@ -709,15 +742,37 @@ renderStep() {
             },
     
 completeLesson() {
-    // 1. Save Progress using the UNIQUE ID
+    // 1. Logic: Increment Progress
     const uid = this.currentLessonMeta.uid;
-    this.progress[uid] = 1;
+    const currentLevel = this.progress[uid] || 0;
+    
+    // Increment, but you can cap it at 3 if you want, or let it grow
+    // Here we assume 3 is max for visual change, but we track attempts
+    const newLevel = currentLevel + 1;
+    this.progress[uid] = newLevel;
+    
     localStorage.setItem('acad_progress', JSON.stringify(this.progress));
     
-    // 2. Visuals
+    // 2. Visuals & Messages
     const isPractice = this.currentLessonMeta.type === 'practice';
+    
+    let colorText = "";
+    let medalIcon = "";
+    
+    if (newLevel === 1) {
+        colorText = "text-bronze"; 
+        medalIcon = "fa-medal"; // Bronze
+    } else if (newLevel === 2) {
+        colorText = "text-silver";
+        medalIcon = "fa-medal"; // Silver
+    } else {
+        colorText = "text-gold";
+        medalIcon = "fa-crown"; // Gold
+    }
+
     const msg = isPractice ? "Exercice Terminé" : "Leçon Terminée";
     
+    // Confetti
     confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
 
     // 3. Determine Next Step
@@ -736,11 +791,19 @@ completeLesson() {
 
     this.container.innerHTML = `
         <div class="h-full flex flex-col items-center justify-center bg-frCream p-6 text-center animate-step">
-            <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg mb-6 text-4xl text-gold border-4 border-gray-100">
-                <i class="fa-solid fa-trophy"></i>
+            <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg mb-6 text-4xl ${colorText} border-4 border-gray-100 relative">
+                <i class="fa-solid ${medalIcon}"></i>
+                ${newLevel > 1 ? `<span class="absolute top-0 right-0 bg-frRed text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white">x${newLevel}</span>` : ''}
             </div>
-            <h2 class="text-xl text-frBlue font-bold uppercase tracking-wider mb-1">Bien Joué !</h2>
+            
+            <h2 class="text-xl text-frBlue font-bold uppercase tracking-wider mb-1">Niveau Supérieur !</h2>
             <h1 class="text-3xl font-serif font-bold text-frBlue mb-6">${msg}</h1>
+            
+            <p class="mb-8 text-gray-500 max-w-xs mx-auto">
+                ${newLevel === 1 ? "Has conseguido el <strong class='text-bronze'>Bronce</strong>. ¡Repite para obtener la Plata!" : 
+                  newLevel === 2 ? "Has conseguido la <strong class='text-silver'>Plata</strong>. ¡Una vez más para el Oro!" : 
+                  "¡Increíble! Has alcanzado el nivel <strong class='text-gold'>Oro</strong>."}
+            </p>
             
             <div class="w-full max-w-sm space-y-4">
                 <button onclick="${btnAction}" class="w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-lg active:scale-95 transition">
