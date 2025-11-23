@@ -1,0 +1,411 @@
+<script type="application/json" id="exercise-data">
+    {
+    "interactive_exercises": [
+    {
+    "id": "ex_001",
+    "type": "selection_single",
+    "difficulty": "easy",
+    "instruction": "Tu tienes un vestido de seda muy delicado. ¿Dónde lo llevas?",
+    "prompt": "Je dois apporter ma robe en soie au ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "lave-linge" },
+    { "id": "opt_2", "text": "pressing" },
+    { "id": "opt_3", "text": "bazar" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "¡Correcto! Para ropa delicada, usamos 'Le pressing' (tintorería).",
+    "incorrect": "No uses el 'lave-linge' (lavadora) para seda. Ve al 'pressing'."
+    }
+    },
+    {
+    "id": "ex_002",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "La lavadora no funciona. ¿Qué dices?",
+    "prompt": "Oh non ! Le lave-linge est ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "en panne" },
+    { "id": "opt_2", "text": "froissé" },
+    { "id": "opt_3", "text": "rangé" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Exacto. 'En panne' significa averiado.",
+    "incorrect": "'Froissé' es arrugado. Para máquinas rotas usamos 'en panne'."
+    }
+    },
+    {
+    "id": "ex_003",
+    "type": "sentence_builder",
+    "difficulty": "medium",
+    "instruction": "Ordena la frase: 'Tengo que planchar mi camisa'.",
+    "prompt": null,
+    "content": {
+    "segments": ["Je", "dois", "repasser", "ma", "chemise", "fer"],
+    "correct_order": ["Je", "dois", "repasser", "ma", "chemise"],
+    "distractors": ["fer"]
+    },
+    "feedback": {
+    "correct": "Bien. 'Repasser' es el verbo planchar.",
+    "incorrect": "'Fer' es el objeto (la plancha), aquí necesitas el verbo 'Repasser'."
+    }
+    },
+    {
+    "id": "ex_004",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce: 'Hay una mancha de vino'.",
+    "prompt": "Hay una mancha de vino.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["Il y a une tache de vin."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "Perfecto. 'Une tache de vin'.",
+    "incorrect": "Recuerda: Tache (mancha) vs Tâche (tarea). Aquí es sin acento circunflejo."
+    }
+    },
+    {
+    "id": "ex_005",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "¿Qué herramienta necesitas para quitar el polvo de la alfombra?",
+    "prompt": "Il y a trop de poussière, je vais passer ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "le balai" },
+    { "id": "opt_2", "text": "l'aspirateur" },
+    { "id": "opt_3", "text": "le fer" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "Correcto. 'Passer l'aspirateur' (la aspiradora).",
+    "incorrect": "El 'balai' (escoba) es para suelos duros, para alfombras y polvo fino usamos 'l'aspirateur'."
+    }
+    },
+    {
+    "id": "ex_006",
+    "type": "true_false",
+    "difficulty": "easy",
+    "instruction": "Verdadero o Falso: 'Ranger' significa limpiar la suciedad con agua y jabón.",
+    "prompt": "¿'Ranger' es fregar?",
+    "content": {
+    "is_correct": false,
+    "explanation": "Falso. 'Ranger' es ordenar (guardar cosas). 'Nettoyer' es limpiar la suciedad."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_007",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Tu ropa está mojada. ¿Qué debes hacer?",
+    "prompt": "Le linge est mouillé, je vais l'______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "étendre" },
+    { "id": "opt_2", "text": "éteindre" },
+    { "id": "opt_3", "text": "attendre" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Bien. 'Étendre le linge' (Tender la ropa).",
+    "incorrect": "Cuidado con los falsos amigos fonéticos: Éteindre (apagar), Attendre (esperar)."
+    }
+    },
+    {
+    "id": "ex_008",
+    "type": "sentence_builder",
+    "difficulty": "hard",
+    "instruction": "Forma la frase: 'La basura huele mal'.",
+    "prompt": null,
+    "content": {
+    "segments": ["La", "poubelle", "sent", "mauvais"],
+    "correct_order": ["La", "poubelle", "sent", "mauvais"],
+    "distractors": ["sac", "le"]
+    },
+    "feedback": {
+    "correct": "Correcto. Poubelle = Basura (contenedor).",
+    "incorrect": "El sujeto es 'La poubelle'."
+    }
+    },
+    {
+    "id": "ex_009",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce: '¡Es un desastre!' (Usa la palabra coloquial vista en la lección).",
+    "prompt": "¡Es un desastre! (caos)",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["C'est un bazar !", "C'est le bazar !"],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "¡Exacto! 'C'est le bazar'.",
+    "incorrect": "Usa la palabra 'Bazar' para describir desorden o caos."
+    }
+    },
+    {
+    "id": "ex_010",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "¿Qué adjetivo describe una camisa que necesita planchado?",
+    "prompt": "Ta chemise est ______, tu ne peux pas aller à la réunion comme ça.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "propre" },
+    { "id": "opt_2", "text": "froissée" },
+    { "id": "opt_3", "text": "rangée" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "Bien. Froissée (Arrugada).",
+    "incorrect": "Propre es limpia, Rangée es ordenada/guardada."
+    }
+    },
+    {
+    "id": "ex_011",
+    "type": "true_false",
+    "difficulty": "medium",
+    "instruction": "¿Es correcta esta definición?",
+    "prompt": "Un 'Dressing' en francés es una salsa para ensalada.",
+    "content": {
+    "is_correct": false,
+    "explanation": "Falso. En francés, 'Un dressing' es un vestidor o armario grande para ropa."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_012",
+    "type": "sentence_builder",
+    "difficulty": "medium",
+    "instruction": "Ordena la frase: 'Hay agua en el suelo'. (Problema de fontanería).",
+    "prompt": null,
+    "content": {
+    "segments": ["Il", "y", "a", "une", "fuite", "d'eau"],
+    "correct_order": ["Il", "y", "a", "une", "fuite", "d'eau"],
+    "distractors": ["est", "la"]
+    },
+    "feedback": {
+    "correct": "Correcto. Une fuite d'eau (Una fuga de agua).",
+    "incorrect": "La expresión es 'Il y a' + 'une fuite'."
+    }
+    },
+    {
+    "id": "ex_013",
+    "type": "selection_single",
+    "difficulty": "easy",
+    "instruction": "¿Dónde pones los platos sucios?",
+    "prompt": "Mets les assiettes sales dans l'______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "évier" },
+    { "id": "opt_2", "text": "placard" },
+    { "id": "opt_3", "text": "fer" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Bien. L'évier (el fregadero).",
+    "incorrect": "No pongas platos sucios en el 'placard' (armario), ponlos en el 'évier'."
+    }
+    },
+    {
+    "id": "ex_014",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce: 'Tengo que fregar los platos'.",
+    "prompt": "Tengo que fregar los platos.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["Je dois faire la vaisselle.", "Il faut faire la vaisselle."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "¡Excelente! Faire la vaisselle.",
+    "incorrect": "La expresión fija es 'Faire la vaisselle'."
+    }
+    },
+    {
+    "id": "ex_015",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "Estás barriendo. ¿Qué objeto usas?",
+    "prompt": "Je nettoie le sol avec un ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "fer" },
+    { "id": "opt_2", "text": "balai" },
+    { "id": "opt_3", "text": "pressing" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "Correcto. Le balai (la escoba).",
+    "incorrect": "Fer es plancha, Pressing es tintorería."
+    }
+    },
+    {
+    "id": "ex_016",
+    "type": "sentence_builder",
+    "difficulty": "hard",
+    "instruction": "Forma la frase: '¡No olvides la plancha!'",
+    "prompt": null,
+    "content": {
+    "segments": ["N'oublie", "pas", "le", "fer", "à", "repasser"],
+    "correct_order": ["N'oublie", "pas", "le", "fer", "à", "repasser"],
+    "distractors": ["de", "la"]
+    },
+    "feedback": {
+    "correct": "Bien hecho. Imperativo negativo + objeto compuesto.",
+    "incorrect": "El objeto completo es 'fer à repasser'."
+    }
+    },
+    {
+    "id": "ex_017",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Expresión familiar para decir '¡Qué asco!'.",
+    "prompt": "Regarde cette tache... c'est ______ !",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "dégueulasse" },
+    { "id": "opt_2", "text": "délicieux" },
+    { "id": "opt_3", "text": "propre" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto (pero vulgar). Dégueulasse = Asqueroso.",
+    "incorrect": "Délicieux es delicioso, Propre es limpio."
+    }
+    },
+    {
+    "id": "ex_018",
+    "type": "true_false",
+    "difficulty": "medium",
+    "instruction": "Análisis de contexto: 'Femme de ménage'.",
+    "prompt": "Una 'Femme de ménage' es una mujer que gestiona una empresa.",
+    "content": {
+    "is_correct": false,
+    "explanation": "Falso. Es una empleada del hogar / señora de la limpieza."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_019",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce: 'La aspiradora está averiada'.",
+    "prompt": "La aspiradora está averiada.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["L'aspirateur est en panne."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "Muy bien. 'L'aspirateur est en panne'.",
+    "incorrect": "Aspirateur es masculino (Le -> L') y la avería es 'en panne'."
+    }
+    },
+    {
+    "id": "ex_020",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "¿Qué acción haces con 'la poubelle'?",
+    "prompt": "Ce soir, je dois ______ la poubelle.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "sortir" },
+    { "id": "opt_2", "text": "manger" },
+    { "id": "opt_3", "text": "repasser" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto. Sortir la poubelle (sacar la basura).",
+    "incorrect": "No comes ni planchas la basura. La sacas (sortir)."
+    }
+    },
+    {
+    "id": "ex_021",
+    "type": "sentence_builder",
+    "difficulty": "medium",
+    "instruction": "Ordena: 'Tengo ropa sucia'.",
+    "prompt": null,
+    "content": {
+    "segments": ["J'ai", "du", "linge", "sale"],
+    "correct_order": ["J'ai", "du", "linge", "sale"],
+    "distractors": ["le", "propre"]
+    },
+    "feedback": {
+    "correct": "Bien. 'Du linge' (partitivo) + 'sale' (sucio).",
+    "incorrect": "Linge sale = Ropa sucia (colada)."
+    }
+    },
+    {
+    "id": "ex_022",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Elige la palabra para 'Polvo'.",
+    "prompt": "Je suis allergique à la ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "poussière" },
+    { "id": "opt_2", "text": "serpillière" },
+    { "id": "opt_3", "text": "tache" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Exacto. La poussière (el polvo).",
+    "incorrect": "Serpillière es la fregona/trapo de suelo."
+    }
+    },
+    {
+    "id": "ex_023",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce la orden: '¡Ordena tu habitación!'",
+    "prompt": "¡Ordena tu habitación!",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["Range ta chambre !", "Range ta chambre."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "Perfecto. Verbo Ranger en imperativo.",
+    "incorrect": "Usa 'Ranger' (ordenar/recoger), no 'Nettoyer' (limpiar)."
+    }
+    },
+    {
+    "id": "ex_024",
+    "type": "selection_single",
+    "difficulty": "easy",
+    "instruction": "¿Qué usas para limpiar un suelo mojado?",
+    "prompt": "Il y a de l'eau, passe la ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "serpillière" },
+    { "id": "opt_2", "text": "poubelle" },
+    { "id": "opt_3", "text": "machine" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto. La serpillière (la fregona o trapo de suelos).",
+    "incorrect": "Necesitas algo absorbente para el suelo: serpillière."
+    }
+    }
+    ]
+    }
+    </script>

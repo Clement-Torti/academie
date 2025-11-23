@@ -1,0 +1,412 @@
+
+<script type="application/json" id="exercise-data">
+    {
+    "interactive_exercises": [
+    {
+    "id": "ex_001",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "Elige el objeto correcto para dormir en la cama.",
+    "prompt": "Je pose ma tête sur l'______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "coussin" },
+    { "id": "opt_2", "text": "oreiller" },
+    { "id": "opt_3", "text": "tapis" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "¡Correcto! 'Oreiller' es la almohada de la cama.",
+    "incorrect": "Cuidado: 'Coussin' es el cojín decorativo del sofá. Para dormir usamos 'Oreiller'."
+    }
+    },
+    {
+    "id": "ex_002",
+    "type": "selection_single",
+    "difficulty": "easy",
+    "instruction": "Selecciona el mueble donde te sientas tú solo.",
+    "prompt": "Je m'assois dans le ______ pour lire.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "canapé" },
+    { "id": "opt_2", "text": "fauteuil" },
+    { "id": "opt_3", "text": "tapis" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "¡Exacto! Le fauteuil (el sillón).",
+    "incorrect": "'Canapé' es para varias personas (sofá). 'Fauteuil' es individual."
+    }
+    },
+    {
+    "id": "ex_003",
+    "type": "sentence_builder",
+    "difficulty": "medium",
+    "instruction": "Indica la posición: 'La alfombra está debajo de la mesa'.",
+    "prompt": null,
+    "content": {
+    "segments": ["Le", "tapis", "est", "sous", "la", "table", "sur"],
+    "correct_order": ["Le", "tapis", "est", "sous", "la", "table"],
+    "distractors": ["sur"]
+    },
+    "feedback": {
+    "correct": "Très bien. Sous = Debajo.",
+    "incorrect": "No confundas 'Sur' (encima) con 'Sous' (debajo)."
+    }
+    },
+    {
+    "id": "ex_004",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce la frase completa.",
+    "prompt": "El apartamento es muy luminoso.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["L'appartement est très lumineux."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "¡Perfecto! 'Lumineux' es el adjetivo correcto.",
+    "incorrect": "Recuerda que apartamento empieza por vocal -> L'appartement."
+    }
+    },
+    {
+    "id": "ex_005",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Elige la concordancia correcta para 'Armoire' (Armario).",
+    "prompt": "Cette ______ est ancienne.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "armoire" },
+    { "id": "opt_2", "text": "placard" },
+    { "id": "opt_3", "text": "miroir" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Bien visto. 'Armoire' es femenino (Cette armoire).",
+    "incorrect": "'Placard' y 'Miroir' son masculinos, requerirían 'Ce' o 'Cet'."
+    }
+    },
+    {
+    "id": "ex_006",
+    "type": "true_false",
+    "difficulty": "medium",
+    "instruction": "¿Es verdadera esta afirmación sobre cultura francesa?",
+    "prompt": "En Francia, 'les toilettes' siempre están dentro de 'la salle de bains'.",
+    "content": {
+    "is_correct": false,
+    "explanation": "Falso. A menudo están en una habitación separada."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_007",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "¿Qué pagas cada mes al propietario?",
+    "prompt": "Chaque mois, je dois payer le ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "miroir" },
+    { "id": "opt_2", "text": "loyer" },
+    { "id": "opt_3", "text": "ascenseur" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "Correcto. Le loyer (el alquiler).",
+    "incorrect": "Miroir es espejo, Ascenseur es ascensor."
+    }
+    },
+    {
+    "id": "ex_008",
+    "type": "sentence_builder",
+    "difficulty": "hard",
+    "instruction": "Ordena la frase: 'El espejo está encima de la chimenea'.",
+    "prompt": null,
+    "content": {
+    "segments": ["Le", "miroir", "est", "au-dessus", "de", "la", "cheminée"],
+    "correct_order": ["Le", "miroir", "est", "au-dessus", "de", "la", "cheminée"],
+    "distractors": ["dans", "le"]
+    },
+    "feedback": {
+    "correct": "¡Excelente! Au-dessus de = Encima de (sin contacto directo o énfasis).",
+    "incorrect": "Cheminée es femenino (la)."
+    }
+    },
+    {
+    "id": "ex_009",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "Selecciona el antónimo de 'Sombre' (Oscuro).",
+    "prompt": "Mon salon n'est pas sombre, il est ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "lumineux" },
+    { "id": "opt_2", "text": "étroit" },
+    { "id": "opt_3", "text": "meublé" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto. Lumineux (Luminoso).",
+    "incorrect": "Étroit es estrecho, Meublé es amueblado."
+    }
+    },
+    {
+    "id": "ex_010",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce: 'Vivo en la planta baja'.",
+    "prompt": "Vivo en la planta baja.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["Je vis au rez-de-chaussée.", "J'habite au rez-de-chaussée."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "¡Muy bien! Rez-de-chaussée.",
+    "incorrect": "La preposición correcta es 'au' rez-de-chaussée."
+    }
+    },
+    {
+    "id": "ex_011",
+    "type": "sentence_builder",
+    "difficulty": "medium",
+    "instruction": "Forma la frase: 'Hay cortinas en la ventana'.",
+    "prompt": null,
+    "content": {
+    "segments": ["Il", "y", "a", "des", "rideaux", "à", "la", "fenêtre"],
+    "correct_order": ["Il", "y", "a", "des", "rideaux", "à", "la", "fenêtre"],
+    "distractors": ["les", "dans"]
+    },
+    "feedback": {
+    "correct": "Bien. Des rideaux (artículo indefinido plural).",
+    "incorrect": "Usamos 'à la fenêtre' para indicar ubicación en la ventana."
+    }
+    },
+    {
+    "id": "ex_012",
+    "type": "selection_single",
+    "difficulty": "easy",
+    "instruction": "¿Qué mueble se usa para guardar ropa colgada (no empotrado)?",
+    "prompt": "Je range mes robes dans l'______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "étagère" },
+    { "id": "opt_2", "text": "armoire" },
+    { "id": "opt_3", "text": "table basse" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "Correcto. L'armoire.",
+    "incorrect": "L'étagère es una estantería abierta, no suele ser para colgar ropa."
+    }
+    },
+    {
+    "id": "ex_013",
+    "type": "true_false",
+    "difficulty": "easy",
+    "instruction": "Verdadero o Falso: 'Le tiroir' es una parte de una mesa o cómoda.",
+    "prompt": "¿Un 'tiroir' es un cajón?",
+    "content": {
+    "is_correct": true,
+    "explanation": "Verdadero. Le tiroir = El cajón."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_014",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Completa con el adjetivo concordando con 'Cuisine'.",
+    "prompt": "Je cherche une cuisine ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "équipé" },
+    { "id": "opt_2", "text": "équipée" },
+    { "id": "opt_3", "text": "équipés" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "¡Exacto! Cuisine es femenino -> Équipée.",
+    "incorrect": "Cuisine es femenino, así que el adjetivo necesita una 'e' extra."
+    }
+    },
+    {
+    "id": "ex_015",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce: 'El ascensor no funciona'.",
+    "prompt": "El ascensor no funciona.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["L'ascenseur ne fonctionne pas.", "L'ascenseur ne marche pas."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "Bien. L'ascenseur ne fonctionne pas.",
+    "incorrect": "Recuerda el apóstrofe en L'ascenseur."
+    }
+    },
+    {
+    "id": "ex_016",
+    "type": "sentence_builder",
+    "difficulty": "medium",
+    "instruction": "Construye la frase: 'El gato está detrás del sofá'.",
+    "prompt": null,
+    "content": {
+    "segments": ["Le", "chat", "est", "derrière", "le", "canapé"],
+    "correct_order": ["Le", "chat", "est", "derrière", "le", "canapé"],
+    "distractors": ["devant", "la"]
+    },
+    "feedback": {
+    "correct": "Perfecto. Derrière = Detrás.",
+    "incorrect": "Devant = Delante. Derrière = Detrás."
+    }
+    },
+    {
+    "id": "ex_017",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "Elige la preposición lógica.",
+    "prompt": "Les livres sont ______ l'étagère.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "sur" },
+    { "id": "opt_2", "text": "sous" },
+    { "id": "opt_3", "text": "à côté" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Bien. Sur l'étagère (sobre/en la estantería).",
+    "incorrect": "Los libros no suelen estar 'debajo' (sous) de la estantería."
+    }
+    },
+    {
+    "id": "ex_018",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "¿Qué conecta las habitaciones de una casa?",
+    "prompt": "Pour aller à la chambre, passe par le ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "miroir" },
+    { "id": "opt_2", "text": "couloir" },
+    { "id": "opt_3", "text": "placard" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "Correcto. Le couloir (el pasillo).",
+    "incorrect": "Miroir es espejo, Placard es armario/alacena."
+    }
+    },
+    {
+    "id": "ex_019",
+    "type": "true_false",
+    "difficulty": "medium",
+    "instruction": "Análisis de vocabulario: 'Table basse'.",
+    "prompt": "Una 'Table basse' se usa para comer la cena principal en el comedor.",
+    "content": {
+    "is_correct": false,
+    "explanation": "Falso. La 'Table basse' es la mesa de centro del salón, para aperitivos o revistas."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_020",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce: 'Busco un piso amueblado'.",
+    "prompt": "Busco un piso amueblado.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["Je cherche un appartement meublé.", "Je cherche un appart meublé."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "Excelente. Appartement meublé.",
+    "incorrect": "El adjetivo es 'meublé' (con muebles)."
+    }
+    },
+    {
+    "id": "ex_021",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Elige la opción correcta para 'Alacena' (cocina).",
+    "prompt": "Les assiettes sont dans le ______ de la cuisine.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "placard" },
+    { "id": "opt_2", "text": "armoire" },
+    { "id": "opt_3", "text": "fauteuil" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Exacto. 'Placard' se usa para armarios empotrados o alacenas de cocina.",
+    "incorrect": "'Armoire' suele referirse al mueble grande del dormitorio para ropa."
+    }
+    },
+    {
+    "id": "ex_022",
+    "type": "sentence_builder",
+    "difficulty": "medium",
+    "instruction": "Ordena la frase: 'El sillón es cómodo'.",
+    "prompt": null,
+    "content": {
+    "segments": ["Le", "fauteuil", "est", "confortable"],
+    "correct_order": ["Le", "fauteuil", "est", "confortable"],
+    "distractors": ["es", "le"]
+    },
+    "feedback": {
+    "correct": "Muy bien. Le fauteuil est confortable.",
+    "incorrect": "Cuidado con la ortografía de 'Fauteuil'."
+    }
+    },
+    {
+    "id": "ex_023",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "¿Qué usas para verte?",
+    "prompt": "Je me regarde dans le ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "tapis" },
+    { "id": "opt_2", "text": "tiroir" },
+    { "id": "opt_3", "text": "miroir" }
+    ],
+    "correct_option_id": "opt_3"
+    },
+    "feedback": {
+    "correct": "Correcto. Le miroir.",
+    "incorrect": "Tapis es alfombra, Tiroir es cajón."
+    }
+    },
+    {
+    "id": "ex_024",
+    "type": "sentence_builder",
+    "difficulty": "hard",
+    "instruction": "Forma la frase: 'El baño es estrecho'.",
+    "prompt": null,
+    "content": {
+    "segments": ["La", "salle", "de", "bains", "est", "étroite"],
+    "correct_order": ["La", "salle", "de", "bains", "est", "étroite"],
+    "distractors": ["étroit", "le"]
+    },
+    "feedback": {
+    "correct": "Bien hecho. Salle de bains (femenino) -> Étroite.",
+    "incorrect": "Salle de bains es femenino, así que el adjetivo 'étroit' necesita una 'e'."
+    }
+    }
+    ]
+    }
+    </script>
