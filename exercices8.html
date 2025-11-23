@@ -1,0 +1,342 @@
+
+<script type="application/json" id="exercise-data">
+{
+"interactive_exercises": [
+{
+"id": "ex_001",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "Selecciona la preposición correcta para ir al médico.",
+"prompt": "Je ne me sens pas bien. Je vais ______ médecin.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "au" },
+{ "id": "opt_2", "text": "chez le" },
+{ "id": "opt_3", "text": "à la" }
+],
+"correct_option_id": "opt_2"
+},
+"feedback": {
+"correct": "¡Correcto! 'Médecin' es una persona, así que usamos 'Chez'.",
+"incorrect": "Recuerda: Usamos 'Au/À la' para lugares y 'Chez' para personas o profesiones."
+}
+},
+{
+"id": "ex_002",
+"type": "true_false",
+"difficulty": "easy",
+"instruction": "Verdadero o Falso: Esta frase es correcta.",
+"prompt": "Je vais au coiffeur.",
+"content": {
+"is_correct": false,
+"explanation": "Falso. El peluquero (coiffeur) es una persona. Debe ser 'Je vais CHEZ le coiffeur'."
+},
+"feedback": null
+},
+{
+"id": "ex_003",
+"type": "sentence_builder",
+"difficulty": "medium",
+"instruction": "Ordena las palabras para decir que NO hay pan (Cuidado con la negación).",
+"prompt": null,
+"content": {
+"segments": ["Il", "n'", "y", "a", "pas", "de", "pain", "un"],
+"correct_order": ["Il", "n'", "y", "a", "pas", "de", "pain"],
+"distractors": ["un"]
+},
+"feedback": {
+"correct": "¡Excelente! En la negación, 'un/du' se convierte en 'de'.",
+"incorrect": "Recuerda la regla: 'Il y a un pain' -> 'Il n'y a pas DE pain'."
+}
+},
+{
+"id": "ex_004",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "¿Dónde compras una novela de Víctor Hugo?",
+"prompt": "Je veux acheter un livre. Je vais à la ______.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "bibliothèque" },
+{ "id": "opt_2", "text": "librairie" },
+{ "id": "opt_3", "text": "boulangerie" }
+],
+"correct_option_id": "opt_2"
+},
+"feedback": {
+"correct": "Exacto. 'Librairie' es la tienda de libros. 'Bibliothèque' es para leer o tomar prestado.",
+"incorrect": "Cuidado con el falso amigo: 'Library' en inglés es 'Bibliothèque', pero la tienda es 'Librairie'."
+}
+},
+{
+"id": "ex_005",
+"type": "full_translation",
+"difficulty": "hard",
+"instruction": "Traduce: 'Vamos a mi casa'. (Usa 'Nous' y la preposición adecuada).",
+"prompt": "Vamos a mi casa.",
+"content": {
+"placeholder": "Escribe la frase...",
+"accepted_answers": ["Nous allons chez moi.", "On va chez moi."],
+"special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+},
+"feedback": {
+"correct": "¡Muy bien! 'Chez moi' significa 'a mi casa' o 'en mi casa'.",
+"incorrect": "No traduzcas 'casa' literalmente. Usa la estructura 'Chez' + pronombre tónico (moi)."
+}
+},
+{
+"id": "ex_006",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "Elige la opción lógica para completar la frase.",
+"prompt": "Le frigo est vide (vacío). Je dois faire ______.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "du shopping" },
+{ "id": "opt_2", "text": "les courses" },
+{ "id": "opt_3", "text": "la queue" }
+],
+"correct_option_id": "opt_2"
+},
+"feedback": {
+"correct": "Correcto. 'Faire les courses' es para comida/necesidades. 'Faire du shopping' es para ropa/placer.",
+"incorrect": "Si el frigo está vacío, necesitas comida: 'Faire les courses'."
+}
+},
+{
+"id": "ex_007",
+"type": "sentence_builder",
+"difficulty": "hard",
+"instruction": "Forma la pregunta: '¿Hay un mercado aquí?'",
+"prompt": null,
+"content": {
+"segments": ["Est-ce", "qu'", "il", "y", "a", "un", "marché", "ici", "?"],
+"correct_order": ["Est-ce", "qu'", "il", "y", "a", "un", "marché", "ici", "?"],
+"distractors": []
+},
+"feedback": {
+"correct": "Perfecto. Est-ce qu'il y a... ?",
+"incorrect": "El orden es: Est-ce que + il + y + a + objeto."
+}
+},
+{
+"id": "ex_008",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "Selecciona el lugar correcto.",
+"prompt": "Pour acheter de la viande, je vais ______.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "à la boucherie" },
+{ "id": "opt_2", "text": "chez le boucher" },
+{ "id": "opt_3", "text": "Las dos son correctas" }
+],
+"correct_option_id": "opt_3"
+},
+"feedback": {
+"correct": "¡Exacto! Puedes ir al lugar (à la boucherie) o donde la persona (chez le boucher).",
+"incorrect": "Ambas opciones son válidas en francés. Una indica el local, la otra el profesional."
+}
+},
+{
+"id": "ex_009",
+"type": "true_false",
+"difficulty": "medium",
+"instruction": "¿Es correcta esta negación?",
+"prompt": "Il n'y a pas des pommes.",
+"content": {
+"is_correct": false,
+"explanation": "Falso. Después de la negación (pas), los artículos un/une/des cambian a DE. Debe ser 'Il n'y a pas DE pommes'."
+},
+"feedback": null
+},
+{
+"id": "ex_010",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "¿En qué piso estás si entras desde la calle?",
+"prompt": "L'entrée de l'immeuble est au ______.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "premier étage" },
+{ "id": "opt_2", "text": "rez-de-chaussée" },
+{ "id": "opt_3", "text": "sous-sol" }
+],
+"correct_option_id": "opt_2"
+},
+"feedback": {
+"correct": "Bien. La planta baja se llama 'Rez-de-chaussée'.",
+"incorrect": "En Francia, el 'Premier étage' es el piso de arriba, no la planta baja."
+}
+},
+{
+"id": "ex_011",
+"type": "full_translation",
+"difficulty": "hard",
+"instruction": "Traduce: 'La panadería está cerrada'.",
+"prompt": "La panadería está cerrada.",
+"content": {
+"placeholder": "Escribe la frase...",
+"accepted_answers": ["La boulangerie est fermée."],
+"special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+},
+"feedback": {
+"correct": "¡Oui! 'La boulangerie est fermée' (con 'e' al final).",
+"incorrect": "Recuerda la concordancia: Boulangerie es femenino, así que 'fermée' necesita una 'e'."
+}
+},
+{
+"id": "ex_012",
+"type": "selection_single",
+"difficulty": "hard",
+"instruction": "Completa con la preposición correcta.",
+"prompt": "Ce soir, je dîne ______ mes parents.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "à" },
+{ "id": "opt_2", "text": "avec" },
+{ "id": "opt_3", "text": "chez" }
+],
+"correct_option_id": "opt_3"
+},
+"feedback": {
+"correct": "Excelente. 'Chez mes parents' implica 'en casa de mis padres'.",
+"incorrect": "'Avec' significa que cenas con ellos, pero 'Chez' indica el lugar (su casa)."
+}
+},
+{
+"id": "ex_013",
+"type": "sentence_builder",
+"difficulty": "medium",
+"instruction": "Ordena la frase: 'Voy a la tienda de ultramarinos'.",
+"prompt": null,
+"content": {
+"segments": ["Je", "vais", "à", "l'", "épicerie", "chez"],
+"correct_order": ["Je", "vais", "à", "l'", "épicerie"],
+"distractors": ["chez"]
+},
+"feedback": {
+"correct": "Correcto. Épicerie es un lugar, usamos À l'.",
+"incorrect": "Épicerie empieza por vocal, así que usamos À l'. No es una persona, así que no usamos Chez."
+}
+},
+{
+"id": "ex_014",
+"type": "selection_single",
+"difficulty": "easy",
+"instruction": "¿Qué frase utiliza correctamente 'Il y a'?",
+"prompt": "______",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "Il y a des magasins." },
+{ "id": "opt_2", "text": "Il est des magasins." },
+{ "id": "opt_3", "text": "Il a des magasins." }
+],
+"correct_option_id": "opt_1"
+},
+"feedback": {
+"correct": "Correcto. La expresión fija es 'Il y a'.",
+"incorrect": "No confundas con el verbo 'Avoir' solo. Siempre es 'Il y a'."
+}
+},
+{
+"id": "ex_015",
+"type": "full_translation",
+"difficulty": "hard",
+"instruction": "Traduce usando 'Chez': 'Estás en casa de Pierre'.",
+"prompt": "Tú estás en casa de Pierre.",
+"content": {
+"placeholder": "Escribe la frase...",
+"accepted_answers": ["Tu es chez Pierre."],
+"special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+},
+"feedback": {
+"correct": "Perfecto. 'Tu es chez Pierre'.",
+"incorrect": "Usa el verbo Être (Tu es) + Chez + Nombre."
+}
+},
+{
+"id": "ex_016",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "Selecciona la respuesta lógica.",
+"prompt": "J'ai besoin de timbres (sellos). Je vais ______.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "à la poste" },
+{ "id": "opt_2", "text": "chez le fleuriste" },
+{ "id": "opt_3", "text": "au restaurant" }
+],
+"correct_option_id": "opt_1"
+},
+"feedback": {
+"correct": "Lógico. Los sellos se compran en 'La Poste' o 'Bureau de tabac'.",
+"incorrect": "No comprarías sellos en una floristería o restaurante."
+}
+},
+{
+"id": "ex_017",
+"type": "true_false",
+"difficulty": "hard",
+"instruction": "Analiza si el uso de preposiciones es correcto.",
+"prompt": "Je vais au fromager pour acheter du brie.",
+"content": {
+"is_correct": false,
+"explanation": "Falso. 'Fromager' es la persona. Debes decir 'Chez le fromager' o 'À la fromagerie'."
+},
+"feedback": null
+},
+{
+"id": "ex_018",
+"type": "sentence_builder",
+"difficulty": "hard",
+"instruction": "Forma la frase: 'No hay ascensor'.",
+"prompt": null,
+"content": {
+"segments": ["Il", "n'", "y", "a", "pas", "d'", "ascenseur", "un"],
+"correct_order": ["Il", "n'", "y", "a", "pas", "d'", "ascenseur"],
+"distractors": ["un"]
+},
+"feedback": {
+"correct": "¡Bien hecho! 'Pas d'ascenseur'.",
+"incorrect": "Recuerda que el artículo desaparece en la negación y se contrae d' ante vocal."
+}
+},
+{
+"id": "ex_019",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "Identifica el lugar por la descripción.",
+"prompt": "Es un lugar donde compras periódicos, tabaco y sellos.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "La pharmacie" },
+{ "id": "opt_2", "text": "Le bureau de tabac" },
+{ "id": "opt_3", "text": "L'épicerie" }
+],
+"correct_option_id": "opt_2"
+},
+"feedback": {
+"correct": "Correcto. En Francia, el 'Tabac' vende mucho más que tabaco.",
+"incorrect": "La farmacia es para salud y l'épicerie para comida."
+}
+},
+{
+"id": "ex_020",
+"type": "full_translation",
+"difficulty": "hard",
+"instruction": "Traduce: 'Hay mucha gente'.",
+"prompt": "Hay mucha gente.",
+"content": {
+"placeholder": "Escribe la frase...",
+"accepted_answers": ["Il y a beaucoup de monde."],
+"special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+},
+"feedback": {
+"correct": "¡Excelente! 'Il y a beaucoup de monde'.",
+"incorrect": "La expresión 'mucha gente' en francés se dice 'beaucoup de monde' (mucho mundo)."
+}
+}
+]
+}
+</script>
