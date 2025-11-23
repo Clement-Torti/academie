@@ -1,31 +1,30 @@
-
 <script type="application/json" id="exercise-data">
 {
 "interactive_exercises": [
 {
-"id": "ex_001",
+"id": "ex_l2_001",
 "type": "selection_single",
 "difficulty": "easy",
-"instruction": "Elige el pronombre adecuado para hablar con tu jefe por primera vez.",
-"prompt": "Bonjour Monsieur, comment allez-______ ?",
+"instruction": "Estás hablando con un cliente nuevo. ¿Qué pronombre usas?",
+"prompt": "Bonjour, comment allez-______ ?",
 "content": {
 "options": [
 { "id": "opt_1", "text": "tu" },
 { "id": "opt_2", "text": "vous" },
-{ "id": "opt_3", "text": "nous" }
+{ "id": "opt_3", "text": "il" }
 ],
 "correct_option_id": "opt_2"
 },
 "feedback": {
-"correct": "¡Correcto! En un entorno laboral jerárquico, usamos 'Vous'.",
-"incorrect": "Recuerda: Con un jefe o superior, siempre se usa la formalidad (Vous) hasta que digan lo contrario."
+"correct": "¡Exacto! Con clientes usamos siempre 'Vous' (Usted) para mantener la distancia profesional.",
+"incorrect": "Cuidado. 'Tu' es demasiado familiar para un cliente. Usa 'Vous'."
 }
 },
 {
-"id": "ex_002",
+"id": "ex_l2_002",
 "type": "selection_single",
 "difficulty": "easy",
-"instruction": "Completa con la conjugación correcta del verbo 'Venir'.",
+"instruction": "Selecciona la conjugación correcta para 'Yo vengo'.",
 "prompt": "Je ______ de Chicago.",
 "content": {
 "options": [
@@ -36,368 +35,305 @@
 "correct_option_id": "opt_1"
 },
 "feedback": {
-"correct": "¡Muy bien! Je viens (Yo vengo).",
-"incorrect": "Revisa la tabla: Je viens, Tu viens, Il vient..."
+"correct": "¡Muy bien! 'Je viens' (Yo vengo).",
+"incorrect": "Recuerda: Je viens, Tu viens, Il vient."
 }
 },
 {
-"id": "ex_003",
+"id": "ex_l2_003",
 "type": "true_false",
-"difficulty": "medium",
-"instruction": "¿Es correcta esta frase?",
+"difficulty": "easy",
+"instruction": "¿Esta frase está escrita correctamente?",
 "prompt": "Je habite à Paris.",
 "content": {
 "is_correct": false,
-"explanation": "Falso. Debido a que la 'H' es muda, se hace la elisión: 'J'habite à Paris'."
+"explanation": "Falso. La 'h' es muda, así que debes hacer la elisión: 'J'habite'."
 },
 "feedback": null
 },
 {
-"id": "ex_004",
+"id": "ex_l2_004",
 "type": "sentence_builder",
 "difficulty": "medium",
-"instruction": "Ordena las palabras para decir 'Vivo en el cuarto piso'.",
+"instruction": "Ordena las palabras para decir 'Vivimos en París'.",
 "prompt": null,
 "content": {
-"segments": ["J'habite", "au", "quatrième", "étage", "viens"],
-"correct_order": ["J'habite", "au", "quatrième", "étage"],
+"segments": ["Nous", "habitons", "à", "Paris", "habitez"],
+"correct_order": ["Nous", "habitons", "à", "Paris"],
+"distractors": ["habitez"]
+},
+"feedback": {
+"correct": "¡Perfecto! Nous habitons (Nosotros vivimos).",
+"incorrect": "Revisa la conjugación de 'Nous' (terminación -ons) y no olvides la preposición 'à'."
+}
+},
+{
+"id": "ex_l2_005",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "Tu vecino te dice 'On peut se tutoyer'. ¿Qué significa?",
+"prompt": "Significa que...",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "Deben dejar de hablarse." },
+{ "id": "opt_2", "text": "Pueden tratarse de 'Tú'." },
+{ "id": "opt_3", "text": "Deben tratarse de 'Usted'." }
+],
+"correct_option_id": "opt_2"
+},
+"feedback": {
+"correct": "¡Correcto! Es la invitación a pasar del 'Vous' al 'Tu'.",
+"incorrect": "'Tutoyer' viene de 'Tu'. Significa tratarse informalmente."
+}
+},
+{
+"id": "ex_l2_006",
+"type": "full_translation",
+"difficulty": "hard",
+"instruction": "Traduce la frase completa: 'Yo vivo en Londres'.",
+"prompt": "Yo vivo en Londres.",
+"content": {
+"placeholder": "Escribe la frase en francés...",
+"accepted_answers": ["J'habite à Londres.", "J'habite à Londres"],
+"special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù", "'"]
+},
+"feedback": {
+"correct": "Excellent! J'habite à Londres.",
+"incorrect": "Recuerda usar 'J'habite' (con apóstrofe) y la preposición 'à' para la ciudad."
+}
+},
+{
+"id": "ex_l2_007",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "Estás en una reunión de negocios. ¿Cómo saludas al CEO?",
+"prompt": "Acción correcta:",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "Le haces la bise (dos besos)." },
+{ "id": "opt_2", "text": "Le das la mano (serrer la main)." },
+{ "id": "opt_3", "text": "Le das un abrazo." }
+],
+"correct_option_id": "opt_2"
+},
+"feedback": {
+"correct": "Correcto. En negocios, siempre 'Serrer la main'.",
+"incorrect": "¡Cuidado! La bise es solo para amigos o colegas muy cercanos. En negocios, da la mano."
+}
+},
+{
+"id": "ex_l2_008",
+"type": "sentence_builder",
+"difficulty": "medium",
+"instruction": "Forma la frase: 'Usted viene de los Estados Unidos'.",
+"prompt": null,
+"content": {
+"segments": ["Vous", "venez", "des", "États-Unis", "viens"],
+"correct_order": ["Vous", "venez", "des", "États-Unis"],
 "distractors": ["viens"]
 },
 "feedback": {
-"correct": "¡Exacto! J'habite au quatrième étage.",
-"incorrect": "Usa 'J'habite' para residencia y recuerda el orden: Verbo + preposición + piso."
+"correct": "Bien hecho. Vous venez.",
+"incorrect": "Usa la conjugación 'Vous venez'. 'Viens' es para Je/Tu."
 }
 },
 {
-"id": "ex_005",
-"type": "selection_single",
-"difficulty": "medium",
-"instruction": "¿Qué significa 'On peut se tutoyer'?",
-"prompt": "Tu vecino te dice: 'On peut se tutoyer ?'",
-"content": {
-"options": [
-{ "id": "opt_1", "text": "¿Podemos irnos?" },
-{ "id": "opt_2", "text": "¿Podemos tutearnos (usar 'tu')?" },
-{ "id": "opt_3", "text": "¿Podemos hablar mañana?" }
-],
-"correct_option_id": "opt_2"
-},
-"feedback": {
-"correct": "¡Así es! Es la invitación para pasar de la formalidad a la informalidad.",
-"incorrect": "'Tutoyer' viene de 'Tu'. Significa dejar de usar 'Vous'."
-}
-},
-{
-"id": "ex_006",
-"type": "full_translation",
-"difficulty": "hard",
-"instruction": "Traduce la frase (Formal): '¿Usted vive aquí?'.",
-"prompt": "¿Usted vive aquí?",
-"content": {
-"placeholder": "Escribe la frase en francés...",
-"accepted_answers": ["Vous habitez ici ?", "Vous habitez ici?"],
-"special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-},
-"feedback": {
-"correct": "¡Excelente! Vous habitez ici ?",
-"incorrect": "Usa el sujeto 'Vous' y la conjugación 'habitez'."
-}
-},
-{
-"id": "ex_007",
+"id": "ex_l2_009",
 "type": "selection_single",
 "difficulty": "hard",
-"instruction": "Selecciona la preposición correcta.",
-"prompt": "Nous venons ______ États-Unis.",
+"instruction": "Elige la preposición correcta.",
+"prompt": "Il habite ______ Rome.",
 "content": {
 "options": [
 { "id": "opt_1", "text": "de" },
-{ "id": "opt_2", "text": "des" },
-{ "id": "opt_3", "text": "du" }
+{ "id": "opt_2", "text": "à" },
+{ "id": "opt_3", "text": "en" }
 ],
 "correct_option_id": "opt_2"
 },
 "feedback": {
-"correct": "Correcto. Como Estados Unidos es plural, usamos 'des' (de + les).",
-"incorrect": "États-Unis es plural. 'De' se convierte en 'Des'."
+"correct": "¡Oui! Para ciudades usamos 'à' (à Rome, à Paris).",
+"incorrect": "'De' indica origen (venir de). Para ubicación en ciudad, usa 'à'."
 }
 },
 {
-"id": "ex_008",
-"type": "sentence_builder",
-"difficulty": "medium",
-"instruction": "Forma la frase: 'Encantada de conocerlo' (Formal).",
-"prompt": null,
-"content": {
-"segments": ["Enchantée", "de", "faire", "votre", "connaissance", "ton"],
-"correct_order": ["Enchantée", "de", "faire", "votre", "connaissance"],
-"distractors": ["ton"]
-},
-"feedback": {
-"correct": "Très bien. Usamos 'votre' porque es formal.",
-"incorrect": "Al ser formal, no uses 'ton' (tuyo), usa 'votre' (suyo/de usted)."
-}
-},
-{
-"id": "ex_009",
+"id": "ex_l2_010",
 "type": "true_false",
-"difficulty": "easy",
-"instruction": "Estás en una reunión de negocios. ¿Debes dar dos besos (la bise)?",
-"prompt": "Hacer 'la bise' al cliente nuevo.",
+"difficulty": "medium",
+"instruction": "Verdadero o Falso: 'Je suis désolé' lo dice una mujer.",
+"prompt": "Je suis désolé.",
 "content": {
 "is_correct": false,
-"explanation": "¡Falso! En negocios, se da la mano (serrer la main). La bise es para amigos."
+"explanation": "Falso. Si lo escribe una mujer, debe añadir una 'e' extra: 'Désolée'."
 },
 "feedback": null
 },
 {
-"id": "ex_010",
-"type": "full_translation",
-"difficulty": "medium",
-"instruction": "Conjuga el verbo Habiter para 'Nosotros'.",
-"prompt": "Nous ______ à Lyon.",
-"content": {
-"placeholder": "Escribe el verbo...",
-"accepted_answers": ["habitons"],
-"special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-},
-"feedback": {
-"correct": "Correcto: Nous habitons.",
-"incorrect": "La terminación para Nous en verbos -ER es -ons (habitons)."
-}
-},
-{
-"id": "ex_011",
+"id": "ex_l2_011",
 "type": "selection_single",
 "difficulty": "medium",
-"instruction": "Elige la conjugación correcta para 'Ellos vienen'.",
+"instruction": "¿Qué verbo usas para decir 'Ellos vienen'?",
 "prompt": "Ils ______ de Madrid.",
 "content": {
 "options": [
-{ "id": "opt_1", "text": "viennent" },
-{ "id": "opt_2", "text": "venons" },
-{ "id": "opt_3", "text": "venent" }
+{ "id": "opt_1", "text": "venons" },
+{ "id": "opt_2", "text": "viennent" },
+{ "id": "opt_3", "text": "vient" }
 ],
-"correct_option_id": "opt_1"
+"correct_option_id": "opt_2"
 },
 "feedback": {
-"correct": "¡Bien! Ils viennent (doble n).",
-"incorrect": "Es un verbo irregular. La forma para Ils/Elles es 'viennent'."
+"correct": "Correcto. Ils viennent (plural irregular).",
+"incorrect": "'Venons' es para Nous. 'Vient' es para Il/Elle singular."
 }
 },
 {
-"id": "ex_012",
+"id": "ex_l2_012",
 "type": "sentence_builder",
 "difficulty": "hard",
-"instruction": "Traduce: 'Lo siento, soy nuevo aquí'.",
+"instruction": "Ordena la frase formal: 'Encantado de conocerlo (hacer su conocimiento)'.",
 "prompt": null,
 "content": {
-"segments": ["Désolé", "je", "suis", "nouveau", "ici", "nouvelle"],
-"correct_order": ["Désolé", "je", "suis", "nouveau", "ici"],
-"distractors": ["nouvelle"]
+"segments": ["Enchanté", "de", "faire", "votre", "connaissance", "ton"],
+"correct_order": ["Enchanté", "de", "faire", "votre", "connaissance"],
+"distractors": ["ton"]
 },
 "feedback": {
-"correct": "Correcto. Si fueras mujer usarías 'nouvelle'.",
-"incorrect": "Recuerda el orden: Disculpa + Sujeto + Verbo + Adjetivo + Lugar."
+"correct": "Muy bien. Usamos 'votre' porque es formal.",
+"incorrect": "Al ser formal, no puedes usar 'ton'. Usa 'votre connaissance'."
 }
 },
 {
-"id": "ex_013",
-"type": "selection_single",
-"difficulty": "easy",
-"instruction": "¿Qué dices si chocas con alguien en la calle?",
-"prompt": "Has empujado a alguien sin querer.",
-"content": {
-"options": [
-{ "id": "opt_1", "text": "Pardon !" },
-{ "id": "opt_2", "text": "Enchanté !" },
-{ "id": "opt_3", "text": "Bienvenue !" }
-],
-"correct_option_id": "opt_1"
-},
-"feedback": {
-"correct": "Exacto. 'Pardon' o 'Excusez-moi'.",
-"incorrect": "'Enchanté' es mucho gusto. Para disculparse usa 'Pardon'."
-}
-},
-{
-"id": "ex_014",
+"id": "ex_l2_013",
 "type": "full_translation",
 "difficulty": "hard",
-"instruction": "Traduce la frase: 'Él viene de Londres'.",
-"prompt": "Él viene de Londres.",
+"instruction": "Traduce: '¿Vives aquí?' (Informal 'Tu').",
+"prompt": "¿Vives aquí?",
 "content": {
 "placeholder": "Escribe la frase...",
-"accepted_answers": ["Il vient de Londres.", "Il vient de Londres"],
+"accepted_answers": ["Tu habites ici ?", "Tu habites ici"],
 "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
 },
 "feedback": {
-"correct": "Perfecto. Il vient de Londres.",
-"incorrect": "Verbo Venir: Il vient."
+"correct": "¡Perfecto! Tu habites ici ?",
+"incorrect": "Usa el sujeto 'Tu' y el verbo 'habites' (terminado en s)."
 }
 },
 {
-"id": "ex_015",
-"type": "true_false",
-"difficulty": "medium",
-"instruction": "Analiza la concordancia: 'Tu habites à Paris ?'",
-"prompt": "Tu habites à Paris ?",
-"content": {
-"is_correct": true,
-"explanation": "Correcto. 'Tu' va con 'habites' (terminación -es)."
-},
-"feedback": null
-},
-{
-"id": "ex_016",
-"type": "selection_single",
-"difficulty": "medium",
-"instruction": "Identifica el error en la frase.",
-"prompt": "Je vien de Rome.",
-"content": {
-"options": [
-{ "id": "opt_1", "text": "Sobra la 'e' final." },
-{ "id": "opt_2", "text": "Falta una 's' en 'viens'." },
-{ "id": "opt_3", "text": "Debe ser 'de la Rome'." }
-],
-"correct_option_id": "opt_2"
-},
-"feedback": {
-"correct": "¡Ojo! La conjugación es 'Je viens' (con s).",
-"incorrect": "Je viens, Tu viens, Il vient. Primera persona lleva 's'."
-}
-},
-{
-"id": "ex_017",
-"type": "sentence_builder",
-"difficulty": "medium",
-"instruction": "Emily se presenta a Gabriel. Forma la frase.",
-"prompt": null,
-"content": {
-"segments": ["Je", "m'appelle", "Emily", "et", "je", "suis", "américaine"],
-"correct_order": ["Je", "m'appelle", "Emily", "et", "je", "suis", "américaine"],
-"distractors": []
-},
-"feedback": {
-"correct": "Muy bien. Presentación completa.",
-"incorrect": "Sujeto + Verbo llamarse + Nombre + Conjunción + Nacionalidad."
-}
-},
-{
-"id": "ex_018",
-"type": "full_translation",
-"difficulty": "hard",
-"instruction": "Escribe el verbo que falta (Formal).",
-"prompt": "Usted ______ de China. (Venir)",
-"content": {
-"placeholder": "Vous ...",
-"accepted_answers": ["venez"],
-"special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-},
-"feedback": {
-"correct": "Correcto: Vous venez.",
-"incorrect": "Conjugación de Venir para Vous: Venez."
-}
-},
-{
-"id": "ex_019",
+"id": "ex_l2_014",
 "type": "selection_single",
 "difficulty": "easy",
-"instruction": "¿Cómo se dice 'Vecino' en francés?",
-"prompt": "Gabriel es mi ______.",
+"instruction": "Completa con el verbo correcto.",
+"prompt": "Nous ______ à l'hôtel.",
 "content": {
 "options": [
-{ "id": "opt_1", "text": "Voisin" },
-{ "id": "opt_2", "text": "Patron" },
-{ "id": "opt_3", "text": "Étranger" }
+{ "id": "opt_1", "text": "habitons" },
+{ "id": "opt_2", "text": "venons" },
+{ "id": "opt_3", "text": "êtes" }
 ],
 "correct_option_id": "opt_1"
 },
 "feedback": {
-"correct": "Oui! Voisin (masculino) o Voisine (femenino).",
-"incorrect": "Patron es jefe. Étranger es extranjero."
+"correct": "Bien. Nous habitons (vivimos/alojamos) en el hotel.",
+"incorrect": "'Venons' requiere 'de' (origen). Aquí indicamos ubicación/residencia."
 }
 },
 {
-"id": "ex_020",
+"id": "ex_l2_015",
 "type": "true_false",
-"difficulty": "medium",
-"instruction": "Verdadero o Falso: 'Je suis désolé' cambia si eres mujer.",
-"prompt": "Una mujer escribe: 'Je suis désolée'.",
+"difficulty": "hard",
+"instruction": "Analiza la frase: 'Elle vient de la France'.",
+"prompt": "Elle vient de la France.",
 "content": {
 "is_correct": true,
-"explanation": "Verdadero. Al escribir, se añade una 'e' extra al adjetivo: Désolée."
-},
-"feedback": null
-},
-{
-"id": "ex_021",
-"type": "sentence_builder",
-"difficulty": "medium",
-"instruction": "Forma la pregunta: '¿Te gusta París?' (Informal)",
-"prompt": null,
-"content": {
-"segments": ["Tu", "aimes", "Paris", "?"],
-"correct_order": ["Tu", "aimes", "Paris", "?"],
-"distractors": ["aimez", "vous"]
+"explanation": "Correcto. Aunque comúnmente decimos 'de France', 'de la France' es gramaticalmente posible, pero 'Elle vient de France' es más natural."
 },
 "feedback": {
-"correct": "Bien. Tu aimes Paris ?",
-"incorrect": "Si usas 'Tu', el verbo debe terminar en 's' (aimes)."
+"correct": "Técnicamente correcto, aunque 'Elle vient de France' es más común.",
+"incorrect": "Nota: Con países femeninos se suele usar 'de' (de France), pero 'de la' no es un error gramatical grave, solo de estilo."
 }
 },
 {
-"id": "ex_022",
+"id": "ex_l2_016",
+"type": "sentence_builder",
+"difficulty": "medium",
+"instruction": "Gabriel se presenta. Ordena su frase.",
+"prompt": null,
+"content": {
+"segments": ["Je", "suis", "le", "voisin", "la"],
+"correct_order": ["Je", "suis", "le", "voisin"],
+"distractors": ["la"]
+},
+"feedback": {
+"correct": "¡Eso es! Je suis le voisin (masculino).",
+"incorrect": "Gabriel es hombre, así que es 'le voisin', no 'la'."
+}
+},
+{
+"id": "ex_l2_017",
 "type": "selection_single",
-"difficulty": "hard",
-"instruction": "¿Qué pronombre usas con un vendedor en una tienda?",
-"prompt": "Vas a comprar pan (Boulangerie).",
+"difficulty": "medium",
+"instruction": "¿Cómo dices 'Lo siento' de forma educada?",
+"prompt": "Je suis ______.",
 "content": {
 "options": [
-{ "id": "opt_1", "text": "Tu" },
-{ "id": "opt_2", "text": "Vous" }
+{ "id": "opt_1", "text": "désolé" },
+{ "id": "opt_2", "text": "enchanté" },
+{ "id": "opt_3", "text": "accord" }
+],
+"correct_option_id": "opt_1"
+},
+"feedback": {
+"correct": "Exacto. 'Désolé' significa Lo siento.",
+"incorrect": "'Enchanté' es mucho gusto. 'D'accord' es de acuerdo."
+}
+},
+{
+"id": "ex_l2_018",
+"type": "full_translation",
+"difficulty": "hard",
+"instruction": "Traduce la pregunta formal: '¿Usted viene de París?'.",
+"prompt": "¿Usted viene de París?",
+"content": {
+"placeholder": "Escribe la frase...",
+"accepted_answers": ["Vous venez de Paris ?", "Est-ce que vous venez de Paris ?"],
+"special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+},
+"feedback": {
+"correct": "¡Muy bien! Vous venez de Paris ?",
+"incorrect": "Recuerda: Sujeto 'Vous' + Verbo 'Venez' + Preposición 'de'."
+}
+},
+{
+"id": "ex_l2_019",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "Selecciona la palabra correcta para 'Barrio'.",
+"prompt": "J'aime mon ______.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "voisin" },
+{ "id": "opt_2", "text": "quartier" },
+{ "id": "opt_3", "text": "bureau" }
 ],
 "correct_option_id": "opt_2"
 },
 "feedback": {
-"correct": "Correcto. Es la esfera pública, siempre 'Vous'.",
-"incorrect": "Nunca tutees a un vendedor a menos que sea tu amigo personal."
+"correct": "Oui! Quartier = Barrio.",
+"incorrect": "Voisin es vecino. Bureau es oficina."
 }
 },
 {
-"id": "ex_023",
-"type": "full_translation",
-"difficulty": "medium",
-"instruction": "Completa la frase con el verbo 'Venir'.",
-"prompt": "Nous ______ du Brésil.",
+"id": "ex_l2_020",
+"type": "true_false",
+"difficulty": "easy",
+"instruction": "¿Es correcto decir 'Tu venez'?",
+"prompt": "Tu venez ici.",
 "content": {
-"placeholder": "...",
-"accepted_answers": ["venons"],
-"special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+"is_correct": false,
+"explanation": "Falso. La conjugación correcta es 'Tu viens'. 'Venez' es para 'Vous'."
 },
-"feedback": {
-"correct": "Bien hecho. Nous venons.",
-"incorrect": "Conjugación irregular: Nous venons."
-}
-},
-{
-"id": "ex_024",
-"type": "selection_single",
-"difficulty": "medium",
-"instruction": "Elige la opción que NO es correcta.",
-"prompt": "¿Cuál de estas frases tiene un error?",
-"content": {
-"options": [
-{ "id": "opt_1", "text": "J'habite à Paris." },
-{ "id": "opt_2", "text": "Je viens de Paris." },
-{ "id": "opt_3", "text": "Je habite à Paris." }
-],
-"correct_option_id": "opt_3"
-},
-"feedback": {
-"correct": "¡Exacto! 'Je habite' es incorrecto. Debe ser 'J'habite'.",
-"incorrect": "Busca la opción donde no se hizo la elisión (quitar la 'e' ante vocal o 'h')."
-}
+"feedback": null
 }
 ]
 }
