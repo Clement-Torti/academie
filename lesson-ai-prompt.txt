@@ -4,23 +4,35 @@ mira el contenido y la estructura de una leccionX.html:
 <!-- 1. METADATA & EXERCISES -->
 <script type="application/json" id="lesson-data">
     {
-        "title": "Etiqueta Social: Tu vs. Vous",
-        "desc": "Clase completa sobre registros de formalidad y presentaciones en el entorno laboral francés.",
-        "icon": "fa-briefcase",
+        "title": "Lección 1: Identidad, Profesiones y el Verbo 'Ser'",
+        "desc": "Aprende a presentarte profesionalmente, decir tu nacionalidad y cargo sin cometer el error número uno de los angloparlantes. Uso de Être vs. Avoir.",
+        "icon": "fa-id-card",
         "vocabulary": [
-            { "fr": "Bonjour, comment allez-vous ?", "es": "Hola, ¿cómo está usted? (Formal)" },
-            { "fr": "Je vais très bien, merci", "es": "Estoy muy bien, gracias" },
-            { "fr": "Je vous présente...", "es": "Le presento a... (Formal)" },
-            { "fr": "Enchanté de faire votre connaissance", "es": "Encantado de conocerle" },
-            { "fr": "Bonne journée", "es": "Que tenga un buen día (Despedida)" },
-            { "fr": "À tout à l'heure", "es": "Hasta luego (Nos vemos en un rato)" }
+            { "fr": "Le Directeur / La Directrice", "es": "El Director / La Directora" },
+            { "fr": "Le / La Stagiaire", "es": "El / La Pasante (Becario/a)" },
+            { "fr": "Le Chargé de clientèle", "es": "El ejecutivo de cuentas" },
+            { "fr": "Le Comptable", "es": "El contador" },
+            { "fr": "Le Créateur de mode", "es": "El diseñador de moda" },
+            { "fr": "L'Influenceuse", "es": "La influencer" },
+            { "fr": "Le bureau", "es": "La oficina" },
+            { "fr": "Une réunion", "es": "Una reunión" },
+            { "fr": "Être en retard", "es": "Llegar tarde (Estar atrasado)" },
+            { "fr": "Être d'accord", "es": "Estar de acuerdo" },
+            { "fr": "Être en vacances", "es": "Estar de vacaciones" },
+            { "fr": "Avoir besoin de...", "es": "Necesitar (Tener necesidad de...)" },
+            { "fr": "Avoir l'air...", "es": "Parecer / Tener aspecto de..." },
+            { "fr": "J'ai ... ans", "es": "Tengo ... años (Uso de Avoir, no Être)" },
+            { "fr": "Américain / Américaine", "es": "Estadounidense (m/f)" },
+            { "fr": "Chinois / Chinoise", "es": "Chino / China" },
+            { "fr": "Allemand / Allemande", "es": "Alemán / Alemana" },
+            { "fr": "Le Propriétaire", "es": "El dueño / propietario" }
         ],
         "exercises": [
-            { "q": "Estás en una reunión con Antoine Lambert (Cliente). ¿Cómo preguntas cómo está?", "a": "comment allez-vous", "hint": "Usa el 'vouvoiement' (Usted)" },
-            { "q": "Mindy llega a tu apartamento. ¿Qué usas?", "a": "tu", "hint": "Informal" },
-            { "q": "Despedida formal para Sylvie al salir de la oficina:", "a": "bonne soirée", "hint": "Buenas noches (despedida)" },
-            { "q": "Verdadero o Falso: ¿Puedes decir 'Salut' a un cliente nuevo?", "a": "falso", "hint": "Es demasiado familiar" },
-            { "q": "Te presentan a alguien. Tú dices 'Enchanté...'", "a": "de faire votre connaissance", "hint": "Frase completa de cortesía" }
+            { "q": "Traduce: 'Soy contadora'. (Cuidado con el artículo)", "a": "je suis comptable", "hint": "En francés no se dice 'Soy UNA contadora' para profesiones." },
+            { "q": "Tienes 25 años. ¿Qué verbo usas?", "a": "avoir", "hint": "J'___ 25 ans (Yo 'tengo', no yo 'soy')." },
+            { "q": "Sylvie es la jefa. Ella es...", "a": "la directrice", "hint": "Femenino de Directeur" },
+            { "q": "Completa: Luc y Julien ______ (están) en la oficina.", "a": "sont", "hint": "Conjugación de Être (Ellos)" },
+            { "q": "Verdadero o Falso: ¿Se dice 'Je suis un avocat'?", "a": "falso", "hint": "Sobra el 'un'." }
         ]
     }
     </script>
@@ -31,156 +43,221 @@ mira el contenido y la estructura de una leccionX.html:
         <!-- MODULE 1: THE CONTEXT -->
         <section>
             <div class="bg-indigo-50 p-5 rounded-xl border-l-4 border-indigo-600 shadow-sm">
-                <h2 class="text-2xl font-bold text-indigo-700 mb-3">1. La Regla de Oro: "Le Vouvoiement"</h2>
-                <p class="mb-3">Emily, esto es serio. En Chicago todos son "amigos" al instante. En París, existe una barrera invisible. Romper esa barrera demasiado rápido es una falta de respeto.</p>
-                <p>El francés tiene dos niveles de existencia:</p>
+                <h2 class="text-2xl font-bold text-indigo-700 mb-3">1. Contexto Cultural: "Tu Metier" (Tu Oficio)</h2>
+                <p class="mb-3">Emily, bienvenida a Savoir. En París, tu identidad profesional es tu armadura. Cuando entras a una sala de juntas, no eres simplemente "Emily, la chica de Chicago". Eres "La Responsable de Marketing".</p>
+                <p>Hay dos trampas culturales gigantescas que debes evitar desde el día uno:</p>
                 <ul class="list-disc list-inside mt-2 space-y-2 ml-4">
-                    <li><strong>TU (Tutoiement):</strong> Familia, amigos cercanos, niños, mascotas y amantes.</li>
-                    <li><strong>VOUS (Vouvoiement):</strong> Jefes (Sylvie), Clientes (Antoine), desconocidos en la calle, camareros y personas mayores.</li>
+                    <li><strong>La trampa del artículo:</strong> En español o inglés dices "Soy <em>una</em> doctora". En francés, si dices "Je suis <em>une</em> docteur", suenas como una niña pequeña. La profesión se convierte en un adjetivo: <strong>"Je suis docteur"</strong>.</li>
+                    <li><strong>La trampa de la edad:</strong> Tú no "eres" tus años, tú los "tienes". Decir "Je suis 20 ans" no tiene sentido. Debes decir <strong>"J'ai 20 ans"</strong>.</li>
                 </ul>
-                <p class="mt-3 text-sm text-gray-600 italic"><strong>Regla general:</strong> Siempre empieza con "Vous". Espera a que la persona francesa te diga: "On peut se tutoyer" (Podemos tutearnos).</p>
+                <p class="mt-3 text-sm text-gray-600 italic"><strong>Tip de oficina:</strong> Si no sabes el cargo de alguien, usa siempre "Monsieur" o "Madame" hasta que se presenten con su título.</p>
             </div>
         </section>
         
         <!-- MODULE 2: GRAMMAR DEEP DIVE -->
         <section>
-            <h3 class="text-xl font-bold text-gray-800 border-b-2 border-frRed inline-block mb-4">2. Estructuras Clave</h3>
+            <h3 class="text-xl font-bold text-gray-800 border-b-2 border-frRed inline-block mb-4">2. Los Pilares: Être (Ser/Estar) y Avoir (Tener)</h3>
+            <p class="mb-4 text-sm text-gray-600">Estos dos verbos irregulares forman el 90% de las conversaciones iniciales. Memorízalos ahora o sufre para siempre.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Formal Column -->
+                <!-- ÊTRE Column -->
                 <div class="bg-white p-4 rounded shadow border border-gray-200">
-                    <h4 class="text-lg font-bold text-frBlue mb-2 text-center">FORMAL (Le Bureau)</h4>
+                    <h4 class="text-lg font-bold text-frBlue mb-2 text-center">ÊTRE (Ser / Estar)</h4>
+                    <p class="text-xs text-center text-gray-500 mb-2">Usos: Profesiones, Nacionalidad, Ubicación, Descripción.</p>
                     <table class="w-full text-sm">
-                        <tr class="border-b">
-                            <td class="py-2 font-semibold">Saludo</td>
-                            <td class="py-2">Bonjour Madame / Monsieur</td>
+                        <tr class="border-b bg-blue-50">
+                            <td class="py-2 pl-2 font-semibold">Je suis</td>
+                            <td class="py-2 italic">Yo soy / estoy</td>
                         </tr>
                         <tr class="border-b">
-                            <td class="py-2 font-semibold">¿Cómo está?</td>
-                            <td class="py-2">Comment <strong>allez-vous</strong> ?</td>
+                            <td class="py-2 pl-2 font-semibold">Tu es</td>
+                            <td class="py-2 italic">Tú eres / estás</td>
+                        </tr>
+                        <tr class="border-b bg-blue-50">
+                            <td class="py-2 pl-2 font-semibold">Il / Elle est</td>
+                            <td class="py-2 italic">Él / Ella es / está</td>
                         </tr>
                         <tr class="border-b">
-                            <td class="py-2 font-semibold">Presentar</td>
-                            <td class="py-2">Je <strong>vous</strong> présente Luc.</td>
+                            <td class="py-2 pl-2 font-semibold">Nous sommes</td>
+                            <td class="py-2 italic">Nosotros somos</td>
+                        </tr>
+                        <tr class="border-b bg-blue-50">
+                            <td class="py-2 pl-2 font-semibold">Vous êtes</td>
+                            <td class="py-2 italic">Usted es / Ustedes son</td>
                         </tr>
                         <tr>
-                            <td class="py-2 font-semibold">Adiós</td>
-                            <td class="py-2">Au revoir, bonne journée.</td>
+                            <td class="py-2 pl-2 font-semibold">Ils / Elles sont</td>
+                            <td class="py-2 italic">Ellos son / están</td>
                         </tr>
                     </table>
+                    <div class="mt-2 text-xs text-indigo-600 font-semibold">Ej: Je suis directrice. (Soy directora)</div>
                 </div>
     
-                <!-- Informal Column -->
+                <!-- AVOIR Column -->
                 <div class="bg-white p-4 rounded shadow border border-gray-200">
-                    <h4 class="text-lg font-bold text-pink-500 mb-2 text-center">INFORMAL (Le Café)</h4>
+                    <h4 class="text-lg font-bold text-pink-500 mb-2 text-center">AVOIR (Tener)</h4>
+                    <p class="text-xs text-center text-gray-500 mb-2">Usos: Edad, Posesión, Sensaciones (hambre/frío).</p>
                     <table class="w-full text-sm">
-                        <tr class="border-b">
-                            <td class="py-2 font-semibold">Saludo</td>
-                            <td class="py-2">Salut / Coucou</td>
+                        <tr class="border-b bg-pink-50">
+                            <td class="py-2 pl-2 font-semibold">J'ai</td>
+                            <td class="py-2 italic">Yo tengo</td>
                         </tr>
                         <tr class="border-b">
-                            <td class="py-2 font-semibold">¿Cómo estás?</td>
-                            <td class="py-2">Comment <strong>vas-tu</strong> ? / Ça va ?</td>
+                            <td class="py-2 pl-2 font-semibold">Tu as</td>
+                            <td class="py-2 italic">Tú tienes</td>
+                        </tr>
+                        <tr class="border-b bg-pink-50">
+                            <td class="py-2 pl-2 font-semibold">Il / Elle a</td>
+                            <td class="py-2 italic">Él / Ella tiene</td>
                         </tr>
                         <tr class="border-b">
-                            <td class="py-2 font-semibold">Presentar</td>
-                            <td class="py-2">Je <strong>te</strong> présente Gabriel.</td>
+                            <td class="py-2 pl-2 font-semibold">Nous avons</td>
+                            <td class="py-2 italic">Nosotros tenemos</td>
+                        </tr>
+                        <tr class="border-b bg-pink-50">
+                            <td class="py-2 pl-2 font-semibold">Vous avez</td>
+                            <td class="py-2 italic">Usted tiene / Ustedes tienen</td>
                         </tr>
                         <tr>
-                            <td class="py-2 font-semibold">Adiós</td>
-                            <td class="py-2">Salut / Bisous / À plus.</td>
+                            <td class="py-2 pl-2 font-semibold">Ils / Elles ont</td>
+                            <td class="py-2 italic">Ellos tienen</td>
                         </tr>
                     </table>
+                    <div class="mt-2 text-xs text-pink-600 font-semibold">Ej: J'ai une réunion. (Tengo una reunión)</div>
                 </div>
             </div>
         </section>
     
-        <!-- MODULE 3: READING COMPREHENSION (LONG) -->
+        <!-- MODULE 3: READING COMPREHENSION (FRENCH ONLY + TRANSLATION) -->
        <section>
             <h3 class="text-xl font-bold text-gray-800 border-b-2 border-frRed inline-block mb-4">
-                3. Lectura: Le Vernissage (La Inauguración)
+                3. Lectura: La Réunion Stratégique
             </h3>
 
             <p class="mb-4 text-gray-600">
-                Lee el siguiente guion extendido. Emily y Julien asisten a la inauguración de una exposición en una prestigiosa galería parisina. 
-                Observa cómo cambian el registro lingüístico y la etiqueta cuando Emily pasa de hablar con Julien a dirigirse al famoso diseñador de alta costura Pierre Cadault.
-                Presta atención especialmente a las diferencias entre el lenguaje informal y el formal.
+                Emily asiste a su primera gran reunión en la agencia Savoir. Están presentes Sylvie, Luc, Julien, y un cliente potencial.
+                Lee el texto completo en francés. Si te pierdes, usa el traductor desplegable abajo.
             </p>
 
+            <!-- FRENCH TEXT -->
             <div class="bg-gray-50 p-6 rounded-lg border border-gray-300 font-serif leading-loose">
 
-                <p><strong>Julien:</strong> Emily, regarde autour de toi. Toute la haute société est ici ce soir. Et là-bas… regarde bien… c’est Pierre Cadault, le créateur le plus respecté de Paris.</p>
+                <p>La salle de conférence de Savoir sent le café fort et le parfum de luxe. Sylvie est assise en bout de table, elle examine des documents avec impatience.</p>
 
-                <p><strong>Emily:</strong> (Con los ojos muy abiertos) ¿Ese es Pierre Cadault? ¡No puedo creerlo! Julien, tengo que hablarle. Es una oportunidad única.</p>
+                <p><strong>Sylvie :</strong> (Sans lever les yeux) Tout le monde est là ? Nous sommes en retard.</p>
 
-                <p><strong>Julien:</strong> D’accord, pero por favor… recuerda lo que te expliqué sobre el “vous”…</p>
+                <p><strong>Julien :</strong> Oui, Sylvie. Je suis là. Et Emily est là aussi. Nous attendons seulement Monsieur Dubois.</p>
 
-                <p><strong>Emily:</strong> (Avanzando con confianza hacia Pierre) <em>Salut Pierre ! Ça va ?</em></p>
+                <p>À ce moment, la porte s'ouvre. Un homme élégant d'une cinquantaine d'années entre, il porte un costume impeccable.</p>
 
-                <p><strong>Julien:</strong> (Susurrando desesperado desde atrás) <em>Non, Emily… pas comme ça…</em></p>
+                <p><strong>M. Dubois :</strong> Bonjour à tous. Désolé, la circulation à Paris est infernale.</p>
 
-                <p><strong>Pierre Cadault:</strong> (Girándose lentamente, con una expresión mezcla de sorpresa y desagrado) Pardon ? On se connaît, mademoiselle ?</p>
+                <p><strong>Sylvie :</strong> (Souriant professionnellement) Bonjour, Monsieur Dubois. Ne vous inquiétez pas. Prenez place, je vous en prie. Permettez-moi de vous présenter l'équipe.</p>
+                
+                <p>Sylvie désigne Luc, qui hoche la tête.</p>
 
-                <p><strong>Emily:</strong> (Congelada por un segundo) Oh… lo siento muchísimo. Quería decir… <em>Bonsoir, Monsieur Cadault.</em> Soy Emily, de la agencia Savoir. Es un honor conocerlo.</p>
+                <p><strong>Sylvie :</strong> Voici Luc. Il est <em>comptable</em> et spécialiste financier de l'agence. Si nous avons de l'argent pour votre campagne, c'est grâce à lui.</p>
 
-                <p><strong>Pierre Cadault:</strong> (Ajustándose las gafas) Ah, l’Américaine de Savoir… Bonsoir. Dites-moi, vous intéressez-vous à l’art contemporain ?</p>
+                <p><strong>Luc :</strong> (Riant) Enchanté. Oui, je suis comptable, mais je suis aussi un grand passionné de vos hôtels.</p>
 
-                <p><strong>Emily:</strong> Oui, bien sûr. Cette exposition est magnifique. Me encanta cómo la luz cambia el carácter de cada obra. <em>Comment allez-vous</em> este soir, Monsieur ?</p>
+                <p><strong>M. Dubois :</strong> C'est bon à savoir. Et qui est cette jeune femme ?</p>
 
-                <p><strong>Pierre Cadault:</strong> (Más relajado, pero todavía distante) Fatigué, comme toujours… mais l’art n’attend pas. C’est un plaisir de faire votre connaissance, Emily.</p>
+                <p>L'homme regarde Emily. Emily a une boule au ventre. Elle se souvient de ses leçons. <em>Ne dis pas "une". Ne dis pas "une".</em></p>
 
-                <p><strong>Emily:</strong> El placer es mío, de verdad. Gracias por su tiempo. <em>Au revoir, Monsieur Cadault.</em></p>
+                <p><strong>Emily :</strong> Bonjour, Monsieur. Je m'appelle Emily Cooper. Je suis... <em>directrice</em> marketing.</p>
 
-                <p><strong>Julien:</strong> (Apareciendo a su lado en cuanto Pierre se aleja) Emily… ¡eso fue casi un infarto para mí! Pero… lo arreglaste bien al final.</p>
+                <p><strong>Sylvie :</strong> (Interrompant doucement) Elle est consultante américaine. Elle est ici pour nous donner le point de vue des réseaux sociaux.</p>
 
-                <p><strong>Emily:</strong> (Suspirando con alivio) Ya lo sé… pero “vous” y “tu” son una pesadilla. De verdad pensé que iba a reírse de mí.</p>
+                <p><strong>M. Dubois :</strong> Ah, une Américaine ! C'est intéressant. Vous êtes de New York ?</p>
 
-                <p><strong>Julien:</strong> Tranquila, c’est Paris. Aquí todos cometen errores… pero no todos se recuperan tan rápido como tú.</p>
+                <p><strong>Emily :</strong> Non, je suis de Chicago. Mais je suis très contente d'être à Paris. Votre ville est magnifique.</p>
+
+                <p><strong>M. Dubois :</strong> Merci. J'ai une question pour vous, Emily. Les influenceurs... ils sont importants pour le luxe ?</p>
+
+                <p><strong>Emily :</strong> Absolument. Aujourd'hui, si vous n'êtes pas sur Instagram, vous n'existez pas. J'ai beaucoup d'idées pour votre marque.</p>
+
+                <p><strong>Julien :</strong> (Chuchotant à Emily) "Tu n'existes pas"... C'est un peu fort, non ?</p>
+
+                <p><strong>M. Dubois :</strong> (Pensif) C'est direct. J'aime ça. Les Français sont parfois trop... diplomatiques.</p>
+                
+                <p><strong>Sylvie :</strong> Bon, nous avons beaucoup de travail. Luc, tu as les chiffres ? Emily, tu as la tablette ? On commence.</p>
+
+                <p>La tension redescend. Emily respire, soulagée. Elle a réussi la première épreuve : elle a défini qui elle est sans offenser personne et en utilisant correctement le verbe "être".</p>
 
             </div>
 
-            <!-- Interactive Translation Toggle -->
+            <!-- FULL TRANSLATION TOGGLE -->
+            <details class="mt-4 bg-yellow-50 p-4 rounded shadow-sm group border border-yellow-200">
+                <summary class="cursor-pointer text-yellow-800 font-bold flex items-center justify-between">
+                    <span>📖 Ver traducción completa al español</span>
+                    <span class="group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div class="mt-4 text-sm text-gray-800 leading-relaxed border-t border-yellow-200 pt-3">
+                    <p class="italic mb-2 text-gray-500">Traducción:</p>
+                    <p>La sala de conferencias de Savoir huele a café fuerte y a perfume de lujo. Sylvie está sentada en la cabecera de la mesa, examinando documentos con impaciencia.</p>
+                    <p><strong>Sylvie:</strong> (Sin levantar la vista) ¿Están todos aquí? Estamos retrasados.</p>
+                    <p><strong>Julien:</strong> Sí, Sylvie. Yo estoy aquí. Y Emily está aquí también. Solo esperamos al señor Dubois.</p>
+                    <p>En ese momento, la puerta se abre. Entra un hombre elegante de unos cincuenta años, lleva un traje impecable.</p>
+                    <p><strong>M. Dubois:</strong> Hola a todos. Lo siento, el tráfico en París es infernal.</p>
+                    <p><strong>Sylvie:</strong> (Sonriendo profesionalmente) Buenos días, señor Dubois. No se preocupe. Tome asiento, por favor. Permítame presentarle al equipo.</p>
+                    <p>Sylvie señala a Luc, quien asiente con la cabeza.</p>
+                    <p><strong>Sylvie:</strong> Este es Luc. Él es contador y especialista financiero de la agencia. Si tenemos dinero para su campaña, es gracias a él.</p>
+                    <p><strong>Luc:</strong> (Riendo) Encantado. Sí, soy contador, pero también soy un gran apasionado de sus hoteles.</p>
+                    <p><strong>M. Dubois:</strong> Es bueno saberlo. ¿Y quién es esta joven?</p>
+                    <p>El hombre mira a Emily. Emily tiene un nudo en el estómago. Recuerda sus lecciones. <em>No digas "una". No digas "una".</em></p>
+                    <p><strong>Emily:</strong> Buenos días, señor. Me llamo Emily Cooper. Soy... directora de marketing.</p>
+                    <p><strong>Sylvie:</strong> (Interrumpiendo suavemente) Ella es consultora estadounidense. Está aquí para darnos el punto de vista de las redes sociales.</p>
+                    <p><strong>M. Dubois:</strong> ¡Ah, una estadounidense! Es interesante. ¿Es usted de Nueva York?</p>
+                    <p><strong>Emily:</strong> No, soy de Chicago. Pero estoy muy contenta de estar en París. Su ciudad es magnífica.</p>
+                    <p><strong>M. Dubois:</strong> Gracias. Tengo una pregunta para usted, Emily. Los influencers... ¿son importantes para el lujo?</p>
+                    <p><strong>Emily:</strong> Absolutamente. Hoy en día, si no está en Instagram, no existe. Tengo muchas ideas para su marca.</p>
+                    <p><strong>Julien:</strong> (Susurrando a Emily) "Tú no existes"... Es un poco fuerte, ¿no?</p>
+                    <p><strong>M. Dubois:</strong> (Pensativo) Es directo. Me gusta. Los franceses son a veces demasiado... diplomáticos.</p>
+                    <p><strong>Sylvie:</strong> Bueno, tenemos mucho trabajo. Luc, ¿tienes las cifras? Emily, ¿tienes la tableta? Empezamos.</p>
+                    <p>La tensión baja. Emily respira aliviada. Ha pasado la primera prueba: ha definido quién es sin ofender a nadie y usando correctamente el verbo "ser".</p>
+                </div>
+            </details>
+
+            <!-- Interactive Analysis Toggle -->
             <details class="mt-4 bg-white p-4 rounded shadow-sm group">
                 <summary class="cursor-pointer text-indigo-600 font-semibold flex items-center justify-between">
-                    <span>🔍 Análisis del texto y Traducción</span>
+                    <span>🔍 Análisis Gramatical del texto</span>
                     <span class="group-open:rotate-180 transition-transform">▼</span>
                 </summary>
 
                 <div class="mt-4 text-sm text-gray-700 space-y-2 border-t pt-3">
 
-                    <p><strong>El error de Emily:</strong> Trató a Pierre Cadault como a un amigo cercano: “Salut” y “Ça va”. En Francia, saludar así a una figura famosa o de alto estatus es extremadamente informal.</p>
+                    <p><strong>1. Profesiones sin artículo:</strong> Luc dice "Je suis comptable" (no <em>un</em> comptable). Emily dice "Je suis directrice marketing". Esta es la regla de oro.</p>
 
-                    <p><strong>La corrección:</strong> Emily cambia rápidamente a “Bonsoir, Monsieur” y “Comment allez-vous ?”. Observa que Pierre mantiene siempre el uso de “vous”, señalando distancia y respeto.</p>
+                    <p><strong>2. Nacionalidades:</strong> Sylvie presenta a Emily diciendo "Elle est consultante américaine". Nota que el adjetivo va después del sustantivo y concuerda en género (femenino termina en 'e').</p>
 
-                    <hr class="my-2">
+                    <p><strong>3. Uso de Avoir (Tener):</strong> Sylvie pregunta: "Luc, tu <em>as</em> les chiffres ?" (¿Tienes las cifras?). M. Dubois dice: "J'<em>ai</em> une question" (Tengo una pregunta).</p>
+                    
+                    <p><strong>4. Uso de Être (Ubicación/Estado):</strong> "Tout le monde <em>est</em> là ?" (¿Todo el mundo está aquí?). "Nous <em>sommes</em> en retard" (Estamos retrasados).</p>
 
-                    <p><strong>Traducción parcial:</strong></p>
-                    <ul class="pl-4 list-disc">
-                        <li><em>Julien:</em> Emily, mira a tu alrededor. Toda la alta sociedad está aquí. Y allí… es Pierre Cadault.</li>
-                        <li><em>Emily:</em> ¡Debo hablarle! ¡Hola Pierre! ¿Qué tal?</li>
-                        <li><em>Julien:</em> ¡No así!</li>
-                        <li><em>Pierre:</em> ¿Nos conocemos, señorita?</li>
-                        <li><em>Emily:</em> Buenas noches, señor Cadault. Soy Emily, de Savoir.</li>
-                        <li><em>Pierre:</em> ¿Le interesa el arte contemporáneo?</li>
-                        <li><em>Emily:</em> Sí, mucho. ¿Cómo está esta noche?</li>
-                    </ul>
                 </div>
             </details>
         </section>
 
         <!-- MODULE 4: ACTIVE WRITING/THINKING -->
         <section>
-            <h3 class="text-xl font-bold text-gray-800 mb-4">4. Práctica de Situaciones</h3>
-            <p class="mb-4">Antes de pasar al cuestionario final, resuelve mentalmente estas situaciones:</p>
+            <h3 class="text-xl font-bold text-gray-800 mb-4">4. Práctica de Situaciones: ¿Quién eres?</h3>
+            <p class="mb-4">Resuelve mentalmente estas situaciones típicas en Savoir:</p>
             
             <div class="space-y-4">
                 <div class="bg-yellow-50 p-4 rounded border border-yellow-200">
-                    <strong>Situación A:</strong> Entras en una <em>Boulangerie</em>. La vendedora es una mujer mayor.
-                    <br><span class="text-gray-500 text-sm">¿Qué saludo usas? ¿Cómo pides un café? (Usa: Je voudrais...)</span>
+                    <strong>Situación A: Formulario de Recursos Humanos</strong>
+                    <br><span class="text-gray-500 text-sm">Tienes que llenar tus datos.</span>
+                    <ul class="list-disc ml-5 mt-2 text-sm">
+                        <li>¿Cómo escribes tu nacionalidad? (Je suis...)</li>
+                        <li>¿Cómo escribes tu edad? (Recuerda: usa el verbo "Tener")</li>
+                        <li>¿Cómo escribes tu cargo? (Stagiaire, Directeur, etc.)</li>
+                    </ul>
                 </div>
                 <div class="bg-yellow-50 p-4 rounded border border-yellow-200">
-                    <strong>Situación B:</strong> Estás en una fiesta con amigos de Mindy. Son jóvenes.
-                    <br><span class="text-gray-500 text-sm">¿Cómo te presentas y preguntas cómo están?</span>
+                    <strong>Situación B: El cóctel de negocios</strong>
+                    <br><span class="text-gray-500 text-sm">Te presentan a un diseñador famoso. Él te dice: "Vous êtes mannequin ?" (¿Es usted modelo?)</span>
+                    <br><span class="text-gray-700 italic mt-1">Responde negativamente y di tu verdadera profesión. "Non, je..."</span>
                 </div>
             </div>
         </section>
@@ -188,26 +265,26 @@ mira el contenido y la estructura de una leccionX.html:
         <!-- MODULE 5: ORAL EXPRESSION -->
         <section>
             <h3 class="text-xl font-bold text-gray-800 mb-4">5. Laboratorio de Pronunciación</h3>
-            <p>El francés requiere mover los labios mucho más que el español o el inglés. Exagera estos sonidos.</p>
+            <p>La "liaison" (unión de sonidos) es vital con estos verbos. Escucha cómo se conectan las palabras.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center mt-4">
                 <div class="p-4 bg-white shadow rounded-full w-full aspect-square flex flex-col justify-center items-center">
-                    <strong class="text-2xl text-frBlue block mb-2">BON-JOUR</strong>
-                    <span class="text-xs text-gray-500">No digas "Ban-jur". La O es cerrada y redonda. La R es gargural.</span>
+                    <strong class="text-2xl text-frBlue block mb-2">VOUS ÊTES</strong>
+                    <span class="text-xs text-gray-500">Suena como "Vu-zet". La S final de 'Vous' se convierte en un zumbido 'Z' al tocar la vocal Ê.</span>
                 </div>
                 <div class="p-4 bg-white shadow rounded-full w-full aspect-square flex flex-col justify-center items-center">
-                    <strong class="text-2xl text-frRed block mb-2">EN-CHAN-TÉ</strong>
-                    <span class="text-xs text-gray-500">Sonido nasal "On" y "Shan". La T final es fuerte.</span>
+                    <strong class="text-2xl text-frRed block mb-2">JE SUIS</strong>
+                    <span class="text-xs text-gray-500">En francés rápido no dicen "Je su-is". Suena casi como un soplido: "Shwi" o "Je-swi".</span>
                 </div>
                 <div class="p-4 bg-white shadow rounded-full w-full aspect-square flex flex-col justify-center items-center">
-                    <strong class="text-2xl text-gray-800 block mb-2">MON-SIEUR</strong>
-                    <span class="text-xs text-gray-500">Truco: Se pronuncia casi como "Me-sier". No pronuncies la N.</span>
+                    <strong class="text-2xl text-gray-800 block mb-2">IL EST</strong>
+                    <span class="text-xs text-gray-500">La S y la T son mudas. Suena simplemente como "Il-e".</span>
                 </div>
             </div>
         </section>
     
     </div>
-
+    
 Cada lectura debe tratarse del universo de emily en paris.
 Respeta ese formata para generar las lecciones de esos temas. Cada leccion debe durar mucho (40min). 
 El texto de lectura debe ser de 400 palabras solamente en Frances. En cuanto al vocabulario, si el tema de la leccion es adecuado, 
