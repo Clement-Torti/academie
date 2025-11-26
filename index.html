@@ -738,8 +738,9 @@
                     const exData = JSON.parse(exScript.textContent);
 
                     this.currentScore = 0;
-                    this.currentMaxScore = exData.interactive_exercises ? exData.interactive_exercises.length : 0;
-
+                    this.currentMaxScore = exData.interactive_exercises 
+                        ? exData.interactive_exercises.filter(ex => ex.type !== 'full_translation').length 
+                        : 0;
                     // BUILD STEPS
                     this.lessonSteps = [];
 
