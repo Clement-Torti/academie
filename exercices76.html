@@ -1,0 +1,407 @@
+<script type="application/json" id="exercise-data">
+    {
+    "interactive_exercises": [
+    {
+    "id": "ex_001",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "Completa la hipótesis correctamente (Cuidado con la regla del 'Si').",
+    "prompt": "Si nous ______ le budget, nous lancerons la campagne.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "avons" },
+    { "id": "opt_2", "text": "aurons" },
+    { "id": "opt_3", "text": "avions" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "¡Exacto! Después de 'Si', usamos Presente (Si nous avons), aunque la consecuencia sea futura.",
+    "incorrect": "Recuerda la regla de oro: Jamás uses el Futuro justo después del 'Si'. Debe ser Presente."
+    }
+    },
+    {
+    "id": "ex_002",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "Elige el término de negocios adecuado.",
+    "prompt": "Si nous perdons ce client, notre ______ va baisser.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "trottoir" },
+    { "id": "opt_2", "text": "chiffre d'affaires" },
+    { "id": "opt_3", "text": "grève" }
+    ],
+    "correct_option_id": "opt_2"
+    },
+    "feedback": {
+    "correct": "Correcto. 'Chiffre d'affaires' es la facturación o cifra de negocios.",
+    "incorrect": "'Trottoir' es acera. Aquí hablamos de dinero y negocios."
+    }
+    },
+    {
+    "id": "ex_003",
+    "type": "sentence_builder",
+    "difficulty": "hard",
+    "instruction": "Ordena la frase condicional: 'Si firmas, tendrás un aumento'.",
+    "prompt": null,
+    "content": {
+    "segments": ["Si", "tu", "signes", "tu", "auras", "une augmentation", "signeras"],
+    "correct_order": ["Si", "tu", "signes", "tu", "auras", "une augmentation"],
+    "distractors": ["signeras"]
+    },
+    "feedback": {
+    "correct": "¡Muy bien! Si + Presente (signes) + Futuro (auras).",
+    "incorrect": "No uses 'signeras' (futuro) después del 'Si'. Usa el presente."
+    }
+    },
+    {
+    "id": "ex_004",
+    "type": "true_false",
+    "difficulty": "easy",
+    "instruction": "¿Esta frase es gramaticalmente correcta?",
+    "prompt": "S'elle est d'accord, on commence demain.",
+    "content": {
+    "is_correct": false,
+    "explanation": "Falso. Nunca se hace elisión con 'Elle'. Debe ser 'Si elle'. Solo se contrae con 'Il' (S'il)."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_005",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Conjuga el verbo de la consecuencia (Futuro Simple).",
+    "prompt": "Si tu ne travailles pas, tu ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "échoueras" },
+    { "id": "opt_2", "text": "échoues" },
+    { "id": "opt_3", "text": "a échoué" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto. La consecuencia va en Futuro Simple: 'Tu échoueras' (Fracasarás).",
+    "incorrect": "La primera parte es presente (Si...), así que la segunda parte debe ser Futuro para indicar consecuencia."
+    }
+    },
+    {
+    "id": "ex_006",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce la hipótesis completa.",
+    "prompt": "Si llueve, no iré.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["S'il pleut, je n'irai pas.", "S'il pleut je n'irai pas."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "Parfait! S'il pleut (presente), je n'irai pas (futuro).",
+    "incorrect": "Recuerda la contracción: Si + Il = S'il. Y usa el futuro de Aller (J'irai)."
+    }
+    },
+    {
+    "id": "ex_007",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "¿Qué verbo significa 'Despedir' (en el trabajo)?",
+    "prompt": "Si l'agence ferme, le patron devra nous ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "licencier" },
+    { "id": "opt_2", "text": "démissionner" },
+    { "id": "opt_3", "text": "cibler" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto. 'Licencier' es despedir. 'Démissionner' es renunciar (lo hace el empleado).",
+    "incorrect": "'Cibler' es tener como objetivo (target)."
+    }
+    },
+    {
+    "id": "ex_008",
+    "type": "sentence_builder",
+    "difficulty": "medium",
+    "instruction": "Forma la advertencia: 'Si llegas tarde, te vas'.",
+    "prompt": null,
+    "content": {
+    "segments": ["Si", "tu", "arrives", "en retard", "tu", "partiras", "arriveras"],
+    "correct_order": ["Si", "tu", "arrives", "en retard", "tu", "partiras"],
+    "distractors": ["arriveras"]
+    },
+    "feedback": {
+    "correct": "Bien hecho. Si tu arrives (presente) -> tu partiras (futuro).",
+    "incorrect": "Cuidado, 'arriveras' es futuro y no puede ir después del 'Si'."
+    }
+    },
+    {
+    "id": "ex_009",
+    "type": "true_false",
+    "difficulty": "medium",
+    "instruction": "Analiza la lógica de esta frase.",
+    "prompt": "Si je serai riche, j'achèterai une maison.",
+    "content": {
+    "is_correct": false,
+    "explanation": "Falso. El error mortal: usar futuro después de 'Si'. Debe ser 'Si je SUIS riche' (Presente)."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_010",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Elige la conjugación irregular correcta (Verbo Mourir - Morir).",
+    "prompt": "Si nous ne changeons pas, la marque ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "mourra" },
+    { "id": "opt_2", "text": "mourira" },
+    { "id": "opt_3", "text": "meurt" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "¡Exacto! El futuro de Mourir es irregular: Il mourra (con doble r).",
+    "incorrect": "'Mourira' no existe. 'Meurt' es presente, aquí necesitamos la consecuencia futura."
+    }
+    },
+    {
+    "id": "ex_011",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce: 'Si ella apuesta por el rojo, ella perderá'.",
+    "prompt": "Si ella apuesta por el rojo, ella perderá. (Miser sur / Perdre)",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["Si elle mise sur le rouge, elle perdra.", "Si elle mise sur le rouge elle perdra."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "Très bien. Si elle mise (presente)... elle perdra (futuro).",
+    "incorrect": "Recuerda: 'Si elle' no se contrae. Verbo 'Miser' (apostar)."
+    }
+    },
+    {
+    "id": "ex_012",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "Si el cliente no está contento con el precio, debemos...",
+    "prompt": "Si le prix est trop haut, il faut ______.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "négocier" },
+    { "id": "opt_2", "text": "licencier" },
+    { "id": "opt_3", "text": "échouer" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto. Hay que 'négocier' (negociar).",
+    "incorrect": "'Licencier' es despedir y 'Échouer' es fracasar."
+    }
+    },
+    {
+    "id": "ex_013",
+    "type": "sentence_builder",
+    "difficulty": "hard",
+    "instruction": "Ordena: 'La agencia tendrá éxito si trabajamos'. (Orden inverso)",
+    "prompt": null,
+    "content": {
+    "segments": ["L'agence", "réussira", "si", "nous", "travaillons", "réussit"],
+    "correct_order": ["L'agence", "réussira", "si", "nous", "travaillons"],
+    "distractors": ["réussit"]
+    },
+    "feedback": {
+    "correct": "¡Perfecto! Futuro + Si + Presente.",
+    "incorrect": "Puedes empezar con la consecuencia, pero la regla se mantiene: Futuro lejos del 'Si', Presente pegado al 'Si'."
+    }
+    },
+    {
+    "id": "ex_014",
+    "type": "true_false",
+    "difficulty": "hard",
+    "instruction": "Verdadero o Falso: ¿Es correcta la conjugación de 'Devoir'?",
+    "prompt": "S'il part, nous deverons payer.",
+    "content": {
+    "is_correct": false,
+    "explanation": "Falso. El futuro de Devoir es irregular: 'Nous DEVRONS' (sin la e del medio)."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_015",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "¿Cómo se dice 'público objetivo' o 'target'?",
+    "prompt": "Si nous changeons la ______, nous vendrons plus.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "cible" },
+    { "id": "opt_2", "text": "grève" },
+    { "id": "opt_3", "text": "contrainte" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Oui! La cible.",
+    "incorrect": "'Contrainte' es una restricción."
+    }
+    },
+    {
+    "id": "ex_016",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce: 'Si tú convences al cliente, yo firmaré'.",
+    "prompt": "Si tú convences al cliente, yo firmaré.",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["Si tu convaincs le client, je signerai.", "Si tu convaincs le client je signerai."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "Excelente. Verbo 'Convaincre' (presente: tu convaincs) y 'Signer' (futuro: je signerai).",
+    "incorrect": "Cuidado con la conjugación de 'Convaincre' en presente (s, s, t...)."
+    }
+    },
+    {
+    "id": "ex_017",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "Elige la forma correcta del presente para 'Vous'.",
+    "prompt": "Si vous ______ d'accord, nous signerons.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "êtes" },
+    { "id": "opt_2", "text": "serez" },
+    { "id": "opt_3", "text": "soyez" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto. 'Si vous êtes' (Presente de Être).",
+    "incorrect": "'Serez' es futuro (prohibido tras Si). 'Soyez' es imperativo/subjuntivo."
+    }
+    },
+    {
+    "id": "ex_018",
+    "type": "sentence_builder",
+    "difficulty": "medium",
+    "instruction": "Forma la frase: 'Si él dimite, yo tendré un problema'.",
+    "prompt": null,
+    "content": {
+    "segments": ["S'il", "démissionne", "j'aurai", "un problème", "aura"],
+    "correct_order": ["S'il", "démissionne", "j'aurai", "un problème"],
+    "distractors": ["aura"]
+    },
+    "feedback": {
+    "correct": "Bien. S'il démissionne (presente), j'aurai (futuro).",
+    "incorrect": "Recuerda contraer 'Si + il' -> 'S'il'."
+    }
+    },
+    {
+    "id": "ex_019",
+    "type": "selection_single",
+    "difficulty": "medium",
+    "instruction": "¿Qué significa 'Un défi'?",
+    "prompt": "C'est un grand ______ pour l'entreprise.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "défi" },
+    { "id": "opt_2", "text": "bilan" },
+    { "id": "opt_3", "text": "bénévole" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto. 'Un défi' es un reto o desafío.",
+    "incorrect": "El contexto sugiere algo difícil de superar."
+    }
+    },
+    {
+    "id": "ex_020",
+    "type": "true_false",
+    "difficulty": "easy",
+    "instruction": "Gramática: ¿Está bien escrito 'Si ils veulent'?",
+    "prompt": "Si ils veulent, ils peuvent.",
+    "content": {
+    "is_correct": false,
+    "explanation": "Falso. La elisión es obligatoria con 'Ils' también. Debe ser 'S'ils veulent'."
+    },
+    "feedback": null
+    },
+    {
+    "id": "ex_021",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Completa con el verbo 'Voir' (Ver) en Futuro.",
+    "prompt": "Si tu vas à Paris, tu ______ la Tour Eiffel.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "verras" },
+    { "id": "opt_2", "text": "voiras" },
+    { "id": "opt_3", "text": "vois" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "¡Exacto! El futuro de Voir es irregular: 'Je verrai, tu verras'.",
+    "incorrect": "'Voiras' no existe. 'Vois' es presente, y necesitamos la consecuencia futura."
+    }
+    },
+    {
+    "id": "ex_022",
+    "type": "full_translation",
+    "difficulty": "hard",
+    "instruction": "Traduce: 'Si hacemos eso, funcionará'.",
+    "prompt": "Si hacemos eso, funcionará (marcher).",
+    "content": {
+    "placeholder": "Escribe la frase completa...",
+    "accepted_answers": ["Si on fait ça, ça marchera.", "Si nous faisons cela, cela marchera.", "Si nous faisons ça, ça marchera."],
+    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+    },
+    "feedback": {
+    "correct": "Bien. 'Si on fait ça, ça marchera'.",
+    "incorrect": "Presente (fait/faisons) + Futuro (marchera)."
+    }
+    },
+    {
+    "id": "ex_023",
+    "type": "sentence_builder",
+    "difficulty": "medium",
+    "instruction": "Forma la frase sobre la competencia.",
+    "prompt": null,
+    "content": {
+    "segments": ["Si", "la concurrence", "est", "forte", "nous", "perdrons"],
+    "correct_order": ["Si", "la concurrence", "est", "forte", "nous", "perdrons"],
+    "distractors": []
+    },
+    "feedback": {
+    "correct": "Correcto. Si la competencia es fuerte, perderemos.",
+    "incorrect": "Revisa el orden Sujeto + Verbo."
+    }
+    },
+    {
+    "id": "ex_024",
+    "type": "selection_single",
+    "difficulty": "hard",
+    "instruction": "Elige la opción que completa la lógica de la frase.",
+    "prompt": "Si le projet ______, je serai promu.",
+    "content": {
+    "options": [
+    { "id": "opt_1", "text": "aboutit" },
+    { "id": "opt_2", "text": "aboutira" },
+    { "id": "opt_3", "text": "échoue" }
+    ],
+    "correct_option_id": "opt_1"
+    },
+    "feedback": {
+    "correct": "Correcto. 'Si le projet aboutit' (Si el proyecto resulta/tiene éxito, presente).",
+    "incorrect": "'Aboutira' es futuro (error tras Si). 'Échoue' (fracasa) no tiene sentido lógico con 'seré promovido'."
+    }
+    }
+    ]
+    }
+    </script>
