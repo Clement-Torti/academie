@@ -190,25 +190,214 @@
             reviewDeck: [],
             reviewIndex: 0,
 
-            async init() {
-                // Migration logic
-                const rawProgress = JSON.parse(localStorage.getItem('acad_progress') || '{}');
-                if (Array.isArray(rawProgress)) {
-                    const newProgress = {};
-                    rawProgress.forEach(id => newProgress[id] = 1);
-                    this.progress = newProgress;
-                    localStorage.setItem('acad_progress', JSON.stringify(this.progress));
-                } else {
-                    this.progress = rawProgress;
-                }
+            // Add these properties to the top of the 'app' object
+    batchSize: 20,
+    nextLessonId: 1,
+    hasMoreLessons: true,
+    isFetching: false,
 
-                await this.discoverModules();
-                let resizeTimer;
-                window.addEventListener('resize', () => {
-                    clearTimeout(resizeTimer);
-                    resizeTimer = setTimeout(() => this.drawMapPath(), 100);
-                });
-            },
+    async init() {
+        // Migration logic (Keep existing)
+        const rawProgress = JSON.parse(localStorage.getItem('acad_progress') || '{}');
+        if (Array.isArray(rawProgress)) {
+            const newProgress = {};
+            rawProgress.forEach(id => newProgress[id] = 1);
+            this.progress = newProgress;
+            localStorage.setItem('acad_progress', JSON.stringify(this.progress));
+        } else {
+            this.progress = rawProgress;
+        }
+
+        // --- NEW: Initialize Map Structure first, then load first batch ---
+        this.initMap(); 
+
+        // --- NEW: Infinite Scroll Listener ---
+        this.container.addEventListener('scroll', () => {
+            const { scrollTop, scrollHeight, clientHeight } = this.container;
+            // Load more when user is 200px from bottom
+            if (scrollTop + clientHeight >= scrollHeight - 200) {
+                this.loadNextBatch();
+            }
+        });
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => this.drawMapPath(), 100);
+        });
+    },
+
+    initMap() {
+        this.modal.classList.add('hidden');
+        
+        // Intro Card HTML (Same as before)
+        const introCard = `
+            <div class="w-full px-6 pt-8 pb-4 relative z-20">
+                <div class="bg-white p-6 rounded-2xl shadow-card border border-blue-100 text-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-frBlue via-white to-frRed"></div>
+                    <h2 class="text-xl font-serif font-bold text-frBlue mb-3 mt-1">Bienvenue à Paris! 🇫🇷</h2>
+                    <p class="text-xs text-gray-500 mb-2 leading-relaxed">
+                    Olvídate de la superficialidad de la app del búho 🦉. Aquí, en el universo de <em>Emily in Paris</em>, buscamos elegancia y profundidad.
+                    </p>
+                    <div class="flex justify-center">
+                        <button id="btn-copy-prog" onclick="app.copyProgram()" class="text-[10px] text-gray-400 font-bold uppercase tracking-wider hover:text-gold transition flex items-center gap-1 py-2">
+                            <i class="fa-regular fa-clipboard"></i> Copier le programme
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+
+        // Set up the persistent container structure
+        this.container.innerHTML = `
+            <div class="min-h-full relative overflow-x-hidden bg-[#fdfbf7]">
+                <svg id="map-svg" class="absolute inset-0 w-full h-full pointer-events-none"><path id="map-path" d="" fill="none" stroke="#cbd5e1" stroke-width="4" stroke-dasharray="8 8" stroke-linecap="round"/></svg>
+                <div class="max-w-md mx-auto flex flex-col items-center w-full overflow-hidden">
+                    ${introCard}
+                    <!-- Nodes will be appended here -->
+                    <div id="nodes-container" class="w-full pt-6 pb-24"></div>
+                    <!-- Loading Indicator for Scroll -->
+                    <div id="scroll-loader" class="py-4 hidden"><div class="loader w-6 h-6 border-2"></div></div>
+                </div>
+            </div>`;
+
+        // Load the first batch
+        this.loadNextBatch();
+    },
+
+    async loadNextBatch() {
+        if (this.isFetching || !this.hasMoreLessons) return;
+        
+        this.isFetching = true;
+        const loader = document.getElementById('scroll-loader');
+        if(loader) loader.classList.remove('hidden');
+
+        const newModules = [];
+        let count = 0;
+
+        // Try to fetch 'batchSize' number of lessons
+        while (count < this.batchSize && this.hasMoreLessons) {
+            const url = `${this.baseUrl}lesson${this.nextLessonId}.html`;
+            try {
+                const res = await fetch(url);
+                if (res.ok) {
+                    const text = await res.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(text, 'text/html');
+                    const jsonScript = doc.getElementById('lesson-data');
+
+                    if (jsonScript) {
+                        const data = JSON.parse(jsonScript.textContent);
+
+                        // 1. Theory Node
+                        newModules.push({
+                            id: this.nextLessonId,
+                            uid: `${this.nextLessonId}_theory`,
+                            type: 'theory',
+                            url: url,
+                            title: `Leçon ${this.nextLessonId}`,
+                            topic: data.title,
+                            desc: data.desc,
+                            icon: data.icon
+                        });
+
+                        // 2. Practice Node
+                        newModules.push({
+                            id: this.nextLessonId,
+                            uid: `${this.nextLessonId}_practice`,
+                            type: 'practice',
+                            url: url,
+                            title: `Exercice ${this.nextLessonId}`,
+                            topic: "Practica",
+                            desc: "",
+                            icon: 'fa-dumbbell'
+                        });
+                    }
+                    this.nextLessonId++;
+                    count++; // We count "lessons" found, though we push 2 modules per lesson
+                } else {
+                    this.hasMoreLessons = false;
+                }
+            } catch (e) {
+                this.hasMoreLessons = false;
+            }
+        }
+
+        if (loader) loader.classList.add('hidden');
+        
+        if (newModules.length > 0) {
+            // Append to main list
+            const startIndex = this.modules.length;
+            this.modules = [...this.modules, ...newModules];
+            // Render only the new ones
+            this.appendNodes(newModules, startIndex);
+        }
+
+        this.isFetching = false;
+    },
+
+    appendNodes(newMods, startIndex) {
+        const nodesContainer = document.getElementById('nodes-container');
+        if (!nodesContainer) return;
+
+        let nodesHtml = '';
+
+        newMods.forEach((mod, localIndex) => {
+            const globalIndex = startIndex + localIndex;
+            const masteryLevel = this.progress[mod.uid] || 0;
+            
+            // Logic for locking: Locked if not first AND previous is 0
+            // Note: We check global modules array for the previous one
+            const isLocked = false; // globalIndex > 0 && (this.progress[this.modules[globalIndex - 1].uid] || 0) === 0;
+
+            // Zigzag offset
+            const offset = globalIndex % 2 === 0 ? '-translate-x-8 sm:-translate-x-12' : 'translate-x-8 sm:translate-x-12';
+
+            // VISUAL STYLES (Same as original)
+            let colorClass, borderClass, opacityClass, clickAction, iconHtml;
+
+            if (isLocked) {
+                colorClass = 'bg-gray-200 text-gray-400';
+                borderClass = 'border-gray-300';
+                opacityClass = 'opacity-70 grayscale';
+                clickAction = '';
+                iconHtml = '<i class="fa-solid fa-lock text-sm"></i>';
+            } else {
+                clickAction = mod.type === 'theory' ? `app.loadLesson(${globalIndex})` : `app.loadPractice(${globalIndex})`;
+                opacityClass = '';
+                if (masteryLevel === 0) {
+                    if (mod.type === 'theory') { colorClass = 'bg-frBlue text-white'; borderClass = 'border-blue-900'; }
+                    else { colorClass = 'bg-white text-frBlue border-2 border-frBlue'; borderClass = 'border-blue-200'; }
+                    opacityClass = 'scale-110';
+                } else if (masteryLevel === 1) { colorClass = 'bg-bronze text-white'; borderClass = 'border-[#8B4513]'; } 
+                else if (masteryLevel === 2) { colorClass = 'bg-silver text-white'; borderClass = 'border-gray-400'; } 
+                else { colorClass = 'bg-gold text-white'; borderClass = 'border-yellow-600'; }
+
+                if (masteryLevel > 0) iconHtml = `<i class="fa-solid ${masteryLevel >= 3 ? 'fa-crown' : 'fa-check'}"></i>`;
+                else iconHtml = `<i class="fa-solid ${mod.icon}"></i>`;
+            }
+
+            nodesHtml += `
+            <div class="flex flex-col items-center mb-16 relative z-10 pointer-events-none w-full animate-slide-in">
+                <div class="pointer-events-auto flex flex-col items-center transition-all duration-300 ${offset} ${opacityClass}" id="node-${globalIndex}">
+                    <button onclick="${clickAction}" 
+                        class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full text-2xl flex items-center justify-center border-b-4 shadow-xl active:scale-95 transition-all active:translate-y-1 ${colorClass} ${borderClass}">
+                        ${iconHtml}
+                        ${!isLocked && masteryLevel > 0 && masteryLevel < 3 ? `<div class="absolute -bottom-2 flex gap-0.5">${Array(masteryLevel).fill('<div class="w-1.5 h-1.5 rounded-full bg-frBlue border border-white"></div>').join('')}</div>` : ''}
+                    </button>
+                    <div class="mt-2 text-center w-full">
+                        <div class="inline-block mb-2 bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm text-[10px] font-bold text-gray-600 border border-gray-100 uppercase tracking-widest max-w-[16rem] sm:max-w-[18rem] whitespace-normal break-words leading-tight">
+                            ${mod.topic}
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        });
+
+        nodesContainer.insertAdjacentHTML('beforeend', nodesHtml);
+        
+        // Recalculate SVG path
+        setTimeout(() => this.drawMapPath(), 100);
+    },
 
             // --- 1. DISCOVERY ---
             async discoverModules() {
@@ -262,139 +451,14 @@
             },
 
             // --- 2. MAP RENDERING ---
-            renderMap() {
-                this.modal.classList.add('hidden');
-
-                // Intro Card (Keep as is)
-                const introCard = `
-    <div class="w-full px-6 pt-8 pb-4 relative z-20">
-        <div class="bg-white p-6 rounded-2xl shadow-card border border-blue-100 text-center relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-frBlue via-white to-frRed"></div>
-        
-            <h2 class="text-xl font-serif font-bold text-frBlue mb-3 mt-1">Bienvenue à Paris! 🇫🇷</h2>
-
-            <p class="text-xs text-gray-500 mb-2 leading-relaxed">
-            Olvídate de la superficialidad de la app del búho 🦉. Aquí, en el universo de <em>Emily in Paris</em>, buscamos elegancia y profundidad. Si te gusta este proyecto, puedes invitarme un croissant abajo a través de una pequeña donación.
-            </p>
-        <a href="TU_ENLACE_DE_DONACIÓN" target="_blank"
-           class="inline-block mt-2 px-4 py-2 bg-frBlue text-white text-xs font-semibold rounded-xl shadow hover:bg-blue-700 transition">
-           Invitar un croissant 🥐
-        </a>
-              <div class="flex justify-center">
-                <button id="btn-copy-prog" onclick="app.copyProgram()" class="text-[10px] text-gray-400 font-bold uppercase tracking-wider hover:text-gold transition flex items-center gap-1 py-2">
-                    <i class="fa-regular fa-clipboard"></i> Copier le programme
-                </button>
-            </div>
-
-        </div>
-    </div>`;
-
-                let nodes = '';
-
-                this.modules.forEach((mod, i) => {
-                    // GET MASTERY LEVEL (0, 1, 2, or 3+)
-                    const masteryLevel = this.progress[mod.uid] || 0;
-
-                    // CHECK LOCK STATUS
-                    // It is locked if it is NOT the first one AND the previous one has 0 progress
-                    let isLocked = false;
-
-                    const isComplete = this.progress[mod.uid] ? true : false;
-
-                    // Zigzag offset
-                    const offset = i % 2 === 0 ? '-translate-x-8 sm:-translate-x-12' : 'translate-x-8 sm:translate-x-12';
-
-                    // VISUAL STYLES based on Mastery Level
-                    let colorClass, borderClass, opacityClass, clickAction, iconHtml;
-
-                    if (isLocked) {
-                        colorClass = 'bg-gray-200 text-gray-400';
-                        borderClass = 'border-gray-300';
-                        opacityClass = 'opacity-70 grayscale';
-                        clickAction = '';
-                        iconHtml = '<i class="fa-solid fa-lock text-sm"></i>';
-                    } else {
-                        clickAction = mod.type === 'theory' ? `app.loadLesson(${i})` : `app.loadPractice(${i})`;
-                        opacityClass = ''; // Active
-
-                        // Define colors based on mastery
-                        if (masteryLevel === 0) {
-                            // Not started yet
-                            if (mod.type === 'theory') {
-                                colorClass = 'bg-frBlue text-white';
-                                borderClass = 'border-blue-900';
-                            } else {
-                                colorClass = 'bg-white text-frBlue border-2 border-frBlue';
-                                borderClass = 'border-blue-200';
-                            }
-                            opacityClass = 'scale-110'; // Highlight next step
-                        } else if (masteryLevel === 1) {
-                            // BRONZE
-                            colorClass = 'bg-bronze text-white';
-                            borderClass = 'border-[#8B4513]'; // Darker brown border
-                        } else if (masteryLevel === 2) {
-                            // SILVER
-                            colorClass = 'bg-silver text-white'; // Or text-gray-700 if contrast is bad
-                            borderClass = 'border-gray-400';
-                        } else {
-                            // GOLD (3 or more)
-                            colorClass = 'bg-gold text-white';
-                            borderClass = 'border-yellow-600';
-                        }
-
-                        // Icon Logic
-                        if (masteryLevel > 0) {
-                            // Show checkmark or crown for gold
-                            const icon = masteryLevel >= 3 ? 'fa-crown' : 'fa-check';
-                            iconHtml = `<i class="fa-solid ${icon}"></i>`;
-                        } else {
-                            // Show module icon
-                            iconHtml = `<i class="fa-solid ${mod.icon}"></i>`;
-                        }
-                    }
-
-                    // Generate Node HTML
-                    nodes += `
-  <div class="flex flex-col items-center mb-16 relative z-10 pointer-events-none w-full">
-      <div class="pointer-events-auto flex flex-col items-center transition-all duration-300 ${offset} ${opacityClass}" id="node-${i}">
-          <!-- Main Button -->
-          <button onclick="${clickAction}" 
-              class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full text-2xl flex items-center justify-center border-b-4 shadow-xl active:scale-95 transition-all active:translate-y-1 ${colorClass} ${borderClass}">
-              ${iconHtml}
-              
-              <!-- Stars/Dots indicator for progress -->
-              ${!isLocked && masteryLevel > 0 && masteryLevel < 3 ?
-                            `<div class="absolute -bottom-2 flex gap-0.5">
-                      ${Array(masteryLevel).fill('<div class="w-1.5 h-1.5 rounded-full bg-frBlue border border-white"></div>').join('')}
-                   </div>`
-                            : ''}
-          </button>
-          
-          <!-- Title below -->
-          <div class="mt-2 text-center w-full">
-              <div class="inline-block mb-2 bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm text-[10px] font-bold text-gray-600 border border-gray-100 uppercase tracking-widest max-w-[16rem] sm:max-w-[18rem] whitespace-normal break-words leading-tight">
-                  ${mod.topic}
-              </div>
-          </div>
-
-      </div>
-  </div>`;
-
-                });
-
-                this.container.innerHTML = `
-        <div class="min-h-full relative overflow-x-hidden bg-[#fdfbf7]">
-            <svg id="map-svg" class="absolute inset-0 w-full h-full pointer-events-none"><path id="map-path" d="" fill="none" stroke="#cbd5e1" stroke-width="4" stroke-dasharray="8 8" stroke-linecap="round"/></svg>
-            <div class="max-w-md mx-auto flex flex-col items-center w-full overflow-hidden">
-                ${introCard}
-                <div class="w-full pt-6 pb-24">
-                    ${nodes}
-                </div>
-            </div>
-        </div>`;
-
-                setTimeout(() => this.drawMapPath(), 100);
-            },
+            // Redirect existing calls to the new initMap
+    renderMap() {
+        // Reset everything to handle "Back to Menu" correctly
+        this.modules = [];
+        this.nextLessonId = 1;
+        this.hasMoreLessons = true;
+        this.initMap();
+    },
 
             // --- MODAL LOGIC ---
             openLessonModal(index) {
