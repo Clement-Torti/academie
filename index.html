@@ -180,6 +180,9 @@
             progress: {},
             userVocab: JSON.parse(localStorage.getItem('acad_user_vocab') || '[]'),
             baseUrl: 'https://clement-torti.github.io/academie/',
+            progress: {},
+            highScores: JSON.parse(localStorage.getItem('acad_highscores') || '{}'),
+
 
             // State
             lessonSteps: [],
@@ -352,14 +355,25 @@
                     const globalIndex = startIndex + localIndex;
                     const masteryLevel = this.progress[mod.uid] || 0;
 
-                    // Logic for locking: Locked if not first AND previous is 0
-                    // Note: We check global modules array for the previous one
-                    const isLocked = false; //globalIndex > 0 && (this.progress[this.modules[globalIndex - 1].uid] || 0) === 0;
+                    // --- 1. HIGH SCORE LOGIC (Score/Max) ---
+                    const rawScoreData = this.highScores ? this.highScores[mod.uid] : undefined;
+                    let displayScore = '';
 
-                    // Zigzag offset
+                    // Handle new object format {score: x, max: y} vs old number format
+                    if (rawScoreData !== undefined) {
+                        if (typeof rawScoreData === 'object' && rawScoreData !== null) {
+                            displayScore = `${rawScoreData.score}/${rawScoreData.max}`;
+                        } else {
+                            displayScore = `${rawScoreData}`; // Backwards compatibility
+                        }
+                    }
+
+                    // --- 2. LOCK LOGIC ---
+                    // Currently unlocked. Change to 'true' based on index if you want sequential locking.
+                    const isLocked = false;
+
+                    // --- 3. STYLING LOGIC ---
                     const offset = globalIndex % 2 === 0 ? '-translate-x-8 sm:-translate-x-12' : 'translate-x-8 sm:translate-x-12';
-
-                    // VISUAL STYLES (Same as original)
                     let colorClass, borderClass, opacityClass, clickAction, iconHtml;
 
                     if (isLocked) {
@@ -371,26 +385,60 @@
                     } else {
                         clickAction = mod.type === 'theory' ? `app.loadLesson(${globalIndex})` : `app.loadPractice(${globalIndex})`;
                         opacityClass = '';
-                        if (masteryLevel === 0) {
-                            if (mod.type === 'theory') { colorClass = 'bg-frBlue text-white'; borderClass = 'border-blue-900'; }
-                            else { colorClass = 'bg-white text-frBlue border-2 border-frBlue'; borderClass = 'border-blue-200'; }
-                            opacityClass = 'scale-110';
-                        } else if (masteryLevel === 1) { colorClass = 'bg-bronze text-white'; borderClass = 'border-[#8B4513]'; }
-                        else if (masteryLevel === 2) { colorClass = 'bg-silver text-white'; borderClass = 'border-gray-400'; }
-                        else { colorClass = 'bg-gold text-white'; borderClass = 'border-yellow-600'; }
 
+                        // Color schemes based on mastery level
+                        if (masteryLevel === 0) {
+                            if (mod.type === 'theory') {
+                                colorClass = 'bg-frBlue text-white';
+                                borderClass = 'border-blue-900';
+                            } else {
+                                colorClass = 'bg-white text-frBlue border-2 border-frBlue';
+                                borderClass = 'border-blue-200';
+                            }
+                            opacityClass = 'scale-110';
+                        } else if (masteryLevel === 1) {
+                            colorClass = 'bg-bronze text-white';
+                            borderClass = 'border-[#8B4513]';
+                        } else if (masteryLevel === 2) {
+                            colorClass = 'bg-silver text-white';
+                            borderClass = 'border-gray-400';
+                        } else {
+                            colorClass = 'bg-gold text-white';
+                            borderClass = 'border-yellow-600';
+                        }
+
+                        // Icon selection
                         if (masteryLevel > 0) iconHtml = `<i class="fa-solid ${masteryLevel >= 3 ? 'fa-crown' : 'fa-check'}"></i>`;
                         else iconHtml = `<i class="fa-solid ${mod.icon}"></i>`;
                     }
 
+                    // --- 4. BADGE HTML GENERATION ---
+                    // Only show badge for Practice nodes that have a score
+                    let scoreBadgeHtml = '';
+                    if (mod.type === 'practice' && displayScore !== '') {
+                        scoreBadgeHtml = `
+                        <div class="absolute -top-2 -right-3 bg-white border border-gray-200 shadow-sm text-[10px] font-bold px-2 py-0.5 rounded-full text-frBlue z-20 flex items-center gap-1 animate-slide-in">
+                            <i class="fa-solid fa-star text-gold text-[8px]"></i> ${displayScore}
+                        </div>`;
+                    }
+
+                    // --- 5. BUILD NODE HTML ---
                     nodesHtml += `
             <div class="flex flex-col items-center mb-16 relative z-10 pointer-events-none w-full animate-slide-in">
                 <div class="pointer-events-auto flex flex-col items-center transition-all duration-300 ${offset} ${opacityClass}" id="node-${globalIndex}">
                     <button onclick="${clickAction}" 
                         class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full text-2xl flex items-center justify-center border-b-4 shadow-xl active:scale-95 transition-all active:translate-y-1 ${colorClass} ${borderClass}">
+                        
+                        <!-- SCORE BADGE -->
+                        ${scoreBadgeHtml}
+
+                        <!-- MAIN ICON -->
                         ${iconHtml}
+                        
+                        <!-- MASTERY DOTS (If level 1 or 2) -->
                         ${!isLocked && masteryLevel > 0 && masteryLevel < 3 ? `<div class="absolute -bottom-2 flex gap-0.5">${Array(masteryLevel).fill('<div class="w-1.5 h-1.5 rounded-full bg-frBlue border border-white"></div>').join('')}</div>` : ''}
                     </button>
+                    
                     <div class="mt-2 text-center w-full">
                         <div class="inline-block mb-2 bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm text-[10px] font-bold text-gray-600 border border-gray-100 uppercase tracking-widest max-w-[16rem] sm:max-w-[18rem] whitespace-normal break-words leading-tight">
                             ${mod.topic}
@@ -402,7 +450,7 @@
 
                 nodesContainer.insertAdjacentHTML('beforeend', nodesHtml);
 
-                // Recalculate SVG path
+                // Redraw SVG path to connect new nodes
                 setTimeout(() => this.drawMapPath(), 100);
             },
 
@@ -653,6 +701,7 @@
             async loadPractice(index) {
                 const mod = this.modules[index];
                 this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
+                this.currentScore = 0;
 
                 try {
                     // 1. Load Lesson X (for Vocab + Section 2)
@@ -674,6 +723,9 @@
                     const exScript = exDoc.getElementById('exercise-data');
                     if (!exScript) throw new Error("No JSON data found in exercise file");
                     const exData = JSON.parse(exScript.textContent);
+
+                    this.currentScore = 0;
+                    this.currentMaxScore = exData.interactive_exercises ? exData.interactive_exercises.length : 0;
 
                     // BUILD STEPS
                     this.lessonSteps = [];
@@ -754,18 +806,36 @@
 
                 const step = this.lessonSteps[this.currentStepIdx];
                 const progress = ((this.currentStepIdx + 0.5) / this.lessonSteps.length) * 100;
+
                 const navBtn = `<button onclick="app.prevStep()" class="text-gray-400 p-2 hover:text-frBlue transition">
-            <i class="fa-solid fa-arrow-left text-xl"></i>
-        </button>`;
+                    <i class="fa-solid fa-arrow-left text-xl"></i>
+                </button>`;
+
+                // 1. CONDITIONAL LOGIC FOR SCORE BADGE
+                // Only generate this HTML if the current mode is 'practice'
+                const isPractice = this.currentLessonMeta && this.currentLessonMeta.type === 'practice';
+
+                const scoreBadgeHtml = isPractice ? `
+                    <div class="bg-white border border-gray-200 px-3 py-1 rounded-full flex items-center gap-2 shadow-sm animate-slide-in">
+                        <i class="fa-solid fa-star text-gold text-xs"></i>
+                        <span id="score-display" class="font-bold text-frBlue text-xs transition-all duration-300">
+                            ${this.currentScore} / ${this.currentMaxScore}
+                        </span>
+                    </div>` : '';
 
                 let html = `
             <div class="h-full flex flex-col bg-frCream relative">
                 <div class="px-4 py-3 flex items-center gap-3 max-w-2xl mx-auto w-full bg-frCream z-30 shrink-0 border-b border-gray-100/50">
                     ${navBtn}
+                    
+                    <!-- 2. INSERT CONDITIONAL BADGE HERE -->
+                    ${scoreBadgeHtml}
+
                     <div class="flex-1 h-3 bg-gray-200 rounded-full overflow-hidden shadow-inner">
                         <div class="h-full bg-green-500 transition-all duration-500 ease-out" style="width: ${progress}%"></div>
                     </div>
                 </div>
+                
                 <div class="flex-1 overflow-y-auto px-4 w-full animate-slide-in">
                     <div class="max-w-2xl mx-auto w-full flex flex-col justify-start pb-36 pt-4">
         `;
@@ -773,14 +843,11 @@
                 if (step.type === 'read') {
                     html += `<div class="lesson-section bg-white p-5 sm:p-8 rounded-xl shadow-sm border border-gray-100 text-lg leading-relaxed">${step.html}</div>`;
                 }
-                // --- THE FIX STARTS HERE ---
                 else if (step.type === 'interactive_practice') {
-                    // We call the helper function we created to generate the HTML
                     html += `<div class="lesson-section bg-white p-5 rounded-xl shadow-sm border border-gray-100">
                         ${this.renderInteractiveExercise(step.data)}
                      </div>`;
                 }
-                // --- THE FIX ENDS HERE ---
                 else if (step.type === 'quiz') {
                     html += `
                 <div class="bg-white p-5 rounded-xl shadow-card border border-gray-100 mb-4">
@@ -790,7 +857,6 @@
                 <div id="feedback" class="hidden rounded-lg p-4 font-bold text-center text-sm"></div>`;
                 }
 
-                // ... (rest of the function remains the same)
                 html += `
                     </div>
                 </div>
@@ -799,7 +865,7 @@
                         ${step.type === 'read'
                         ? `<button onclick="app.nextStep()" class="w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">Continuer</button>`
                         : `<button id="btn-check" onclick="app.checkInteractive()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">Vérifier</button>
-                               <button id="btn-next" onclick="app.nextStep()" class="hidden w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">Continuer</button>`
+                           <button id="btn-next" onclick="app.nextStep()" class="hidden w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">Continuer</button>`
                     }
                     </div>
                 </div>
@@ -979,6 +1045,31 @@
                         break;
                 }
 
+                if (this.currentLessonMeta.type === 'practice') {
+                    const scoreDisplay = document.getElementById('score-display');
+
+                    if (isCorrect) {
+                        this.currentScore++;
+                        // Visual flair for correct
+                        if (scoreDisplay) {
+                            scoreDisplay.classList.add('text-green-600', 'scale-125');
+                            setTimeout(() => scoreDisplay.classList.remove('text-green-600', 'scale-125'), 300);
+                        }
+                    } else {
+                        this.currentScore--;
+                        // Visual flair for wrong
+                        if (scoreDisplay) {
+                            scoreDisplay.classList.add('text-red-500', 'scale-125');
+                            setTimeout(() => scoreDisplay.classList.remove('text-red-500', 'scale-125'), 300);
+                        }
+                    }
+
+                    // Update text
+                    if (scoreDisplay) {
+                        scoreDisplay.innerText = `${this.currentScore} / ${this.currentMaxScore}`;
+                    }
+                }
+
                 // 2. SHOW FEEDBACK
                 if (isCorrect) {
                     feed.innerHTML = `<div class="flex items-center justify-center gap-2 text-green-700"><i class="fa-solid fa-circle-check text-xl"></i> <span>${feedbackMsg}</span></div>`;
@@ -1125,78 +1216,92 @@
 
 
             completeLesson() {
-                // 1. Logic: Increment Progress
+                // 1. Progress Logic
                 const uid = this.currentLessonMeta.uid;
                 const currentLevel = this.progress[uid] || 0;
-
-                // Increment, but you can cap it at 3 if you want, or let it grow
-                // Here we assume 3 is max for visual change, but we track attempts
                 const newLevel = currentLevel + 1;
                 this.progress[uid] = newLevel;
-
                 localStorage.setItem('acad_progress', JSON.stringify(this.progress));
 
-                // 2. Visuals & Messages
+                // 2. High Score Logic (Updated for Score/Max)
                 const isPractice = this.currentLessonMeta.type === 'practice';
+                let isNewRecord = false;
 
-                let colorText = "";
-                let medalIcon = "";
+                // Initialize defaults
+                let savedData = this.highScores[uid];
+                let previousBest = -Infinity;
 
-                if (newLevel === 1) {
-                    colorText = "text-bronze";
-                    medalIcon = "fa-medal"; // Bronze
-                } else if (newLevel === 2) {
-                    colorText = "text-silver";
-                    medalIcon = "fa-medal"; // Silver
-                } else {
-                    colorText = "text-gold";
-                    medalIcon = "fa-crown"; // Gold
+                if (isPractice) {
+                    // Handle migration: if savedData is just a number (old format), treat it as score
+                    if (typeof savedData === 'number') {
+                        previousBest = savedData;
+                    } else if (savedData && typeof savedData === 'object') {
+                        previousBest = savedData.score;
+                    }
+
+                    // Check if we beat the record
+                    if (this.currentScore > previousBest) {
+                        // SAVE OBJECT INSTEAD OF NUMBER
+                        this.highScores[uid] = {
+                            score: this.currentScore,
+                            max: this.currentMaxScore
+                        };
+                        localStorage.setItem('acad_highscores', JSON.stringify(this.highScores));
+                        isNewRecord = true;
+                    }
                 }
 
+                // 3. Visuals
+                let colorText = "";
+                let medalIcon = "";
+                if (newLevel === 1) { colorText = "text-bronze"; medalIcon = "fa-medal"; }
+                else if (newLevel === 2) { colorText = "text-silver"; medalIcon = "fa-medal"; }
+                else { colorText = "text-gold"; medalIcon = "fa-crown"; }
+
                 const msg = isPractice ? "Exercice Terminé" : "Leçon Terminée";
+                if (window.confetti) confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
 
-                // Confetti
-                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-
-                // 3. Determine Next Step
-                // Check if there is a next module in the array
+                // 4. Next Step Logic
                 const nextIndex = this.currentLessonMeta.moduleIndex + 1;
                 let btnAction = `app.renderMap()`;
-                let btnText = "Volver al Mapa";
+                let btnText = "Retour au menu";
 
-                // Optional: Direct link to next node if it exists
                 if (nextIndex < this.modules.length) {
                     const nextMod = this.modules[nextIndex];
                     const fn = nextMod.type === 'theory' ? 'loadLesson' : 'loadPractice';
                     btnAction = `app.${fn}(${nextIndex})`;
-                    btnText = `Siguiente: ${nextMod.type === 'theory' ? 'Théorie' : 'Pratique'}`;
+                    btnText = `Suivant: ${nextMod.type === 'theory' ? 'Théorie' : 'Pratique'}`;
                 }
 
+                // 5. Build Score HTML
+                const scoreHtml = isPractice ? `
+                    <div class="bg-white border-2 ${isNewRecord ? 'border-gold bg-yellow-50' : 'border-gray-100'} rounded-xl p-4 mb-6 w-full max-w-xs mx-auto transform transition-all shadow-sm">
+                        <div class="text-xs uppercase tracking-widest text-gray-500 mb-1">Score Final</div>
+                        <div class="flex items-baseline justify-center gap-1 text-frBlue">
+                            <span class="text-3xl font-bold">${this.currentScore}</span>
+                            <span class="text-lg text-gray-400 font-bold">/ ${this.currentMaxScore}</span>
+                        </div>
+                        ${isNewRecord
+                        ? `<div class="text-xs font-bold text-orange-500 mt-2 animate-bounce"><i class="fa-solid fa-trophy"></i> Nouveau Record !</div>`
+                        : `<div class="text-xs text-gray-400 mt-2">Meilleur: ${previousBest} / ${this.currentMaxScore}</div>`
+                    }
+                    </div>
+                ` : '';
+
                 this.container.innerHTML = `
-        <div class="h-full flex flex-col items-center justify-center bg-frCream p-6 text-center animate-step">
-            <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg mb-6 text-4xl ${colorText} border-4 border-gray-100 relative">
-                <i class="fa-solid ${medalIcon}"></i>
-                ${newLevel > 1 ? `<span class="absolute top-0 right-0 bg-frRed text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white">x${newLevel}</span>` : ''}
-            </div>
-            
-            <h2 class="text-xl text-frBlue font-bold uppercase tracking-wider mb-1">Niveau Supérieur !</h2>
-            <h1 class="text-3xl font-serif font-bold text-frBlue mb-6">${msg}</h1>
-            
-            <p class="mb-8 text-gray-500 max-w-xs mx-auto">
-                ${newLevel === 1 ? "Has conseguido el <strong class='text-bronze'>Bronce</strong>. ¡Repite para obtener la Plata!" :
-                        newLevel === 2 ? "Has conseguido la <strong class='text-silver'>Plata</strong>. ¡Una vez más para el Oro!" :
-                            "¡Increíble! Has alcanzado el nivel <strong class='text-gold'>Oro</strong>."}
-            </p>
-            
-            <div class="w-full max-w-sm space-y-4">
-                <button onclick="${btnAction}" class="w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-lg active:scale-95 transition">
-                    ${btnText} <i class="fa-solid fa-arrow-right ml-2"></i>
-                </button>
-                <button onclick="app.renderMap()" class="w-full text-gray-400 font-bold py-2 text-sm">
-                    Menu Principal
-                </button>
-            </div>
-        </div>`;
+                    <div class="h-full flex flex-col items-center justify-center bg-frCream p-6 text-center animate-step">
+                        <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg mb-6 text-4xl ${colorText} border-4 border-gray-100 relative">
+                            <i class="fa-solid ${medalIcon}"></i>
+                            ${newLevel > 1 ? `<span class="absolute top-0 right-0 bg-frRed text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white">x${newLevel}</span>` : ''}
+                        </div>
+                        <h2 class="text-xl text-frBlue font-bold uppercase tracking-wider mb-1">Niveau Supérieur !</h2>
+                        <h1 class="text-3xl font-serif font-bold text-frBlue mb-4">${msg}</h1>
+                        ${scoreHtml}
+                        <div class="w-full max-w-sm space-y-4">
+                            <button onclick="${btnAction}" class="w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-lg active:scale-95 transition">${btnText} <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                            <button onclick="app.renderMap()" class="w-full text-gray-400 font-bold py-2 text-sm hover:text-gray-600 transition">Menu Principal</button>
+                        </div>
+                    </div>`;
             },
 
             renderFlashcards() {
