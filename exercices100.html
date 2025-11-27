@@ -2,816 +2,846 @@
     {
       "interactive_exercises": [
         {
-          "id": "ex_001",
+          "id": "ex_b2_001",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Literature: What is the meaning of 'Dévorer un livre'?",
+          "prompt": "J'ai dévoré ce roman en une soirée.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "To eat a book" },
+              { "id": "opt_2", "text": "To read very quickly and enthusiastically" },
+              { "id": "opt_3", "text": "To destroy a book" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Exact! It means to read avidly.",
+            "incorrect": "It is a metaphor. It means reading with great passion and speed."
+          }
+        },
+        {
+          "id": "ex_b2_002",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Past Tenses: Reconstruct this sentence using Passé Simple (literary style).",
+          "prompt": null,
+          "content": {
+            "segments": ["La", "porte", "s'ouvrit", "et", "il", "apparut"],
+            "correct_order": ["La", "porte", "s'ouvrit", "et", "il", "apparut"],
+            "distractors": ["s'ouvre", "apparaît"]
+          },
+          "feedback": {
+            "correct": "Bien. 'S'ouvrit' and 'Apparut' are Passé Simple forms.",
+            "incorrect": "In a literary narrative, we use Passé Simple for sudden actions."
+          }
+        },
+        {
+          "id": "ex_b2_003",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Shopping: What do you buy 'En vrac'?",
+          "prompt": "J'achète mes lentilles en vrac.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "In a plastic bottle" },
+              { "id": "opt_2", "text": "Frozen" },
+              { "id": "opt_3", "text": "In bulk (without packaging)" }
+            ],
+            "correct_option_id": "opt_3"
+          },
+          "feedback": {
+            "correct": "Correct. 'En vrac' means in bulk.",
+            "incorrect": "It refers to buying loose items by weight."
+          }
+        },
+        {
+          "id": "ex_b2_004",
           "type": "full_translation",
           "difficulty": "hard",
-          "instruction": "Traduce usando 'Dont' (necesidad).",
-          "prompt": "Es la herramienta que necesito.",
+          "instruction": "Job Interview: Translate 'I have excellent interpersonal skills'.",
+          "prompt": "I have excellent interpersonal skills.",
+          "content": {
+            "placeholder": "J'ai...",
+            "accepted_answers": ["J'ai un excellent sens du relationnel.", "J'ai un bon sens du relationnel."],
+            "special_characters": ["é", "è", "à", "ç"]
+          },
+          "feedback": {
+            "correct": "Parfait. 'Le sens du relationnel'.",
+            "incorrect": "The specific term is 'Sens du relationnel'."
+          }
+        },
+        {
+          "id": "ex_b2_005",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Grammar: Choose the correct relative pronoun.",
+          "prompt": "C'est le film ______ je t'ai parlé.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "que" },
+              { "id": "opt_2", "text": "dont" },
+              { "id": "opt_3", "text": "qui" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correct! Parler DE quelque chose -> Dont.",
+            "incorrect": "Since the verb is 'Parler DE', you must use 'Dont'."
+          }
+        },
+        {
+          "id": "ex_b2_006",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Statistics: Order the sentence describing a sharp increase.",
+          "prompt": null,
+          "content": {
+            "segments": ["Le", "chômage", "a", "augmenté", "en", "flèche"],
+            "correct_order": ["Le", "chômage", "a", "augmenté", "en", "flèche"],
+            "distractors": ["baisse", "la"]
+          },
+          "feedback": {
+            "correct": "Oui. 'Augmenter en flèche' means to skyrocket.",
+            "incorrect": "The expression is 'en flèche' (like an arrow)."
+          }
+        },
+        {
+          "id": "ex_b2_007",
+          "type": "true_false",
+          "difficulty": "medium",
+          "instruction": "Future Anterior: Does this express certainty?",
+          "prompt": "Il n'est pas là, il aura oublié notre rendez-vous.",
+          "content": {
+            "is_correct": false,
+            "explanation": "No, here the Future Anterior expresses a probability or hypothesis about the past (He probably forgot)."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_b2_008",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Household: You need to fix a hole in your shirt.",
+          "prompt": "Je dois ______ ma chemise.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "coudre" },
+              { "id": "opt_2", "text": "repasser" },
+              { "id": "opt_3", "text": "trier" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correct. Coudre (to sew).",
+            "incorrect": "Repasser is ironing. Trier is sorting."
+          }
+        },
+        {
+          "id": "ex_b2_009",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Emphasis: Translate 'It is the atmosphere that I like'.",
+          "prompt": "It is the atmosphere that I like.",
           "content": {
             "placeholder": "C'est...",
-            "accepted_answers": ["C'est l'outil dont j'ai besoin.", "C'est l'instrument dont j'ai besoin."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù", "œ"]
+            "accepted_answers": ["C'est l'ambiance que j'aime.", "C'est l'atmosphère que j'aime."],
+            "special_characters": ["é", "è", "à", "ç"]
           },
           "feedback": {
-            "correct": "¡Correcto! 'Avoir besoin DE' requiere el pronombre relativo 'Dont'.",
-            "incorrect": "Recuerda: Si el verbo usa 'de' (avoir besoin de), usamos 'dont', no 'que'."
+            "correct": "Très bien.",
+            "incorrect": "Use 'C'est... que' because you like the atmosphere (object)."
           }
         },
         {
-          "id": "ex_002",
-          "type": "full_translation",
+          "id": "ex_b2_010",
+          "type": "selection_single",
           "difficulty": "hard",
-          "instruction": "Traduce usando el Subjuntivo (Bien que).",
-          "prompt": "Aunque él sea competente, no fue contratado.",
+          "instruction": "Movies: What is a 'Bande-annonce'?",
+          "prompt": "As-tu vu la bande-annonce ?",
           "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Bien qu'il soit compétent, il n'a pas été embauché.", "Bien qu'il soit compétent, il n'a pas été recruté."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+            "options": [
+              { "id": "opt_1", "text": "The soundtrack" },
+              { "id": "opt_2", "text": "The movie trailer" },
+              { "id": "opt_3", "text": "The end credits" }
+            ],
+            "correct_option_id": "opt_2"
           },
           "feedback": {
-            "correct": "Bien. 'Bien que' siempre va seguido de subjuntivo (soit).",
-            "incorrect": "Después de 'Bien que', el verbo 'être' debe estar en subjuntivo (soit)."
+            "correct": "Correct. It's the trailer.",
+            "incorrect": "Soundtrack is 'Bande originale' (BO). Trailer is 'Bande-annonce'."
           }
         },
         {
-          "id": "ex_003",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando la voz pasiva compuesta.",
-          "prompt": "La decisión ha sido tomada por el comité.",
+          "id": "ex_b2_011",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Weather: Form the sentence 'It is likely to rain'.",
+          "prompt": null,
           "content": {
-            "placeholder": "...",
-            "accepted_answers": ["La décision a été prise par le comité."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+            "segments": ["Il", "risque", "de", "pleuvoir"],
+            "correct_order": ["Il", "risque", "de", "pleuvoir"],
+            "distractors": ["va", "peur"]
           },
           "feedback": {
-            "correct": "Perfecto. Concordancia: Décision (f) -> Prise.",
-            "incorrect": "No olvides la concordancia del participio en voz pasiva (prise)."
+            "correct": "Bien. 'Il risque de' indicates a probability (usually negative).",
+            "incorrect": "Structure: Il risque de + infinitive."
           }
         },
         {
-          "id": "ex_004",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Si' condicional (Hipótesis en el pasado).",
-          "prompt": "Si hubiera sabido, habría venido.",
+          "id": "ex_b2_012",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Work: Which contract is permanent?",
+          "prompt": "Je viens de signer un ______.",
           "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Si j'avais su, je serais venu.", "Si j'avais su, je serais venue."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+            "options": [
+              { "id": "opt_1", "text": "CDD" },
+              { "id": "opt_2", "text": "CDI" },
+              { "id": "opt_3", "text": "Stage" }
+            ],
+            "correct_option_id": "opt_2"
           },
           "feedback": {
-            "correct": "Excelente. Plus-que-parfait + Conditionnel Passé.",
-            "incorrect": "Estructura: Si + Plus-que-parfait (avais su) -> Conditionnel Passé (serais venu)."
+            "correct": "Exact. Contrat à Durée Indéterminée (CDI).",
+            "incorrect": "CDD is temporary (Determined Duration)."
           }
         },
         {
-          "id": "ex_005",
+          "id": "ex_b2_013",
           "type": "full_translation",
           "difficulty": "hard",
-          "instruction": "Traduce la expresión temporal 'Dès que' (Futuro).",
-          "prompt": "Te llamaré en cuanto llegue.",
+          "instruction": "Translate using 'Depuis': 'I have been waiting for 2 hours'.",
+          "prompt": "I have been waiting for 2 hours.",
           "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Je t'appellerai dès que j'arriverai.", "Je t'appelle dès que j'arrive."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+            "placeholder": "J'attends...",
+            "accepted_answers": ["J'attends depuis deux heures.", "J'attends depuis 2 heures.", "J'attends depuis 2h."],
+            "special_characters": ["é", "è", "à", "ç"]
           },
           "feedback": {
-            "correct": "Bien. En francés, después de 'dès que', usamos futuro si la acción es futura.",
-            "incorrect": "Usa 'Dès que' + futuro simple (j'arriverai)."
+            "correct": "Correct. Present tense + Depuis.",
+            "incorrect": "In French, an action that started in the past and continues uses the Present tense."
           }
         },
         {
-          "id": "ex_006",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando vocabulario de negocios (C.A.).",
-          "prompt": "La facturación aumentó este año.",
+          "id": "ex_b2_014",
+          "type": "true_false",
+          "difficulty": "medium",
+          "instruction": "Logic: 'Un navet' is a compliment for a movie.",
+          "prompt": "Ce film est un navet.",
           "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Le chiffre d'affaires a augmenté cette année.", "Le CA a augmenté cette année."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+            "is_correct": false,
+            "explanation": "False. 'Un navet' (turnip) means a very bad movie."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_b2_015",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Grammar: Identify the Passive Voice.",
+          "prompt": "Select the passive sentence.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Le jury a choisi le gagnant." },
+              { "id": "opt_2", "text": "Le gagnant a été choisi par le jury." },
+              { "id": "opt_3", "text": "Le jury avait choisi le gagnant." }
+            ],
+            "correct_option_id": "opt_2"
           },
           "feedback": {
-            "correct": "Correcto. Facturación = Chiffre d'affaires.",
-            "incorrect": "El término financiero es 'Chiffre d'affaires'."
+            "correct": "Correct. 'A été choisi' is the passive form.",
+            "incorrect": "Look for Être + Past Participle + Par."
           }
         },
         {
-          "id": "ex_007",
-          "type": "full_translation",
+          "id": "ex_b2_016",
+          "type": "sentence_builder",
           "difficulty": "hard",
-          "instruction": "Traduce usando el pronombre relativo compuesto.",
-          "prompt": "Es el proyecto en el cual pienso.",
+          "instruction": "Emphasis: Construct 'What worries me is the deadline'.",
+          "prompt": null,
           "content": {
-            "placeholder": "...",
-            "accepted_answers": ["C'est le projet auquel je pense."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+            "segments": ["Ce", "qui", "m'inquiète", "c'est", "le", "délai"],
+            "correct_order": ["Ce", "qui", "m'inquiète", "c'est", "le", "délai"],
+            "distractors": ["que", "la"]
           },
           "feedback": {
-            "correct": "Exacto. Penser À + Lequel = Auquel.",
-            "incorrect": "La preposición 'à' se contrae con 'lequel' -> Auquel."
+            "correct": "Excellent. 'Ce qui' serves as the subject of 'inquiète'.",
+            "incorrect": "Use 'Ce qui' because 'inquiète' needs a subject."
           }
         },
         {
-          "id": "ex_008",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Il faut que' (Subjuntivo).",
-          "prompt": "Es necesario que vayas a la reunión.",
+          "id": "ex_b2_017",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Shopping: 'Payer en plusieurs fois' means...",
+          "prompt": "Vous pouvez payer en plusieurs fois sans frais.",
           "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Il faut que tu ailles à la réunion.", "Il est nécessaire que tu ailles à la réunion."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+            "options": [
+              { "id": "opt_1", "text": "To pay with different cards" },
+              { "id": "opt_2", "text": "To pay in installments" },
+              { "id": "opt_3", "text": "To pay cash" }
+            ],
+            "correct_option_id": "opt_2"
           },
           "feedback": {
-            "correct": "Bien. Verbo 'Aller' en subjuntivo: 'que tu ailles'.",
-            "incorrect": "Después de 'Il faut que', usa el subjuntivo de Aller (Ailles)."
+            "correct": "Yes. Installments (3 or 4 times usually).",
+            "incorrect": "It refers to splitting the payment over time."
           }
         },
         {
-          "id": "ex_009",
+          "id": "ex_b2_018",
           "type": "full_translation",
           "difficulty": "hard",
-          "instruction": "Traduce usando 'Ce qui' (Sujeto).",
-          "prompt": "Lo que me molesta es el ruido.",
+          "instruction": "Idiom: Translate 'He stood me up' (appointment).",
+          "prompt": "He stood me up.",
           "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Ce qui me dérange, c'est le bruit.", "Ce qui me gêne, c'est le bruit."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Correcto. 'Ce qui' actúa como sujeto del verbo déranger/gêner.",
-            "incorrect": "Usa el pronombre demostrativo relativo 'Ce qui'."
-          }
-        },
-        {
-          "id": "ex_010",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Avoir beau' (Oposición).",
-          "prompt": "Por más que intento, no comprendo.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["J'ai beau essayer, je ne comprends pas."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "¡Muy bien! Estructura B2 avanzada: Avoir beau + Infinitivo.",
-            "incorrect": "La expresión 'J'ai beau essayer' significa 'Por mucho que lo intente'."
-          }
-        },
-        {
-          "id": "ex_011",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Se faire' + Infinitivo (Causativo pasivo).",
-          "prompt": "Me robaron el coche.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Je me suis fait voler ma voiture.", "On a volé ma voiture."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Correcto. 'Je me suis fait voler...' implica que sufriste la acción.",
-            "incorrect": "Usa la estructura 'Se faire' + infinitivo."
-          }
-        },
-        {
-          "id": "ex_012",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'En' (Gerundio/Simultaneidad).",
-          "prompt": "Él trabaja escuchando música.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Il travaille en écoutant de la musique."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Bien. En + Participio presente (Gerundio).",
-            "incorrect": "Para acciones simultáneas usamos 'En écoutant'."
-          }
-        },
-        {
-          "id": "ex_013",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando vocabulario bancario.",
-          "prompt": "Estoy en números rojos (al descubierto).",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Je suis à découvert.", "Mon compte est à découvert."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Exacto. 'Être à découvert'.",
-            "incorrect": "La expresión bancaria es 'À découvert'."
-          }
-        },
-        {
-          "id": "ex_014",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando la restricción 'Ne... que'.",
-          "prompt": "Solo tengo diez euros.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Je n'ai que dix euros.", "J'ai seulement dix euros."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Bien. 'Je n'ai que...' es más elegante que 'seulement'.",
-            "incorrect": "Intenta usar la negación restrictiva 'ne... que'."
-          }
-        },
-        {
-          "id": "ex_015",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Au cas où' (Condicional).",
-          "prompt": "Llévate un paraguas por si llueve.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Prends un parapluie au cas où il pleuvrait."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Perfecto. 'Au cas où' va seguido de condicional (pleuvrait).",
-            "incorrect": "El verbo debe estar en condicional después de 'Au cas où'."
-          }
-        },
-        {
-          "id": "ex_016",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Manquer à' (Sentimiento).",
-          "prompt": "Te echo de menos (Me faltas).",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Tu me manques."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "¡Cuidado! La estructura es inversa: Tú me faltas a mí.",
-            "incorrect": "En francés, el sujeto es la persona echada de menos: 'Tu me manques'."
-          }
-        },
-        {
-          "id": "ex_017",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Faire part de'.",
-          "prompt": "Él nos informó (hizo parte) de su decisión.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Il nous a fait part de sa décision."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Bien. Expresión formal 'Faire part de quelque chose à quelqu'un'.",
-            "incorrect": "Usa la expresión 'Faire part de'."
-          }
-        },
-        {
-          "id": "ex_018",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Tant que' (Duración).",
-          "prompt": "Mientras haya vida, hay esperanza.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Tant qu'il y a de la vie, il y a de l'espoir."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Correcto. 'Tant que' expresa la duración simultánea.",
-            "incorrect": "La expresión es 'Tant qu'il y a...'."
-          }
-        },
-        {
-          "id": "ex_019",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando la doble pronominalización.",
-          "prompt": "Yo se lo di (el libro a él).",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Je le lui ai donné."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Bien. Orden: Le (CD) + Lui (CI) + Verbo.",
-            "incorrect": "Recuerda el orden de los pronombres: 'Je le lui ai donné'."
-          }
-        },
-        {
-          "id": "ex_020",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Venir de' (Pasado reciente).",
-          "prompt": "Acabamos de terminar.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Nous venons de finir.", "Nous venons de terminer.", "On vient de finir."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Correcto. Venir de + Infinitivo.",
-            "incorrect": "Usa la perífrasis 'Venir de' conjugada en presente."
-          }
-        },
-        {
-          "id": "ex_021",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce con 'Pour que' (Subjuntivo).",
-          "prompt": "Lo explico para que comprendas.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Je l'explique pour que tu comprennes.", "J'explique pour que vous compreniez."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Bien. 'Pour que' exige subjuntivo (comprennes).",
-            "incorrect": "El verbo comprender debe estar en subjuntivo tras 'pour que'."
-          }
-        },
-        {
-          "id": "ex_022",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando vocabulario suizo/belga (Números).",
-          "prompt": "Eso cuesta noventa francos.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Ça coûte nonante francs.", "Cela coûte nonante francs."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Correcto. En Suiza/Bélgica se usa 'Nonante'.",
-            "incorrect": "Usa la forma lógica 'Nonante' en lugar de 'Quatre-vingt-dix'."
-          }
-        },
-        {
-          "id": "ex_023",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'S'attendre à'.",
-          "prompt": "No me esperaba este resultado.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Je ne m'attendais pas à ce résultat."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Excelente. 'S'attendre à' es reflexivo.",
-            "incorrect": "El verbo es 'S'attendre à'."
-          }
-        },
-        {
-          "id": "ex_024",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Avant que' (Subjuntivo).",
-          "prompt": "Sal antes de que él llegue.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Pars avant qu'il n'arrive.", "Sors avant qu'il arrive."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Bien. 'Avant que' + Subjuntivo (con o sin 'ne' expletivo).",
-            "incorrect": "Requiere subjuntivo. Nota: el 'ne' no es negativo, es estilístico."
-          }
-        },
-        {
-          "id": "ex_025",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando el pronombre 'Y' (Lugar).",
-          "prompt": "Voy allí (a la oficina) mañana.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["J'y vais demain."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Correcto. 'Y' reemplaza el lugar introducido por 'à'.",
-            "incorrect": "Coloca el pronombre 'y' antes del verbo."
-          }
-        },
-        {
-          "id": "ex_026",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce la expresión idiomática 'Poser un lapin'.",
-          "prompt": "Él me dejó plantado (no vino a la cita).",
-          "content": {
-            "placeholder": "...",
+            "placeholder": "Il m'a...",
             "accepted_answers": ["Il m'a posé un lapin."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+            "special_characters": ["é", "è", "à", "ç"]
           },
           "feedback": {
-            "correct": "Exacto. 'Poser un lapin' significa no acudir a una cita.",
-            "incorrect": "La expresión es 'Poser un lapin'."
+            "correct": "Bravo! 'Poser un lapin'.",
+            "incorrect": "The French idiom is 'Poser un lapin'."
           }
         },
         {
-          "id": "ex_027",
+          "id": "ex_b2_019",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Grammar: Temporal Sequence.",
+          "prompt": "Nous partirons quand tu ______ tes devoirs.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "auras fini" },
+              { "id": "opt_2", "text": "as fini" },
+              { "id": "opt_3", "text": "finis" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correct. Future Anterior (auras fini) precedes the Future Simple (partirons).",
+            "incorrect": "Use Future Anterior for the action that happens *first* in the future."
+          }
+        },
+        {
+          "id": "ex_b2_020",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Literature: Describe a book plot.",
+          "prompt": null,
+          "content": {
+            "segments": ["L'intrigue", "se", "déroule", "au", "Moyen-Âge"],
+            "correct_order": ["L'intrigue", "se", "déroule", "au", "Moyen-Âge"],
+            "distractors": ["passe", "en"]
+          },
+          "feedback": {
+            "correct": "Bien. 'Se dérouler' is more formal than 'se passer'.",
+            "incorrect": "L'intrigue (the plot) se déroule (takes place)."
+          }
+        },
+        {
+          "id": "ex_b2_021",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Work: What is 'Le télétravail'?",
+          "prompt": "Je fais du télétravail le vendredi.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Telemarketing" },
+              { "id": "opt_2", "text": "Working from home / remotely" },
+              { "id": "opt_3", "text": "Working on TV" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correct.",
+            "incorrect": "Télétravail = Remote work."
+          }
+        },
+        {
+          "id": "ex_b2_022",
+          "type": "true_false",
+          "difficulty": "hard",
+          "instruction": "Grammar: Is this correct? 'C'est moi qui a fait ça.'",
+          "prompt": "C'est moi qui a fait ça.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Incorrect. Agreement is required with the antecedent 'Moi'. It should be 'C'est moi qui AI fait ça'."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_b2_023",
           "type": "full_translation",
           "difficulty": "hard",
-          "instruction": "Traduce usando 'Celui/Celle' (Demostrativos).",
-          "prompt": "Esta falda es la de María.",
+          "instruction": "Household: Translate 'The lightbulb is burnt out'.",
+          "prompt": "The lightbulb is burnt out.",
           "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Cette jupe est celle de Marie."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+            "placeholder": "L'ampoule...",
+            "accepted_answers": ["L'ampoule est grillée."],
+            "special_characters": ["é", "è", "à", "ç"]
           },
           "feedback": {
-            "correct": "Bien. Jupe (fem) -> Celle.",
-            "incorrect": "Usa el pronombre demostrativo femenino 'Celle'."
+            "correct": "Oui. 'Grillée'.",
+            "incorrect": "For lightbulbs, we say 'Grillée'."
           }
         },
         {
-          "id": "ex_028",
+          "id": "ex_b2_024",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Restaurant: 'L'addition est salée' means...",
+          "prompt": "On ne reviendra pas, l'addition était salée !",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "The food was too salty" },
+              { "id": "opt_2", "text": "The bill was very expensive" },
+              { "id": "opt_3", "text": "The waiter was rude" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correct. It means the price was high.",
+            "incorrect": "It's an idiom regarding the cost, not the taste."
+          }
+        },
+        {
+          "id": "ex_b2_025",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Work: Ask about benefits.",
+          "prompt": null,
+          "content": {
+            "segments": ["Proposez-vous", "des", "tickets-restaurant", "?"],
+            "correct_order": ["Proposez-vous", "des", "tickets-restaurant", "?"],
+            "distractors": ["les", "de"]
+          },
+          "feedback": {
+            "correct": "Bien. Tickets-restaurant are a common perk in France.",
+            "incorrect": "Use inversion for formal questions."
+          }
+        },
+        {
+          "id": "ex_b2_026",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Grammar: 'De moins en moins' with a noun.",
+          "prompt": "Il y a ______ clients dans ce magasin.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "de moins en moins" },
+              { "id": "opt_2", "text": "de moins en moins de" },
+              { "id": "opt_3", "text": "moins en moins" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correct. We need 'DE' before the noun 'clients'.",
+            "incorrect": "With nouns, you always add 'de' (De moins en moins DE...)."
+          }
+        },
+        {
+          "id": "ex_b2_027",
           "type": "full_translation",
           "difficulty": "hard",
-          "instruction": "Traduce usando 'Se méfier de' (Desconfiar).",
-          "prompt": "Desconfía de las apariencias.",
+          "instruction": "Weather: Translate 'It is freezing'.",
+          "prompt": "It is freezing.",
           "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Méfie-toi des apparences.", "Méfiez-vous des apparences."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+            "placeholder": "Il...",
+            "accepted_answers": ["Il gèle.", "Il fait un froid de canard."],
+            "special_characters": ["é", "è", "à", "ç"]
           },
           "feedback": {
-            "correct": "Correcto. Imperativo de verbo pronominal con 'de'.",
-            "incorrect": "Recuerda la preposición: 'Se méfier DE'."
+            "correct": "Exact. 'Il gèle' (literally) or 'Il fait un froid de canard' (idiom).",
+            "incorrect": "Use the verb 'Geler'."
           }
         },
         {
-          "id": "ex_029",
+          "id": "ex_b2_028",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Household: Calling a professional.",
+          "prompt": "L'évier est bouché, j'appelle le ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "plombier" },
+              { "id": "opt_2", "text": "serrurier" },
+              { "id": "opt_3", "text": "pompier" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correct. Plumber.",
+            "incorrect": "Serrurier is locksmith. Pompier is firefighter."
+          }
+        },
+        {
+          "id": "ex_b2_029",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Shopping: 'Date de péremption' warning.",
+          "prompt": null,
+          "content": {
+            "segments": ["Attention", "la", "date", "est", "dépassée"],
+            "correct_order": ["Attention", "la", "date", "est", "dépassée"],
+            "distractors": ["perdue"]
+          },
+          "feedback": {
+            "correct": "Bien. The expiration date has passed.",
+            "incorrect": "Dépassée = Passed/Exceeded."
+          }
+        },
+        {
+          "id": "ex_b2_030",
+          "type": "true_false",
+          "difficulty": "medium",
+          "instruction": "Literature: 'Un bouquiniste' sells new books in a mall.",
+          "prompt": "Un bouquiniste vend des livres neufs.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. 'Bouquinistes' are the second-hand booksellers (often along the Seine in Paris)."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_b2_031",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Grammar: Choose the correct form for 'The house whose roof is red'.",
+          "prompt": "La maison ______ le toit est rouge.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "qui" },
+              { "id": "opt_2", "text": "dont" },
+              { "id": "opt_3", "text": "où" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correct. 'Dont' indicates possession (Le toit DE la maison).",
+            "incorrect": "Use 'Dont' for 'whose' or possession."
+          }
+        },
+        {
+          "id": "ex_b2_032",
           "type": "full_translation",
           "difficulty": "hard",
-          "instruction": "Traduce usando el condicional de cortesía.",
-          "prompt": "¿Podría usted enviarme el archivo?",
+          "instruction": "Work: Translate 'I hand in my resignation'.",
+          "prompt": "I hand in my resignation.",
           "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Pourriez-vous m'envoyer le fichier ?", "Pourriez-vous m'envoyer le dossier ?"],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+            "placeholder": "Je donne...",
+            "accepted_answers": ["Je donne ma démission.", "Je présente ma démission."],
+            "special_characters": ["é", "è", "à", "ç"]
           },
           "feedback": {
-            "correct": "Bien. Pouvoir en condicional: Pourriez-vous.",
-            "incorrect": "Usa 'Pourriez-vous' para ser educado."
+            "correct": "Oui. Donner sa démission.",
+            "incorrect": "Vocab: Démission."
           }
         },
         {
-          "id": "ex_030",
+          "id": "ex_b2_033",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Trends: Synonym for 'Stagnation'.",
+          "prompt": "Le marché est en ______ depuis un an.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "croissance" },
+              { "id": "opt_2", "text": "stagnation" },
+              { "id": "opt_3", "text": "chute" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correct. It's a transparent word.",
+            "incorrect": "Croissance (growth), Chute (fall)."
+          }
+        },
+        {
+          "id": "ex_b2_034",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Movies: Based on a true story.",
+          "prompt": null,
+          "content": {
+            "segments": ["Ce", "film", "est", "tiré", "d'une", "histoire", "vraie"],
+            "correct_order": ["Ce", "film", "est", "tiré", "d'une", "histoire", "vraie"],
+            "distractors": ["basé", "sur"]
+          },
+          "feedback": {
+            "correct": "Excellent. 'Tiré d'une histoire vraie' is the standard phrase.",
+            "incorrect": "While 'basé sur' exists, 'tiré de' is more elegant in this context."
+          }
+        },
+        {
+          "id": "ex_b2_035",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Grammar: Which one is 'Although' + Subjunctive?",
+          "prompt": "______ il soit riche, il n'est pas heureux.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Bien qu'" },
+              { "id": "opt_2", "text": "Parce qu'" },
+              { "id": "opt_3", "text": "Alors qu'" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correct. 'Bien que' triggers the Subjunctive (soit).",
+            "incorrect": "'Alors que' uses the Indicative. 'Bien que' uses Subjunctive."
+          }
+        },
+        {
+          "id": "ex_b2_036",
+          "type": "full_translation",
+          "difficulty": "medium",
+          "instruction": "Restaurant: Ask for 'Still water' (not sparkling).",
+          "prompt": "Une bouteille d'eau plate, s'il vous plaît.",
+          "content": {
+            "placeholder": "Une bouteille...",
+            "accepted_answers": ["Une bouteille d'eau plate, s'il vous plaît."],
+            "special_characters": ["é", "è", "à", "ç"]
+          },
+          "feedback": {
+            "correct": "Bien. Eau plate.",
+            "incorrect": "Opposite of 'Eau gazeuse'."
+          }
+        },
+        {
+          "id": "ex_b2_037",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Future Anterior: Probability in the past.",
+          "prompt": null,
+          "content": {
+            "segments": ["Ils", "auront", "sûrement", "raté", "le", "bus"],
+            "correct_order": ["Ils", "auront", "sûrement", "raté", "le", "bus"],
+            "distractors": ["seront"]
+          },
+          "feedback": {
+            "correct": "Correct. 'Auront raté' (They surely missed).",
+            "incorrect": "Rater uses Avoir."
+          }
+        },
+        {
+          "id": "ex_b2_038",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Literature: What is 'La quatrième de couverture'?",
+          "prompt": "Lis la quatrième de couverture pour voir le résumé.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Page 4" },
+              { "id": "opt_2", "text": "The back cover" },
+              { "id": "opt_3", "text": "The table of contents" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correct. The back cover.",
+            "incorrect": "It's the back of the book where the blurb is."
+          }
+        },
+        {
+          "id": "ex_b2_039",
+          "type": "true_false",
+          "difficulty": "hard",
+          "instruction": "Grammar: 'Il s'est fait couper les cheveux' (Causative).",
+          "prompt": "This sentence means he cut his own hair.",
+          "content": {
+            "is_correct": false,
+            "explanation": "False. 'Faire + infinitive' means he got someone else to do it (He got his hair cut)."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_b2_040",
           "type": "full_translation",
           "difficulty": "hard",
-          "instruction": "Traduce usando 'À cause de' (Causa negativa).",
-          "prompt": "Perdimos por culpa del retraso.",
+          "instruction": "Trends: Translate 'The purchasing power'.",
+          "prompt": "The purchasing power.",
           "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Nous avons perdu à cause du retard.", "On a perdu à cause du retard."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+            "placeholder": "Le...",
+            "accepted_answers": ["Le pouvoir d'achat."],
+            "special_characters": ["é", "è", "à", "ç"]
           },
           "feedback": {
-            "correct": "Correcto. 'À cause de' se usa para causas negativas o neutras.",
-            "incorrect": "No uses 'Grâce à' (positivo). Usa 'À cause de'."
+            "correct": "Exact. Le pouvoir d'achat.",
+            "incorrect": "Standard economic term."
           }
         },
         {
-          "id": "ex_031",
+          "id": "ex_b2_041",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Grammar: Choose the correct preposition for remote work.",
+          "prompt": "Je travaille ______ domicile.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "à" },
+              { "id": "opt_2", "text": "en" },
+              { "id": "opt_3", "text": "sur" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correct. À domicile.",
+            "incorrect": "Expression: Travailler à domicile."
+          }
+        },
+        {
+          "id": "ex_b2_042",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Household: 'I have to do the spring cleaning'.",
+          "prompt": null,
+          "content": {
+            "segments": ["Je", "dois", "faire", "le", "ménage", "de", "printemps"],
+            "correct_order": ["Je", "dois", "faire", "le", "ménage", "de", "printemps"],
+            "distractors": ["nettoyage"]
+          },
+          "feedback": {
+            "correct": "Bien. 'Ménage de printemps' is the expression.",
+            "incorrect": "We say 'Faire le ménage'."
+          }
+        },
+        {
+          "id": "ex_b2_043",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Movies: A 'Long-métrage' is...",
+          "prompt": "C'est son premier long-métrage.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "A short film" },
+              { "id": "opt_2", "text": "A feature film / Full-length movie" },
+              { "id": "opt_3", "text": "A documentary" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correct.",
+            "incorrect": "Court-métrage = Short. Long-métrage = Feature."
+          }
+        },
+        {
+          "id": "ex_b2_044",
           "type": "full_translation",
           "difficulty": "hard",
-          "instruction": "Traduce usando 'Quiconque' (Cualquiera que).",
-          "prompt": "Cualquiera que rompa esto pagará.",
+          "instruction": "Shopping: Translate 'Out of stock'.",
+          "prompt": "Out of stock.",
           "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Quiconque cassera ceci paiera.", "Quiconque brise cela paiera."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+            "placeholder": "En...",
+            "accepted_answers": ["En rupture de stock.", "Rupture de stock."],
+            "special_characters": ["é", "è", "à", "ç"]
           },
           "feedback": {
-            "correct": "Nivel avanzado. 'Quiconque' funciona como sujeto.",
-            "incorrect": "Usa el pronombre indefinido 'Quiconque'."
+            "correct": "Oui. Rupture de stock.",
+            "incorrect": "Expression: En rupture de stock."
           }
         },
         {
-          "id": "ex_032",
+          "id": "ex_b2_045",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Grammar: Emphasis on the place.",
+          "prompt": "C'est à Paris ______ j'ai grandi.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "que" },
+              { "id": "opt_2", "text": "où" },
+              { "id": "opt_3", "text": "qui" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Tricky! It is 'QUE'. 'C'est à Paris QUE j'ai grandi'.",
+            "incorrect": "If you say 'C'est Paris OÙ j'ai grandi', it emphasizes the city. But the structure 'C'est [Preposition+Place] QUE' is the standard emphasis structure."
+          }
+        },
+        {
+          "id": "ex_b2_046",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Weather: 'A heatwave is hitting the country'.",
+          "prompt": null,
+          "content": {
+            "segments": ["Une", "vague", "de", "chaleur", "frappe", "le", "pays"],
+            "correct_order": ["Une", "vague", "de", "chaleur", "frappe", "le", "pays"],
+            "distractors": ["tape"]
+          },
+          "feedback": {
+            "correct": "Bien. Vague de chaleur = Heatwave.",
+            "incorrect": "Frapper (to hit/strike) is used for extreme weather."
+          }
+        },
+        {
+          "id": "ex_b2_047",
+          "type": "true_false",
+          "difficulty": "medium",
+          "instruction": "Work: 'Un jour férié' means a day off for vacation.",
+          "prompt": "Demain est un jour férié.",
+          "content": {
+            "is_correct": true,
+            "explanation": "Correct/Nuance: It is a 'Public Holiday' (Bank holiday), so you generally don't work."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_b2_048",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Grammar: Indirect Speech.",
+          "prompt": "Il m'a demandé ______ je voulais.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "qu'est-ce que" },
+              { "id": "opt_2", "text": "ce que" },
+              { "id": "opt_3", "text": "quoi" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correct. 'Qu'est-ce que' becomes 'Ce que' in indirect speech.",
+            "incorrect": "Il m'a demandé ce que je voulais."
+          }
+        },
+        {
+          "id": "ex_b2_049",
           "type": "full_translation",
           "difficulty": "hard",
-          "instruction": "Traduce usando 'Se passer de' (Prescindir).",
-          "prompt": "No puedo prescindir de mi móvil.",
+          "instruction": "Restaurant: Translate 'Keep the change'.",
+          "prompt": "Keep the change.",
           "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Je ne peux pas me passer de mon portable.", "Je ne peux pas me passer de mon natel."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+            "placeholder": "Gardez...",
+            "accepted_answers": ["Gardez la monnaie."],
+            "special_characters": ["é", "è", "à", "ç"]
           },
           "feedback": {
-            "correct": "Bien. 'Se passer de' = Vivir sin algo.",
-            "incorrect": "La expresión es 'Se passer de'."
+            "correct": "Exact. Gardez la monnaie.",
+            "incorrect": "Monnaie = Change (coins)."
           }
         },
         {
-          "id": "ex_033",
-          "type": "full_translation",
+          "id": "ex_b2_050",
+          "type": "selection_single",
           "difficulty": "hard",
-          "instruction": "Traduce usando la voz pasiva de 'On'.",
-          "prompt": "Se dice que él es rico.",
+          "instruction": "Literature: What is 'Une plume' referring to metaphorically?",
+          "prompt": "Cet auteur a une très belle plume.",
           "content": {
-            "placeholder": "...",
-            "accepted_answers": ["On dit qu'il est riche.", "Il est dit qu'il est riche."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+            "options": [
+              { "id": "opt_1", "text": "A nice pen" },
+              { "id": "opt_2", "text": "A great writing style" },
+              { "id": "opt_3", "text": "A bird" }
+            ],
+            "correct_option_id": "opt_2"
           },
           "feedback": {
-            "correct": "Correcto. 'On dit que...' es la forma más natural.",
-            "incorrect": "Usa 'On dit que...' para rumores generales."
+            "correct": "Correct. It refers to the style of the writer.",
+            "incorrect": "It's a metaphor for writing talent."
           }
-        },
-        {
-          "id": "ex_034",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando vocabulario de Quebec (Correo).",
-          "prompt": "Envíame un correo electrónico (versión Quebec).",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Envoie-moi un courriel."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "¡Exacto! En Quebec se dice 'Courriel', no 'Email'.",
-            "incorrect": "La palabra quebequense es 'Courriel'."
-          }
-        },
-        {
-          "id": "ex_035",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Faillir' (Casi ocurrir).",
-          "prompt": "Casi me caigo.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["J'ai failli tomber."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Bien. Faillir + Infinitivo.",
-            "incorrect": "Usa el pasado compuesto de Faillir (J'ai failli) + infinitivo."
-          }
-        },
-        {
-          "id": "ex_036",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'De plus en plus' (Progresión).",
-          "prompt": "Es cada vez más difícil.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["C'est de plus en plus difficile."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Correcto. 'De plus en plus' + adjetivo.",
-            "incorrect": "La estructura comparativa progresiva es 'de plus en plus'."
-          }
-        },
-        {
-          "id": "ex_037",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'En vouloir à' (Estar enfadado con).",
-          "prompt": "No te enfades conmigo.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Ne m'en veux pas."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Muy bien. Expresión 'En vouloir à quelqu'un'.",
-            "incorrect": "Usa 'Ne m'en veux pas' (Imperativo negativo)."
-          }
-        },
-        {
-          "id": "ex_038",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'S'agir de' (Tratarse de).",
-          "prompt": "Se trata de un problema grave.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Il s'agit d'un problème grave."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Correcto. 'Il s'agit de' es impersonal.",
-            "incorrect": "Siempre usa el sujeto impersonal 'Il' con 's'agir'."
-          }
-        },
-        {
-          "id": "ex_039",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Tellement' (Consecuencia).",
-          "prompt": "Estaba tan cansado que me dormí.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["J'étais tellement fatigué que je me suis endormi."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Bien. Tellement + Adjetivo + Que...",
-            "incorrect": "Usa 'Tellement... que' para expresar intensidad y consecuencia."
-          }
-        },
-        {
-          "id": "ex_040",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Valoir la peine' (Merecer la pena).",
-          "prompt": "No vale la pena.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Ça ne vaut pas la peine.", "Cela n'en vaut pas la peine."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Correcto. Verbo 'Valoir' (vaut).",
-            "incorrect": "La expresión es 'Valoir la peine'."
-          }
-        },
-        {
-          "id": "ex_041",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando el participio pasado concordado (COD antes).",
-          "prompt": "Son las flores que he comprado.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Ce sont les fleurs que j'ai achetées."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "¡Excelente! 'Que' (fleurs - f.pl.) está antes del verbo -> achetées.",
-            "incorrect": "Regla del COD antepuesto: el participio 'acheté' debe concordar con 'fleurs' (femenino plural)."
-          }
-        },
-        {
-          "id": "ex_042",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Avoir l'air' (Parecer).",
-          "prompt": "Ella parece contenta.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Elle a l'air contente.", "Elle a l'air content."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Bien. Se acepta concordancia con el sujeto (contente) o con 'air' (content), aunque hoy día se prefiere el sujeto.",
-            "incorrect": "Usa la expresión 'Avoir l'air'."
-          }
-        },
-        {
-          "id": "ex_043",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'N'importe quoi' (Tonterías).",
-          "prompt": "Él dice cualquier cosa (tonterías).",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Il dit n'importe quoi."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Correcto. 'N'importe quoi' significa tonterías en este contexto.",
-            "incorrect": "Usa 'N'importe quoi'."
-          }
-        },
-        {
-          "id": "ex_044",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Se rendre compte' (Darse cuenta).",
-          "prompt": "Me di cuenta del error.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Je me suis rendu compte de l'erreur."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Bien. Participio 'rendu' invariable en esta expresión.",
-            "incorrect": "La expresión es 'Se rendre compte de'."
-          }
-        },
-        {
-          "id": "ex_045",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce con 'À moins que' (A menos que).",
-          "prompt": "Iré a menos que tú no quieras.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["J'irai à moins que tu ne veuilles.", "J'irai à moins que tu veuilles."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Nivel B2/C1. 'À moins que' + Subjuntivo + 'ne' (opcional).",
-            "incorrect": "Requiere subjuntivo del verbo Vouloir (Veuilles)."
-          }
-        },
-        {
-          "id": "ex_046",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando vocabulario belga/suizo (Comidas).",
-          "prompt": "Comemos (almorzamos) al mediodía (estilo belga).",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Nous dînons à midi.", "On dîne à midi."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Correcto. En Bélgica/Suiza, el almuerzo es 'Le dîner'.",
-            "incorrect": "No uses 'Déjeuner' si te piden estilo belga/suizo."
-          }
-        },
-        {
-          "id": "ex_047",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Au lieu de' (En lugar de).",
-          "prompt": "Trabaja en lugar de hablar.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Travaille au lieu de parler."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Bien. 'Au lieu de' + Infinitivo.",
-            "incorrect": "Usa la preposición compuesta 'Au lieu de'."
-          }
-        },
-        {
-          "id": "ex_048",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Devoir' (Suposición probable).",
-          "prompt": "Él debe de estar enfermo (supongo).",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Il doit être malade."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Correcto. 'Devoir' expresa obligación o probabilidad fuerte.",
-            "incorrect": "Simplemente 'Il doit être...'."
-          }
-        },
-        {
-          "id": "ex_049",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce la expresión 'Coup de foudre'.",
-          "prompt": "Fue amor a primera vista.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["C'était le coup de foudre.", "Ça a été le coup de foudre."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Exacto. 'Coup de foudre' (Rayo) = Amor a primera vista.",
-            "incorrect": "La expresión idiomática es 'Coup de foudre'."
-          }
-        },
-        {
-          "id": "ex_050",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando 'Quand même' (De todos modos).",
-          "prompt": "Gracias de todos modos.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Merci quand même."],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Perfecto. Expresión muy común: 'Merci quand même'.",
-            "incorrect": "Usa 'Quand même'."
-          }
-        },
-        {
-        "id": "ex_051",
-        "type": "true_false",
-        "difficulty": "easy",
-        "instruction": "Fue dificil?",
-        "prompt": "Te parecio dificil,
-        "content": {
-        "is_correct": false,
-        "explanation": "Mentiros@"
-        },
-        "feedback": null
         }
       ]
     }
