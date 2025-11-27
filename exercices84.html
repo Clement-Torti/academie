@@ -1,0 +1,422 @@
+<script type="application/json" id="exercise-data">
+    {
+      "interactive_exercises": [
+        {
+          "id": "ex_001",
+          "type": "selection_single",
+          "difficulty": "easy",
+          "instruction": "Elige el conector adecuado para expresar oposición.",
+          "prompt": "______ il soit riche, il n'est pas généreux.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Pour que" },
+              { "id": "opt_2", "text": "Bien qu'" },
+              { "id": "opt_3", "text": "Avant qu'" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "¡Exacto! 'Bien que' (Aunque) introduce una oposición y usa subjuntivo.",
+            "incorrect": "'Pour que' es finalidad y 'Avant que' es tiempo. Aquí contrastamos riqueza vs generosidad."
+          }
+        },
+        {
+          "id": "ex_002",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Completa con la conjugación correcta del Subjuntivo (Être).",
+          "prompt": "Je fais tout pour que tu ______ heureux.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "es" },
+              { "id": "opt_2", "text": "sois" },
+              { "id": "opt_3", "text": "soit" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "¡Muy bien! 'Pour que tu sois'.",
+            "incorrect": "Recuerda: Subjuntivo de Être para 'Tu' es 'sois'. 'Es' es indicativo."
+          }
+        },
+        {
+          "id": "ex_003",
+          "type": "true_false",
+          "difficulty": "medium",
+          "instruction": "¿Esta frase es gramaticalmente correcta?",
+          "prompt": "J'espère qu'il vienne demain.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. El verbo 'Espérer' usa INDICATIVO (J'espère qu'il viendra/vient)."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_004",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Ordena la frase (Cuidado con el 'ne' expletivo).",
+          "prompt": null,
+          "content": {
+            "segments": ["Partez", "avant", "qu'", "il", "ne", "vienne"],
+            "correct_order": ["Partez", "avant", "qu'", "il", "ne", "vienne"],
+            "distractors": ["vient", "pas"]
+          },
+          "feedback": {
+            "correct": "¡Excelente! El 'ne' es opcional pero elegante después de 'Avant que'.",
+            "incorrect": "La estructura es: Avant que + Sujeto + (ne) + Verbo en Subjuntivo."
+          }
+        },
+        {
+          "id": "ex_005",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Selecciona el verbo correcto para 'A menos que llueva'.",
+          "prompt": "Nous irons au parc, à moins qu'il ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "pleut" },
+              { "id": "opt_2", "text": "pleuve" },
+              { "id": "opt_3", "text": "plu" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "¡Correcto! 'Pleuve' es el subjuntivo de Pleuvoir.",
+            "incorrect": "'Pleut' es indicativo. 'À moins que' exige subjuntivo."
+          }
+        },
+        {
+          "id": "ex_006",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce: 'Lo explico para que comprendas' (usando 'comprendre').",
+          "prompt": "Lo explico para que comprendas.",
+          "content": {
+            "placeholder": "J'explique...",
+            "accepted_answers": ["J'explique pour que tu comprennes.", "J'explique afin que tu comprennes."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "¡Bien hecho! J'explique pour que tu comprennes.",
+            "incorrect": "Usa 'Pour que' + Subjuntivo de Comprendre (que tu comprennes)."
+          }
+        },
+        {
+          "id": "ex_007",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Elige la opción correcta para completar la frase de negocios.",
+          "prompt": "Nous négocions jusqu'à ce que nous ______ un compromis.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "trouvons" },
+              { "id": "opt_2", "text": "trouviez" },
+              { "id": "opt_3", "text": "trouvions" }
+            ],
+            "correct_option_id": "opt_3"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Que nous trouvions' (Subjuntivo - termina en 'ions').",
+            "incorrect": "Para 'Nous', el subjuntivo y el imperfecto suelen coincidir en forma (-ions)."
+          }
+        },
+        {
+          "id": "ex_008",
+          "type": "true_false",
+          "difficulty": "easy",
+          "instruction": "Verdadero o Falso: 'Bien que' siempre va seguido de Subjuntivo.",
+          "prompt": "Bien qu'il soit tard...",
+          "content": {
+            "is_correct": true,
+            "explanation": "Verdadero. 'Bien que' es un activador automático del subjuntivo."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_009",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Forma la frase: 'Aunque ella tenga miedo'.",
+          "prompt": null,
+          "content": {
+            "segments": ["Bien", "qu'", "elle", "ait", "peur"],
+            "correct_order": ["Bien", "qu'", "elle", "ait", "peur"],
+            "distractors": ["a", "est"]
+          },
+          "feedback": {
+            "correct": "¡Oui! 'Ait' es el subjuntivo de Avoir para Elle.",
+            "incorrect": "No uses 'a' (indicativo). El subjuntivo de Avoir es: j'aie, tu aies, il ait..."
+          }
+        },
+        {
+          "id": "ex_010",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "¿Qué verbo corresponde a 'fasse' en infinitivo?",
+          "prompt": "Je ne pars pas sans qu'il le fasse.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Falloir" },
+              { "id": "opt_2", "text": "Faire" },
+              { "id": "opt_3", "text": "Être" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Fasse' es el subjuntivo irregular de Faire.",
+            "incorrect": "'Falloir' se convierte en 'faille'. 'Fasse' viene de Faire."
+          }
+        },
+        {
+          "id": "ex_011",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce la frase usando 'Avant que'.",
+          "prompt": "Termina antes de que ellos lleguen.",
+          "content": {
+            "placeholder": "Escribe la frase...",
+            "accepted_answers": ["Finis avant qu'ils arrivent.", "Finis avant qu'ils n'arrivent."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "¡Muy bien! 'Avant qu'ils arrivent' (o 'n'arrivent').",
+            "incorrect": "Usa el subjuntivo del verbo Arriver (ils arrivent - pronunciación igual, pero es modo subjuntivo)."
+          }
+        },
+        {
+          "id": "ex_012",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Completa la frase con lógica: 'No saldré ______ tú no estés listo'.",
+          "prompt": "Je ne sors pas ______ tu ne sois prêt.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "pour que" },
+              { "id": "opt_2", "text": "bien que" },
+              { "id": "opt_3", "text": "sans que" }
+            ],
+            "correct_option_id": "opt_3"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Sans que' (Sin que).",
+            "incorrect": "'Pour que' es propósito, 'Bien que' es oposición. Aquí la lógica es condición/modo (Sin que estés listo)."
+          }
+        },
+        {
+          "id": "ex_013",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Construye la frase formal: 'A fin de que nosotros podamos negociar'.",
+          "prompt": null,
+          "content": {
+            "segments": ["Afin", "que", "nous", "puissions", "négocier"],
+            "correct_order": ["Afin", "que", "nous", "puissions", "négocier"],
+            "distractors": ["pouvons", "pour"]
+          },
+          "feedback": {
+            "correct": "Excelente. 'Puissions' es el subjuntivo de Pouvoir.",
+            "incorrect": "'Pouvons' es indicativo. Subjuntivo de Pouvoir: que nous puissions."
+          }
+        },
+        {
+          "id": "ex_014",
+          "type": "true_false",
+          "difficulty": "medium",
+          "instruction": "Analiza: 'Quoiqu'il est malade, il travaille'. ¿Es correcto?",
+          "prompt": "Quoiqu'il est malade, il travaille.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. 'Quoique' (sinónimo de Bien que) exige subjuntivo: 'Quoiqu'il SOIT'."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_015",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Elige la forma correcta del verbo 'Savoir'.",
+          "prompt": "Il faut qu'elle ______ la vérité avant de signer.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "sait" },
+              { "id": "opt_2", "text": "sache" },
+              { "id": "opt_3", "text": "save" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "¡Exacto! El subjuntivo de Savoir es muy irregular: 'Sache'.",
+            "incorrect": "No existe 'save'. Savoir -> Que je sache, que tu saches, qu'elle sache."
+          }
+        },
+        {
+          "id": "ex_016",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce usando 'Bien que' (Aunque sea difícil).",
+          "prompt": "Aunque sea difícil, yo continúo.",
+          "content": {
+            "placeholder": "Escribe la frase...",
+            "accepted_answers": ["Bien que ce soit difficile, je continue.", "Bien que c'est difficile, je continue."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Bien. 'Bien que ce soit difficile...'",
+            "incorrect": "Usa 'Ce soit' (subjuntivo de C'est)."
+          }
+        },
+        {
+          "id": "ex_017",
+          "type": "selection_single",
+          "difficulty": "easy",
+          "instruction": "¿Qué frase usa el modo correcto?",
+          "prompt": "Selecciona la frase correcta.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "J'espère que tu sois là." },
+              { "id": "opt_2", "text": "J'espère que tu seras là." }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correcto. Espérer + Indicativo (Futuro en este caso).",
+            "incorrect": "¡Cuidado! Espérer es la excepción, no usa subjuntivo."
+          }
+        },
+        {
+          "id": "ex_018",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Ordena: 'Esperamos hasta que tengas el visto bueno'.",
+          "prompt": null,
+          "content": {
+            "segments": ["On", "attend", "jusqu'à", "ce", "que", "tu", "aies", "le", "feu", "vert"],
+            "correct_order": ["On", "attend", "jusqu'à", "ce", "que", "tu", "aies", "le", "feu", "vert"],
+            "distractors": ["as", "avoir"]
+          },
+          "feedback": {
+            "correct": "Muy bien. 'Jusqu'à ce que tu aies' (Verbo Avoir).",
+            "incorrect": "El conector es largo: 'Jusqu'à ce que'. El verbo debe ser subjuntivo (aies)."
+          }
+        },
+        {
+          "id": "ex_019",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Completa: 'Te doy las cifras a condición de que ______ discreto'.",
+          "prompt": "Je te donne les chiffres à condition que tu ______ discret.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "sois" },
+              { "id": "opt_2", "text": "es" },
+              { "id": "opt_3", "text": "seras" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. 'À condition que tu sois'.",
+            "incorrect": "Es una condición hipotética/futura restringida, usa Subjuntivo (sois)."
+          }
+        },
+        {
+          "id": "ex_020",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce: 'Nosotros trabajamos para que todo sea perfecto.'",
+          "prompt": "Nosotros trabajamos para que todo sea perfecto.",
+          "content": {
+            "placeholder": "Nous travaillons...",
+            "accepted_answers": ["Nous travaillons pour que tout soit parfait."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "¡Excelente! 'Pour que tout soit parfait'.",
+            "incorrect": "Recuerda: Pour que + Tout (sujeto) + Soit (verbo)."
+          }
+        },
+        {
+          "id": "ex_021",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "¿Qué conector falta? '______ il pleuve, nous sortons.' (Oposición)",
+          "prompt": "______ il pleuve, nous sortons.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Bien qu'" },
+              { "id": "opt_2", "text": "Puisqu'" },
+              { "id": "opt_3", "text": "Parce qu'" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Bien. 'Bien qu'il pleuve' (Aunque llueva).",
+            "incorrect": "El verbo está en subjuntivo (pleuve). 'Puisque' y 'Parce que' usan indicativo (pleut)."
+          }
+        },
+        {
+          "id": "ex_022",
+          "type": "true_false",
+          "difficulty": "hard",
+          "instruction": "¿Es correcta la frase: 'Il est parti sans que je le sache'?",
+          "prompt": "Il est parti sans que je le sache.",
+          "content": {
+            "is_correct": true,
+            "explanation": "Correcto. 'Sans que' + Subjuntivo de Savoir (sache)."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_023",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Forma la frase: 'A menos que tengas un imprevisto'.",
+          "prompt": null,
+          "content": {
+            "segments": ["À", "moins", "que", "tu", "aies", "un", "imprévu"],
+            "correct_order": ["À", "moins", "que", "tu", "aies", "un", "imprévu"],
+            "distractors": ["as", "ne"]
+          },
+          "feedback": {
+            "correct": "Bien hecho. Usamos 'aies' (Avoir subjuntivo).",
+            "incorrect": "El 'ne' es posible pero no estaba en los segmentos obligatorios. Revisa el verbo 'aies'."
+          }
+        },
+        {
+          "id": "ex_024",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Identifica el verbo 'Aller' en subjuntivo.",
+          "prompt": "Je veux que nous ______ ensemble.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "allons" },
+              { "id": "opt_2", "text": "aillions" },
+              { "id": "opt_3", "text": "allions" }
+            ],
+            "correct_option_id": "opt_3"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Que nous allions'.",
+            "incorrect": "Parece el imperfecto, pero es la forma correcta del subjuntivo para 'nous'."
+          }
+        },
+        {
+          "id": "ex_025",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce: 'Habla hasta que te digan que sí.'",
+          "prompt": "Habla hasta que te digan que sí. (Usar 'On' para 'te digan')",
+          "content": {
+            "placeholder": "Parle...",
+            "accepted_answers": ["Parle jusqu'à ce qu'on te dise oui."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Muy bien. 'Jusqu'à ce qu'on te dise oui'.",
+            "incorrect": "Usa 'Jusqu'à ce que' + Subjuntivo de Dire (qu'on dise)."
+          }
+        }
+      ]
+    }
+    </script>

@@ -1,0 +1,407 @@
+<script type="application/json" id="exercise-data">
+    {
+      "interactive_exercises": [
+        {
+          "id": "ex_001",
+          "type": "selection_single",
+          "difficulty": "easy",
+          "instruction": "Identifica el género de la película basándote en la descripción.",
+          "prompt": "C'est un film avec des policiers, des enquêtes et des crimes.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Une comédie romantique" },
+              { "id": "opt_2", "text": "Un polar" },
+              { "id": "opt_3", "text": "Un film d'horreur" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "¡Correcto! 'Un polar' es la abreviatura de 'film policier'.",
+            "incorrect": "'Comédie romantique' es de amor y 'film d'horreur' es de miedo."
+          }
+        },
+        {
+          "id": "ex_002",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Ordena la frase colocando la CAUSA al principio.",
+          "prompt": null,
+          "content": {
+            "segments": ["Comme", "il", "pleut", "nous", "allons", "au", "cinéma"],
+            "correct_order": ["Comme", "il", "pleut", "nous", "allons", "au", "cinéma"],
+            "distractors": ["Parce que", "car"]
+          },
+          "feedback": {
+            "correct": "¡Muy bien! Cuando la causa va al inicio, usamos obligatoriamente 'Comme'.",
+            "incorrect": "Nunca empieces una frase con 'Parce que' o 'Car'. Usa 'Comme'."
+          }
+        },
+        {
+          "id": "ex_003",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Elige el conector lógico adecuado (Causa evidente).",
+          "prompt": "_______ tu détestes les films tristes, nous irons voir une comédie.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Donc" },
+              { "id": "opt_2", "text": "Puisque" },
+              { "id": "opt_3", "text": "Car" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Exacto. 'Puisque' (Puesto que/Ya que) se usa para causas que ya son conocidas o evidentes.",
+            "incorrect": "'Donc' expresa consecuencia, no causa. 'Car' no suele ir al principio de la frase."
+          }
+        },
+        {
+          "id": "ex_004",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Completa la frase con una causa negativa.",
+          "prompt": "Nous avons raté le début du film _______ la circulation.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "grâce à" },
+              { "id": "opt_2", "text": "à cause de" },
+              { "id": "opt_3", "text": "parce que" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Bien. 'À cause de' introduce una causa negativa + sustantivo.",
+            "incorrect": "'Grâce à' es para causas positivas. 'Parce que' iría seguido de una frase completa (parce qu'il y avait...). "
+          }
+        },
+        {
+          "id": "ex_005",
+          "type": "true_false",
+          "difficulty": "easy",
+          "instruction": "¿Qué significa la expresión 'Pleurer comme une madeleine'?",
+          "prompt": "Esta expresión significa 'Reírse mucho'.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. Significa 'Llorar a mares' (muchísimo). Para reírse es 'MDR' (Mort de rire)."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_006",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Construye una frase usando 'Car' (formal).",
+          "prompt": null,
+          "content": {
+            "segments": ["Je", "préfère", "ce", "film", "car", "le", "scénario", "est", "bon"],
+            "correct_order": ["Je", "préfère", "ce", "film", "car", "le", "scénario", "est", "bon"],
+            "distractors": ["comme", "à cause"]
+          },
+          "feedback": {
+            "correct": "Correcto. 'Car' es más elegante que 'Parce que' y justifica la primera parte.",
+            "incorrect": "Recuerda que 'Car' va en medio, uniendo las dos ideas."
+          }
+        },
+        {
+          "id": "ex_007",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "¿Cómo se llama el lugar donde compras las entradas?",
+          "prompt": "Pour acheter les places, il faut aller au ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "dénouement" },
+              { "id": "opt_2", "text": "guichet" },
+              { "id": "opt_3", "text": "tournage" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "¡Exacto! Le guichet (la taquilla).",
+            "incorrect": "'Dénouement' es el desenlace. 'Tournage' es el rodaje."
+          }
+        },
+        {
+          "id": "ex_008",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce la frase usando el conector de consecuencia 'Donc'.",
+          "prompt": "Es tarde, por lo tanto me voy.",
+          "content": {
+            "placeholder": "Il est tard...",
+            "accepted_answers": ["Il est tard donc je pars.", "Il est tard, donc je m'en vais."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Muy bien. 'Il est tard donc je pars'.",
+            "incorrect": "Usa 'Donc' para expresar la consecuencia lógica."
+          }
+        },
+        {
+          "id": "ex_009",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Elige la opción correcta para una película que te hace llorar.",
+          "prompt": "C'est un film très ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "larmoyant" },
+              { "id": "opt_2", "text": "drôle" },
+              { "id": "opt_3", "text": "muet" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Larmoyant' (lacrimógeno) viene de 'Larme' (lágrima).",
+            "incorrect": "'Drôle' es divertido. 'Muet' es mudo."
+          }
+        },
+        {
+          "id": "ex_010",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Ordena la frase con 'C'est pour ça que' (Enfático).",
+          "prompt": null,
+          "content": {
+            "segments": ["J'adore", "le", "suspense", "c'est", "pour", "ça", "que", "je", "regarde", "des", "polars"],
+            "correct_order": ["J'adore", "le", "suspense", "c'est", "pour", "ça", "que", "je", "regarde", "des", "polars"],
+            "distractors": ["car", "donc"]
+          },
+          "feedback": {
+            "correct": "¡Excelente! 'C'est pour ça que' enfatiza la consecuencia.",
+            "incorrect": "La estructura es: [Causa] + c'est pour ça que + [Consecuencia]."
+          }
+        },
+        {
+          "id": "ex_011",
+          "type": "true_false",
+          "difficulty": "easy",
+          "instruction": "Verdadero o Falso: 'Un huis clos' es una película rodada en exteriores.",
+          "prompt": "Un huis clos se passe dehors.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. 'Huis clos' significa 'A puerta cerrada'. Ocurre en una sola habitación/lugar cerrado."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_012",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Sustituye 'Parce que' por 'Comme' en la estructura correcta.",
+          "prompt": "Je ne sors pas parce qu'il fait froid. -> _______, je ne sors pas.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Comme il fait froid" },
+              { "id": "opt_2", "text": "Car il fait froid" },
+              { "id": "opt_3", "text": "Puisqu'il fait froid" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Comme il fait froid...'. 'Comme' pone la causa al inicio.",
+            "incorrect": "'Car' no va al inicio. 'Puisque' implica que la otra persona ya sabe que hace frío (causa evidente), pero 'Comme' es el sustituto gramatical estándar para mover la causa al frente."
+          }
+        },
+        {
+          "id": "ex_013",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce: 'No me cuentas el final.' (Usa 'Gâcher' en negativo o frase simple).",
+          "prompt": "No me arruines la película.",
+          "content": {
+            "placeholder": "Ne me...",
+            "accepted_answers": ["Ne me gâche pas le film.", "Ne gâche pas le film."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Bien. 'Ne me gâche pas le film'.",
+            "incorrect": "El verbo para 'arruinar/spoiler' es 'Gâcher'."
+          }
+        },
+        {
+          "id": "ex_014",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Elige el conector más coloquial para 'Entonces'.",
+          "prompt": "Je n'avais pas d'argent, ______ je ne suis pas venu.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "par conséquent" },
+              { "id": "opt_2", "text": "alors" },
+              { "id": "opt_3", "text": "car" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Sí. 'Alors' es el conector de consecuencia más común en el lenguaje oral.",
+            "incorrect": "'Par conséquent' es muy formal. 'Car' es causa, no consecuencia."
+          }
+        },
+        {
+          "id": "ex_015",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Forma la frase: 'Como es un drama, el final es triste.'",
+          "prompt": null,
+          "content": {
+            "segments": ["Comme", "c'est", "un", "drame", "la", "fin", "est", "triste"],
+            "correct_order": ["Comme", "c'est", "un", "drame", "la", "fin", "est", "triste"],
+            "distractors": ["parce que", "donc"]
+          },
+          "feedback": {
+            "correct": "Perfecto. Causa al inicio = Comme.",
+            "incorrect": "No uses 'Donde' en la parte de la causa."
+          }
+        },
+        {
+          "id": "ex_016",
+          "type": "true_false",
+          "difficulty": "medium",
+          "instruction": "Analiza: 'Le dénouement est imprévisible.'",
+          "prompt": "Esta frase significa que sabías exactamente cómo terminaría la película.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. 'Imprévisible' significa impredecible. No sabías qué iba a pasar."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_017",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Completa con el término adecuado para 'Palomitas'.",
+          "prompt": "En France, on évite de manger du ______ dans les cinémas d'auteur.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "maïs soufflé" },
+              { "id": "opt_2", "text": "navet" },
+              { "id": "opt_3", "text": "guichet" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Maïs soufflé (o Pop-corn).",
+            "incorrect": "Navet es una mala película. Guichet es la taquilla."
+          }
+        },
+        {
+          "id": "ex_018",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce usando 'Puisque' (Puesto que).",
+          "prompt": "Puesto que tú pagas, tú eliges.",
+          "content": {
+            "placeholder": "Puisque...",
+            "accepted_answers": ["Puisque tu paies, tu choisis.", "Puisque c'est toi qui paies, tu choisis."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Muy bien. 'Puisque tu paies, tu choisis'.",
+            "incorrect": "Usa 'Puisque' para indicar una causa evidente que justifica la acción."
+          }
+        },
+        {
+          "id": "ex_019",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "¿Qué significa 'Un biopic'?",
+          "prompt": "Un biopic est un film sur...",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "la nature" },
+              { "id": "opt_2", "text": "la vie d'une personne célèbre" },
+              { "id": "opt_3", "text": "des extraterrestres" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correcto. Biopic = Biographie filmée.",
+            "incorrect": "Viene del inglés 'Biographical picture'."
+          }
+        },
+        {
+          "id": "ex_020",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Ordena la frase formal: 'No puedo venir por consiguiente me disculpo.'",
+          "prompt": null,
+          "content": {
+            "segments": ["Je", "ne", "peux", "pas", "venir", "par", "conséquent", "je", "m'excuse"],
+            "correct_order": ["Je", "ne", "peux", "pas", "venir", "par", "conséquent", "je", "m'excuse"],
+            "distractors": ["alors", "car"]
+          },
+          "feedback": {
+            "correct": "Bien. 'Par conséquent' es un conector de consecuencia muy formal.",
+            "incorrect": "Se usa más en escritos o situaciones profesionales."
+          }
+        },
+        {
+          "id": "ex_021",
+          "type": "true_false",
+          "difficulty": "easy",
+          "instruction": "Gramática: ¿Se puede decir 'Car il fait beau, je sors'?",
+          "prompt": "Car il fait beau, je sors.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. 'Car' nunca empieza la frase. Debe ser 'Je sors car il fait beau' o 'Comme il fait beau, je sors'."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_022",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Elige el adjetivo para una película donde no se sabe qué pasará.",
+          "prompt": "Le scénario est plein de suspense et ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "imprévisible" },
+              { "id": "opt_2", "text": "muet" },
+              { "id": "opt_3", "text": "en VO" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Imprévisible (Impredecible).",
+            "incorrect": "Muet es mudo. VO es versión original."
+          }
+        },
+        {
+          "id": "ex_023",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce: 'Es una obra maestra'.",
+          "prompt": "Es una obra maestra.",
+          "content": {
+            "placeholder": "C'est...",
+            "accepted_answers": ["C'est un chef-d'œuvre."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù", "œ"]
+          },
+          "feedback": {
+            "correct": "¡Perfecto! 'C'est un chef-d'œuvre'.",
+            "incorrect": "Cuidado con la ligadura 'œ' y el guion."
+          }
+        },
+        {
+          "id": "ex_024",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Completa la frase lógica.",
+          "prompt": "Le film est en noir et blanc, ______ c'est un vieux film.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "comme" },
+              { "id": "opt_2", "text": "donc" },
+              { "id": "opt_3", "text": "puisque" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Bien. 'Donc' (por lo tanto) expresa una deducción lógica.",
+            "incorrect": "'Comme' y 'Puisque' introducen causas, no conclusiones."
+          }
+        }
+      ]
+    }
+    </script>

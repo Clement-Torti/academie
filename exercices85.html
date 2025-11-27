@@ -1,0 +1,404 @@
+<script type="application/json" id="exercise-data">
+    {
+      "interactive_exercises": [
+        {
+          "id": "ex_001",
+          "type": "selection_single",
+          "difficulty": "easy",
+          "instruction": "Elige la palabra adecuada para describir una película muy mala.",
+          "prompt": "Je n'ai pas aimé ce film, c'était un vrai ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "chef-d'œuvre" },
+              { "id": "opt_2", "text": "navet" },
+              { "id": "opt_3", "text": "court-métrage" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "¡Exacto! 'Un navet' (literalmente un nabo) es una forma coloquial de decir 'un bodrio' o mala película.",
+            "incorrect": "'Chef-d'œuvre' es una obra maestra (muy buena). 'Court-métrage' es un corto."
+          }
+        },
+        {
+          "id": "ex_002",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Completa la frase enfática resaltando al sujeto.",
+          "prompt": "C'est le réalisateur ______ a décidé le casting.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "que" },
+              { "id": "opt_2", "text": "qui" },
+              { "id": "opt_3", "text": "dont" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "¡Correcto! Usamos 'QUI' porque el realizador hace la acción (sujeto).",
+            "incorrect": "Usa 'qui' cuando la palabra resaltada es el sujeto del verbo que sigue (a décidé)."
+          }
+        },
+        {
+          "id": "ex_003",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Completa la frase enfática resaltando al objeto.",
+          "prompt": "C'est cette actrice ______ j'admire beaucoup.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "qui" },
+              { "id": "opt_2", "text": "que" },
+              { "id": "opt_3", "text": "où" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Bien hecho. 'Que' j'admire (Yo admiro a ella -> Objeto directo).",
+            "incorrect": "Si usas 'qui', la actriz tendría que hacer la acción. Aquí tú (je) la admiras a ella (que)."
+          }
+        },
+        {
+          "id": "ex_004",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Forma la frase: 'Lo que me gusta es el guion.'",
+          "prompt": null,
+          "content": {
+            "segments": ["Ce", "qui", "me", "plaît", "c'est", "le", "scénario"],
+            "correct_order": ["Ce", "qui", "me", "plaît", "c'est", "le", "scénario"],
+            "distractors": ["que", "la"]
+          },
+          "feedback": {
+            "correct": "¡Muy bien! 'Ce qui me plaît...'",
+            "incorrect": "Usamos 'Ce qui' porque actúa como sujeto del verbo 'plaît' (gustar)."
+          }
+        },
+        {
+          "id": "ex_005",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Ordena la frase: 'Es la trama la que es original.'",
+          "prompt": null,
+          "content": {
+            "segments": ["C'est", "l'intrigue", "qui", "est", "originale", "que"],
+            "correct_order": ["C'est", "l'intrigue", "qui", "est", "originale"],
+            "distractors": ["que"]
+          },
+          "feedback": {
+            "correct": "Excelente. C'est l'intrigue qui est originale.",
+            "incorrect": "Recuerda: L'intrigue es el sujeto de 'est originale', así que usamos 'QUI'."
+          }
+        },
+        {
+          "id": "ex_006",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce la frase completa usando énfasis (C'est... qui/que).",
+          "prompt": "Es el final lo que detesto.",
+          "content": {
+            "placeholder": "Escribe la frase completa...",
+            "accepted_answers": ["C'est la fin que je déteste.", "C'est le dénouement que je déteste."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "¡Perfecto! C'est la fin (o le dénouement) que je déteste.",
+            "incorrect": "Estructura: C'est + Objeto + QUE + Sujeto/Verbo."
+          }
+        },
+        {
+          "id": "ex_007",
+          "type": "true_false",
+          "difficulty": "easy",
+          "instruction": "¿La siguiente frase es correcta?",
+          "prompt": "Le film est en VO, donc il est doublé.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. VO significa 'Version Originale' (audio original). 'Doublé' sería VF (Version Française)."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_008",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Selecciona la forma correcta para: 'Lo que yo quiero ver...'",
+          "prompt": "______ je veux voir, c'est une comédie.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Ce qui" },
+              { "id": "opt_2", "text": "Ce que" },
+              { "id": "opt_3", "text": "Ce dont" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "¡Correcto! 'Ce que' je veux voir.",
+            "incorrect": "Analiza: 'Je veux voir QUOI ?' (Objeto directo). Por tanto, usamos 'Ce que'."
+          }
+        },
+        {
+          "id": "ex_009",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Identifica qué palabra falta en esta estructura enfática.",
+          "prompt": "C'est le jeu d'acteur ______ est incroyable.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "qui" },
+              { "id": "opt_2", "text": "que" },
+              { "id": "opt_3", "text": "qu'" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Bien. 'Qui est incroyable'.",
+            "incorrect": "El 'jeu d'acteur' es el sujeto del verbo 'est'. Por eso usamos 'qui'."
+          }
+        },
+        {
+          "id": "ex_010",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Forma la frase: 'Lo que me molesta es el doblaje.'",
+          "prompt": null,
+          "content": {
+            "segments": ["Ce", "qui", "m'énerve", "c'est", "le", "doublage"],
+            "correct_order": ["Ce", "qui", "m'énerve", "c'est", "le", "doublage"],
+            "distractors": ["que", "la"]
+          },
+          "feedback": {
+            "correct": "Exacto. Ce qui m'énerve...",
+            "incorrect": "La estructura 'Ce qui' funciona como sujeto de 'énerve' (molestar)."
+          }
+        },
+        {
+          "id": "ex_011",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce usando 'Ce que' o 'Ce qui'.",
+          "prompt": "Lo que prefiero es la banda sonora.",
+          "content": {
+            "placeholder": "Escribe la frase completa...",
+            "accepted_answers": ["Ce que je préfère c'est la bande-originale.", "Ce que je préfère c'est la BO.", "Ce que je préfère, c'est la bande-originale."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "¡Muy bien! Ce que je préfère, c'est la bande-originale.",
+            "incorrect": "Usa 'Ce que' porque 'je préfère' tiene sujeto (je). El objeto es lo que prefieres."
+          }
+        },
+        {
+          "id": "ex_012",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "¿Cómo se dice 'En cartelera'?",
+          "prompt": "Quels films sont ______ cette semaine ?",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "au tournage" },
+              { "id": "opt_2", "text": "à l'affiche" },
+              { "id": "opt_3", "text": "en séance" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correcto. 'À l'affiche' significa en exhibición/cartelera.",
+            "incorrect": "'Tournage' es rodaje. 'Séance' es la función específica (hora)."
+          }
+        },
+        {
+          "id": "ex_013",
+          "type": "true_false",
+          "difficulty": "easy",
+          "instruction": "Analiza la frase: 'C'est le film que j'ai regardé.'",
+          "prompt": "En esta frase, 'le film' es el sujeto que realiza la acción.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. El sujeto es 'j'' (yo). El film es el objeto 'QUE' yo miré."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_014",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Elige el adjetivo correcto para una película muy triste/emotiva.",
+          "prompt": "J'ai pleuré, c'était un film ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "ennuyeux" },
+              { "id": "opt_2", "text": "bouleversant" },
+              { "id": "opt_3", "text": "drôle" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Sí. 'Bouleversant' significa conmovedor, impactante o devastador emocionalmente.",
+            "incorrect": "'Ennuyeux' es aburrido. 'Drôle' es divertido."
+          }
+        },
+        {
+          "id": "ex_015",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce la crítica negativa: 'Es aburrido a morir.'",
+          "prompt": "Es aburrido a morir.",
+          "content": {
+            "placeholder": "C'est...",
+            "accepted_answers": ["C'est ennuyeux à mourir."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Correcto. 'C'est ennuyeux à mourir'.",
+            "incorrect": "La expresión fija es 'ennuyeux à mourir' (literalmente: para morirse)."
+          }
+        },
+        {
+          "id": "ex_016",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Construye una frase enfática negativa.",
+          "prompt": null,
+          "content": {
+            "segments": ["Ce", "n'est", "pas", "l'acteur", "qui", "est", "mauvais"],
+            "correct_order": ["Ce", "n'est", "pas", "l'acteur", "qui", "est", "mauvais"],
+            "distractors": ["que", "ne"]
+          },
+          "feedback": {
+            "correct": "Bien. Ce n'est pas l'acteur qui est mauvais (No es el actor el que es malo).",
+            "incorrect": "La negación envuelve al verbo 'est' (Ce n'est pas...). 'Qui' se mantiene porque el actor es sujeto de ser malo."
+          }
+        },
+        {
+          "id": "ex_017",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Completa con el verbo correcto en esta estructura enfática.",
+          "prompt": "C'est moi qui ______ choisi le film.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "a" },
+              { "id": "opt_2", "text": "ai" },
+              { "id": "opt_3", "text": "as" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "¡Excelente! C'est MOI qui AI.",
+            "incorrect": "Cuando el antecedente es 'Moi' (Yo), el verbo debe conjugarse en primera persona (J'ai -> Moi qui ai)."
+          }
+        },
+        {
+          "id": "ex_018",
+          "type": "true_false",
+          "difficulty": "medium",
+          "instruction": "¿Esta frase usa correctamente 'Ce qui'?",
+          "prompt": "Ce qui je pense, c'est que le film est long.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. Debe ser 'Ce QUE je pense'. 'Je' es el sujeto, 'pense' es el verbo. 'Ce que' es el objeto."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_019",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "¿Qué término se usa para 'El Rodaje'?",
+          "prompt": "Le ______ a duré trois mois à Paris.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "montage" },
+              { "id": "opt_2", "text": "tournage" },
+              { "id": "opt_3", "text": "scénario" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Le tournage' (de tourner - girar/filmar).",
+            "incorrect": "'Montage' es edición. 'Scénario' es guion."
+          }
+        },
+        {
+          "id": "ex_020",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Ordena la frase: 'Es Spielberg quien realizó esta obra maestra.'",
+          "prompt": null,
+          "content": {
+            "segments": ["C'est", "Spielberg", "qui", "a", "réalisé", "ce", "chef-d'œuvre"],
+            "correct_order": ["C'est", "Spielberg", "qui", "a", "réalisé", "ce", "chef-d'œuvre"],
+            "distractors": ["que", "cette"]
+          },
+          "feedback": {
+            "correct": "Perfecto. C'est Spielberg qui...",
+            "incorrect": "Recuerda que 'Chef-d'œuvre' es masculino (ce)."
+          }
+        },
+        {
+          "id": "ex_021",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce: 'Es una comedia romántica lo que miramos.'",
+          "prompt": "Es una comedia romántica lo que miramos.",
+          "content": {
+            "placeholder": "C'est...",
+            "accepted_answers": ["C'est une comédie romantique que nous regardons.", "C'est une comédie romantique qu'on regarde."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Muy bien. 'C'est une comédie... QUE nous regardons'.",
+            "incorrect": "Usamos 'QUE' porque nosotros miramos la comedia (Objeto)."
+          }
+        },
+        {
+          "id": "ex_022",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Elige la definición correcta de 'Court-métrage'.",
+          "prompt": "Un court-métrage est...",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Un film de courte durée" },
+              { "id": "opt_2", "text": "Un film en noir et blanc" },
+              { "id": "opt_3", "text": "Un film très long" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Un film de corta duración.",
+            "incorrect": "'Long-métrage' es una película larga (estándar). Court = Corto."
+          }
+        },
+        {
+          "id": "ex_023",
+          "type": "true_false",
+          "difficulty": "medium",
+          "instruction": "¿Es correcta la frase: 'C'est le scénario que est bon'?",
+          "prompt": "C'est le scénario que est bon.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. Debe ser 'C'est le scénario QUI est bon', porque el guion es el sujeto de 'ser bueno'."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_024",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Forma la frase: 'Lo que odio es hacer cola.'",
+          "prompt": null,
+          "content": {
+            "segments": ["Ce", "que", "je", "déteste", "c'est", "faire", "la", "queue"],
+            "correct_order": ["Ce", "que", "je", "déteste", "c'est", "faire", "la", "queue"],
+            "distractors": ["qui", "le"]
+          },
+          "feedback": {
+            "correct": "Exacto. 'Faire la queue' significa hacer fila/cola.",
+            "incorrect": "Usamos 'Ce que' porque 'je déteste' tiene sujeto. La expresión es 'faire la queue'."
+          }
+        }
+      ]
+    }
+    </script>
