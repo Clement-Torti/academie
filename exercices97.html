@@ -1,0 +1,857 @@
+<!-- Exercice 97 -->
+<script type="application/json" id="exercise-data">
+    {
+      "interactive_exercises": [
+        {
+          "id": "new_ex_001",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Vocabulario IT: ¿Cómo se dice 'actualización'?",
+          "prompt": "Je dois faire la ______ du logiciel.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "mise à jour" },
+              { "id": "opt_2", "text": "mise en place" },
+              { "id": "opt_3", "text": "souris" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Mise à jour' (Update).",
+            "incorrect": "'Mise en place' es implementación. 'Souris' es ratón."
+          }
+        },
+        {
+          "id": "new_ex_002",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Condicional Real: 'Si el wifi se corta, no podré trabajar'.",
+          "prompt": null,
+          "content": {
+            "segments": ["Si", "le wifi", "coupe", "je", "ne", "pourrai", "pas", "travailler"],
+            "correct_order": ["Si", "le wifi", "coupe", "je", "ne", "pourrai", "pas", "travailler"],
+            "distractors": ["pourrais"]
+          },
+          "feedback": {
+            "correct": "Bien. Si + Presente (coupe) -> Futuro (pourrai).",
+            "incorrect": "Recuerda: Tras 'Si' usamos presente para futuros probables."
+          }
+        },
+        {
+          "id": "new_ex_003",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Subjuntivo: Expresar un sentimiento.",
+          "prompt": "Je suis ravi que tu ______ le poste.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "aies" },
+              { "id": "opt_2", "text": "as" },
+              { "id": "opt_3", "text": "auras" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Exacto. 'Ravi que' expresa emoción -> Subjuntivo (Aies).",
+            "incorrect": "'As' es indicativo presente. Necesitas el subjuntivo de Avoir."
+          }
+        },
+        {
+          "id": "new_ex_004",
+          "type": "true_false",
+          "difficulty": "medium",
+          "instruction": "Gramática: 'Penser que' en negativo.",
+          "prompt": "Je ne pense pas qu'il soit prêt.",
+          "content": {
+            "is_correct": true,
+            "explanation": "Correcto. 'Penser' en negativo introduce duda, por lo que usa Subjuntivo (soit)."
+          },
+          "feedback": null
+        },
+        {
+          "id": "new_ex_005",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Vocabulario: Término para 'Fecha límite'.",
+          "prompt": "Nous devons respecter la ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "date limite" },
+              { "id": "opt_2", "text": "réunion" },
+              { "id": "opt_3", "text": "pause café" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Date limite (o l'échéance).",
+            "incorrect": "Réunion es reunión. Pause café es descanso."
+          }
+        },
+        {
+          "id": "new_ex_006",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce usando Futuro Anterior: 'Habremos terminado al mediodía'.",
+          "prompt": "Habremos terminado al mediodía.",
+          "content": {
+            "placeholder": "Escribe la frase...",
+            "accepted_answers": ["Nous aurons fini à midi.", "On aura fini à midi."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Très bien. Nous aurons fini (Futur Antérieur).",
+            "incorrect": "Usa el auxiliar Avoir en futuro + participio pasado."
+          }
+        },
+        {
+          "id": "new_ex_007",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Secuencia de tiempos: Futuro Anterior + Futuro Simple.",
+          "prompt": "Dès que nous ______ les résultats, nous t'appellerons.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "aurons reçu" },
+              { "id": "opt_2", "text": "avons reçu" },
+              { "id": "opt_3", "text": "recevrons" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Exacto. La acción de recibir ocurre antes de llamar -> Futuro Anterior.",
+            "incorrect": "No uses presente ni futuro simple tras 'Dès que' si la acción es anterior a otra futura."
+          }
+        },
+        {
+          "id": "new_ex_008",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Medio ambiente: 'La sequía es un problema'.",
+          "prompt": null,
+          "content": {
+            "segments": ["La", "sécheresse", "est", "un", "problème", "majeur"],
+            "correct_order": ["La", "sécheresse", "est", "un", "problème", "majeur"],
+            "distractors": ["sec"]
+          },
+          "feedback": {
+            "correct": "Bien. Sécheresse (sequía).",
+            "incorrect": "'Sec' es el adjetivo (seco)."
+          }
+        },
+        {
+          "id": "new_ex_009",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Energía limpia.",
+          "prompt": "Il faut investir dans les énergies ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "renouvelables" },
+              { "id": "opt_2", "text": "fossiles" },
+              { "id": "opt_3", "text": "épuisées" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Renouvelables (Renovables).",
+            "incorrect": "Fossiles (fósiles) contaminan."
+          }
+        },
+        {
+          "id": "new_ex_010",
+          "type": "true_false",
+          "difficulty": "hard",
+          "instruction": "Analiza la concordancia: 'Elles se seront lavé'.",
+          "prompt": "Elles se seront lavé les mains.",
+          "content": {
+            "is_correct": true,
+            "explanation": "Correcto. Aunque 'se laver' usa Être, no hay concordancia con 'Elles' porque el objeto directo 'les mains' está después del verbo."
+          },
+          "feedback": null
+        },
+        {
+          "id": "new_ex_011",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Transporte: Cruzar la calle.",
+          "prompt": "Traversez sur le ______ piéton.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "passage" },
+              { "id": "opt_2", "text": "feu" },
+              { "id": "opt_3", "text": "trottoir" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Passage piéton (Paso de peatones).",
+            "incorrect": "Feu es semáforo. Trottoir es acera."
+          }
+        },
+        {
+          "id": "new_ex_012",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Ordena la frase de Futuro Anterior con Être.",
+          "prompt": null,
+          "content": {
+            "segments": ["Quand", "elle", "sera", "arrivée", "nous", "mangerons"],
+            "correct_order": ["Quand", "elle", "sera", "arrivée", "nous", "mangerons"],
+            "distractors": ["aura"]
+          },
+          "feedback": {
+            "correct": "Bien. Arriver usa Être -> Sera arrivée.",
+            "incorrect": "Recuerda la concordancia del participio (arrivée)."
+          }
+        },
+        {
+          "id": "new_ex_013",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Si aparcas mal, recibes una...",
+          "prompt": "J'ai eu une ______ de stationnement.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "amende" },
+              { "id": "opt_2", "text": "subvention" },
+              { "id": "opt_3", "text": "récompense" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Une amende (multa).",
+            "incorrect": "Subvention es ayuda económica y Récompense es premio."
+          }
+        },
+        {
+          "id": "new_ex_014",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce: 'Él habrá perdido el autobús' (Probabilidad).",
+          "prompt": "Él habrá perdido el autobús.",
+          "content": {
+            "placeholder": "Escribe la frase...",
+            "accepted_answers": ["Il aura raté le bus.", "Il aura manqué le bus."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Bien. 'Il aura raté' (Suposición sobre el pasado).",
+            "incorrect": "Usa Futuro Anterior para expresar probabilidad."
+          }
+        },
+        {
+          "id": "new_ex_015",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Elige la suposición lógica.",
+          "prompt": "Personne ne répond ? Ils ______ déjà partis.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "seront" },
+              { "id": "opt_2", "text": "auront" },
+              { "id": "opt_3", "text": "sont" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Ils seront partis' (Se habrán ido - Partir usa Être).",
+            "incorrect": "Partir es verbo de movimiento, usa el auxiliar Être."
+          }
+        },
+        {
+          "id": "new_ex_016",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Negocios: Si la empresa no tiene dinero...",
+          "prompt": "L'entreprise risque la ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "faillite" },
+              { "id": "opt_2", "text": "réussite" },
+              { "id": "opt_3", "text": "prime" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Faillite (Quiebra/Bancarrota).",
+            "incorrect": "Réussite es éxito."
+          }
+        },
+        {
+          "id": "new_ex_017",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Hipótesis real: Si trabajas duro...",
+          "prompt": null,
+          "content": {
+            "segments": ["Si", "tu", "travailles", "dur", "tu", "réussiras"],
+            "correct_order": ["Si", "tu", "travailles", "dur", "tu", "réussiras"],
+            "distractors": ["réussirais"]
+          },
+          "feedback": {
+            "correct": "Bien. Si + Presente -> Futuro Simple.",
+            "incorrect": "'Réussirais' es condicional. Aquí usamos futuro."
+          }
+        },
+        {
+          "id": "new_ex_018",
+          "type": "true_false",
+          "difficulty": "easy",
+          "instruction": "¿Es correcto decir 'Si j'aurai le temps'?",
+          "prompt": "Si j'aurai le temps, je viendrai.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. Nunca uses futuro después de 'Si'. Debe ser 'Si j'ai le temps' (Presente)."
+          },
+          "feedback": null
+        },
+        {
+          "id": "new_ex_019",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Irregularidades en Futuro Simple (Verbo Courir).",
+          "prompt": "Si nous sommes en retard, nous ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "courrons" },
+              { "id": "opt_2", "text": "courirons" },
+              { "id": "opt_3", "text": "courions" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "¡Bien! Futuro de Courir: 'Nous courrons' (doble r).",
+            "incorrect": "'Courirons' no existe. 'Courions' es imperfecto."
+          }
+        },
+        {
+          "id": "new_ex_020",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce usando imperativo: 'Si lo ves, llámame'.",
+          "prompt": "Si lo ves, llámame.",
+          "content": {
+            "placeholder": "Escribe la frase...",
+            "accepted_answers": ["Si tu le vois, appelle-moi."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Excelente. Si + Presente -> Imperativo.",
+            "incorrect": "Imperativo de 'Appeler' para 'Tu' es 'Appelle' (sin s final)."
+          }
+        },
+        {
+          "id": "new_ex_021",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Hipótesis Irreal (Imaginaria).",
+          "prompt": "Si j'étais président, je ______ les impôts.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "baisserais" },
+              { "id": "opt_2", "text": "baisse" },
+              { "id": "opt_3", "text": "baisserai" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Si + Imperfecto -> Condicional (baisserais).",
+            "incorrect": "Al ser una situación imaginaria, no uses el futuro (baisserai)."
+          }
+        },
+        {
+          "id": "new_ex_022",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Consejo usando 'À ta place' (En tu lugar).",
+          "prompt": null,
+          "content": {
+            "segments": ["À", "ta", "place", "j'", "accepterais", "l'offre"],
+            "correct_order": ["À", "ta", "place", "j'", "accepterais", "l'offre"],
+            "distractors": ["acceptais"]
+          },
+          "feedback": {
+            "correct": "Bien. 'À ta place' funciona como condición -> Condicional (accepterais).",
+            "incorrect": "Usa la terminación -ais del condicional."
+          }
+        },
+        {
+          "id": "new_ex_023",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Condicional del verbo 'Falloir' (Hacer falta/Deber).",
+          "prompt": "Si on voulait gagner, il ______ s'entraîner plus.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "faudrait" },
+              { "id": "opt_2", "text": "faille" },
+              { "id": "opt_3", "text": "fallait" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Exacto. Il faudrait (Haría falta).",
+            "incorrect": "'Faille' es subjuntivo. 'Fallait' es imperfecto."
+          }
+        },
+        {
+          "id": "new_ex_024",
+          "type": "true_false",
+          "difficulty": "medium",
+          "instruction": "¿La pronunciación es igual?",
+          "prompt": "Je parlais (Imperfecto) vs Je parlerais (Condicional).",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. En el condicional se pronuncia la 'R' antes de la terminación (parle-R-ais), en imperfecto no."
+          },
+          "feedback": null
+        },
+        {
+          "id": "new_ex_025",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce: 'Si tuviéramos dinero, viajaríamos'.",
+          "prompt": "Si tuviéramos dinero, viajaríamos.",
+          "content": {
+            "placeholder": "Escribe la frase...",
+            "accepted_answers": ["Si nous avions de l'argent, nous voyagerions.", "Si on avait de l'argent, on voyagerait."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Parfait. Si + Imperfecto (Avions) + Condicional (Voyagerions).",
+            "incorrect": "Revisa el imperfecto de Avoir y el condicional de Voyager."
+          }
+        },
+        {
+          "id": "new_ex_026",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Pasado: El arrepentimiento (Regret).",
+          "prompt": "Si j'avais su, je ______ venu.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "ne serais pas" },
+              { "id": "opt_2", "text": "n'étais pas" },
+              { "id": "opt_3", "text": "ne fusse pas" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Condicional Pasado: 'Je ne serais pas venu' (No habría venido).",
+            "incorrect": "La consecuencia de una hipótesis pasada requiere Condicional Pasado."
+          }
+        },
+        {
+          "id": "new_ex_027",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Frase de reproche: 'Deberías haberme avisado'.",
+          "prompt": null,
+          "content": {
+            "segments": ["Tu", "aurais", "dû", "me", "prévenir"],
+            "correct_order": ["Tu", "aurais", "dû", "me", "prévenir"],
+            "distractors": ["devrais"]
+          },
+          "feedback": {
+            "correct": "Bien. 'Aurais dû' (Condicional pasado de Devoir).",
+            "incorrect": "'Tu devrais' es presente (Deberías hacerlo ahora). Para el pasado, usa compuesto."
+          }
+        },
+        {
+          "id": "new_ex_028",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Sinónimo de 'Gaffe' (Error torpe).",
+          "prompt": "J'ai commis une ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "maladresse" },
+              { "id": "opt_2", "text": "réussite" },
+              { "id": "opt_3", "text": "exactitude" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Maladresse o Erreur.",
+            "incorrect": "Réussite y Exactitude son positivos."
+          }
+        },
+        {
+          "id": "new_ex_029",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Auxiliar para 'Se tromper' (Equivocarse) en Condicional Pasado.",
+          "prompt": "Sans ton aide, je ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "me serais trompé" },
+              { "id": "opt_2", "text": "m'aurais trompé" },
+              { "id": "opt_3", "text": "me tromperais" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Exacto. Verbo reflexivo usa Être: Me serais trompé.",
+            "incorrect": "Cuidado con el auxiliar de los verbos pronominales."
+          }
+        },
+        {
+          "id": "new_ex_030",
+          "type": "true_false",
+          "difficulty": "medium",
+          "instruction": "Gramática: ¿Esta frase está bien construida?",
+          "prompt": "Si il avait fait beau, nous serions sortis.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. Error ortográfico común: 'Si' + 'Il' siempre debe ser 'S'il'."
+          },
+          "feedback": null
+        },
+        {
+          "id": "new_ex_031",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Conector lógico de Causa.",
+          "prompt": "Il n'est pas venu ______ il est malade.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "parce qu'" },
+              { "id": "opt_2", "text": "grâce qu'" },
+              { "id": "opt_3", "text": "à cause qu'" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Parce que' es el conector estándar de causa.",
+            "incorrect": "'Grâce que' y 'À cause que' son incorrectos gramaticalmente (se usa à cause de + nombre)."
+          }
+        },
+        {
+          "id": "new_ex_032",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Causa positiva.",
+          "prompt": "J'ai réussi ______ ton aide.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "grâce à" },
+              { "id": "opt_2", "text": "à cause de" },
+              { "id": "opt_3", "text": "faute de" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "¡Bien! Grâce à (Gracias a) para resultados positivos.",
+            "incorrect": "'À cause de' suele ser negativo o neutro. 'Faute de' es carencia."
+          }
+        },
+        {
+          "id": "new_ex_033",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Causa evidente al inicio (Puisque).",
+          "prompt": null,
+          "content": {
+            "segments": ["Puisque", "tu", "es", "là", "aide-moi"],
+            "correct_order": ["Puisque", "tu", "es", "là", "aide-moi"],
+            "distractors": ["Car"]
+          },
+          "feedback": {
+            "correct": "Correcto. 'Ya que estás aquí...'",
+            "incorrect": "'Car' nunca va al inicio de la frase."
+          }
+        },
+        {
+          "id": "new_ex_034",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Vocabulario de TV: 'Transmitido en vivo'.",
+          "prompt": "Le match est diffusé en ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "direct" },
+              { "id": "opt_2", "text": "différé" },
+              { "id": "opt_3", "text": "chaîne" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. En direct (en vivo/directo).",
+            "incorrect": "Différé es diferido (grabado)."
+          }
+        },
+        {
+          "id": "new_ex_035",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce: 'La película tuvo éxito gracias a los actores'.",
+          "prompt": "La película tuvo éxito gracias a los actores.",
+          "content": {
+            "placeholder": "Escribe la frase...",
+            "accepted_answers": ["Le film a eu du succès grâce aux acteurs."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Bien. 'Grâce aux' (à + les).",
+            "incorrect": "Recuerda la contracción 'aux' y el uso de 'avoir du succès'."
+          }
+        },
+        {
+          "id": "new_ex_036",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Conector de oposición (Formal).",
+          "prompt": "Il est compétent. ______, il manque d'expérience.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Néanmoins" },
+              { "id": "opt_2", "text": "De plus" },
+              { "id": "opt_3", "text": "Donc" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Néanmoins (Sin embargo/No obstante).",
+            "incorrect": "'De plus' añade información (y). 'Donc' es consecuencia."
+          }
+        },
+        {
+          "id": "new_ex_037",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Oposición con Subjuntivo.",
+          "prompt": "______ ce soit difficile, je le ferai.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Bien que" },
+              { "id": "opt_2", "text": "Même si" },
+              { "id": "opt_3", "text": "Pourtant" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "¡Muy bien! 'Bien que' + Subjuntivo (soit).",
+            "incorrect": "'Même si' usa indicativo. 'Pourtant' no subordina."
+          }
+        },
+        {
+          "id": "new_ex_038",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Argumentación: Añadir una idea (D'ailleurs).",
+          "prompt": null,
+          "content": {
+            "segments": ["Je", "n'aime", "pas", "ce", "film", "d'ailleurs", "il", "est", "trop", "long"],
+            "correct_order": ["Je", "n'aime", "pas", "ce", "film", "d'ailleurs", "il", "est", "trop", "long"],
+            "distractors": []
+          },
+          "feedback": {
+            "correct": "Correcto. 'D'ailleurs' introduce un argumento extra (es largo).",
+            "incorrect": "Revisa el orden."
+          }
+        },
+        {
+          "id": "new_ex_039",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Vocabulario: 'Huelga'.",
+          "prompt": "Les transports sont en ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "grève" },
+              { "id": "opt_2", "text": "rêve" },
+              { "id": "opt_3", "text": "pause" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. En grève.",
+            "incorrect": "Rêve es sueño."
+          }
+        },
+        {
+          "id": "new_ex_040",
+          "type": "true_false",
+          "difficulty": "medium",
+          "instruction": "Uso de 'Par contre'.",
+          "prompt": "Il est petit, par contre il est fort au basket.",
+          "content": {
+            "is_correct": true,
+            "explanation": "Correcto. 'Par contre' se usa mucho oralmente para contrastar."
+          },
+          "feedback": null
+        },
+        {
+          "id": "new_ex_041",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Vocabulario: 'Portavoz'.",
+          "prompt": "Le ______ du gouvernement a annoncé la nouvelle.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "porte-parole" },
+              { "id": "opt_2", "text": "porte-monnaie" },
+              { "id": "opt_3", "text": "porte-bonheur" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Exacto. Porte-parole.",
+            "incorrect": "'Porte-monnaie' es monedero. 'Porte-bonheur' es amuleto."
+          }
+        },
+        {
+          "id": "new_ex_042",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce: 'Es una polémica inútil'.",
+          "prompt": "Es una polémica inútil.",
+          "content": {
+            "placeholder": "Escribe la frase...",
+            "accepted_answers": ["C'est une polémique inutile."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Bien. Polémique (femenino).",
+            "incorrect": "Cuidado con el género de 'polémique'."
+          }
+        },
+        {
+          "id": "new_ex_043",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Vocabulario IT: 'Adjuntar un archivo'.",
+          "prompt": "Je vais ______ le document au mail.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "joindre" },
+              { "id": "opt_2", "text": "cliquer" },
+              { "id": "opt_3", "text": "allumer" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Joindre (une pièce jointe).",
+            "incorrect": "Cliquer es hacer clic."
+          }
+        },
+        {
+          "id": "new_ex_044",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Futuro Anterior: 'Cuando hayamos comido'.",
+          "prompt": null,
+          "content": {
+            "segments": ["Quand", "nous", "aurons", "mangé", "nous", "sortirons"],
+            "correct_order": ["Quand", "nous", "aurons", "mangé", "nous", "sortirons"],
+            "distractors": ["mangerons"]
+          },
+          "feedback": {
+            "correct": "Bien. Aurons mangé (acción terminada en el futuro).",
+            "incorrect": "No uses futuro simple para la acción anterior."
+          }
+        },
+        {
+          "id": "new_ex_045",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Duda + Subjuntivo.",
+          "prompt": "Je doute qu'il ______ la vérité.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "dise" },
+              { "id": "opt_2", "text": "dit" },
+              { "id": "opt_3", "text": "dira" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Subjuntivo de Dire (dise).",
+            "incorrect": "'Dit' es indicativo. 'Douter que' exige subjuntivo."
+          }
+        },
+        {
+          "id": "new_ex_046",
+          "type": "true_false",
+          "difficulty": "easy",
+          "instruction": "Vocabulario: 'Sondage'.",
+          "prompt": "Un sondage sert à connaître l'opinion publique.",
+          "content": {
+            "is_correct": true,
+            "explanation": "Verdadero. Sondage = Encuesta."
+          },
+          "feedback": null
+        },
+        {
+          "id": "new_ex_047",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Medio ambiente: 'Clasificación de basura'.",
+          "prompt": "Il faut faire le ______ sélectif.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "tri" },
+              { "id": "opt_2", "text": "gaspillage" },
+              { "id": "opt_3", "text": "choix" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Le tri (la clasificación/separación).",
+            "incorrect": "Gaspillage es desperdicio."
+          }
+        },
+        {
+          "id": "new_ex_048",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Condicional Pasado (Verbo Être).",
+          "prompt": null,
+          "content": {
+            "segments": ["J'", "aurais", "été", "content", "de", "te", "voir"],
+            "correct_order": ["J'", "aurais", "été", "content", "de", "te", "voir"],
+            "distractors": ["serais"]
+          },
+          "feedback": {
+            "correct": "Bien. J'aurais été (Habría estado/sido).",
+            "incorrect": "Être usa el auxiliar Avoir."
+          }
+        },
+        {
+          "id": "new_ex_049",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Pronombres relativos + Subjuntivo (Búsqueda de algo incierto).",
+          "prompt": "Je cherche une secrétaire qui ______ parler chinois.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "sache" },
+              { "id": "opt_2", "text": "sait" },
+              { "id": "opt_3", "text": "saura" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Excelente. 'Qui sache' indica que no sabemos si esa persona existe.",
+            "incorrect": "Si usas 'sait', implicas que esa persona existe seguro."
+          }
+        },
+        {
+          "id": "new_ex_050",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce: 'Si no llueve, iré'.",
+          "prompt": "Si no llueve, iré.",
+          "content": {
+            "placeholder": "Escribe la frase...",
+            "accepted_answers": ["S'il ne pleut pas, j'irai.", "S'il ne pleut pas j'irai."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Bien. S'il (contracción) + Presente (pleut) + Futuro (irai).",
+            "incorrect": "Revisa el futuro de Aller (J'irai)."
+          }
+        }
+      ]
+    }
+    </script>

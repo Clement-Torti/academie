@@ -1,0 +1,861 @@
+<script type="application/json" id="exercise-data">
+    {
+      "interactive_exercises": [
+        {
+          "id": "ex_001",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Selecciona la conjugación correcta del Subjuntivo (Verbo 'Faire').",
+          "prompt": "Il faut absolument que tu ______ tes devoirs ce soir.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "fais" },
+              { "id": "opt_2", "text": "fasses" },
+              { "id": "opt_3", "text": "fasse" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "¡Correcto! Para 'Tu', la forma del subjuntivo de Faire es 'fasses'.",
+            "incorrect": "'Fais' es indicativo. 'Fasse' es para il/elle/on. Tú necesitas 'fasses'."
+          }
+        },
+        {
+          "id": "ex_002",
+          "type": "selection_single",
+          "difficulty": "easy",
+          "instruction": "¿Qué conector expresa oposición y requiere Subjuntivo?",
+          "prompt": "Je viendrai te voir ______ je sois très occupé.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "parce que" },
+              { "id": "opt_2", "text": "bien que" },
+              { "id": "opt_3", "text": "même si" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Exacto. 'Bien que' (Aunque) siempre va seguido de subjuntivo (sois).",
+            "incorrect": "'Même si' usa indicativo. 'Parce que' expresa causa."
+          }
+        },
+        {
+          "id": "ex_003",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Ordena la frase para expresar finalidad (Para que...).",
+          "prompt": null,
+          "content": {
+            "segments": ["J'ouvre", "la", "fenêtre", "pour", "que", "tu", "aies", "moins", "chaud"],
+            "correct_order": ["J'ouvre", "la", "fenêtre", "pour", "que", "tu", "aies", "moins", "chaud"],
+            "distractors": ["as", "avoir"]
+          },
+          "feedback": {
+            "correct": "Muy bien. 'Pour que' activa el subjuntivo 'aies' (Avoir).",
+            "incorrect": "Recuerda: Pour que + Sujeto + Verbo en Subjuntivo."
+          }
+        },
+        {
+          "id": "ex_004",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce usando 'Être' en subjuntivo: 'Dudo que él sea honesto'.",
+          "prompt": "Dudo que él sea honesto.",
+          "content": {
+            "placeholder": "Je doute...",
+            "accepted_answers": ["Je doute qu'il soit honnête.", "Je doute qu'il soit sincère."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "¡Perfecto! 'Qu'il soit honnête'.",
+            "incorrect": "El verbo 'Douter' expresa duda, por lo que exige subjuntivo (soit)."
+          }
+        },
+        {
+          "id": "ex_005",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Elige la palabra de argot (slang) para 'Dinero'.",
+          "prompt": "Désolé, je ne peux pas venir, je n'ai plus de ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "bouffe" },
+              { "id": "opt_2", "text": "thune" },
+              { "id": "opt_3", "text": "boulot" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Thune' (o Oseille/Blé) es argot para dinero.",
+            "incorrect": "'Bouffe' es comida, 'Boulot' es trabajo."
+          }
+        },
+        {
+          "id": "ex_006",
+          "type": "true_false",
+          "difficulty": "hard",
+          "instruction": "Analiza: 'J'espère qu'il vienne'. ¿Es correcta?",
+          "prompt": "J'espère qu'il vienne bientôt.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. 'Espérer' es la gran excepción: usa INDICATIVO (Futuro o Presente). Debe ser 'J'espère qu'il viendra'."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_007",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "En el cine, ¿cómo se llama a la persona que dirige la película?",
+          "prompt": "C'est Christopher Nolan, le ______ de ce film.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "réalisateur" },
+              { "id": "opt_2", "text": "scénariste" },
+              { "id": "opt_3", "text": "cascadeur" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Exacto. 'Réalisateur' (Realizador) es el director.",
+            "incorrect": "'Scénariste' escribe el guion. 'Cascadeur' hace las escenas de riesgo."
+          }
+        },
+        {
+          "id": "ex_008",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Construye la frase enfática: 'Es Paul quien tiene razón'.",
+          "prompt": null,
+          "content": {
+            "segments": ["C'est", "Paul", "qui", "a", "raison"],
+            "correct_order": ["C'est", "Paul", "qui", "a", "raison"],
+            "distractors": ["que", "est"]
+          },
+          "feedback": {
+            "correct": "Bien. Usamos 'QUI' porque Paul es el sujeto del verbo 'Avoir'.",
+            "incorrect": "Estructura: C'est [Sujeto] QUI [Verbo]."
+          }
+        },
+        {
+          "id": "ex_009",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Selecciona la forma correcta de 'Savoir' en subjuntivo.",
+          "prompt": "Il est important que vous ______ la vérité avant de signer.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "savez" },
+              { "id": "opt_2", "text": "sachiez" },
+              { "id": "opt_3", "text": "saviez" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "¡Correcto! Raíz 'Sach-' + terminación 'iez' (Sachiez).",
+            "incorrect": "'Savez' es presente indicativo. 'Saviez' es imperfecto. El subjuntivo es irregular."
+          }
+        },
+        {
+          "id": "ex_010",
+          "type": "full_translation",
+          "difficulty": "medium",
+          "instruction": "Traduce usando 'Malgré': 'A pesar de la lluvia'.",
+          "prompt": "A pesar de la lluvia, salgo.",
+          "content": {
+            "placeholder": "Je sors...",
+            "accepted_answers": ["Je sors malgré la pluie.", "Malgré la pluie, je sors."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Muy bien. 'Malgré' va seguido directamente del sustantivo.",
+            "incorrect": "No uses 'Malgré que' (es un error común incluso en nativos, pero incorrecto formalmente)."
+          }
+        },
+        {
+          "id": "ex_011",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "¿Qué significa 'Être vénère' en lenguaje coloquial?",
+          "prompt": "Laisse-le tranquille, il est vénère.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Estar feliz" },
+              { "id": "opt_2", "text": "Estar cansado" },
+              { "id": "opt_3", "text": "Estar enfadado" }
+            ],
+            "correct_option_id": "opt_3"
+          },
+          "feedback": {
+            "correct": "Sí. 'Vénère' es el Verlan de 'Énervé' (Enfadado).",
+            "incorrect": "Viene de invertir las sílabas de É-ner-vé -> Né-ver -> Vénère."
+          }
+        },
+        {
+          "id": "ex_012",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Forma la frase con 'Avant que' (Cuidado con el subjuntivo 'Aller').",
+          "prompt": null,
+          "content": {
+            "segments": ["Pars", "avant", "qu'", "on", "ne", "s'en", "aille"],
+            "correct_order": ["Pars", "avant", "qu'", "on", "ne", "s'en", "aille"],
+            "distractors": ["va", "allons"]
+          },
+          "feedback": {
+            "correct": "Excelente. 'Aille' es el subjuntivo de Aller. El 'ne' es opcional (estilo formal).",
+            "incorrect": "El indicativo es 'va', pero 'Avant que' exige subjuntivo."
+          }
+        },
+        {
+          "id": "ex_013",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Completa con el verbo 'Pouvoir' en subjuntivo.",
+          "prompt": "Je cherche quelqu'un qui ______ m'aider.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "peux" },
+              { "id": "opt_2", "text": "puisse" },
+              { "id": "opt_3", "text": "pourra" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correcto. Buscamos a alguien hipotético (que pueda), así que usamos subjuntivo 'puisse'.",
+            "incorrect": "La raíz del subjuntivo de Pouvoir es siempre 'Puiss-'."
+          }
+        },
+        {
+          "id": "ex_014",
+          "type": "true_false",
+          "difficulty": "easy",
+          "instruction": "Verdadero o Falso: 'Un navet' es una película excelente.",
+          "prompt": "J'ai vu un navet hier soir.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. 'Un navet' es una película muy mala (un bodrio)."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_015",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce usando la estructura enfática 'Ce que... c'est'.",
+          "prompt": "Lo que me gusta es viajar.",
+          "content": {
+            "placeholder": "...",
+            "accepted_answers": ["Ce qui me plaît c'est voyager.", "Ce que j'aime c'est voyager.", "Ce qui me plaît, c'est de voyager."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "¡Bien! 'Ce que j'aime' o 'Ce qui me plaît'.",
+            "incorrect": "Si usas 'J'aime', usa 'Ce que'. Si usas 'Me plaît', usa 'Ce qui' (sujeto)."
+          }
+        },
+        {
+          "id": "ex_016",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Elige el conector para colocar la CAUSA al principio de la frase.",
+          "prompt": "______ il n'y a pas de bus, je vais marcher.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Car" },
+              { "id": "opt_2", "text": "Comme" },
+              { "id": "opt_3", "text": "Parce que" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Comme' se usa para iniciar una frase causal.",
+            "incorrect": "'Car' y 'Parce que' no suelen usarse al inicio de la oración para expresar causa en este contexto."
+          }
+        },
+        {
+          "id": "ex_017",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Ordena la frase irónica (Second degré).",
+          "prompt": null,
+          "content": {
+            "segments": ["Bravo", "tu", "as", "encore", "tout", "cassé", "génie"],
+            "correct_order": ["Bravo", "tu", "as", "encore", "tout", "cassé", "génie"],
+            "distractors": ["intelligente"]
+          },
+          "feedback": {
+            "correct": "Bien. Llamar 'génie' a alguien que rompe algo es puro 'second degré'.",
+            "incorrect": "El tono sarcástico es clave aquí."
+          }
+        },
+        {
+          "id": "ex_018",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Completa con el verbo 'Aller' (Nosotros - Subjuntivo).",
+          "prompt": "Elle veut que nous ______ au cinéma ensemble.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "allions" },
+              { "id": "opt_2", "text": "aillions" },
+              { "id": "opt_3", "text": "allons" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Allions'. Mantiene la raíz 'All-' con la terminación 'ions'.",
+            "incorrect": "No confundir con 'Aillions' (que no existe) o 'Allons' (indicativo)."
+          }
+        },
+        {
+          "id": "ex_019",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce: 'Tengo miedo de que sea demasiado tarde'.",
+          "prompt": "Tengo miedo de que sea demasiado tarde.",
+          "content": {
+            "placeholder": "J'ai peur...",
+            "accepted_answers": ["J'ai peur que ce soit trop tard.", "J'ai peur qu'il soit trop tard."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Excelente. Avoir peur que + Subjuntivo (Soit).",
+            "incorrect": "El miedo es un sentimiento, activa el subjuntivo."
+          }
+        },
+        {
+          "id": "ex_020",
+          "type": "selection_single",
+          "difficulty": "easy",
+          "instruction": "¿Qué significa 'MDR' en un mensaje?",
+          "prompt": "Il a raconté une blague, MDR !",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Mort de Rire" },
+              { "id": "opt_2", "text": "Mauvais Drôle Rapide" },
+              { "id": "opt_3", "text": "Merci De Répondre" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. Es el equivalente a LOL o JAJAJA.",
+            "incorrect": "Significa literalmente 'Muerto de risa'."
+          }
+        },
+        {
+          "id": "ex_021",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Elige la conjugación correcta de 'Valoir' (Valer) en subjuntivo.",
+          "prompt": "Je ne pense pas que ça en ______ la peine.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "vaille" },
+              { "id": "opt_2", "text": "valait" },
+              { "id": "opt_3", "text": "vau" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "¡Muy bien! 'Vaille' es la forma irregular del subjuntivo de Valoir.",
+            "incorrect": "'Valait' es imperfecto. Memoriza: Que ça vaille la peine."
+          }
+        },
+        {
+          "id": "ex_022",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Construye la frase con 'Il semble que' (+ Subjuntivo).",
+          "prompt": null,
+          "content": {
+            "segments": ["Il", "semble", "qu'", "il", "ne", "soit", "pas", "d'accord"],
+            "correct_order": ["Il", "semble", "qu'", "il", "ne", "soit", "pas", "d'accord"],
+            "distractors": ["est", "semblent"]
+          },
+          "feedback": {
+            "correct": "Bien. 'Il semble que' expresa duda/incertidumbre -> Subjuntivo (Soit).",
+            "incorrect": "Ojo: 'Il me semble que' (con 'me') usa indicativo, pero 'Il semble que' (impersonal) usa subjuntivo."
+          }
+        },
+        {
+          "id": "ex_023",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Completa con el conector de consecuencia familiar.",
+          "prompt": "J'ai raté mon train, ______ je suis arrivé en retard.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "du coup" },
+              { "id": "opt_2", "text": "puisque" },
+              { "id": "opt_3", "text": "car" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Sí. 'Du coup' se usa muchísimo oralmente para decir 'Entonces/Por eso'.",
+            "incorrect": "'Puisque' y 'Car' introducen causas, no consecuencias."
+          }
+        },
+        {
+          "id": "ex_024",
+          "type": "true_false",
+          "difficulty": "medium",
+          "instruction": "¿Esta frase es correcta?",
+          "prompt": "Je cherche un film qui est drôle. (Busco uno específico que sé que existe)",
+          "content": {
+            "is_correct": true,
+            "explanation": "Verdadero. Si buscas algo específico que sabes que existe, usas indicativo (est). Si buscas 'cualquier' película divertida (hipotética), usarías subjuntivo (soit)."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_025",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce usando 'Jusqu'à ce que': 'Espera hasta que yo termine'.",
+          "prompt": "Espera hasta que yo termine.",
+          "content": {
+            "placeholder": "Attends...",
+            "accepted_answers": ["Attends jusqu'à ce que je finisse.", "Attends jusqu'à ce que j'aie fini."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Perfecto. 'Je finisse' (Subjuntivo de Finir).",
+            "incorrect": "El conector de tiempo 'Jusqu'à ce que' siempre rige subjuntivo."
+          }
+        },
+        {
+          "id": "ex_026",
+          "type": "selection_single",
+          "difficulty": "easy",
+          "instruction": "¿Qué es un 'Spoiler' en francés (aunque se usa el anglicismo)?",
+          "prompt": "Si tu me racontes la fin, tu vas me ______ le film.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "gâcher" },
+              { "id": "opt_2", "text": "monter" },
+              { "id": "opt_3", "text": "tourner" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Gâcher' significa estropear o arruinar.",
+            "incorrect": "'Monter' es editar. 'Tourner' es rodar. Arruinar el final es 'Gâcher' (Divulgâcher en Quebec)."
+          }
+        },
+        {
+          "id": "ex_027",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Ordena la frase usando el Verlan para 'Mujer'.",
+          "prompt": null,
+          "content": {
+            "segments": ["Cette", "meuf", "est", "super", "sympa"],
+            "correct_order": ["Cette", "meuf", "est", "super", "sympa"],
+            "distractors": ["femme", "mef"]
+          },
+          "feedback": {
+            "correct": "Bien. 'Meuf' es el verlan de Femme.",
+            "incorrect": "Es una palabra muy común en el lenguaje coloquial."
+          }
+        },
+        {
+          "id": "ex_028",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Completa con el verbo 'Venir' en subjuntivo.",
+          "prompt": "J'aimerais qu'ils ______ nous voir.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "vennent" },
+              { "id": "opt_2", "text": "viennent" },
+              { "id": "opt_3", "text": "venions" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correcto. Ils viennent (Subjuntivo).",
+            "incorrect": "Ojo a la doble 'n' en 'viennent'."
+          }
+        },
+        {
+          "id": "ex_029",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce: 'Es obvio'. (Usando 'Clair').",
+          "prompt": "Es obvio / Está claro.",
+          "content": {
+            "placeholder": "C'est...",
+            "accepted_answers": ["C'est clair.", "C'est clair"],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "¡Sí! 'C'est clair' significa que estás totalmente de acuerdo o que algo es evidente.",
+            "incorrect": "No confundir con 'Il fait clair'."
+          }
+        },
+        {
+          "id": "ex_030",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Elige la preposición correcta para 'Tener pinta de'.",
+          "prompt": "Tu as l'air ______ aller mieux.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "d'" },
+              { "id": "opt_2", "text": "à" },
+              { "id": "opt_3", "text": "pour" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. La estructura es 'Avoir l'air DE' + Infinitivo.",
+            "incorrect": "Siempre usa 'de' antes del verbo."
+          }
+        },
+        {
+          "id": "ex_031",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Identifica el género de película 'Biopic'.",
+          "prompt": "Un biopic raconte...",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Une histoire de science-fiction" },
+              { "id": "opt_2", "text": "La vie d'une personne célèbre" },
+              { "id": "opt_3", "text": "Une guerre historique" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Exacto. Viene de 'Biographical Picture'.",
+            "incorrect": "Es una biografía filmada."
+          }
+        },
+        {
+          "id": "ex_032",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Forma la frase: 'Estoy harto / No puedo más' (JPP).",
+          "prompt": null,
+          "content": {
+            "segments": ["J'en", "peux", "plus", "de", "ce", "bruit"],
+            "correct_order": ["J'en", "peux", "plus", "de", "ce", "bruit"],
+            "distractors": ["je", "le"]
+          },
+          "feedback": {
+            "correct": "Bien. 'J'en peux plus' (JPP).",
+            "incorrect": "La expresión completa incluye el pronombre 'en'."
+          }
+        },
+        {
+          "id": "ex_033",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Completa con el verbo 'Pleuvoir' (Subjuntivo).",
+          "prompt": "Nous ferons un pique-nique à moins qu'il ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "pleut" },
+              { "id": "opt_2", "text": "pleuve" },
+              { "id": "opt_3", "text": "plu" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correcto. 'À moins que' (a menos que) exige subjuntivo -> Pleuve.",
+            "incorrect": "'Pleut' es indicativo. 'Plu' es participio pasado."
+          }
+        },
+        {
+          "id": "ex_034",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce con énfasis: 'Es el guion lo que detesto'.",
+          "prompt": "Es el guion lo que detesto.",
+          "content": {
+            "placeholder": "C'est...",
+            "accepted_answers": ["C'est le scénario que je déteste."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "¡Muy bien! 'C'est le scénario QUE...'",
+            "incorrect": "Usamos 'Que' porque 'je déteste' tiene sujeto. El guion es el objeto."
+          }
+        },
+        {
+          "id": "ex_035",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "¿Qué significa 'Un truc de ouf'?",
+          "prompt": "Ce concert, c'était un truc de ouf !",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Algo aburrido" },
+              { "id": "opt_2", "text": "Algo increíble / loco" },
+              { "id": "opt_3", "text": "Algo barato" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Sí. 'Ouf' es verlan de 'Fou' (Loco).",
+            "incorrect": "Significa que fue algo extraordinario."
+          }
+        },
+        {
+          "id": "ex_036",
+          "type": "true_false",
+          "difficulty": "hard",
+          "instruction": "Verdadero o Falso: 'Quoique' y 'Quoi que' significan lo mismo.",
+          "prompt": "Quoique (Aunque) vs Quoi que (Sea lo que sea).",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. 'Quoique' (una palabra) es 'Aunque'. 'Quoi que' (dos palabras) es 'Cualquier cosa que/Sea lo que sea'. Ambos usan subjuntivo."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_037",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Ordena la frase usando 'De peur que' (Miedo).",
+          "prompt": null,
+          "content": {
+            "segments": ["Je", "pars", "de", "peur", "qu'", "il", "pleuve"],
+            "correct_order": ["Je", "pars", "de", "peur", "qu'", "il", "pleuve"],
+            "distractors": ["pleut", "le"]
+          },
+          "feedback": {
+            "correct": "Bien. 'De peur que' (por miedo a que) usa subjuntivo.",
+            "incorrect": "No uses indicativo 'pleut'."
+          }
+        },
+        {
+          "id": "ex_038",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "¿Cómo se llama la versión de una película con las voces originales?",
+          "prompt": "Je préfère regarder les films en ______.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "VF" },
+              { "id": "opt_2", "text": "VO" },
+              { "id": "opt_3", "text": "VR" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Correcto. VO = Version Originale.",
+            "incorrect": "VF es Version Française (doblada)."
+          }
+        },
+        {
+          "id": "ex_039",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "Elige la forma 'Nous' del verbo 'Boire' en subjuntivo.",
+          "prompt": "Il faut que nous ______ beaucoup d'eau.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "buvons" },
+              { "id": "opt_2", "text": "buvions" },
+              { "id": "opt_3", "text": "boivions" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "¡Exacto! Nous buvions (Raíz de nous del presente + i).",
+            "incorrect": "'Boivions' no existe. 'Buvons' es indicativo."
+          }
+        },
+        {
+          "id": "ex_040",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce usando argot: 'Ese tío está loco'.",
+          "prompt": "Ese tío está loco.",
+          "content": {
+            "placeholder": "Ce...",
+            "accepted_answers": ["Ce mec est ouf.", "Ce mec est fou.", "Ce type est ouf."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "Bien. 'Mec' (tío/tipo) y 'Ouf' (loco).",
+            "incorrect": "Intenta usar el registro familiar."
+          }
+        },
+        {
+          "id": "ex_041",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Elige el sinónimo de 'C'est dommage'.",
+          "prompt": "______ que tu ne puisses pas venir.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "C'est bête" },
+              { "id": "opt_2", "text": "C'est tant mieux" },
+              { "id": "opt_3", "text": "C'est super" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. 'C'est bête' se usa familiarmente para decir 'Es una pena/Qué tontería'.",
+            "incorrect": "'Tant mieux' significa 'Mejor así'."
+          }
+        },
+        {
+          "id": "ex_042",
+          "type": "sentence_builder",
+          "difficulty": "medium",
+          "instruction": "Ordena la frase de opinión negativa.",
+          "prompt": null,
+          "content": {
+            "segments": ["Je", "ne", "trouve", "pas", "qu'", "il", "soit", "sympa"],
+            "correct_order": ["Je", "ne", "trouve", "pas", "qu'", "il", "soit", "sympa"],
+            "distractors": ["est", "trouves"]
+          },
+          "feedback": {
+            "correct": "Bien. 'Je ne trouve pas que' (Negativo) -> Subjuntivo (Soit).",
+            "incorrect": "Si fuera afirmativo (Je trouve que), usaríamos 'Est'. Al ser negativo, 'Soit'."
+          }
+        },
+        {
+          "id": "ex_043",
+          "type": "selection_single",
+          "difficulty": "hard",
+          "instruction": "¿Qué forma verbal corresponde a 'Prendre' en subjuntivo (Ellos)?",
+          "prompt": "J'aimerais qu'ils ______ une décision.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "prennent" },
+              { "id": "opt_2", "text": "prenne" },
+              { "id": "opt_3", "text": "prenions" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Qu'ils prennent' (doble n).",
+            "incorrect": "'Prenne' es singular. 'Prenions' es nosotros."
+          }
+        },
+        {
+          "id": "ex_044",
+          "type": "true_false",
+          "difficulty": "medium",
+          "instruction": "Verdadero o Falso: 'Avoir le seum' significa tener mucha suerte.",
+          "prompt": "Il a le seum car il a perdu.",
+          "content": {
+            "is_correct": false,
+            "explanation": "Falso. 'Avoir le seum' es estar frustrado, enfadado o disgustado (tener rabia)."
+          },
+          "feedback": null
+        },
+        {
+          "id": "ex_045",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Completa con el conector lógico 'Puesto que'.",
+          "prompt": "______ tu es là, aide-moi !",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Puisque" },
+              { "id": "opt_2", "text": "Pourtant" },
+              { "id": "opt_3", "text": "Même si" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. 'Puisque' indica una causa conocida (Ya que estás aquí...).",
+            "incorrect": "'Pourtant' es oposición (Sin embargo)."
+          }
+        },
+        {
+          "id": "ex_046",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce usando 'Pour que': 'Te escribo para que sepas'.",
+          "prompt": "Te escribo para que sepas.",
+          "content": {
+            "placeholder": "Je t'écris...",
+            "accepted_answers": ["Je t'écris pour que tu saches.", "Je vous écris pour que vous sachiez."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "¡Muy bien! 'Pour que tu saches' (Subjuntivo de Savoir).",
+            "incorrect": "No uses 'Sais'. El subjuntivo es 'Saches'."
+          }
+        },
+        {
+          "id": "ex_047",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "¿Qué significa 'Kiffer'?",
+          "prompt": "Je kiffe cette chanson !",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "Odiar" },
+              { "id": "opt_2", "text": "Adorar / Gustar mucho" },
+              { "id": "opt_3", "text": "Escuchar" }
+            ],
+            "correct_option_id": "opt_2"
+          },
+          "feedback": {
+            "correct": "Sí. Kiffer = Aimer.",
+            "incorrect": "Es argot muy común."
+          }
+        },
+        {
+          "id": "ex_048",
+          "type": "sentence_builder",
+          "difficulty": "hard",
+          "instruction": "Forma la frase: 'No creo que valga la pena'.",
+          "prompt": null,
+          "content": {
+            "segments": ["Je", "ne", "crois", "pas", "que", "ça", "en", "vaille", "la", "peine"],
+            "correct_order": ["Je", "ne", "crois", "pas", "que", "ça", "en", "vaille", "la", "peine"],
+            "distractors": ["vaut", "est"]
+          },
+          "feedback": {
+            "correct": "Excelente. Croire (Negativo) + Subjuntivo de Valoir (Vaille).",
+            "incorrect": "La expresión es 'Valoir la peine'."
+          }
+        },
+        {
+          "id": "ex_049",
+          "type": "selection_single",
+          "difficulty": "medium",
+          "instruction": "Elige la expresión para 'No te preocupes' (Familiar).",
+          "prompt": "______, je m'en occupe.",
+          "content": {
+            "options": [
+              { "id": "opt_1", "text": "T'inquiète" },
+              { "id": "opt_2", "text": "T'énerve" },
+              { "id": "opt_3", "text": "T'en fous" }
+            ],
+            "correct_option_id": "opt_1"
+          },
+          "feedback": {
+            "correct": "Correcto. 'T'inquiète' (corto de Ne t'inquiète pas).",
+            "incorrect": "'T'en fous' significa 'te da igual'."
+          }
+        },
+        {
+          "id": "ex_050",
+          "type": "full_translation",
+          "difficulty": "hard",
+          "instruction": "Traduce usando 'Faire' en subjuntivo: 'Quiero que hagas un esfuerzo'.",
+          "prompt": "Quiero que hagas un esfuerzo.",
+          "content": {
+            "placeholder": "Je veux...",
+            "accepted_answers": ["Je veux que tu fasses un effort.", "Je veux que vous fassiez un effort."],
+            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+          },
+          "feedback": {
+            "correct": "¡Perfecto! 'Que tu fasses'.",
+            "incorrect": "Recuerda: Je veux que + Subjuntivo."
+          }
+        }
+      ]
+    }
+    </script>
