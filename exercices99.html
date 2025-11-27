@@ -1,899 +1,844 @@
 <script type="application/json" id="exercise-data">
+{
+  "interactive_exercises": [
     {
-      "interactive_exercises": [
-        {
-          "id": "cj_001",
-          "type": "selection_single",
-          "difficulty": "easy",
-          "instruction": "Présent: Conjugua el verbo Être.",
-          "prompt": "Je ______ très content aujourd'hui.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "suis" },
-              { "id": "opt_2", "text": "es" },
-              { "id": "opt_3", "text": "est" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "¡Correcto! Je suis.",
-            "incorrect": "Con 'Je' usamos 'suis'. 'Es' es para Tu, 'Est' es para Il/Elle."
-          }
-        },
-        {
-          "id": "cj_002",
-          "type": "selection_single",
-          "difficulty": "easy",
-          "instruction": "Présent: Conjugua el verbo Avoir.",
-          "prompt": "Tu ______ un chien ?",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "ai" },
-              { "id": "opt_2", "text": "as" },
-              { "id": "opt_3", "text": "a" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "¡Bien! Tu as.",
-            "incorrect": "J'ai, Tu as, Il a."
-          }
-        },
-        {
-          "id": "cj_003",
-          "type": "selection_single",
-          "difficulty": "easy",
-          "instruction": "Présent: Verbo del primer grupo (-ER).",
-          "prompt": "Elle ______ (parler) français.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "parle" },
-              { "id": "opt_2", "text": "parles" },
-              { "id": "opt_3", "text": "parlez" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Exacto. Elle parle (terminación -e).",
-            "incorrect": "'Parles' es para Tu. 'Parle' es para Il/Elle/On."
-          }
-        },
-        {
-          "id": "cj_004",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Présent: Cuidado con la ortografía de 'Nous'.",
-          "prompt": "Nous ______ (manger) une pizza.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "mangons" },
-              { "id": "opt_2", "text": "mangeons" },
-              { "id": "opt_3", "text": "mangent" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "¡Muy bien! Agregamos una 'e' para mantener el sonido suave de la G.",
-            "incorrect": "Necesitas la 'e' (mangeons) para que no suene 'mangons' (como 'gato')."
-          }
-        },
-        {
-          "id": "cj_005",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Présent: Verbo Irregular Aller.",
-          "prompt": "Ils ______ (aller) au cinéma.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "allent" },
-              { "id": "opt_2", "text": "vont" },
-              { "id": "opt_3", "text": "vas" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "Correcto. Ils vont.",
-            "incorrect": "El verbo Aller es muy irregular. Ils vont."
-          }
-        },
-        {
-          "id": "cj_006",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Présent: Verbo Faire.",
-          "prompt": "Vous ______ (faire) du sport ?",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "faisez" },
-              { "id": "opt_2", "text": "faites" },
-              { "id": "opt_3", "text": "font" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "¡Exacto! Vous faites (es una excepción a la regla -ez).",
-            "incorrect": "No se dice 'faisez'. La forma correcta es 'Vous faites'."
-          }
-        },
-        {
-          "id": "cj_007",
-          "type": "true_false",
-          "difficulty": "easy",
-          "instruction": "Présent: ¿Es correcta esta conjugación?",
-          "prompt": "Je parles anglais.",
-          "content": {
-            "is_correct": false,
-            "explanation": "Falso. En el primer grupo, 'Je' termina en -e. (Je parle)."
-          },
-          "feedback": null
-        },
-        {
-          "id": "cj_008",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Présent: Verbo Finir (2º grupo).",
-          "prompt": "Nous ______ (finir) le travail.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "finissons" },
-              { "id": "opt_2", "text": "finisons" },
-              { "id": "opt_3", "text": "finissions" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Correcto. Doble 's' para el plural del segundo grupo.",
-            "incorrect": "Recuerda la doble S: Finissons."
-          }
-        },
-        {
-          "id": "cj_009",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Présent: Verbo Pouvoir.",
-          "prompt": "Je ______ (pouvoir) t'aider.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "peux" },
-              { "id": "opt_2", "text": "peut" },
-              { "id": "opt_3", "text": "pouvons" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Sí. Je peux, Tu peux, Il peut.",
-            "incorrect": "'Peut' es para tercera persona (Il/Elle)."
-          }
-        },
-        {
-          "id": "cj_010",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Présent: Verbo Prendre.",
-          "prompt": "Ils ______ (prendre) le train.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "prennent" },
-              { "id": "opt_2", "text": "prenent" },
-              { "id": "opt_3", "text": "prendent" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Correcto. Ils prennent (doble n).",
-            "incorrect": "Se duplica la 'n' en la tercera persona plural: Prennent."
-          }
-        },
-        {
-          "id": "cj_011",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Passé Composé: Elige el auxiliar correcto.",
-          "prompt": "J'______ mangé une pomme.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "suis" },
-              { "id": "opt_2", "text": "ai" },
-              { "id": "opt_3", "text": "as" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "Bien. Verbo Avoir como auxiliar.",
-            "incorrect": "Manger se conjuga con Avoir (J'ai mangé)."
-          }
-        },
-        {
-          "id": "cj_012",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Passé Composé: Verbo de movimiento.",
-          "prompt": "Je ______ allé au cinéma.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "suis" },
-              { "id": "opt_2", "text": "ai" },
-              { "id": "opt_3", "text": "es" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Correcto. Aller usa el auxiliar Être (Je suis allé).",
-            "incorrect": "Aller es un verbo de movimiento, usa Être."
-          }
-        },
-        {
-          "id": "cj_013",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Passé Composé: Participio de Faire.",
-          "prompt": "Qu'est-ce que tu as ______ ?",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "fais" },
-              { "id": "opt_2", "text": "fait" },
-              { "id": "opt_3", "text": "faire" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "Exacto. El participio de Faire es 'Fait'.",
-            "incorrect": "'Fait' es el participio pasado irregular."
-          }
-        },
-        {
-          "id": "cj_014",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Passé Composé: Concordancia con Être (Femenino).",
-          "prompt": "Marie est ______ (partir) hier.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "parti" },
-              { "id": "opt_2", "text": "partie" },
-              { "id": "opt_3", "text": "parties" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "¡Sí! Marie es mujer, agregamos 'e' (Partie).",
-            "incorrect": "Con el auxiliar Être, el participio concuerda con el sujeto."
-          }
-        },
-        {
-          "id": "cj_015",
-          "type": "true_false",
-          "difficulty": "medium",
-          "instruction": "Passé Composé: ¿Es correcto?",
-          "prompt": "Nous avons arrivé.",
-          "content": {
-            "is_correct": false,
-            "explanation": "Falso. Arriver es verbo de movimiento, usa Être: Nous SOMMES arrivés."
-          },
-          "feedback": null
-        },
-        {
-          "id": "cj_016",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Passé Composé: Verbo reflexivo.",
-          "prompt": "Elle ______ lavée.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "s'a" },
-              { "id": "opt_2", "text": "s'est" },
-              { "id": "opt_3", "text": "est" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "Correcto. Elle s'est lavée.",
-            "incorrect": "Los verbos reflexivos siempre usan Être."
-          }
-        },
-        {
-          "id": "cj_017",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Passé Composé: Participio de Voir.",
-          "prompt": "J'ai ______ un bon film.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "vu" },
-              { "id": "opt_2", "text": "voir" },
-              { "id": "opt_3", "text": "voyer" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Bien. J'ai vu.",
-            "incorrect": "El participio de Voir es irregular: Vu."
-          }
-        },
-        {
-          "id": "cj_018",
-          "type": "sentence_builder",
-          "difficulty": "hard",
-          "instruction": "Ordena la frase en Passé Composé.",
-          "prompt": null,
-          "content": {
-            "segments": ["Ils", "ont", "fini", "leurs", "devoirs"],
-            "correct_order": ["Ils", "ont", "fini", "leurs", "devoirs"],
-            "distractors": ["sont", "finis"]
-          },
-          "feedback": {
-            "correct": "Perfecto. Ils ont fini (Avoir + Participio).",
-            "incorrect": "Finir usa Avoir. El participio es 'fini'."
-          }
-        },
-        {
-          "id": "cj_019",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Passé Composé: Participio de Prendre.",
-          "prompt": "Tu as ______ le bus ?",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "prené" },
-              { "id": "opt_2", "text": "pris" },
-              { "id": "opt_3", "text": "prendu" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "Exacto. Tu as pris.",
-            "incorrect": "Prendre es irregular, su participio es 'Pris'."
-          }
-        },
-        {
-          "id": "cj_020",
-          "type": "true_false",
-          "difficulty": "hard",
-          "instruction": "Passé Composé: Concordancia con Avoir.",
-          "prompt": "Elles ont mangées.",
-          "content": {
-            "is_correct": false,
-            "explanation": "Falso. Con Avoir NO hay concordancia con el sujeto. Debe ser 'Elles ont mangé'."
-          },
-          "feedback": null
-        },
-        {
-          "id": "cj_021",
-          "type": "selection_single",
-          "difficulty": "easy",
-          "instruction": "Imparfait: Terminación para 'Je'.",
-          "prompt": "Quand j'______ (être) petit...",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "étais" },
-              { "id": "opt_2", "text": "était" },
-              { "id": "opt_3", "text": "étions" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Bien. J'étais (terminación -ais).",
-            "incorrect": "Je... -ais, Tu... -ais, Il... -ait."
-          }
-        },
-        {
-          "id": "cj_022",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Imparfait: Verbo Avoir.",
-          "prompt": "Nous ______ (avoir) faim.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "avais" },
-              { "id": "opt_2", "text": "avions" },
-              { "id": "opt_3", "text": "aviez" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "Correcto. Nous avions (-ions).",
-            "incorrect": "Para Nous en imperfecto usamos -ions."
-          }
-        },
-        {
-          "id": "cj_023",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Imparfait: Tercera persona singular.",
-          "prompt": "Il ______ (faire) beau.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "faisait" },
-              { "id": "opt_2", "text": "faisais" },
-              { "id": "opt_3", "text": "faisaient" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Exacto. Il faisait (-ait).",
-            "incorrect": "Faisais es para Je/Tu. Faisait es para Il."
-          }
-        },
-        {
-          "id": "cj_024",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Imparfait: Verbo Aller (Ellos).",
-          "prompt": "Ils ______ (aller) à la plage chaque été.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "allaient" },
-              { "id": "opt_2", "text": "allais" },
-              { "id": "opt_3", "text": "allait" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Sí. Ils allaient (-aient).",
-            "incorrect": "Plural 'Ils' requiere la terminación -aient."
-          }
-        },
-        {
-          "id": "cj_025",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Imparfait: Verbo Finir.",
-          "prompt": "Tu ______ (finir) toujours tes devoirs.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "finissait" },
-              { "id": "opt_2", "text": "finissais" },
-              { "id": "opt_3", "text": "finissons" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "Correcto. Tu finissais.",
-            "incorrect": "Recuerda la base con doble 's' (finiss-) + terminación ais."
-          }
-        },
-        {
-          "id": "cj_026",
-          "type": "sentence_builder",
-          "difficulty": "medium",
-          "instruction": "Forma la frase en Imparfait.",
-          "prompt": null,
-          "content": {
-            "segments": ["Avant", "je", "fumais", "beaucoup"],
-            "correct_order": ["Avant", "je", "fumais", "beaucoup"],
-            "distractors": ["fumé", "fume"]
-          },
-          "feedback": {
-            "correct": "Muy bien. 'Avant, je fumais' (hábito pasado).",
-            "incorrect": "Usa el imperfecto para hábitos en el pasado (fumais)."
-          }
-        },
-        {
-          "id": "cj_027",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Imparfait: Verbo Manger (Nosotros).",
-          "prompt": "Nous ______ (manger) ensemble.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "mangions" },
-              { "id": "opt_2", "text": "mangeions" },
-              { "id": "opt_3", "text": "mangeons" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Correcto. Mangions.",
-            "incorrect": "Con 'Nous' y -ions, no necesitamos la 'e' extra porque la 'i' suaviza la G."
-          }
-        },
-        {
-          "id": "cj_028",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Imparfait: Verbo Voir.",
-          "prompt": "Vous ______ (voir) souvent vos amis ?",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "voyiez" },
-              { "id": "opt_2", "text": "voyez" },
-              { "id": "opt_3", "text": "voyait" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Bien. Vous voyiez (raíz voy- + terminación -iez).",
-            "incorrect": "'Voyez' es presente. 'Voyiez' es imperfecto."
-          }
-        },
-        {
-          "id": "cj_029",
-          "type": "true_false",
-          "difficulty": "easy",
-          "instruction": "Imparfait: ¿La terminación es correcta?",
-          "prompt": "Il parlait avec son père.",
-          "content": {
-            "is_correct": true,
-            "explanation": "Correcto. Tercera persona singular termina en -ait."
-          },
-          "feedback": null
-        },
-        {
-          "id": "cj_030",
-          "type": "full_translation",
-          "difficulty": "hard",
-          "instruction": "Traduce usando Imparfait.",
-          "prompt": "Llovía.",
-          "content": {
-            "placeholder": "...",
-            "accepted_answers": ["Il pleuvait.", "Il pleuvait"],
-            "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-          },
-          "feedback": {
-            "correct": "Exacto: Il pleuvait.",
-            "incorrect": "Verbo pleuvoir en imperfecto: Il pleuvait."
-          }
-        },
-        {
-          "id": "cj_031",
-          "type": "selection_single",
-          "difficulty": "easy",
-          "instruction": "Futur Simple: Verbo Parler.",
-          "prompt": "Demain, je ______ (parler) au directeur.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "parlerai" },
-              { "id": "opt_2", "text": "parlai" },
-              { "id": "opt_3", "text": "parle" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Correcto. Infinitivo + ai = Parlerai.",
-            "incorrect": "El futuro mantiene la R del infinitivo: Parlerai."
-          }
-        },
-        {
-          "id": "cj_032",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Futur Simple: Verbo Être (Irregular).",
-          "prompt": "Tu ______ (être) fatigué demain.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "êtiras" },
-              { "id": "opt_2", "text": "seras" },
-              { "id": "opt_3", "text": "serai" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "¡Bien! La raíz es 'ser-'. Tu seras.",
-            "incorrect": "Être en futuro es irregular: Je serai, Tu seras."
-          }
-        },
-        {
-          "id": "cj_033",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Futur Simple: Verbo Avoir.",
-          "prompt": "Nous ______ (avoir) le temps.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "aurons" },
-              { "id": "opt_2", "text": "avons" },
-              { "id": "opt_3", "text": "avoirons" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Exacto. Nous aurons.",
-            "incorrect": "La raíz de Avoir en futuro es 'aur-'. Nous aurons."
-          }
-        },
-        {
-          "id": "cj_034",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Futur Simple: Verbo Aller.",
-          "prompt": "Ils ______ (aller) en France.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "alleront" },
-              { "id": "opt_2", "text": "iront" },
-              { "id": "opt_3", "text": "vont" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "Sí. Ils iront.",
-            "incorrect": "La raíz de Aller en futuro es 'ir-'. Ils iront."
-          }
-        },
-        {
-          "id": "cj_035",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Futur Simple: Verbo Faire.",
-          "prompt": "Vous ______ (faire) quoi ce week-end ?",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "fairez" },
-              { "id": "opt_2", "text": "ferez" },
-              { "id": "opt_3", "text": "ferrez" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "Correcto. Vous ferez.",
-            "incorrect": "La raíz de Faire en futuro es 'fer-'. Vous ferez."
-          }
-        },
-        {
-          "id": "cj_036",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Futur Simple: Verbo Venir.",
-          "prompt": "Elle ______ (venir) nous voir.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "viendra" },
-              { "id": "opt_2", "text": "venira" },
-              { "id": "opt_3", "text": "vendra" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Bien. Elle viendra.",
-            "incorrect": "Venir es irregular en futuro: Je viendrai, Elle viendra."
-          }
-        },
-        {
-          "id": "cj_037",
-          "type": "true_false",
-          "difficulty": "medium",
-          "instruction": "Futur Simple: ¿Es correcto?",
-          "prompt": "Je voirai ce film.",
-          "content": {
-            "is_correct": false,
-            "explanation": "Falso. El verbo Voir en futuro es irregular: Je VERRAI."
-          },
-          "feedback": null
-        },
-        {
-          "id": "cj_038",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Futur Simple: Verbo Pouvoir.",
-          "prompt": "Tu ______ (pouvoir) venir ?",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "pourras" },
-              { "id": "opt_2", "text": "pouveras" },
-              { "id": "opt_3", "text": "peux" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Correcto. Tu pourras (doble r).",
-            "incorrect": "Pouvoir en futuro tiene doble R: Pourr-."
-          }
-        },
-        {
-          "id": "cj_039",
-          "type": "selection_single",
-          "difficulty": "medium",
-          "instruction": "Futur Simple: Verbo Devoir.",
-          "prompt": "Nous ______ (devoir) partir.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "devrons" },
-              { "id": "opt_2", "text": "devoirons" },
-              { "id": "opt_3", "text": "doivrons" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Exacto. Nous devrons.",
-            "incorrect": "Raíz 'devr-'. Nous devrons."
-          }
-        },
-        {
-          "id": "cj_040",
-          "type": "sentence_builder",
-          "difficulty": "medium",
-          "instruction": "Forma la frase en Futuro.",
-          "prompt": null,
-          "content": {
-            "segments": ["Un", "jour", "je", "serai", "riche"],
-            "correct_order": ["Un", "jour", "je", "serai", "riche"],
-            "distractors": ["suis", "été"]
-          },
-          "feedback": {
-            "correct": "Muy bien. Je serai (Yo seré).",
-            "incorrect": "Usa 'serai' para el futuro de Être con Je."
-          }
-        },
-        {
-          "id": "cj_041",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Subjonctif: Il faut que tu...",
-          "prompt": "Il faut que tu ______ (venir).",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "viennes" },
-              { "id": "opt_2", "text": "viens" },
-              { "id": "opt_3", "text": "venez" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Correcto. Subjuntivo: Tu viennes.",
-            "incorrect": "'Viens' es indicativo. Con 'Il faut que', usamos subjuntivo."
-          }
-        },
-        {
-          "id": "cj_042",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Subjonctif: Verbo Être.",
-          "prompt": "Je veux qu'il ______ (être) heureux.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "est" },
-              { "id": "opt_2", "text": "soit" },
-              { "id": "opt_3", "text": "sois" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "Exacto. Il soit.",
-            "incorrect": "Être en subjuntivo: Je sois, Tu sois, Il soit."
-          }
-        },
-        {
-          "id": "cj_043",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Subjonctif: Verbo Avoir.",
-          "prompt": "Il est important que nous ______ (avoir) les documents.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "avons" },
-              { "id": "opt_2", "text": "ayons" },
-              { "id": "opt_3", "text": "aies" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "Bien. Nous ayons.",
-            "incorrect": "Avoir en subjuntivo (Nous): Ayons."
-          }
-        },
-        {
-          "id": "cj_044",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Subjonctif: Verbo Faire.",
-          "prompt": "Il faut qu'elles ______ (faire) attention.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "fassent" },
-              { "id": "opt_2", "text": "font" },
-              { "id": "opt_3", "text": "faisent" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Correcto. Elles fassent.",
-            "incorrect": "Raíz irregular de Faire en subjuntivo: fass-."
-          }
-        },
-        {
-          "id": "cj_045",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Subjonctif: Verbo Aller.",
-          "prompt": "J'aimerais que vous ______ (aller) avec moi.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "allez" },
-              { "id": "opt_2", "text": "alliez" },
-              { "id": "opt_3", "text": "ailliez" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "Bien. Vous alliez.",
-            "incorrect": "El subjuntivo de Aller para 'Vous' es idéntico al imperfecto: Alliez."
-          }
-        },
-        {
-          "id": "cj_046",
-          "type": "true_false",
-          "difficulty": "hard",
-          "instruction": "Subjonctif: ¿Uso correcto?",
-          "prompt": "Il faut que je parle.",
-          "content": {
-            "is_correct": true,
-            "explanation": "Correcto. Subjuntivo de Parler (Je) es 'parle', igual que el presente."
-          },
-          "feedback": null
-        },
-        {
-          "id": "cj_047",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Subjonctif: Verbo Savoir.",
-          "prompt": "Il faut que tu ______ (savoir) la vérité.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "saches" },
-              { "id": "opt_2", "text": "sais" },
-              { "id": "opt_3", "text": "saves" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Exacto. Tu saches.",
-            "incorrect": "Savoir en subjuntivo es muy irregular: Sache, Saches, Sache."
-          }
-        },
-        {
-          "id": "cj_048",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Subjonctif: Verbo Pouvoir.",
-          "prompt": "Je doute qu'il ______ (pouvoir) venir.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "peut" },
-              { "id": "opt_2", "text": "puisse" },
-              { "id": "opt_3", "text": "peuve" }
-            ],
-            "correct_option_id": "opt_2"
-          },
-          "feedback": {
-            "correct": "Correcto. Il puisse.",
-            "incorrect": "Pouvoir en subjuntivo: Puisse."
-          }
-        },
-        {
-          "id": "cj_049",
-          "type": "selection_single",
-          "difficulty": "hard",
-          "instruction": "Subjonctif: Verbo Prendre.",
-          "prompt": "Il faut qu'ils ______ (prendre) le métro.",
-          "content": {
-            "options": [
-              { "id": "opt_1", "text": "prennent" },
-              { "id": "opt_2", "text": "prenne" },
-              { "id": "opt_3", "text": "prendent" }
-            ],
-            "correct_option_id": "opt_1"
-          },
-          "feedback": {
-            "correct": "Bien. Ils prennent.",
-            "incorrect": "Se escribe igual que el presente indicativo (Ellos): Prennent."
-          }
-        },
-        {
-          "id": "cj_050",
-          "type": "sentence_builder",
-          "difficulty": "hard",
-          "instruction": "Forma la frase en Subjonctif.",
-          "prompt": null,
-          "content": {
-            "segments": ["Il", "faut", "que", "je", "parte"],
-            "correct_order": ["Il", "faut", "que", "je", "parte"],
-            "distractors": ["pars", "partir"]
-          },
-          "feedback": {
-            "correct": "¡Excelente! Il faut que je parte.",
-            "incorrect": "Usamos el subjuntivo 'parte' después de 'Il faut que'."
-          }
-        }
-      ]
+      "id": "ex_001",
+      "type": "selection_single",
+      "difficulty": "medium",
+      "instruction": "Choisissez la forme correcte du Subjonctif.",
+      "prompt": "Il faut absolument que tu ______ ce dossier avant midi.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "finisses" },
+          { "id": "opt_2", "text": "finis" },
+          { "id": "opt_3", "text": "finiras" }
+        ],
+        "correct_option_id": "opt_1"
+      },
+      "feedback": {
+        "correct": "Correct ! 'Il faut que' est suivi du subjonctif. Tu finisses.",
+        "incorrect": "'Finis' est l'indicatif/impératif. Avec 'Il faut que', on utilise le subjonctif."
+      }
+    },
+    {
+      "id": "ex_002",
+      "type": "sentence_builder",
+      "difficulty": "hard",
+      "instruction": "Reconstituez la phrase au Passé Conditionnel (Le regret).",
+      "prompt": null,
+      "content": {
+        "segments": ["J'", "aurais", "dû", "accepter", "cette", "offre"],
+        "correct_order": ["J'", "aurais", "dû", "accepter", "cette", "offre"],
+        "distractors": ["devrais", "ai"]
+      },
+      "feedback": {
+        "correct": "Très bien. 'J'aurais dû' exprime un regret sur le passé.",
+        "incorrect": "Structure : Sujet + Auxiliaire Conditionnel (aurais) + Participe (dû) + Infinitif."
+      }
+    },
+    {
+      "id": "ex_003",
+      "type": "selection_single",
+      "difficulty": "medium",
+      "instruction": "Sélectionnez le pronom relatif correct (Lieu ou Temps).",
+      "prompt": "C'est l'entreprise ______ j'ai fait mon stage.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "que" },
+          { "id": "opt_2", "text": "où" },
+          { "id": "opt_3", "text": "dont" }
+        ],
+        "correct_option_id": "opt_2"
+      },
+      "feedback": {
+        "correct": "Exact ! 'Où' remplace un lieu (l'entreprise) ou un moment.",
+        "incorrect": "'Que' est pour un objet direct. 'Dont' remplace 'de'. Ici, on travaille DANS l'entreprise -> Où."
+      }
+    },
+    {
+      "id": "ex_004",
+      "type": "true_false",
+      "difficulty": "medium",
+      "instruction": "Grammaire : L'utilisation du Gérondif est-elle correcte ?",
+      "prompt": "J'ai appris l'anglais en regardant des séries.",
+      "content": {
+        "is_correct": true,
+        "explanation": "Vrai. 'En regardant' (En + Participe présent) exprime le moyen ou la manière."
+      },
+      "feedback": null
+    },
+    {
+      "id": "ex_005",
+      "type": "full_translation",
+      "difficulty": "hard",
+      "instruction": "Traduisez en utilisant la voix passive.",
+      "prompt": "La décision a été prise par le comité.",
+      "content": {
+        "placeholder": "Écrivez la phrase...",
+        "accepted_answers": ["La décision a été prise par le comité."],
+        "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+      },
+      "feedback": {
+        "correct": "Parfait. Attention à l'accord : Décision (fém) -> prise.",
+        "incorrect": "N'oubliez pas l'accord du participe passé avec le sujet 'La décision'."
+      }
+    },
+    {
+      "id": "ex_006",
+      "type": "selection_single",
+      "difficulty": "hard",
+      "instruction": "Quel connecteur marque l'opposition ?",
+      "prompt": "Il est compétent, ______ il manque d'expérience.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "c'est pourquoi" },
+          { "id": "opt_2", "text": "néanmoins" },
+          { "id": "opt_3", "text": "puisque" }
+        ],
+        "correct_option_id": "opt_2"
+      },
+      "feedback": {
+        "correct": "Correct. 'Néanmoins' (ou 'Cependant') marque une opposition.",
+        "incorrect": "'C'est pourquoi' marque la conséquence. 'Puisque' marque la cause."
+      }
+    },
+    {
+      "id": "ex_007",
+      "type": "sentence_builder",
+      "difficulty": "medium",
+      "instruction": "Placez les doubles pronoms dans le bon ordre.",
+      "prompt": null,
+      "content": {
+        "segments": ["Il", "me", "l'", "a", "donné", "hier"],
+        "correct_order": ["Il", "me", "l'", "a", "donné", "hier"],
+        "distractors": ["le", "lui"]
+      },
+      "feedback": {
+        "correct": "Bien joué ! Ordre : Me/Te/Se/Nous/Vous AVANT Le/La/Les.",
+        "incorrect": "Le pronom indirect (me) se place avant le pronom direct (l') ici."
+      }
+    },
+    {
+      "id": "ex_008",
+      "type": "selection_single",
+      "difficulty": "medium",
+      "instruction": "Complétez avec le pronom relatif 'Dont'.",
+      "prompt": "C'est le collègue ______ je t'ai parlé.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "que" },
+          { "id": "opt_2", "text": "qui" },
+          { "id": "opt_3", "text": "dont" }
+        ],
+        "correct_option_id": "opt_3"
+      },
+      "feedback": {
+        "correct": "Exact ! Parler DE quelqu'un -> Dont.",
+        "incorrect": "Le verbe est 'Parler DE'. Le relatif qui remplace 'De' est 'Dont'."
+      }
+    },
+    {
+      "id": "ex_009",
+      "type": "true_false",
+      "difficulty": "hard",
+      "instruction": "Analyse : Cette phrase exprime-t-elle une certitude ?",
+      "prompt": "Je ne pense pas qu'il vienne.",
+      "content": {
+        "is_correct": false,
+        "explanation": "Faux. 'Je ne pense pas' exprime un doute et déclenche le Subjonctif (vienne)."
+      },
+      "feedback": null
+    },
+    {
+      "id": "ex_010",
+      "type": "full_translation",
+      "difficulty": "hard",
+      "instruction": "Traduisez (Conditionnel présent - Politesse).",
+      "prompt": "Pourriez-vous m'envoyer le rapport ?",
+      "content": {
+        "placeholder": "...",
+        "accepted_answers": ["Pourriez-vous m'envoyer le rapport ?", "Pourriez vous m'envoyer le rapport ?"],
+        "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+      },
+      "feedback": {
+        "correct": "Très bien. Usage du verbe Pouvoir au conditionnel.",
+        "incorrect": "Utilisez 'Pourriez-vous' pour être poli."
+      }
+    },
+    {
+      "id": "ex_011",
+      "type": "selection_single",
+      "difficulty": "medium",
+      "instruction": "Quel mot signifie 'Being unemployed' ?",
+      "prompt": "Après son licenciement, il s'est retrouvé au ______.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "chômage" },
+          { "id": "opt_2", "text": "syndicat" },
+          { "id": "opt_3", "text": "stage" }
+        ],
+        "correct_option_id": "opt_1"
+      },
+      "feedback": {
+        "correct": "Correct. Le chômage (Desempleo).",
+        "incorrect": "Syndicat est une organisation. Stage est une période de formation."
+      }
+    },
+    {
+      "id": "ex_012",
+      "type": "sentence_builder",
+      "difficulty": "hard",
+      "instruction": "Formez une phrase avec 'Bien que' (Concession + Subjonctif).",
+      "prompt": null,
+      "content": {
+        "segments": ["Bien", "qu'", "il", "soit", "tard,", "je", "reste"],
+        "correct_order": ["Bien", "qu'", "il", "soit", "tard,", "je", "reste"],
+        "distractors": ["est", "car"]
+      },
+      "feedback": {
+        "correct": "Excellent. 'Bien que' est toujours suivi du subjonctif (soit).",
+        "incorrect": "Attention : Après 'Bien que', il ne faut pas utiliser l'indicatif (est)."
+      }
+    },
+    {
+      "id": "ex_013",
+      "type": "selection_single",
+      "difficulty": "medium",
+      "instruction": "Choisissez la préposition pour un pays pluriel.",
+      "prompt": "Ils vont s'installer ______ Pays-Bas.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "en" },
+          { "id": "opt_2", "text": "aux" },
+          { "id": "opt_3", "text": "au" }
+        ],
+        "correct_option_id": "opt_2"
+      },
+      "feedback": {
+        "correct": "Oui ! Les Pays-Bas (pluriel) -> Aux.",
+        "incorrect": "'En' pour les pays féminins, 'Au' pour les masculins singuliers."
+      }
+    },
+    {
+      "id": "ex_014",
+      "type": "full_translation",
+      "difficulty": "hard",
+      "instruction": "Traduisez la phrase au Discours Indirect.",
+      "prompt": "Il dit qu'il est fatigué.",
+      "content": {
+        "placeholder": "...",
+        "accepted_answers": ["Il dit qu'il est fatigué."],
+        "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+      },
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "N'oubliez pas la conjonction 'que' (qu'il)."
+      }
+    },
+    {
+      "id": "ex_015",
+      "type": "selection_single",
+      "difficulty": "hard",
+      "instruction": "Expression idiomatique : 'Avoir le bras long'.",
+      "prompt": "Il a obtenu ce poste car il a le bras long. Cela signifie...",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "Il est très grand" },
+          { "id": "opt_2", "text": "Il a de l'influence/des relations" },
+          { "id": "opt_3", "text": "Il travaille beaucoup" }
+        ],
+        "correct_option_id": "opt_2"
+      },
+      "feedback": {
+        "correct": "Exact. Avoir de l'influence ou des connexions haut placées.",
+        "incorrect": "C'est une métaphore sur l'influence, pas sur l'anatomie."
+      }
+    },
+    {
+      "id": "ex_016",
+      "type": "true_false",
+      "difficulty": "medium",
+      "instruction": "Concordance des temps : 'Si j'étais riche, j'achèterais un bateau.'",
+      "prompt": "Cette phrase respecte la règle Si + Imparfait + Conditionnel.",
+      "content": {
+        "is_correct": true,
+        "explanation": "Vrai. C'est l'hypothèse sur le présent (Irréel du présent)."
+      },
+      "feedback": null
+    },
+    {
+      "id": "ex_017",
+      "type": "sentence_builder",
+      "difficulty": "hard",
+      "instruction": "Reconstituez la question inversée (Formelle).",
+      "prompt": null,
+      "content": {
+        "segments": ["Quand", "le", "directeur", "reviendra-t-il", "?"],
+        "correct_order": ["Quand", "le", "directeur", "reviendra-t-il", "?"],
+        "distractors": ["est-ce que", "reviendra"]
+      },
+      "feedback": {
+        "correct": "Très bien. Inversion complexe avec un nom propre.",
+        "incorrect": "Avec un sujet nom (le directeur), on garde le nom et on ajoute le pronom après le verbe (reviendra-t-il)."
+      }
+    },
+    {
+      "id": "ex_018",
+      "type": "selection_single",
+      "difficulty": "medium",
+      "instruction": "Choisissez le verbe 'Manquer' dans le sens 'I miss you'.",
+      "prompt": "Tu me ______.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "manques" },
+          { "id": "opt_2", "text": "manque" },
+          { "id": "opt_3", "text": "manquez" }
+        ],
+        "correct_option_id": "opt_1"
+      },
+      "feedback": {
+        "correct": "Correct. En français, le sujet est la personne absente. Tu me manques (Tú me faltas a mí).",
+        "incorrect": "Conjugaison avec 'Tu' -> manques. Attention à la logique inversée par rapport à l'anglais/espagnol."
+      }
+    },
+    {
+      "id": "ex_019",
+      "type": "full_translation",
+      "difficulty": "hard",
+      "instruction": "Traduisez en utilisant 'Venir de' (Passé récent).",
+      "prompt": "Acabamos de llegar.",
+      "content": {
+        "placeholder": "...",
+        "accepted_answers": ["Nous venons d'arriver.", "On vient d'arriver."],
+        "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+      },
+      "feedback": {
+        "correct": "Parfait. Venir de + Infinitif.",
+        "incorrect": "Utilisez le verbe Venir (Nous venons) + de + arriver."
+      }
+    },
+    {
+      "id": "ex_020",
+      "type": "selection_single",
+      "difficulty": "hard",
+      "instruction": "Vocabulaire du travail : CDD vs CDI.",
+      "prompt": "Je cherche un emploi stable à long terme, je veux un ______.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "CDD" },
+          { "id": "opt_2", "text": "CDI" },
+          { "id": "opt_3", "text": "CV" }
+        ],
+        "correct_option_id": "opt_2"
+      },
+      "feedback": {
+        "correct": "Oui. Contrat à Durée Indéterminée (CDI).",
+        "incorrect": "CDD est à durée déterminée (temporaire)."
+      }
+    },
+    {
+      "id": "ex_021",
+      "type": "sentence_builder",
+      "difficulty": "medium",
+      "instruction": "Formez la phrase négative : 'Je n'ai plus d'argent'.",
+      "prompt": null,
+      "content": {
+        "segments": ["Je", "n'", "ai", "plus", "d'", "argent"],
+        "correct_order": ["Je", "n'", "ai", "plus", "d'", "argent"],
+        "distractors": ["pas", "de"]
+      },
+      "feedback": {
+        "correct": "Bien. 'Ne... plus' remplace 'Ne... pas' pour dire 'Ya no'.",
+        "incorrect": "On n'utilise pas 'pas' avec 'plus'. Et 'argent' commence par une voyelle -> d'."
+      }
+    },
+    {
+      "id": "ex_022",
+      "type": "selection_single",
+      "difficulty": "medium",
+      "instruction": "Accord du Participe Passé avec 'Avoir' (COD avant).",
+      "prompt": "Les fleurs que j'ai ______.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "acheté" },
+          { "id": "opt_2", "text": "achetées" },
+          { "id": "opt_3", "text": "achetés" }
+        ],
+        "correct_option_id": "opt_2"
+      },
+      "feedback": {
+        "correct": "Bravo ! Le COD (que/fleurs) est avant le verbe, donc on accorde : Féminin Pluriel.",
+        "incorrect": "Avec l'auxiliaire Avoir, on accorde si le COD est placé AVANT."
+      }
+    },
+    {
+      "id": "ex_023",
+      "type": "true_false",
+      "difficulty": "hard",
+      "instruction": "Grammaire : 'C'est' vs 'Il est'.",
+      "prompt": "'C'est un avocat' est correct, mais 'Il est un avocat' est incorrect.",
+      "content": {
+        "is_correct": true,
+        "explanation": "Vrai. On dit 'Il est avocat' (sans article) ou 'C'est un avocat' (présentatif)."
+      },
+      "feedback": null
+    },
+    {
+      "id": "ex_024",
+      "type": "selection_single",
+      "difficulty": "hard",
+      "instruction": "Pronom relatif composé.",
+      "prompt": "La réunion à ______ j'ai assisté était longue.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "laquelle" },
+          { "id": "opt_2", "text": "lequel" },
+          { "id": "opt_3", "text": "qui" }
+        ],
+        "correct_option_id": "opt_1"
+      },
+      "feedback": {
+        "correct": "Correct. Assister à... La réunion (Fém) -> Laquelle.",
+        "incorrect": "On dit 'Assister à quelque chose'. Réunion est féminin."
+      }
+    },
+    {
+      "id": "ex_025",
+      "type": "full_translation",
+      "difficulty": "hard",
+      "instruction": "Traduisez : 'Si j'avais su, je serais venu.' (Hypothèse passée).",
+      "prompt": "Si lo hubiera sabido, habría venido.",
+      "content": {
+        "placeholder": "...",
+        "accepted_answers": ["Si j'avais su, je serais venu.", "Si j'avais su je serais venu."],
+        "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+      },
+      "feedback": {
+        "correct": "Excellent. Plus-que-parfait + Conditionnel Passé.",
+        "incorrect": "Attention aux temps : Si + Avais su (PQP) -> Serais venu (Cond. Passé)."
+      }
+    },
+    {
+      "id": "ex_026",
+      "type": "selection_single",
+      "difficulty": "medium",
+      "instruction": "Vocabulaire : Le contraire de 'Décoller' (avion).",
+      "prompt": "L'avion va ______ dans quelques minutes.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "atterrir" },
+          { "id": "opt_2", "text": "partir" },
+          { "id": "opt_3", "text": "se garer" }
+        ],
+        "correct_option_id": "opt_1"
+      },
+      "feedback": {
+        "correct": "Oui. Atterrir (Land).",
+        "incorrect": "Décoller (Take off) <-> Atterrir (Land)."
+      }
+    },
+    {
+      "id": "ex_027",
+      "type": "sentence_builder",
+      "difficulty": "medium",
+      "instruction": "Ordonnez la phrase nominale (Style journalistique).",
+      "prompt": null,
+      "content": {
+        "segments": ["Augmentation", "du", "prix", "de", "l'", "essence"],
+        "correct_order": ["Augmentation", "du", "prix", "de", "l'", "essence"],
+        "distractors": ["le", "augmente"]
+      },
+      "feedback": {
+        "correct": "Bien. La nominalisation permet des titres percutants.",
+        "incorrect": "Pas de verbe conjugué dans une phrase nominale."
+      }
+    },
+    {
+      "id": "ex_028",
+      "type": "selection_single",
+      "difficulty": "hard",
+      "instruction": "Lequel est un faux-ami ? (Actuellement vs En réalité)",
+      "prompt": "Je travaille ______ sur un grand projet.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "actuellement" },
+          { "id": "opt_2", "text": "réellement" },
+          { "id": "opt_3", "text": "éventuellement" }
+        ],
+        "correct_option_id": "opt_1"
+      },
+      "feedback": {
+        "correct": "Correct. 'Actuellement' signifie 'En ce moment' (Currently).",
+        "incorrect": "'Éventuellement' signifie 'Possibly'. Pour dire 'Actually', on utilise 'En fait'."
+      }
+    },
+    {
+      "id": "ex_029",
+      "type": "true_false",
+      "difficulty": "medium",
+      "instruction": "Usage de 'Ceci/Cela'.",
+      "prompt": "'Cela me plaît' est plus formel que 'Ça me plaît'.",
+      "content": {
+        "is_correct": true,
+        "explanation": "Vrai. 'Ça' est la contraction orale de 'Cela'. À l'écrit, préférez 'Cela'."
+      },
+      "feedback": null
+    },
+    {
+      "id": "ex_030",
+      "type": "full_translation",
+      "difficulty": "hard",
+      "instruction": "Traduisez en utilisant 'Il s'agit de'.",
+      "prompt": "Se trata de un problema grave.",
+      "content": {
+        "placeholder": "...",
+        "accepted_answers": ["Il s'agit d'un problème grave.", "Il s'agit d'un grave problème."],
+        "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+      },
+      "feedback": {
+        "correct": "Bien. 'Il s'agit de' est l'expression impersonnelle pour 'Se trata de'.",
+        "incorrect": "Ne dites pas 'Il traite de'. L'expression correcte est 'Il s'agit de'."
+      }
+    },
+    {
+      "id": "ex_031",
+      "type": "selection_single",
+      "difficulty": "medium",
+      "instruction": "Choisissez le bon temps (Simultanéité au passé).",
+      "prompt": "Pendant que je ______, le téléphone a sonné.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "dormais" },
+          { "id": "opt_2", "text": "ai dormi" },
+          { "id": "opt_3", "text": "dors" }
+        ],
+        "correct_option_id": "opt_1"
+      },
+      "feedback": {
+        "correct": "Exact. Imparfait pour l'action longue (dormais) coupée par une action courte.",
+        "incorrect": "L'action de fond se met à l'Imparfait."
+      }
+    },
+    {
+      "id": "ex_032",
+      "type": "sentence_builder",
+      "difficulty": "hard",
+      "instruction": "Reconstituez la phrase (Mise en relief 'C'est... qui').",
+      "prompt": null,
+      "content": {
+        "segments": ["C'est", "Marie", "qui", "a", "écrit", "ce", "livre"],
+        "correct_order": ["C'est", "Marie", "qui", "a", "écrit", "ce", "livre"],
+        "distractors": ["que", "est"]
+      },
+      "feedback": {
+        "correct": "Très bien. 'Qui' est utilisé car Marie est le sujet du verbe écrire.",
+        "incorrect": "On utilise 'C'est... qui' pour insister sur le sujet."
+      }
+    },
+    {
+      "id": "ex_033",
+      "type": "selection_single",
+      "difficulty": "hard",
+      "instruction": "Quel mot connecteur introduit la cause ?",
+      "prompt": "Il n'est pas venu ______ il était malade.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "car" },
+          { "id": "opt_2", "text": "donc" },
+          { "id": "opt_3", "text": "pourtant" }
+        ],
+        "correct_option_id": "opt_1"
+      },
+      "feedback": {
+        "correct": "Oui. 'Car' ou 'Parce que' introduisent la cause.",
+        "incorrect": "'Donc' est la conséquence. 'Pourtant' est l'opposition."
+      }
+    },
+    {
+      "id": "ex_034",
+      "type": "full_translation",
+      "difficulty": "hard",
+      "instruction": "Traduisez la plainte (Hôtel).",
+      "prompt": "La climatisation ne marche pas.",
+      "content": {
+        "placeholder": "...",
+        "accepted_answers": ["La climatisation ne marche pas.", "La clim ne fonctionne pas."],
+        "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+      },
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "On utilise 'Marcher' ou 'Fonctionner' pour les appareils."
+      }
+    },
+    {
+      "id": "ex_035",
+      "type": "selection_single",
+      "difficulty": "medium",
+      "instruction": "Identifiez l'intrus (Vocabulaire de la banque).",
+      "prompt": "Lequel n'appartient pas au thème bancaire ?",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "Virement" },
+          { "id": "opt_2", "text": "Emprunt" },
+          { "id": "opt_3", "text": "Ordonnance" }
+        ],
+        "correct_option_id": "opt_3"
+      },
+      "feedback": {
+        "correct": "Bien. Une 'Ordonnance' est un papier du médecin (Prescription).",
+        "incorrect": "Virement (Transfer) et Emprunt (Loan) sont bancaires."
+      }
+    },
+    {
+      "id": "ex_036",
+      "type": "true_false",
+      "difficulty": "medium",
+      "instruction": "Grammaire : 'Mieux' vs 'Meilleur'.",
+      "prompt": "'Il chante meilleur que moi' est une phrase correcte.",
+      "content": {
+        "is_correct": false,
+        "explanation": "Faux. 'Mieux' est l'adverbe (modifie le verbe chanter). 'Meilleur' est l'adjectif."
+      },
+      "feedback": null
+    },
+    {
+      "id": "ex_037",
+      "type": "sentence_builder",
+      "difficulty": "hard",
+      "instruction": "Ordonnez la phrase hypothétique (Si + Présent).",
+      "prompt": null,
+      "content": {
+        "segments": ["Si", "tu", "veux,", "nous", "pouvons", "partir"],
+        "correct_order": ["Si", "tu", "veux,", "nous", "pouvons", "partir"],
+        "distractors": ["pourrons", "voulons"]
+      },
+      "feedback": {
+        "correct": "Bien. Si + Présent -> Présent ou Futur.",
+        "incorrect": "Respectez la concordance."
+      }
+    },
+    {
+      "id": "ex_038",
+      "type": "selection_single",
+      "difficulty": "medium",
+      "instruction": "Comment appelle-t-on le 'Resort' ou complexe hôtelier ?",
+      "prompt": "Nous avons réservé dans un ______.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "club de vacances" },
+          { "id": "opt_2", "text": "auberge de jeunesse" },
+          { "id": "opt_3", "text": "mairie" }
+        ],
+        "correct_option_id": "opt_1"
+      },
+      "feedback": {
+        "correct": "Correct.",
+        "incorrect": "'Auberge de jeunesse' est un hostel. 'Mairie' est l'hôtel de ville (Town hall)."
+      }
+    },
+    {
+      "id": "ex_039",
+      "type": "full_translation",
+      "difficulty": "hard",
+      "instruction": "Traduisez avec 'Depuis' (Durée continue).",
+      "prompt": "Trabajo aquí desde hace 5 años.",
+      "content": {
+        "placeholder": "...",
+        "accepted_answers": ["Je travaille ici depuis 5 ans.", "Je travaille ici depuis cinq ans."],
+        "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+      },
+      "feedback": {
+        "correct": "Parfait. Verbe au Présent + Depuis + Durée.",
+        "incorrect": "En français, si l'action continue, on utilise le PRÉSENT, pas le passé composé."
+      }
+    },
+    {
+      "id": "ex_040",
+      "type": "selection_single",
+      "difficulty": "hard",
+      "instruction": "Choisissez la forme correcte (Participe présent vs Adjectif verbal).",
+      "prompt": "Cette histoire est très ______.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "surprenante" },
+          { "id": "opt_2", "text": "surprenant" },
+          { "id": "opt_3", "text": "surprenant" }
+        ],
+        "correct_option_id": "opt_1"
+      },
+      "feedback": {
+        "correct": "Oui. Ici c'est l'adjectif, donc il s'accorde avec 'Histoire' (fém).",
+        "incorrect": "Le participe présent (invariable) s'utilise pour une action. L'adjectif s'accorde."
+      }
+    },
+    {
+      "id": "ex_041",
+      "type": "sentence_builder",
+      "difficulty": "medium",
+      "instruction": "Reconstituez la phrase (Comparatif de supériorité).",
+      "prompt": null,
+      "content": {
+        "segments": ["Ce", "vin", "est", "meilleur", "que", "l'", "autre"],
+        "correct_order": ["Ce", "vin", "est", "meilleur", "que", "l'", "autre"],
+        "distractors": ["plus bon", "mieux"]
+      },
+      "feedback": {
+        "correct": "Bravo. On ne dit jamais 'plus bon', mais 'meilleur'.",
+        "incorrect": "Bon -> Meilleur. Bien -> Mieux."
+      }
+    },
+    {
+      "id": "ex_042",
+      "type": "selection_single",
+      "difficulty": "medium",
+      "instruction": "Que signifie 'Poser un lapin' ?",
+      "prompt": "Il ne voulait pas venir, il m'a posé un lapin.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "Il m'a offert un animal" },
+          { "id": "opt_2", "text": "Il n'est pas venu au rendez-vous" },
+          { "id": "opt_3", "text": "Il a cuisiné pour moi" }
+        ],
+        "correct_option_id": "opt_2"
+      },
+      "feedback": {
+        "correct": "Exact. 'Poser un lapin' signifie ne pas aller à un rendez-vous (To stand someone up).",
+        "incorrect": "C'est une expression idiomatique très courante."
+      }
+    },
+    {
+      "id": "ex_043",
+      "type": "true_false",
+      "difficulty": "easy",
+      "instruction": "Culture : Le tutoiement au travail.",
+      "prompt": "En France, on tutoie toujours son patron dès le premier jour.",
+      "content": {
+        "is_correct": false,
+        "explanation": "Faux. Le vouvoiement est la norme. Le tutoiement vient après invitation."
+      },
+      "feedback": null
+    },
+    {
+      "id": "ex_044",
+      "type": "full_translation",
+      "difficulty": "hard",
+      "instruction": "Traduisez la question (Inversion Sujet-Verbe).",
+      "prompt": "¿Dónde trabaja ella?",
+      "content": {
+        "placeholder": "...",
+        "accepted_answers": ["Où travaille-t-elle ?", "Où travaille-t-elle"],
+        "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+      },
+      "feedback": {
+        "correct": "Bien. N'oubliez pas le '-t-' pour la phonétique.",
+        "incorrect": "Structure formelle : Où + Verbe + t + Sujet."
+      }
+    },
+    {
+      "id": "ex_045",
+      "type": "selection_single",
+      "difficulty": "medium",
+      "instruction": "Le Futur Antérieur (Action finie dans le futur).",
+      "prompt": "Quand tu arriveras, j'______ fini mon travail.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "aurai" },
+          { "id": "opt_2", "text": "aurais" },
+          { "id": "opt_3", "text": "avais" }
+        ],
+        "correct_option_id": "opt_1"
+      },
+      "feedback": {
+        "correct": "Correct. Futur de l'auxiliaire (aurai) + Participe.",
+        "incorrect": "On a besoin du futur simple de l'auxiliaire, pas du conditionnel."
+      }
+    },
+    {
+      "id": "ex_046",
+      "type": "sentence_builder",
+      "difficulty": "hard",
+      "instruction": "Formez une phrase avec 'Il vaut mieux' (Conseil).",
+      "prompt": null,
+      "content": {
+        "segments": ["Il", "vaut", "mieux", "partir", "tôt"],
+        "correct_order": ["Il", "vaut", "mieux", "partir", "tôt"],
+        "distractors": ["faut", "bien"]
+      },
+      "feedback": {
+        "correct": "Bien. 'Il vaut mieux' + Infinitif.",
+        "incorrect": "Expression 'Valoir mieux' (Sería mejor)."
+      }
+    },
+    {
+      "id": "ex_047",
+      "type": "selection_single",
+      "difficulty": "medium",
+      "instruction": "Préposition + Ville vs Pays.",
+      "prompt": "Je vis ______ Paris, ______ France.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "à / en" },
+          { "id": "opt_2", "text": "en / à" },
+          { "id": "opt_3", "text": "à / au" }
+        ],
+        "correct_option_id": "opt_1"
+      },
+      "feedback": {
+        "correct": "Oui. 'À' pour les villes, 'En' pour les pays féminins.",
+        "incorrect": "Règle de base : À + Ville. En + Pays (f)."
+      }
+    },
+    {
+      "id": "ex_048",
+      "type": "full_translation",
+      "difficulty": "hard",
+      "instruction": "Traduisez en utilisant 'Personne' (Négation).",
+      "prompt": "Je n'ai vu personne.",
+      "content": {
+        "placeholder": "...",
+        "accepted_answers": ["Je n'ai vu personne."],
+        "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
+      },
+      "feedback": {
+        "correct": "Correct. 'Personne' se place après le participe passé.",
+        "incorrect": "Attention à l'ordre : Ne + Auxiliaire + Participe + Personne."
+      }
+    },
+    {
+      "id": "ex_049",
+      "type": "selection_single",
+      "difficulty": "hard",
+      "instruction": "Quel est le synonyme de 'Cependant' ?",
+      "prompt": "Il pleut. ______, je vais sortir.",
+      "content": {
+        "options": [
+          { "id": "opt_1", "text": "Toutefois" },
+          { "id": "opt_2", "text": "Par conséquent" },
+          { "id": "opt_3", "text": "De plus" }
+        ],
+        "correct_option_id": "opt_1"
+      },
+      "feedback": {
+        "correct": "Bien. 'Toutefois' marque l'opposition comme 'Cependant'.",
+        "incorrect": "'Par conséquent' est la conséquence. 'De plus' est l'addition."
+      }
+    },
+    {
+      "id": "ex_050",
+      "type": "sentence_builder",
+      "difficulty": "medium",
+      "instruction": "Reconstituez l'expression de la colère.",
+      "prompt": null,
+      "content": {
+        "segments": ["J'", "en", "ai", "ras", "le", "bol"],
+        "correct_order": ["J'", "en", "ai", "ras", "le", "bol"],
+        "distractors": ["cou", "plein"]
+      },
+      "feedback": {
+        "correct": "Excellent. 'J'en ai ras le bol' = J'en ai assez (I'm fed up).",
+        "incorrect": "Expression familière très courante."
+      }
     }
-    </script>
+  ]
+}
+</script>
