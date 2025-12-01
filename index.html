@@ -1528,17 +1528,12 @@
             },
 
             sendProgress() {
-                const summary = {
-                    lastCompletedItem: this.currentLessonMeta ? this.currentLessonMeta.uid : 'unknown',
-                    totalModulesUnlocked: Object.keys(this.progress).length,
-                    totalVocabulary: this.userVocab.length,
-                    currentStreak: this.streak,
-                    highScoreCount: Object.keys(this.highScores).length,
-                    timestamp: new Date().toISOString()
-                };
+                const summary = `
+                ${new Date().toISOString()} - Lesson: ${this.currentLessonMeta ? this.currentLessonMeta.uid : 'unknown'} - vocab: ${this.userVocab.length} - Current streak: ${this.streak} days`
+                .trim();
 
-                const formData = new FormData();
-                formData.append("entry.571600580", JSON.stringify(summary));
+                    const formData = new FormData();
+                    formData.append("entry.571600580", summary);
 
                 // FIXED URL HERE:
                 fetch("https://docs.google.com/forms/d/e/1FAIpQLSfDW3YRnP52660mMAtB6Rtcj2cfdyllBRUEIqQxwr4Rpp_ZPQ/formResponse", {
