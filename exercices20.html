@@ -408,7 +408,53 @@
     "correct": "Sí. La X de 'Deux' suena como Z cuando la siguiente palabra empieza por vocal o H muda.",
     "incorrect": "No es sonido S ni silencio total. Es Z."
     }
-    }
+    },
+    {
+        "id": "ex_reading_03",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez le texte, réfléchissez aux questions, puis vérifiez.",
+        "prompt": "Un agenda impossible",
+        "content": {
+          "text": "Allô Marc ? C'est Julie. J'ai un gros problème avec mon emploi du temps aujourd'hui. Je suis coincée dans les embouteillages et je vais être en retard ce matin. Est-ce qu'on peut décaler notre réunion de 9h00 pile ?<br><br>Je sais que tu as un créneau disponible avant le déjeuner. Si je viens vers 11h30, est-ce que ça marche pour toi ? Sinon, je suis libre cet après-midi, mais seulement à partir de 16h15, car j'ai un déjeuner important qui risque de durer longtemps. Rappelle-moi vite pour confirmer l'heure. Désolée pour ce changement !",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Pourquoi Julie appelle-t-elle Marc ?",
+              "answer": "Pour changer l'heure de leur réunion (décaler)."
+            },
+            {
+              "id": "q2",
+              "prompt": "À quelle heure était la réunion originale ?",
+              "answer": "Elle était à 9h00 pile."
+            },
+            {
+              "id": "q3",
+              "prompt": "Quelles sont les deux options proposées par Julie ?",
+              "answer": "Vers 11h30 ou l'après-midi à partir de 16h15."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Bravo ! Vous maîtrisez bien la gestion des horaires.",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_03",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Parlez sans vous arrêter.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+            "theme": "Habla sobre tu relación con la puntualidad y el tiempo. <br><br>¿Eres de los que llega siempre antes ('en avance') o siempre tarde ('en retard')? Inventa excusas divertidas para justificar un retraso imaginario en una cita importante. Usa el vocabulario: <em>montre, pressé, attendre, pile, quart</em>.",
+            "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Excellent ! Raconter des excuses est un très bon exercice de fluidité.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>
