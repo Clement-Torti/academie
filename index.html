@@ -195,6 +195,7 @@
             progress: {},
             highScores: JSON.parse(localStorage.getItem('acad_highscores') || '{}'),
             streak: 0,
+            startTime: null,
 
             // State
             lessonSteps: [],
@@ -598,6 +599,7 @@
 
             // --- 3A. LESSON ENGINE (Standard) ---
             async loadLesson(index) {
+                this.startTime = Date.now();
                 const mod = this.modules[index];
                 this.currentModIndex = index;
                 this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
@@ -713,6 +715,7 @@
 
             // --- 3B. PRACTICE ENGINE (New) ---
             async loadPractice(index) {
+                this.startTime = Date.now();
                 const mod = this.modules[index];
                 this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
                 this.currentScore = 0;
@@ -1528,10 +1531,17 @@
             },
 
             sendProgress() {
-                let summary = `
-                ${new Date().toISOString()} - Lesson: ${this.currentLessonMeta ? this.currentLessonMeta.uid : 'unknown'} - vocab: ${this.userVocab.length} - Current streak: ${this.streak} days`
-                .trim();
 
+                // Calculate duration
+                const durationMs = Date.now() - (this.startTime || Date.now());
+                const minutes = Math.floor(durationMs / 60000);
+                const seconds = ((durationMs % 60000) / 1000).toFixed(0);
+                const timeString = `${minutes}m ${seconds}s`;
+
+                let summary = `
+                ${new Date().toISOString()} - Lesson: ${this.currentLessonMeta ? this.currentLessonMeta.uid : 'unknown'} - vocab: ${this.userVocab.length} - Current streak: ${this.streak} days - Duration: ${timeString}`
+                .trim();
+ 
                 // 2. Check if it is practice mode and append the score
                 if (this.currentLessonMeta && this.currentLessonMeta.type === 'practice') {
                     summary += ` - Score: ${this.currentScore}/${this.currentMaxScore}`;
