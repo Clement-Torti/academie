@@ -899,12 +899,79 @@
                 const prompt = ex.prompt ? `<div class="text-xl font-serif text-frBlue font-bold mb-6 text-center">${ex.prompt.replace('______', '<span class="border-b-2 border-frBlue w-12 inline-block mx-1"></span>')}</div>` : '';
 
                 switch (ex.type) {
+                    // --- NEW TYPE START ---
+                    case 'expression':
+                        // Hide the default "Check" button immediately using inline style
+                        contentHtml += `<style>#btn-check { display: none !important; }</style>`;
+                        
+                        // Theme Box
+                        contentHtml += `
+                        <div class="bg-white p-6 rounded-xl border-2 border-frBlue/10 shadow-lg mb-8 text-center relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-frBlue"></div>
+                            <h3 class="text-gray-400 text-xs font-bold uppercase tracking-widest mb-3">Votre Sujet</h3>
+                            <div class="font-serif text-xl text-frBlue leading-relaxed">
+                                ${ex.content.theme}
+                            </div>
+                        </div>`;
+
+                        // Timer UI
+                        const mins = Math.floor(ex.content.duration_seconds / 60).toString().padStart(2, '0');
+                        const secs = (ex.content.duration_seconds % 60).toString().padStart(2, '0');
+
+                        contentHtml += `
+                        <div class="flex flex-col items-center justify-center py-4">
+                            <div id="timer-ring" class="relative w-48 h-48 flex items-center justify-center rounded-full border-4 border-gray-100 mb-8 transition-colors duration-500">
+                                <div id="timer-display" class="text-5xl font-mono font-bold text-gray-700">${mins}:${secs}</div>
+                                <div class="absolute -bottom-8 text-xs text-gray-400 font-bold uppercase tracking-widest">Chrono</div>
+                            </div>
+
+                            <button id="btn-start-timer" onclick="app.startExpressionTimer(${ex.content.duration_seconds})" 
+                                class="bg-frBlue text-white text-lg font-bold py-4 px-12 rounded-full shadow-lg hover:bg-blue-900 hover:scale-105 active:scale-95 transition flex items-center gap-3">
+                                <i class="fa-solid fa-microphone"></i> Commencer à parler
+                            </button>
+                            
+                            <p id="timer-hint" class="mt-4 text-sm text-gray-400 italic">Le bouton "Continuer" apparaîtra à la fin du temps.</p>
+                        </div>`;
+                        break;
+                    // --- NEW TYPE END ---
+
+                    // ... existing cases (reading_comprehension, selection_single, etc.) ...
+                    case 'reading_comprehension':
+                        // ... existing code ...
+                        contentHtml += `
+                        <div class="bg-frCream/50 p-6 rounded-xl border border-gray-200 mb-8 shadow-inner">
+                            <i class="fa-solid fa-quote-left text-gold text-2xl mb-2 opacity-50"></i>
+                            <div class="font-serif text-lg leading-loose text-gray-700">
+                                ${ex.content.text}
+                            </div>
+                        </div>`;
+                        contentHtml += `<div class="space-y-6">`;
+                        ex.content.questions.forEach((q, idx) => {
+                            contentHtml += `
+                            <div class="bg-white p-4 rounded-lg border-l-4 border-frBlue shadow-sm">
+                                <div class="font-bold text-gray-800 mb-2 flex gap-2">
+                                    <span class="text-frBlue">Q${idx + 1}.</span> ${q.prompt}
+                                </div>
+                                <div class="reading-answer hidden mt-3 pt-3 border-t border-gray-100 text-green-700 font-medium animate-slide-in">
+                                    <i class="fa-solid fa-check mr-2"></i> ${q.answer}
+                                </div>
+                            </div>`;
+                        });
+                        contentHtml += `</div>`;
+                        contentHtml += `
+                        <div class="mt-8 text-center">
+                            <button id="btn-reveal-reading" onclick="app.revealReadingAnswers()" class="bg-white border-2 border-gold text-gold hover:bg-gold hover:text-white px-6 py-3 rounded-full font-bold transition shadow-sm flex items-center gap-2 mx-auto">
+                                <i class="fa-regular fa-lightbulb"></i> Voir les réponses
+                            </button>
+                        </div>`;
+                        break;
+
                     case 'selection_single':
-                        contentHtml = `<div class="grid gap-3">`;
+                        contentHtml = `<div class="grid gap-3 question-block">`;
                         ex.content.options.forEach(opt => {
                             contentHtml += `<button onclick="app.selectOption(this, '${opt.id}')" class="option-btn w-full text-left p-4 rounded-xl border-2 border-gray-100 hover:border-frBlue/50 bg-white font-semibold text-lg transition relative group">
                         ${opt.text}
-                        <div class="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-gray-300 group-hover:border-frBlue"></div>
+                        <div class="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-gray-300 group-hover:border-frBlue selection-indicator"></div>
                     </button>`;
                         });
                         contentHtml += `</div>`;
@@ -920,7 +987,6 @@
                         break;
 
                     case 'full_translation':
-                        // Special characters buttons
                         const specialChars = ex.content.special_characters || [];
                         const charButtons = specialChars.map(char =>
                             `<button onclick="document.getElementById('inp-blank').value += '${char}'; document.getElementById('inp-blank').focus();" class="w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded shadow-sm font-serif text-lg text-frBlue transition">${char}</button>`
@@ -932,12 +998,10 @@
                         
                         <div class="flex justify-center gap-2 mt-4 mb-6">${charButtons}</div>
 
-                        <!-- Reveal Button -->
                         <button id="btn-reveal-local" onclick="app.revealAnswer()" class="mx-auto bg-white border-2 border-gold text-gold hover:bg-gold hover:text-white px-6 py-2 rounded-full font-bold transition flex items-center gap-2">
                             <i class="fa-regular fa-eye"></i> Voir la réponse
                         </button>
 
-                        <!-- Answer Display (Initially Hidden) -->
                         <div id="answer-display" class="hidden mt-6 pt-6 border-t border-gray-100 animate-fade-in">
                             <div class="text-xs uppercase text-gray-400 font-bold tracking-widest mb-2">Réponse suggérée</div>
                             <div class="text-2xl font-serif text-frBlue font-bold">${ex.content.accepted_answers[0]}</div>
@@ -960,9 +1024,8 @@
             ${prompt}
             <div class="w-full mb-4" id="ex-container">${contentHtml}</div>
             <div id="feedback" class="hidden rounded-lg p-4 font-bold text-center text-sm sm:text-base mb-20"></div>
-        `;
+            `;
             },
-
             // --- REVEAL ANSWER LOGIC (New) ---
             revealAnswer() {
                 const ansDisplay = document.getElementById('answer-display');
@@ -982,6 +1045,33 @@
                 // Manage global navigation
                 if (btnCheck) btnCheck.classList.add('hidden');
                 if (btnNext) btnNext.classList.remove('hidden');
+            },
+
+            revealReadingAnswers() {
+                // 1. Show all answers
+                document.querySelectorAll('.reading-answer').forEach(el => el.classList.remove('hidden'));
+                
+                // 2. Hide the local reveal button
+                const btnReveal = document.getElementById('btn-reveal-reading');
+                if (btnReveal) btnReveal.classList.add('hidden');
+
+                // 3. Swap Global Buttons (Check -> Next)
+                const btnCheck = document.getElementById('btn-check');
+                const btnNext = document.getElementById('btn-next');
+                if (btnCheck) btnCheck.classList.add('hidden');
+                if (btnNext) btnNext.classList.remove('hidden');
+
+                // 4. Update Score (Since it's self-assessed/reading, we give points for completing it)
+                if (this.currentLessonMeta.type === 'practice') {
+                    const scoreDisplay = document.getElementById('score-display');
+                    this.currentScore++; 
+                    // No negative score possible here
+                    if (scoreDisplay) {
+                        scoreDisplay.innerText = `${this.currentScore} / ${this.currentMaxScore}`;
+                        scoreDisplay.classList.add('text-green-600', 'scale-125');
+                        setTimeout(() => scoreDisplay.classList.remove('text-green-600', 'scale-125'), 300);
+                    }
+                }
             },
 
             // --- INTERACTION HELPERS ---
@@ -1032,6 +1122,11 @@
                 let isCorrect = false;
                 let feedbackMsg = '';
 
+                if (ex.type === 'reading_comprehension') {
+                    this.revealReadingAnswers();
+                    return;
+                }
+
                 // SPECIAL CASE: Fill in blank (Translation) - No validation, just reveal
                 if (ex.type === 'full_translation') {
                     this.revealAnswer();
@@ -1040,6 +1135,40 @@
 
                 // 1. VALIDATE BASED ON TYPE
                 switch (ex.type) {
+
+                    case 'expression':
+                        // Hide the default "Check" button immediately using inline style
+                        contentHtml += `<style>#btn-check { display: none !important; }</style>`;
+                        
+                        // Theme Box
+                        contentHtml += `
+                        <div class="bg-white p-6 rounded-xl border-2 border-frBlue/10 shadow-lg mb-8 text-center relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-frBlue"></div>
+                            <h3 class="text-gray-400 text-xs font-bold uppercase tracking-widest mb-3">Votre Sujet</h3>
+                            <div class="font-serif text-xl text-frBlue leading-relaxed">
+                                ${ex.content.theme}
+                            </div>
+                        </div>`;
+
+                        // Timer UI
+                        const mins = Math.floor(ex.content.duration_seconds / 60).toString().padStart(2, '0');
+                        const secs = (ex.content.duration_seconds % 60).toString().padStart(2, '0');
+
+                        contentHtml += `
+                        <div class="flex flex-col items-center justify-center py-4">
+                            <div id="timer-ring" class="relative w-48 h-48 flex items-center justify-center rounded-full border-4 border-gray-100 mb-8 transition-colors duration-500">
+                                <div id="timer-display" class="text-5xl font-mono font-bold text-gray-700">${mins}:${secs}</div>
+                                <div class="absolute -bottom-8 text-xs text-gray-400 font-bold uppercase tracking-widest">Chrono</div>
+                            </div>
+
+                            <button id="btn-start-timer" onclick="app.startExpressionTimer(${ex.content.duration_seconds})" 
+                                class="bg-frBlue text-white text-lg font-bold py-4 px-12 rounded-full shadow-lg hover:bg-blue-900 hover:scale-105 active:scale-95 transition flex items-center gap-3">
+                                <i class="fa-solid fa-microphone"></i> Commencer à parler
+                            </button>
+                            
+                            <p id="timer-hint" class="mt-4 text-sm text-gray-400 italic">Le bouton "Continuer" apparaîtra à la fin du temps.</p>
+                        </div>`;
+                        break;
                     case 'selection_single':
                         const selBtn = document.querySelector('.option-btn.selected');
                         if (!selBtn) return;
@@ -1559,6 +1688,82 @@
                 }).catch(err => {
                     console.error("❌ Failed to send progress:", err);
                 });
+            },
+            startExpressionTimer(duration) {
+                const display = document.getElementById('timer-display');
+                const ring = document.getElementById('timer-ring');
+                const btn = document.getElementById('btn-start-timer');
+                const hint = document.getElementById('timer-hint');
+                
+                // UI Updates
+                btn.classList.add('hidden');
+                ring.classList.replace('border-gray-100', 'border-frBlue');
+                hint.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> À vous de jouer !';
+                hint.classList.add('text-frBlue', 'font-bold');
+                
+                let remaining = duration;
+                
+                // Clear any existing interval
+                if (this.expressionInterval) clearInterval(this.expressionInterval);
+                
+                this.expressionInterval = setInterval(() => {
+                    remaining--;
+                    
+                    // Format MM:SS
+                    const m = Math.floor(remaining / 60).toString().padStart(2, '0');
+                    const s = (remaining % 60).toString().padStart(2, '0');
+                    display.innerText = `${m}:${s}`;
+                    
+                    // Visual warning last 10 seconds
+                    if (remaining <= 10) {
+                        display.classList.add('text-red-500');
+                        ring.classList.replace('border-frBlue', 'border-red-500');
+                    }
+
+                    if (remaining <= 0) {
+                        this.endExpressionTimer();
+                    }
+                }, 1000);
+            },
+
+            endExpressionTimer() {
+                clearInterval(this.expressionInterval);
+                
+                // Play Success Sound
+                const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3');
+                audio.volume = 0.3; audio.play().catch(e => { });
+
+                // UI Updates
+                const display = document.getElementById('timer-display');
+                const ring = document.getElementById('timer-ring');
+                const hint = document.getElementById('timer-hint');
+                const feedback = document.getElementById('feedback');
+
+                display.innerHTML = '<i class="fa-solid fa-check"></i>';
+                ring.classList.replace('border-red-500', 'border-green-500');
+                ring.classList.add('bg-green-50', 'text-green-600');
+                
+                hint.innerText = "Terminé !";
+
+                // Show Feedback Message
+                feedback.innerHTML = `<div class="flex items-center justify-center gap-2 text-green-700"><i class="fa-solid fa-trophy text-xl"></i> <span>Exercice terminé !</span></div>`;
+                feedback.className = "mb-4 rounded-xl p-4 font-bold text-center bg-green-100 animate-bounce";
+                feedback.classList.remove('hidden');
+
+                // Reveal Global NEXT button
+                const btnNext = document.getElementById('btn-next');
+                if (btnNext) btnNext.classList.remove('hidden');
+
+                // Add Score (Expression is simply "Completed = +1")
+                if (this.currentLessonMeta.type === 'practice') {
+                    const scoreDisplay = document.getElementById('score-display');
+                    this.currentScore++; 
+                    if (scoreDisplay) {
+                        scoreDisplay.innerText = `${this.currentScore} / ${this.currentMaxScore}`;
+                        scoreDisplay.classList.add('text-green-600', 'scale-125');
+                        setTimeout(() => scoreDisplay.classList.remove('text-green-600', 'scale-125'), 300);
+                    }
+                }
             },
         };
         app.init();
