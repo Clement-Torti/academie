@@ -335,7 +335,53 @@
     "correct": "Correcto. La expresión es 'Faire la queue'.",
     "incorrect": "No decimos 'Prendre la queue'."
     }
-    }
+    },
+    {
+        "id": "ex_reading_02",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez le texte sur les règles du parc, réfléchissez aux questions, puis vérifiez.",
+        "prompt": "Une promenade au Parc Royal",
+        "content": {
+          "text": "C'est dimanche après-midi. Marc et sa famille arrivent devant le grand portail du Parc Royal. C'est un endroit magnifique, mais il y a beaucoup de règles à respecter. À l'entrée, un grand panneau rouge indique : « Nos amis les chiens sont interdits ». Marc laisse donc son chien dans la voiture.<br><br>Ils marchent sur le chemin principal. Les enfants veulent courir sur l'herbe, mais Marc dit : « Attention ! Regardez l'affiche : Défense de marcher sur la pelouse ». Un peu plus loin, un gardien parle à un jeune homme qui fume une cigarette. Le gardien est poli mais ferme : « Monsieur, veuillez éteindre votre cigarette, s'il vous plaît. C'est une zone non-fumeur ».<br><br>Finalement, la famille trouve un banc pour se reposer. L'ambiance est calme, car il est aussi demandé de ne pas faire de bruit. Malgré les interdictions, ils passent un bon moment.",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Pourquoi le chien de Marc ne peut-il pas entrer ?",
+              "answer": "Parce que les chiens sont interdits dans le parc."
+            },
+            {
+              "id": "q2",
+              "prompt": "Que dit le gardien au jeune homme ?",
+              "answer": "Il lui demande d'éteindre sa cigarette (Veuillez éteindre...)."
+            },
+            {
+              "id": "q3",
+              "prompt": "Pourquoi les enfants ne peuvent-ils pas courir sur l'herbe ?",
+              "answer": "Parce qu'il est défendu de marcher sur la pelouse."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Très bien ! Vous avez bien repéré les interdictions.",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_02",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Parlez sans vous arrêter.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+          "theme": "Imagina que fundas tu propia sociedad secreta o un club exclusivo. <br><br>Explica cuáles son las reglas estrictas para ser miembro. ¿Qué está totalmente prohibido? ¿Qué vestimenta se exige? ¿Qué pasa si alguien rompe las reglas (multa, expulsión)? Usa el vocabulario: <em>interdit, obligatoire, tenue correcte, veuillez, amende, silence</em>.",
+          "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Excellent ! Utiliser l'impératif et les formules d'interdiction est essentiel.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

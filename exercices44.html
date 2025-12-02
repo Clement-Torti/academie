@@ -402,7 +402,53 @@
     "correct": "¡Excelente! 'La voiture LA plus rapide'.",
     "incorrect": "Como 'Voiture' es femenino, el artículo repetido debe ser 'LA'."
     }
-    }
+    },
+    {
+        "id": "ex_reading_04",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez l'avis laissé sur un site de voyage, puis répondez.",
+        "prompt": "Avis voyage : Un séjour contrasté",
+        "content": {
+          "text": "Je reviens de mon voyage à Rome. Pour moi, le Colisée est le monument le plus impressionnant d'Europe, c'est un site incontournable et un véritable chef-d'œuvre. De plus, les restaurants sont excellents et le prix est souvent abordable.<br><br>Cependant, mon hôtel a été une déception totale. C'était l'établissement le plus bruyant du quartier. Le service était médiocre et le petit-déjeuner était le pire que j'ai jamais mangé. Si vous cherchez un logement, ne faites pas le même choix que moi !",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Que pense le voyageur du Colisée ?",
+              "answer": "C'est un site incontournable et un chef-d'œuvre."
+            },
+            {
+              "id": "q2",
+              "prompt": "Pourquoi l'hôtel est-il critiqué ?",
+              "answer": "Il était très bruyant et le petit-déjeuner était le pire."
+            },
+            {
+              "id": "q3",
+              "prompt": "Comment sont les prix des restaurants selon le texte ?",
+              "answer": "Ils sont abordables."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Excellent ! Vous avez bien distingué les avis positifs (superlatifs) et négatifs (le pire).",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_04",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Exprimez votre opinion avec intensité.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+            "theme": "Haz un 'ranking' personal de 3 cosas (películas, ciudades, comidas o experiencias). <br><br>Debes decir cuál es la número 1 (la mejor), cuál es una opción aceptable (asequible o interesante) y cuál fue una decepción total (la peor). Usa el vocabulario: <em>le meilleur, le pire, incontournable, déception, classement</em>.",
+            "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Bravo ! L'usage des superlatifs irréguliers (le meilleur, le pire) est acquis.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

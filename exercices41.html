@@ -399,7 +399,53 @@
     "correct": "Correcto. Después de 'que' en comparativos, usamos pronombres tónicos (moi, toi, lui...).",
     "incorrect": "No puedes usar 'Je' al final de la comparación. Usa 'Moi'."
     }
-    }
+    },
+    {
+        "id": "ex_reading_04",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez le dialogue au service après-vente, réfléchissez aux questions, puis vérifiez.",
+        "prompt": "Un problème de taille",
+        "content": {
+          "text": "— Bonjour Monsieur, je voudrais échanger ces chaussures.<br>— Quel est le problème ?<br>— Elles sont trop petites. C'est du 39, mais j'ai besoin de la pointure 40. De plus, je trouve qu'elles sont moins confortables que prévu.<br>— Je vais regarder... Ah, désolé, le modèle en 40 est épuisé. Nous n'avons plus de stock.<br>— C'est dommage. Dans ce cas, est-ce que je peux avoir un remboursement ?<br>— Bien sûr. Vous avez votre ticket de caisse ?<br>— Oui, le voici.<br>— Très bien. Vous avez payé par carte, donc je vais créditer votre compte bancaire. Cela prendra 3 jours.",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Pourquoi le client veut-il échanger ses chaussures ?",
+              "answer": "Elles sont trop petites (il a besoin de la pointure 40)."
+            },
+            {
+              "id": "q2",
+              "prompt": "Pourquoi l'échange est-il impossible ?",
+              "answer": "Parce que le modèle en 40 est épuisé (plus de stock)."
+            },
+            {
+              "id": "q3",
+              "prompt": "Comment le client sera-t-il remboursé ?",
+              "answer": "Par virement sur son compte (crédit carte), car il a payé par carte."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Excellent ! Vous avez bien compris la situation de service après-vente.",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_04",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Parlez sans vous arrêter.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+          "theme": "Has recibido un regalo que no te gusta nada o que no te sirve, y vas a la tienda a intentar devolverlo sin que la persona que te lo regaló se entere.<br><br>El problema: No tienes el recibo original (*ticket de caisse*).<br>Tu misión: Convence al vendedor de que te haga un cambio por algo de mejor calidad (*meilleur*) o que te devuelva el dinero (*remboursement*). Inventa excusas creativas. Usa el vocabulario: <em>ticket de caisse, cadeau, taille/pointure, échanger, impossible</em>.",
+          "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Bravo ! C'est un exercice difficile qui demande de la négociation et de l'argumentation.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>
