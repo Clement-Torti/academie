@@ -339,7 +339,53 @@
 "correct": "Exacto. El puente va por encima (sur) del río.",
 "incorrect": "'Sous' significaría que el puente está sumergido bajo el agua."
 }
-}
+},
+{
+    "id": "ex_reading_transport",
+    "type": "reading_comprehension",
+    "difficulty": "hard",
+    "instruction": "Lisez le texte sur les problèmes de transport, puis répondez.",
+    "prompt": "Une matinée compliquée",
+    "content": {
+      "text": "Ce matin, Alice doit aller à l'université pour un examen. Elle regarde son application de transport : catastrophe ! Il y a une grève des métros. La ligne A est fermée. Elle ne peut pas prendre le métro.<br><br>Elle décide de prendre le bus, mais il y a un embouteillage énorme dans le centre-ville. Les voitures ne bougent pas. Alice descend du bus et cherche un vélo en libre-service. Elle traverse le pont à vélo et tourne à gauche vers le parc. Elle arrive finalement devant l'université, fatiguée mais à l'heure.",
+      "questions": [
+        {
+          "id": "q1",
+          "prompt": "Pourquoi Alice ne prend-elle pas le métro ?",
+          "answer": "Parce qu'il y a une grève (la ligne est fermée)."
+        },
+        {
+          "id": "q2",
+          "prompt": "Quel est le problème avec le bus ?",
+          "answer": "Il y a un embouteillage (les voitures ne bougent pas)."
+        },
+        {
+          "id": "q3",
+          "prompt": "Comment Alice termine-t-elle son trajet ?",
+          "answer": "Elle termine à vélo."
+        }
+      ]
+    },
+    "feedback": {
+      "correct": "Bravo ! Vous avez bien identifié les moyens de transport et les obstacles.",
+      "incorrect": null
+    }
+  },
+  {
+    "id": "ex_speaking_transport",
+    "type": "expression",
+    "difficulty": "hard",
+    "instruction": "Pratique orale : Donnez des indications.",
+    "prompt": "Jeu de rôle : 4 minutes",
+    "content": {
+        "theme": "Un turista te pregunta en la calle cómo llegar al museo más cercano. <br><br>Dale instrucciones detalladas. Dile qué transporte tomar (o si ir a pie), dónde bajar y las direcciones físicas (girar a la derecha/izquierda, seguir recto). Usa: <em>Prendre, descendre, tourner, tout droit, traverser</em>.",
+        "duration_seconds": 240
+    },
+    "feedback": {
+      "correct": "Excellent. L'utilisation de l'impératif (Prenez, Tournez) est essentielle ici.",
+      "incorrect": null
+    }
+  }
 ]
 }
 </script>
