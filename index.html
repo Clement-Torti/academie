@@ -256,7 +256,7 @@ const conjApp = {
     timer: 60,
     interval: null,
     currentCard: null,
-    tenses: ['present', 'pc', 'imparfait', 'futur'],
+    tenses: ['present', 'pc', 'imparfait', 'futur', 'subjonctif', 'conditionnel', 'imperatif'],
     
     pronounsEs: ["Yo", "Tú", "Él/Ella/Usted", "Nosotros", "Vosotros", "Ellos/Ustedes"],
     pronounsFr: ["Je", "Tu", "Il/Elle", "Nous", "Vous", "Ils/Elles"],
@@ -264,14 +264,19 @@ const conjApp = {
     rules: {
     "present": "Action actuelle / vérité générale.<br><div class='cj-rule-box'><strong>Formation :</strong> Radical + terminaisons selon le groupe.<br><table class='cj-table'><thead><tr><th></th><th>1er groupe<br>(-ER)</th><th>2e groupe<br>(-IR)</th><th>3e groupe<br>(modèle -RE)</th></tr></thead><tbody><tr><td>je</td><td>-e</td><td>-is</td><td>-s</td></tr><tr><td>tu</td><td>-es</td><td>-is</td><td>-s</td></tr><tr><td>il / elle</td><td>-e</td><td>-it</td><td>—</td></tr><tr><td>nous</td><td>-ons</td><td>-issons</td><td>-ons</td></tr><tr><td>vous</td><td>-ez</td><td>-issez</td><td>-ez</td></tr><tr><td>ils / elles</td><td>-ent</td><td>-issent</td><td>-ent</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> parle <em>pas</em>.</div>",
 
-    "pc": "Passé terminé / actions ponctuelles.<br><div class='cj-rule-box'><strong>Formation :</strong> Auxiliaire présent + participe passé.<br><table class='cj-table'><thead><tr><th></th><th>Avoir (présent)</th><th>Être (présent)</th><th>Participe passé<br>1er, 2e, 3e groupe</th></tr></thead><tbody><tr><td>je</td><td>ai</td><td>suis</td><td>-é / -i / -u</td></tr><tr><td>tu</td><td>as</td><td>es</td><td>-é / -i / -u</td></tr><tr><td>il</td><td>a</td><td>est</td><td>-é / -i / -u</td></tr><tr><td>nous</td><td>avons</td><td>sommes</td><td>-é / -i / -u</td></tr><tr><td>vous</td><td>avez</td><td>êtes</td><td>-é / -i / -u</td></tr><tr><td>ils</td><td>ont</td><td>sont</td><td>-é / -i / -u</td></tr></tbody></table><strong>Négation :</strong> Je <em>n'</em>ai <em>pas</em> mangé.</div>",
+    "pc": "Passé terminé / actions ponctuelles.<br><div class='cj-rule-box'><strong>Formation :</strong> Auxiliaire présent + participe passé.<br><table class='cj-table'><thead><tr><th></th><th>Avoir (présent)</th><th>Être (présent)</th><th>Participe passé<br>1er / 2e / 3e groupe</th></tr></thead><tbody><tr><td>je</td><td>ai</td><td>suis</td><td>-é / -i / -u</td></tr><tr><td>tu</td><td>as</td><td>es</td><td>-é / -i / -u</td></tr><tr><td>il</td><td>a</td><td>est</td><td>-é / -i / -u</td></tr><tr><td>nous</td><td>avons</td><td>sommes</td><td>-é / -i / -u</td></tr><tr><td>vous</td><td>avez</td><td>êtes</td><td>-é / -i / -u</td></tr><tr><td>ils</td><td>ont</td><td>sont</td><td>-é / -i / -u</td></tr></tbody></table><strong>Négation :</strong> Je <em>n'</em>ai <em>pas</em> mangé.</div>",
 
     "imparfait": "Description / habitude / action longue au passé.<br><div class='cj-rule-box'><strong>Formation :</strong> Radical = nous (présent) – ons + terminaisons.<br><table class='cj-table'><thead><tr><th></th><th>Terminaison (tous groupes)</th></tr></thead><tbody><tr><td>je</td><td>-ais</td></tr><tr><td>tu</td><td>-ais</td></tr><tr><td>il / elle</td><td>-ait</td></tr><tr><td>nous</td><td>-ions</td></tr><tr><td>vous</td><td>-iez</td></tr><tr><td>ils / elles</td><td>-aient</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> mangeais <em>pas</em>.</div>",
 
     "futur": "Projet ou certitude dans l'avenir.<br><div class='cj-rule-box'><strong>Formation :</strong> Infinitif (ou radical irrégulier) + terminaisons.<br><table class='cj-table'><thead><tr><th></th><th>Terminaison (tous groupes)</th></tr></thead><tbody><tr><td>je</td><td>-ai</td></tr><tr><td>tu</td><td>-as</td></tr><tr><td>il / elle</td><td>-a</td></tr><tr><td>nous</td><td>-ons</td></tr><tr><td>vous</td><td>-ez</td></tr><tr><td>ils / elles</td><td>-ont</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> partirai <em>pas</em>.</div>",
 
-    "imperatif": "Ordre ou conseil.<br><div class='cj-rule-box'><strong>Formation :</strong> 3 formes : tu / nous / vous. Terminaisons proches du présent.<br><table class='cj-table'><thead><tr><th></th><th>1er groupe</th><th>2e groupe</th><th>3e groupe</th></tr></thead><tbody><tr><td>(tu)</td><td>-e</td><td>-is</td><td>-s</td></tr><tr><td>(nous)</td><td>-ons</td><td>-issons</td><td>-ons</td></tr><tr><td>(vous)</td><td>-ez</td><td>-issez</td><td>-ez</td></tr></tbody></table><strong>Négation :</strong> <em>Ne</em> parle <em>pas</em> !</div>"
+    "imperatif": "Ordre ou conseil.<br><div class='cj-rule-box'><strong>Formation :</strong> 3 formes : tu / nous / vous. Terminaisons proches du présent.<br><table class='cj-table'><thead><tr><th></th><th>1er groupe</th><th>2e groupe</th><th>3e groupe</th></tr></thead><tbody><tr><td>tu</td><td>-e</td><td>-is</td><td>-s</td></tr><tr><td>nous</td><td>-ons</td><td>-issons</td><td>-ons</td></tr><tr><td>vous</td><td>-ez</td><td>-issez</td><td>-ez</td></tr></tbody></table><strong>Négation :</strong> <em>Ne</em> parle <em>pas</em> !</div>",
+
+    "conditionnel": "Politesse / hypothèse / souhait.<br><div class='cj-rule-box'><strong>Formation :</strong> Infinitif (ou radical irrégulier) + terminaisons de l’imparfait.<br><table class='cj-table'><thead><tr><th></th><th>Terminaisons (tous groupes)</th></tr></thead><tbody><tr><td>je</td><td>-ais</td></tr><tr><td>tu</td><td>-ais</td></tr><tr><td>il / elle</td><td>-ait</td></tr><tr><td>nous</td><td>-ions</td></tr><tr><td>vous</td><td>-iez</td></tr><tr><td>ils / elles</td><td>-aient</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> voudrais <em>pas</em>.</div>",
+
+    "subjonctif": "Souhait / obligation / doute / émotion.<br><div class='cj-rule-box'><strong>Formation :</strong> Radical = ils (présent) – ent + terminaisons du subjonctif.<br><table class='cj-table'><thead><tr><th></th><th>Terminaisons (tous groupes)</th></tr></thead><tbody><tr><td>je</td><td>-e</td></tr><tr><td>tu</td><td>-es</td></tr><tr><td>il / elle</td><td>-e</td></tr><tr><td>nous</td><td>-ions</td></tr><tr><td>vous</td><td>-iez</td></tr><tr><td>ils / elles</td><td>-ent</td></tr></tbody></table><strong>Négation :</strong> Il faut que tu <em>ne</em> viennes <em>pas</em>.</div>"
 },
+
 
 
 
@@ -391,7 +396,8 @@ const conjApp = {
         
         const keys = Object.keys(this.db);
         const key = keys[Math.floor(Math.random() * keys.length)];
-        const tense = this.tenses[Math.floor(Math.random() * this.tenses.length)];
+        // Remove tenses that hasnt been learned yet
+        const tense = this.tenses[Math.floor(Math.random() * this.tenses.length)]; 
         const isNeg = Math.random() < 0.25; // 25% Probability
         
         let pIdx = Math.floor(Math.random() * 6);
@@ -403,7 +409,7 @@ const conjApp = {
 
         this.currentCard = { key, tense, pIdx, isNeg };
 
-        const formatTense = t => ({'present':'Présent','pc':'Passé Comp.','imparfait':'Imparfait','futur':'Futur','imperatif':'Impératif'}[t] || t);
+        const formatTense = t => ({'present':'Présent','pc':'Passé Comp.','imparfait':'Imparfait','futur':'Futur','imperatif':'Impératif', 'subjonctif':'Subjonctif', 'conditionnel': 'Conditionnel'}[t] || t);
         
         qArea.innerHTML = `
             <div class="conj-card ${isNeg ? 'is-negative' : ''} shadow-sm">
