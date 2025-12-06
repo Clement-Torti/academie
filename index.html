@@ -199,18 +199,29 @@
                     <h1 class="font-bold text-base tracking-wider uppercase hidden sm:block">L'Académie</h1>
                 </div>
 
-                <!-- STREAK COUNTER (NEW) -->
+                <!-- STREAK COUNTER -->
                 <div class="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full border border-white/10">
                     <i class="fa-solid fa-fire text-orange-400 text-sm animate-pulse"></i>
-                    <span id="streak-display" class="text-xs font-bold text-white font-mono">0 día de racha</span>
+                    <span id="streak-display" class="text-xs font-bold text-white font-mono">0 jour</span>
                 </div>
             </div>
 
-            <button onclick="app.renderFlashcards()"
-                class="bg-white/10 active:bg-white/20 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2">
-                <i class="fa-solid fa-layer-group text-gold"></i> <span>Révisions</span>
-            </button>
+            <!-- RIGHT BUTTONS -->
+            <div class="flex items-center gap-2">
+                <!-- New Verbes Button -->
+                <button onclick="app.loadFreestyleVerbs()"
+                    class="bg-white/10 active:bg-white/20 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2">
+                    <i class="fa-solid fa-dumbbell text-gold"></i> <span class="hidden sm:inline">Verbes</span>
+                </button>
+
+                <!-- Renamed Vocab Button -->
+                <button onclick="app.renderFlashcards()"
+                    class="bg-white/10 active:bg-white/20 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group text-gold"></i> <span>Vocab</span>
+                </button>
+            </div>
         </div>
+        
         <div class="h-1 w-full flex">
             <div class="w-1/3 bg-blue-600"></div>
             <div class="w-1/3 bg-white"></div>
@@ -251,12 +262,18 @@ const conjApp = {
     pronounsFr: ["Je", "Tu", "Il/Elle", "Nous", "Vous", "Ils/Elles"],
 
     rules: {
-        'present': "Action actuelle.<br><div class='cj-rule-box'><strong>Négation :</strong> Je <em>ne</em> parle <em>pas</em>.</div>",
-        'pc': "Passé terminé.<br><div class='cj-rule-box'>Auxiliaire + Participe.<br><strong>Négation :</strong> Je <em>n'</em>ai <em>pas</em> mangé (encadre l'auxiliaire).</div>",
-        'imparfait': "Description/Habitude.<br><div class='cj-rule-box'><strong>Négation :</strong> Je <em>ne</em> mangeais <em>pas</em>.</div>",
-        'futur': "Projets d'avenir.<br><div class='cj-rule-box'><strong>Négation :</strong> Je <em>ne</em> partirai <em>pas</em>.</div>",
-        'imperatif': "Ordre ou Conseil.<br><div class='cj-rule-box'>Pas de pronom sujet.<br><strong>Négation :</strong> <em>Ne</em> parle <em>pas</em> !</div>"
-    },
+    "present": "Action actuelle / vérité générale.<br><div class='cj-rule-box'><strong>Formation :</strong> Radical + terminaisons selon le groupe.<br><table class='cj-table'><thead><tr><th></th><th>1er groupe<br>(-ER)</th><th>2e groupe<br>(-IR)</th><th>3e groupe<br>(modèle -RE)</th></tr></thead><tbody><tr><td>je</td><td>-e</td><td>-is</td><td>-s</td></tr><tr><td>tu</td><td>-es</td><td>-is</td><td>-s</td></tr><tr><td>il / elle</td><td>-e</td><td>-it</td><td>—</td></tr><tr><td>nous</td><td>-ons</td><td>-issons</td><td>-ons</td></tr><tr><td>vous</td><td>-ez</td><td>-issez</td><td>-ez</td></tr><tr><td>ils / elles</td><td>-ent</td><td>-issent</td><td>-ent</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> parle <em>pas</em>.</div>",
+
+    "pc": "Passé terminé / actions ponctuelles.<br><div class='cj-rule-box'><strong>Formation :</strong> Auxiliaire présent + participe passé.<br><table class='cj-table'><thead><tr><th></th><th>Avoir (présent)</th><th>Être (présent)</th><th>Participe passé<br>1er, 2e, 3e groupe</th></tr></thead><tbody><tr><td>je</td><td>ai</td><td>suis</td><td>-é / -i / -u</td></tr><tr><td>tu</td><td>as</td><td>es</td><td>-é / -i / -u</td></tr><tr><td>il</td><td>a</td><td>est</td><td>-é / -i / -u</td></tr><tr><td>nous</td><td>avons</td><td>sommes</td><td>-é / -i / -u</td></tr><tr><td>vous</td><td>avez</td><td>êtes</td><td>-é / -i / -u</td></tr><tr><td>ils</td><td>ont</td><td>sont</td><td>-é / -i / -u</td></tr></tbody></table><strong>Négation :</strong> Je <em>n'</em>ai <em>pas</em> mangé.</div>",
+
+    "imparfait": "Description / habitude / action longue au passé.<br><div class='cj-rule-box'><strong>Formation :</strong> Radical = nous (présent) – ons + terminaisons.<br><table class='cj-table'><thead><tr><th></th><th>Terminaison (tous groupes)</th></tr></thead><tbody><tr><td>je</td><td>-ais</td></tr><tr><td>tu</td><td>-ais</td></tr><tr><td>il / elle</td><td>-ait</td></tr><tr><td>nous</td><td>-ions</td></tr><tr><td>vous</td><td>-iez</td></tr><tr><td>ils / elles</td><td>-aient</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> mangeais <em>pas</em>.</div>",
+
+    "futur": "Projet ou certitude dans l'avenir.<br><div class='cj-rule-box'><strong>Formation :</strong> Infinitif (ou radical irrégulier) + terminaisons.<br><table class='cj-table'><thead><tr><th></th><th>Terminaison (tous groupes)</th></tr></thead><tbody><tr><td>je</td><td>-ai</td></tr><tr><td>tu</td><td>-as</td></tr><tr><td>il / elle</td><td>-a</td></tr><tr><td>nous</td><td>-ons</td></tr><tr><td>vous</td><td>-ez</td></tr><tr><td>ils / elles</td><td>-ont</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> partirai <em>pas</em>.</div>",
+
+    "imperatif": "Ordre ou conseil.<br><div class='cj-rule-box'><strong>Formation :</strong> 3 formes : tu / nous / vous. Terminaisons proches du présent.<br><table class='cj-table'><thead><tr><th></th><th>1er groupe</th><th>2e groupe</th><th>3e groupe</th></tr></thead><tbody><tr><td>(tu)</td><td>-e</td><td>-is</td><td>-s</td></tr><tr><td>(nous)</td><td>-ons</td><td>-issons</td><td>-ons</td></tr><tr><td>(vous)</td><td>-ez</td><td>-issez</td><td>-ez</td></tr></tbody></table><strong>Négation :</strong> <em>Ne</em> parle <em>pas</em> !</div>"
+},
+
+
 
     async init() {
         if (Object.keys(this.db).length === 0) {
@@ -289,7 +306,7 @@ const conjApp = {
                 
                 <!-- Best Score Display -->
                 <div class="mb-6 flex items-center justify-center gap-2 text-gold font-bold bg-white px-4 py-2 rounded-full shadow-sm border border-orange-100">
-                    <i class="fa-solid fa-trophy"></i> Meilleur Record : ${this.bestScore}
+                    <i class="fa-solid fa-trophy"></i> Record : ${this.bestScore}
                 </div>
 
                 <div class="bg-white p-5 rounded-xl border border-gray-200 mb-8 w-full max-w-xs shadow-sm">
@@ -481,7 +498,7 @@ const conjApp = {
 
         modal.innerHTML = `
             <div class="cj-modal-backdrop" onclick="document.getElementById('cj-help-modal').classList.add('hidden')">
-                <div class="bg-white p-6 rounded-2xl max-w-sm w-full shadow-2xl animate-enter" onclick="event.stopPropagation()">
+                <div class="bg-white p-6 rounded-2xl max-w-md w-full shadow-2xl animate-enter" onclick="event.stopPropagation()">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="font-bold text-frBlue text-lg">${title}</h3>
                         <button onclick="document.getElementById('cj-help-modal').classList.add('hidden')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-times text-xl"></i></button>
@@ -2101,6 +2118,23 @@ const app = {
                         setTimeout(() => scoreDisplay.classList.remove('text-green-600', 'scale-125'), 300);
                     }
                 }
+            },
+            loadFreestyleVerbs() {
+                // Create dummy metadata so app.completeLesson() works correctly
+                this.currentLessonMeta = {
+                    id: 'freestyle',
+                    uid: 'freestyle_verbs',
+                    type: 'practice', 
+                    title: 'Entraînement Verbes',
+                    vocabulary: [],
+                    moduleIndex: 9999 // High number ensures "Next Lesson" button is hidden
+                };
+                // Reset main app scores (Conjugation App keeps its own score)
+                this.currentScore = 0;
+                this.currentMaxScore = 0;
+                
+                // Launch the Challenge
+                conjApp.init();
             },
         };
         app.init();
