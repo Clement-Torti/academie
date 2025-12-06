@@ -398,8 +398,6 @@ const conjApp = {
 
         // Filter tenses based on level
         const availableTenses = this.tenses.filter(t => level >= unlock[t]);
-        console.log(level)
-        console.log(availableTenses);
         // Fallback safety: if somehow empty, default to present
         const tense = availableTenses.length > 0
             ? availableTenses[Math.floor(Math.random() * availableTenses.length)]
