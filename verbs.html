@@ -1,0 +1,177 @@
+<!-- AUTO-DETECTABLE LESSON FILE -->
+
+<!-- 1. METADATA & EXERCISES -->
+<script type="application/json" id="verbs-data">
+    {
+        "ser/estar": {
+            "fr": "être",
+            "present": ["suis", "es", "est", "sommes", "êtes", "sont"],
+            "pc": ["ai été", "as été", "a été", "avons été", "avez été", "ont été"],
+            "imparfait": ["étais", "étais", "était", "étions", "étiez", "étaient"],
+            "futur": ["serai", "seras", "sera", "serons", "serez", "seront"],
+            "subjonctif": ["sois", "sois", "soit", "soyons", "soyez", "soient"],
+            "conditionnel": ["serais", "serais", "serait", "serions", "seriez", "seraient"],
+            "imperatif": { "1": "Sois", "3": "Soyons", "4": "Soyez" }
+        },
+        "tener": {
+            "fr": "avoir",
+            "present": ["ai", "as", "a", "avons", "avez", "ont"],
+            "pc": ["ai eu", "as eu", "a eu", "avons eu", "avez eu", "ont eu"],
+            "imparfait": ["avais", "avais", "avait", "avions", "aviez", "avaient"],
+            "futur": ["aurai", "auras", "aura", "aurons", "aurez", "auront"],
+            "subjonctif": ["aie", "aies", "ait", "ayons", "ayez", "aient"],
+            "conditionnel": ["aurais", "aurais", "aurait", "aurions", "auriez", "auraient"],
+            "imperatif": { "1": "Aie", "3": "Ayons", "4": "Ayez" }
+        },
+        "ir": {
+            "fr": "aller",
+            "present": ["vais", "vas", "va", "allons", "allez", "vont"],
+            "pc": ["suis allé(e)", "es allé(e)", "est allé(e)", "sommes allé(e)s", "êtes allé(e)(s)", "sont allé(e)s"],
+            "imparfait": ["allais", "allais", "allait", "allions", "alliez", "allaient"],
+            "futur": ["irai", "iras", "ira", "irons", "irez", "iront"],
+            "subjonctif": ["aille", "ailles", "aille", "allions", "alliez", "aillent"],
+            "conditionnel": ["irais", "irais", "irait", "irions", "iriez", "iraient"],
+            "imperatif": { "1": "Va", "3": "Allons", "4": "Allez" }
+        },
+        "hablar": {
+            "fr": "parler",
+            "present": ["parle", "parles", "parle", "parlons", "parlez", "parlent"],
+            "pc": ["ai parlé", "as parlé", "a parlé", "avons parlé", "avez parlé", "ont parlé"],
+            "imparfait": ["parlais", "parlais", "parlait", "parlions", "parliez", "parlaient"],
+            "futur": ["parlerai", "parleras", "parlera", "parlerons", "parlerez", "parleront"],
+            "subjonctif": ["parle", "parles", "parle", "parlions", "parliez", "parlent"],
+            "conditionnel": ["parlerais", "parlerais", "parlerait", "parlerions", "parleriez", "parleraient"],
+            "imperatif": { "1": "Parle", "3": "Parlons", "4": "Parlez" }
+        },
+        "hacer": {
+            "fr": "faire",
+            "present": ["fais", "fais", "fait", "faisons", "faites", "font"],
+            "pc": ["ai fait", "as fait", "a fait", "avons fait", "avez fait", "ont fait"],
+            "imparfait": ["faisais", "faisais", "faisait", "faisions", "faisiez", "faisaient"],
+            "futur": ["ferai", "feras", "fera", "ferons", "ferez", "feront"],
+            "subjonctif": ["fasse", "fasses", "fasse", "fassions", "fassiez", "fassent"],
+            "conditionnel": ["ferais", "ferais", "ferait", "ferions", "feriez", "feraient"],
+            "imperatif": { "1": "Fais", "3": "Faisons", "4": "Faites" }
+        },
+        "poder": {
+            "fr": "pouvoir",
+            "present": ["peux", "peux", "peut", "pouvons", "pouvez", "peuvent"],
+            "pc": ["ai pu", "as pu", "a pu", "avons pu", "avez pu", "ont pu"],
+            "imparfait": ["pouvais", "pouvais", "pouvait", "pouvions", "pouviez", "pouvaient"],
+            "futur": ["pourrai", "pourras", "pourra", "pourrons", "pourrez", "pourront"],
+            "subjonctif": ["puisse", "puisses", "puisse", "puissions", "puissiez", "puissent"],
+            "conditionnel": ["pourrais", "pourrais", "pourrait", "pourrions", "pourriez", "pourraient"],
+            "imperatif": { "1": "-", "3": "-", "4": "-" }
+        },
+        "querer": {
+            "fr": "vouloir",
+            "present": ["veux", "veux", "veut", "voulons", "voulez", "veulent"],
+            "pc": ["ai voulu", "as voulu", "a voulu", "avons voulu", "avez voulu", "ont voulu"],
+            "imparfait": ["voulais", "voulais", "voulait", "voulions", "vouliez", "voulaient"],
+            "futur": ["voudrai", "voudras", "voudra", "voudrons", "voudrez", "voudront"],
+            "subjonctif": ["veuille", "veuilles", "veuille", "voulions", "vouliez", "veuillent"],
+            "conditionnel": ["voudrais", "voudrais", "voudrait", "voudrions", "voudriez", "voudraient"],
+            "imperatif": { "1": "Veuille", "3": "Veuillons", "4": "Veuillez" }
+        },
+        "saber": {
+            "fr": "savoir",
+            "present": ["sais", "sais", "sait", "savons", "savez", "savent"],
+            "pc": ["ai su", "as su", "a su", "avons su", "avez su", "ont su"],
+            "imparfait": ["savais", "savais", "savait", "savions", "saviez", "savaient"],
+            "futur": ["saurai", "sauras", "saura", "saurons", "saurez", "sauront"],
+            "subjonctif": ["sache", "saches", "sache", "sachons", "sachez", "sachent"],
+            "conditionnel": ["saurais", "saurais", "saurait", "saurions", "sauriez", "sautaient"],
+            "imperatif": { "1": "Sache", "3": "Sachons", "4": "Sachez" }
+        },
+        "ver": {
+            "fr": "voir",
+            "present": ["vois", "vois", "voit", "voyons", "voyez", "voient"],
+            "pc": ["ai vu", "as vu", "a vu", "avons vu", "avez vu", "ont vu"],
+            "imparfait": ["voyais", "voyais", "voyait", "voyions", "voyiez", "voyaient"],
+            "futur": ["verrai", "verras", "verra", "verrons", "verrez", "verront"],
+            "subjonctif": ["voie", "voies", "voie", "voyions", "voyiez", "voient"],
+            "conditionnel": ["verrais", "verrais", "verrait", "verrions", "verriez", "verraient"],
+            "imperatif": { "1": "Vois", "3": "Voyons", "4": "Voyez" }
+        },
+        "venir": {
+            "fr": "venir",
+            "present": ["viens", "viens", "vient", "venons", "venez", "viennent"],
+            "pc": ["suis venu(e)", "es venu(e)", "est venu(e)", "sommes venu(e)s", "êtes venu(e)(s)", "sont venu(e)s"],
+            "imparfait": ["venais", "venais", "venait", "venions", "veniez", "venaient"],
+            "futur": ["viendrai", "viendras", "viendra", "viendrons", "viendrez", "viendront"],
+            "subjonctif": ["vienne", "viennes", "vienne", "venions", "veniez", "viennent"],
+            "conditionnel": ["viendrais", "viendrais", "viendrait", "viendrions", "viendriez", "viendraient"],
+            "imperatif": { "1": "Viens", "3": "Venons", "4": "Venez" }
+        },
+        "tomar/coger": {
+            "fr": "prendre",
+            "present": ["prends", "prends", "prend", "prenons", "prenez", "prennent"],
+            "pc": ["ai pris", "as pris", "a pris", "avons pris", "avez pris", "ont pris"],
+            "imparfait": ["prenais", "prenais", "prenait", "prenions", "preniez", "prenaient"],
+            "futur": ["prendrai", "prendras", "prendra", "prendrons", "prendrez", "prendront"],
+            "subjonctif": ["prenne", "prennes", "prenne", "prenions", "preniez", "prennent"],
+            "conditionnel": ["prendrais", "prendrais", "prendrait", "prendrions", "prendriez", "prendraient"],
+            "imperatif": { "1": "Prends", "3": "Prenons", "4": "Prenez" }
+        },
+        "deber": {
+            "fr": "devoir",
+            "present": ["dois", "dois", "doit", "devons", "devez", "doivent"],
+            "pc": ["ai dû", "as dû", "a dû", "avons dû", "avez dû", "ont dû"],
+            "imparfait": ["devais", "devais", "devait", "devions", "deviez", "devaient"],
+            "futur": ["devrai", "devras", "devra", "devrons", "devrez", "devront"],
+            "subjonctif": ["doive", "doives", "doive", "devions", "deviez", "doivent"],
+            "conditionnel": ["devrais", "devrais", "devrait", "devrions", "devriez", "devraient"],
+            "imperatif": { "1": "Dois", "3": "Devons", "4": "Devez" }
+        },
+        "poner": {
+            "fr": "mettre",
+            "present": ["mets", "mets", "met", "mettons", "mettez", "mettent"],
+            "pc": ["ai mis", "as mis", "a mis", "avons mis", "avez mis", "ont mis"],
+            "imparfait": ["mettais", "mettais", "mettait", "mettions", "mettiez", "mettaient"],
+            "futur": ["mettrai", "mettras", "mettra", "mettrons", "mettrez", "mettront"],
+            "subjonctif": ["mette", "mettes", "mette", "mettions", "mettiez", "mettent"],
+            "conditionnel": ["mettrais", "mettrais", "mettrait", "mettrions", "mettriez", "mettraient"],
+            "imperatif": { "1": "Mets", "3": "Mettons", "4": "Mettez" }
+        },
+        "salir": {
+            "fr": "sortir",
+            "present": ["sors", "sors", "sort", "sortons", "sortez", "sortent"],
+            "pc": ["suis sorti(e)", "es sorti(e)", "est sorti(e)", "sommes sorti(e)s", "êtes sorti(e)(s)", "sont sorti(e)s"],
+            "imparfait": ["sortais", "sortais", "sortait", "sortions", "sortiez", "sortaient"],
+            "futur": ["sortirai", "sortiras", "sortira", "sortirons", "sortirez", "sortiront"],
+            "subjonctif": ["sorte", "sortes", "sorte", "sortions", "sortiez", "sortent"],
+            "conditionnel": ["sortirais", "sortirais", "sortirait", "sortirions", "sortiriez", "sortiraient"],
+            "imperatif": { "1": "Sors", "3": "Sortons", "4": "Sortez" }
+        },
+        "beber": {
+            "fr": "boire",
+            "present": ["bois", "bois", "boit", "buvons", "buvez", "boivent"],
+            "pc": ["ai bu", "as bu", "a bu", "avons bu", "avez bu", "ont bu"],
+            "imparfait": ["buvais", "buvais", "buvait", "buvions", "buviez", "buvaient"],
+            "futur": ["boirai", "boiras", "boira", "boirons", "boirez", "boiront"],
+            "subjonctif": ["boive", "boives", "boive", "buvions", "buviez", "boivent"],
+            "conditionnel": ["boirais", "boirais", "boirait", "boirions", "boiriez", "boiraient"],
+            "imperatif": { "1": "Bois", "3": "Buvons", "4": "Buvez" }
+        },
+        "comer": {
+            "fr": "manger",
+            "present": ["mange", "manges", "mange", "mangeons", "mangez", "mangent"],
+            "pc": ["ai mangé", "as mangé", "a mangé", "avons mangé", "avez mangé", "ont mangé"],
+            "imparfait": ["mangeais", "mangeais", "mangeait", "mangions", "mangiez", "mangeaient"],
+            "futur": ["mangerai", "mangeras", "mangera", "mangerons", "mangerez", "mangeront"],
+            "subjonctif": ["mange", "manges", "mange", "mangions", "mangiez", "mangent"],
+            "conditionnel": ["mangerais", "mangerais", "mangerait", "mangerions", "mangeriez", "mangeraient"],
+            "imperatif": { "1": "Mange", "3": "Mangeons", "4": "Mangez" }
+        },
+        "terminar": {
+            "fr": "finir",
+            "present": ["finis", "finis", "finit", "finissons", "finissez", "finissent"],
+            "pc": ["ai fini", "as fini", "a fini", "avons fini", "avez fini", "ont fini"],
+            "imparfait": ["finissais", "finissais", "finissait", "finissions", "finissiez", "finissaient"],
+            "futur": ["finirai", "finiras", "finira", "finirons", "finirez", "finiront"],
+            "subjonctif": ["finisse", "finisses", "finisse", "finissions", "finissiez", "finissent"],
+            "conditionnel": ["finirais", "finirais", "finirait", "finirions", "finiriez", "finiraient"],
+            "imperatif": { "1": "Finis", "3": "Finissons", "4": "Finissez" }
+        }
+    }
+    </script>
