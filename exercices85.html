@@ -398,6 +398,52 @@
             "correct": "Exacto. 'Faire la queue' significa hacer fila/cola.",
             "incorrect": "Usamos 'Ce que' porque 'je déteste' tiene sujeto. La expresión es 'faire la queue'."
           }
+        },
+        {
+          "id": "ex_reading_cinema_01",
+          "type": "reading_comprehension",
+          "difficulty": "hard",
+          "instruction": "Lisez ce débat critique entre deux amis, puis répondez.",
+          "prompt": "Chef-d'œuvre ou Navet ?",
+          "content": {
+            "text": "Antoine et Léa sortent d'une salle de cinéma à Lyon. Le débat commence immédiatement.<br><br>— Je suis sans mots, dit Antoine. C'est le film le plus <strong>bouleversant</strong> de l'année. C'est le scénario qui est génial !<br>— Tu plaisantes ? répond Léa. Pour moi, c'était un vrai <strong>navet</strong>. C'est ennuyeux à mourir ! Ce que je déteste, c'est le jeu de l'acteur principal. Il n'a aucune émotion.<br>— Mais non ! C'est justement sa froideur qui rend l'histoire réaliste. Et la musique ? C'est la bande-originale qui donne tout le rythme.<br>— Bof... Ce qui me plaît, moi, c'est l'action, et ici, il ne se passe rien.",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "Quel est l'avis d'Antoine sur le film ?",
+                "answer": "Il pense que c'est un chef-d'œuvre bouleversant."
+              },
+              {
+                "id": "q2",
+                "prompt": "Pourquoi Léa n'a-t-elle pas aimé le film ?",
+                "answer": "Elle trouve que c'est un navet ennuyeux et elle déteste le jeu de l'acteur."
+              },
+              {
+                "id": "q3",
+                "prompt": "Sur quel point sont-ils en désaccord concernant l'acteur ?",
+                "answer": "Léa trouve qu'il n'a pas d'émotion, Antoine pense que sa froideur est réaliste."
+              }
+            ]
+          },
+          "feedback": {
+            "correct": "Excellent ! Vous avez bien identifié les opinions opposées (Mise en relief).",
+            "incorrect": null
+          }
+        },
+        {
+          "id": "ex_speaking_cinema_01",
+          "type": "expression",
+          "difficulty": "hard",
+          "instruction": "Pratique orale : Pitch créatif (Mise en relief).",
+          "prompt": "Sujet libre : 4 minutes",
+          "content": {
+              "theme": "Imagina que tu vida es una película y tú eres el director. Tienes que 'venderle' la idea a un productor de Hollywood.<br><br>Define: ¿Qué género sería (drama, comedia, terror)? ¿Qué actor famoso te interpretaría a ti y por qué? ¿Cuál sería la escena culminante? <br>Intenta usar frases enfáticas: <em>'C'est Brad Pitt qui joue mon rôle', 'Ce que je veux montrer, c'est...', 'C'est la scène finale qui...'</em>.",
+              "duration_seconds": 240
+          },
+          "feedback": {
+            "correct": "Bravo ! Utiliser la mise en relief (C'est... qui) rend le discours très convaincant.",
+            "incorrect": null
+          }
         }
       ]
     }

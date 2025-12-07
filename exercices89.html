@@ -335,7 +335,53 @@
     "correct": "¡Perfecto! 'Un pote' es la forma más común de decir 'Un amigo'.",
     "incorrect": "Usa la palabra 'Pote' en lugar de 'Ami'."
     }
-    }
+    },
+    {
+        "id": "ex_reading_sms_01",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez cette conversation SMS entre deux amis et répondez.",
+        "prompt": "Le rendez-vous raté",
+        "content": {
+          "text": "<strong>Max :</strong> Wesh ! T'es où ? J'attends depuis 20 min... <br><strong>Léa :</strong> Dsl, j'ai raté le bus. J'ai trop le <em>seum</em> ! Le prochain est dans 30 min.<br><strong>Max :</strong> Sérieux ? C'est abusé. Du coup, on fait quoi ?<br><strong>Léa :</strong> Franchement, j'ai la <em>flemme</em> d'attendre dans le froid. On peut remettre ça à demain ?<br><strong>Max :</strong> Pfff... Bon, ok, pas de souci. Mais demain, t'as intérêt à être à l'heure !<br><strong>Léa :</strong> TKT ! Promis. T'es le meilleur, je te revaudrai ça. Bisous.",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Pourquoi Léa est-elle énervée (elle a le seum) ?",
+              "answer": "Parce qu'elle a raté son bus."
+            },
+            {
+              "id": "q2",
+              "prompt": "Pourquoi Léa veut-elle annuler ?",
+              "answer": "Elle a la flemme d'attendre 30 minutes dans le froid."
+            },
+            {
+              "id": "q3",
+              "prompt": "Comment réagit Max à la fin ?",
+              "answer": "Il accepte (pas de souci) mais lui demande d'être à l'heure demain."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "C'est ça ! Vous avez bien compris le langage SMS et les émotions (seum, flemme).",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_slang_02",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Improvisation en langage familier.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+            "theme": "Imagina que eres un crítico de cine muy exigente, pero estás hablando con tus amigos en un bar, no escribiendo un artículo.<br><br>Destroza una película que acabas de ver (invéntala). Di que los actores eran malos, la historia absurda y el final decepcionante. Usa muletillas y jerga como: <em>C'est nimp, un navet, j'ai la flemme, grave, laisse tomber</em>.",
+            "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Excellent ! L'attitude et le ton informel sont parfaits pour cet exercice.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

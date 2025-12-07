@@ -335,7 +335,53 @@
     "correct": "¡Perfecto! 'J'suis' o 'Ch'uis' au resto.",
     "incorrect": "Intenta usar la contracción 'J'suis' y la abreviación 'Resto'."
     }
-    }
+    },
+    {
+        "id": "ex_reading_slang_01",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez le dialogue familier, repérez l'argot et répondez aux questions.",
+        "prompt": "Une soirée compliquée",
+        "content": {
+          "text": "<strong>Lucas :</strong> Salut ! Ça va ? T'es où ?<br><strong>Chloé :</strong> J'suis encore au <em>boulot</em>. C'est n'importe quoi aujourd'hui, mon chef est trop <em>relou</em>. Il me donne des dossiers à la dernière minute.<br><strong>Lucas :</strong> Ah mince. Du coup, pour ce soir, c'est mort ?<br><strong>Chloé :</strong> Non, t'inquiète. Je finis ce <em>truc</em> et j'arrive. Par contre, j'ai pas de <em>thune</em> sur moi, j'ai oublié ma carte.<br><strong>Lucas :</strong> Pas de souci, je t'invite. On se fait une <em>bouffe</em> rapide et après on va boire un verre ?<br><strong>Chloé :</strong> Grave ! Merci, t'es un ange. J'ai trop faim en plus.",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Pourquoi Chloé est-elle encore au travail ?",
+              "answer": "Parce que son chef lui a donné du travail à la dernière minute (il est 'relou')."
+            },
+            {
+              "id": "q2",
+              "prompt": "Quel est le problème financier de Chloé ?",
+              "answer": "Elle n'a pas d'argent (pas de thune) car elle a oublié sa carte."
+            },
+            {
+              "id": "q3",
+              "prompt": "Que propose Lucas ?",
+              "answer": "Il propose de payer le repas (l'inviter) et d'aller manger."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Super ! Vous maîtrisez bien le contexte informel.",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_slang_01",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Utilisez le registre familier.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+            "theme": "Vas a contarle a tu mejor amigo/a una anécdota sobre una fiesta o evento que fue un desastre total.<br><br>Explica por qué la gente era extraña, la música mala o la comida insuficiente. Intenta sonar muy natural, omitiendo el 'ne' de la negación y usando palabras de la lista como: <em>kiffer (en negativo), chelou, relou, se casser, c'est mort</em>.",
+            "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Bravo ! L'utilisation de l'argot rend votre discours très authentique.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

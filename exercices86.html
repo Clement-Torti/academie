@@ -401,6 +401,52 @@
             "correct": "Bien. 'Donc' (por lo tanto) expresa una deducción lógica.",
             "incorrect": "'Comme' y 'Puisque' introducen causas, no conclusiones."
           }
+        },
+        {
+          "id": "ex_reading_cinema_02",
+          "type": "reading_comprehension",
+          "difficulty": "hard",
+          "instruction": "Lisez la critique de film ci-dessous, repérez les connecteurs logiques, puis répondez.",
+          "prompt": "Une sortie cinéma mitigée",
+          "content": {
+            "text": "Hier soir, Marc et Julie sont allés voir « La Nuit du Silence ». Marc est furieux. Il dit : « C'était un vrai <strong>navet</strong> ! Comme le scénario était illogique, je n'ai rien compris. En plus, à cause du jeu des acteurs, je ne ressentais aucune émotion ».<br><br>Julie, au contraire, n'est pas d'accord. « Puisque tu n'aimes pas les films d'auteur, tu ne peux pas apprécier la subtilité. Pour moi, c'est un <strong>chef-d'œuvre</strong>. Le réalisateur a pris des risques, donc c'est normal que cela ne plaise pas à tout le monde. La fin est imprévisible et c'est ce que j'aime ».",
+            "questions": [
+              {
+                "id": "q1",
+                "prompt": "Pourquoi Marc n'a-t-il rien compris au film ?",
+                "answer": "Parce que le scénario était illogique."
+              },
+              {
+                "id": "q2",
+                "prompt": "Quelle est la conséquence du choix du réalisateur selon Julie ?",
+                "answer": "Comme il a pris des risques, c'est normal que le film ne plaise pas à tout le monde."
+              },
+              {
+                "id": "q3",
+                "prompt": "Quel connecteur Julie utilise-t-elle pour indiquer une cause évidente concernant les goûts de Marc ?",
+                "answer": "Elle utilise « Puisque » (Puisque tu n'aimes pas les films d'auteur...)."
+              }
+            ]
+          },
+          "feedback": {
+            "correct": "Bravo ! Vous maîtrisez bien la logique de cause et conséquence.",
+            "incorrect": null
+          }
+        },
+        {
+          "id": "ex_speaking_cinema_02",
+          "type": "expression",
+          "difficulty": "hard",
+          "instruction": "Pratique orale : Justifiez l'impossible (Imagination et Argumentation).",
+          "prompt": "Sujet libre : 4 minutes",
+          "content": {
+              "theme": "Eres un director de cine excéntrico y tienes que vender una idea muy loca a un productor. <br><br>Tu misión es inventar una película que mezcle **dos géneros opuestos** (por ejemplo: <em>Un Musical de Terror</em> o <em>Un Documental de Cocina con Zombies</em>). <br>Explica la trama y justifica por qué será un éxito usando conectores lógicos: <em>'Comme c'est original...', 'Le public va adorer car...', 'C'est drôle, donc...'</em>.",
+              "duration_seconds": 240
+          },
+          "feedback": {
+            "correct": "Excellent ! L'usage des connecteurs (car, comme, donc) rend votre argumentation solide, même pour une idée folle.",
+            "incorrect": null
+          }
         }
       ]
     }
