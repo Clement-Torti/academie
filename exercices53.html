@@ -332,7 +332,53 @@
     "correct": "¡Muy bien! 'Ce n'est pas ma tasse de thé'.",
     "incorrect": "Expresión idiomática exacta: Ce + n'est + pas + ma + tasse + de + thé."
     }
-    }
+    },
+    {
+        "id": "ex_reading_04",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez la conversation entre deux amis, réfléchissez aux questions, puis vérifiez.",
+        "prompt": "Un débat au musée",
+        "content": {
+          "text": "Léa et Marc visitent une nouvelle exposition d'art moderne. Léa est enthousiaste : « Je trouve que c'est audacieux ! Regarde ces couleurs, c'est très branché. »<br><br>Marc, par contre, n'est pas d'accord. Il regarde une toile blanche avec un seul point rouge et soupire : « Franchement, c'est n'importe quoi. À mon avis, cet artiste est totalement surcoté. Payer pour voir ça ? C'est une blague. »<br><br>Léa rit : « Tu es trop sévère. Moi, ça me parle. C'est subtil. »<br>Marc répond : « Bof. Pour moi, c'est juste ringard d'essayer d'être original comme ça. »",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Quelle est l'opinion de Marc sur l'artiste ?",
+              "answer": "Il pense qu'il est surcoté (overrated)."
+            },
+            {
+              "id": "q2",
+              "prompt": "Comment Léa trouve-t-elle le style de l'exposition ?",
+              "answer": "Elle trouve que c'est audacieux et branché."
+            },
+            {
+              "id": "q3",
+              "prompt": "Marc aime-t-il le tableau blanc ?",
+              "answer": "Non, il dit que c'est n'importe quoi (disparate)."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Excellent ! Vous avez bien saisi les nuances entre l'enthousiasme (branché/audacieux) et la critique (surcoté/ringard).",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_04",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Parlez sans vous arrêter.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+            "theme": "Imagina que eres un crítico famoso (de cine, moda o arte) y te entrevistan sobre una nueva tendencia popular. <br><br>Tienes que explicar por qué NO te gusta. Usa expresiones de opinión fuerte y vocabulario negativo/crítico como: <em>à mon avis, ringard, surcoté, gâcher, c'est de mauvais goût, je ne suis pas d'accord</em>.",
+            "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Bravo ! Exprimer une opinion négative avec des nuances (surcoté, kitch, bof) est une compétence avancée.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

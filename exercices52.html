@@ -332,7 +332,53 @@
     "correct": "Correcto. C'est une exposition magnifique.",
     "incorrect": "Para presentar el evento usamos 'C'est' + sustantivo + adjetivo."
     }
-    }
+    },
+    {
+        "id": "ex_reading_03",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez la critique d'art, réfléchissez aux questions, puis vérifiez.",
+        "prompt": "Un avis sur l'exposition",
+        "content": {
+          "text": "Hier, j'ai assisté au vernissage de l'artiste Paul Lemoine. C'était magnifique ! J'ai surtout aimé une grande toile à l'huile. <br><br>C'est un paysage mystérieux. Au premier plan, les couleurs sont très vives : on voit des fleurs rouges et oranges. Mais à l'arrière-plan, tout change : la forêt est sombre et un peu floue. Ce contraste est incroyable. <br><br>Beaucoup de gens disent que ce tableau est un chef-d'œuvre. Moi, je trouve qu'il est très émouvant.",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Où le narrateur est-il allé hier ?",
+              "answer": "Il est allé au vernissage de l'artiste Paul Lemoine."
+            },
+            {
+              "id": "q2",
+              "prompt": "Comment est l'arrière-plan du tableau décrit ?",
+              "answer": "Il est sombre et un peu flou."
+            },
+            {
+              "id": "q3",
+              "prompt": "Quelle est l'opinion générale sur ce tableau ?",
+              "answer": "Les gens disent que c'est un chef-d'œuvre."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Bravo ! Vous maîtrisez bien le vocabulaire de la description artistique.",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_03",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Parlez sans vous arrêter.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+            "theme": "Imagina que eres un crítico de arte describiendo tu cuadro favorito (real o inventado). <br><br>Describe qué hay en primer plano y en el fondo (arrière-plan). Habla sobre los colores (vifs, sombres), la técnica (huile, aquarelle) y las emociones que transmite. Usa vocabulario como: <em>toile, lumière, flou, chef-d'œuvre</em>.",
+            "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Excellent ! Décrire l'art demande de la précision (premier plan/arrière-plan) et de l'émotion.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

@@ -401,7 +401,53 @@
     "correct": "Correcto. 'Si le projet aboutit' (Si el proyecto resulta/tiene éxito, presente).",
     "incorrect": "'Aboutira' es futuro (error tras Si). 'Échoue' (fracasa) no tiene sentido lógico con 'seré promovido'."
     }
-    }
+    },
+    {
+        "id": "ex_reading_03",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez le mémo interne de l'entreprise et répondez aux questions.",
+        "prompt": "Mémo : Objectifs annuels",
+        "content": {
+          "text": "<strong>De :</strong> La Direction<br><strong>Pour :</strong> Toute l'équipe commerciale<br><br>Chers collègues,<br><br>Cette année a été difficile. La concurrence est très forte et nous avons perdu deux clients importants. Si nous ne changeons pas notre stratégie maintenant, le chiffre d'affaires continuera de baisser. C'est un grand défi pour nous tous.<br><br>Si nous atteignons nos objectifs en décembre, personne ne sera licencié. Au contraire, si vous signez de nouveaux contrats, vous aurez une prime exceptionnelle. Je suis sûr que, dans six mois, nous aurons réussi à sauver l'entreprise.<br><br>Cordialement,<br>M. Durand",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Quel est le problème principal de l'entreprise ?",
+              "answer": "La concurrence est forte et le chiffre d'affaires baisse."
+            },
+            {
+              "id": "q2",
+              "prompt": "Que se passera-t-il si l'équipe atteint les objectifs ?",
+              "answer": "Personne ne sera licencié."
+            },
+            {
+              "id": "q3",
+              "prompt": "Quelle est la promesse pour les employés qui signent des contrats ?",
+              "answer": "Ils auront une prime exceptionnelle."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Excellent ! Vous avez bien identifié les conditions (Si...) et les conséquences.",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_03",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Faites des hypothèses et des projections.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+            "theme": "Imagina que estás en una entrevista de trabajo para un puesto importante.<br><br>El entrevistador te pregunta: <em>'¿Dónde se ve usted en 5 años?'</em>.<br>Responde usando hipótesis (Si obtengo el puesto...) y el Futuro Anterior para describir lo que ya habrás logrado (Para entonces, habré cambiado...).<br>Usa el vocabulario: <em>défi, équipe, résultats, responsabilité, avoir fini</em>.",
+            "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Bravo ! L'utilisation du Futur Antérieur pour se projeter est un signe de niveau avancé.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

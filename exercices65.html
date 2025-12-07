@@ -418,7 +418,53 @@
     "correct": "Correcto. Admitir un defecto real ('impaciente') y ofrecer una solución ('me cuido/trabajo en ello') es la mejor estrategia.",
     "incorrect": "'Perfeccionista' es un cliché odiado. Decir que no tienes defectos es arrogante."
     }
-    }
+    },
+    {
+        "id": "ex_reading_job_interview",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez l'entretien d'embauche et répondez aux questions.",
+        "prompt": "Négociation de salaire et disponibilité",
+        "content": {
+          "text": "<strong>Recruteur :</strong> Votre profil est intéressant. Vous avez dit que vous vivez ici depuis longtemps ?<br><br><strong>Candidat :</strong> Oui, je <em>travaille</em> à Paris <strong>depuis</strong> 2018. Avant cela, j'ai <em>travaillé</em> à Londres <strong>pendant</strong> deux ans. C'était une expérience enrichissante.<br><br><strong>Recruteur :</strong> Parfait. Parlons budget. Quelles sont vos <strong>prétentions salariales</strong> ?<br><br><strong>Candidat :</strong> <strong>Compte tenu de</strong> mon expérience et de mon profil <strong>polyvalent</strong>, je vise une <strong>fourchette</strong> entre 38 et 42 000 euros bruts annuels.<br><br><strong>Recruteur :</strong> C'est un peu élevé, mais nous cherchons quelqu'un capable de <strong>relever des défis</strong>. Quand pouvez-vous commencer ?<br><br><strong>Candidat :</strong> Je suis <strong>disponible immédiatement</strong>.",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Pourquoi le candidat utilise-t-il le présent pour Paris et le passé pour Londres ?",
+              "answer": "Il travaille toujours à Paris (Depuis), mais Londres est fini (Pendant)."
+            },
+            {
+              "id": "q2",
+              "prompt": "Quel argument utilise le candidat pour justifier son salaire ?",
+              "answer": "Son expérience et son profil polyvalent."
+            },
+            {
+              "id": "q3",
+              "prompt": "Quand le candidat peut-il commencer le travail ?",
+              "answer": "Tout de suite (immédiatement)."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Excellent ! Vous avez bien identifié les temps verbaux (Depuis/Pendant) et le vocabulaire de négociation.",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_defects",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : La question piège.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+            "theme": "Responde a la pregunta clásica: '¿Cuál es su mayor defecto?'. <br><br>Debes elegir un defecto, admitirlo, pero matizarlo (suavizarlo) explicando cómo lo gestionas para que no afecte tu trabajo. Luego, explica por qué eres el candidato ideal (tus ventajas). Usa el vocabulario: <em>atout, défaut, parfois, rigoureux, sens du relationnel</em>.",
+            "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Bravo ! L'art de transformer un défaut en qualité (ou de le minimiser) est essentiel en entretien.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

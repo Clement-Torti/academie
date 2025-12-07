@@ -339,7 +339,53 @@
     "correct": "Muy bien. 'Étant tard...' es muy elegante.",
     "incorrect": "Usa 'Étant' (participio de Être) para expresar la causa."
     }
-    }
+    },
+    {
+        "id": "ex_reading_02",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez le rapport de police, faites attention aux participes présents, puis répondez.",
+        "prompt": "Rapport d'incident n°402",
+        "content": {
+          "text": "Hier soir, à 23h00, un cambriolage a eu lieu dans la bijouterie 'L'Éclat'. L'inspecteur Martin, <strong>arrivant</strong> sur les lieux, a trouvé la vitrine brisée. Il a immédiatement interrogé un témoin clé.<br><br>Le témoin, un homme <strong>portant</strong> un chapeau noir, attendait le bus juste en face. Il a déclaré : « J'ai vu deux individus sortir en courant. <strong>Ayant</strong> peur, je me suis caché derrière l'arrêt de bus ». Les suspects ont pris la fuite en voiture, commettant ainsi un délit de fuite après avoir heurté un poteau.<br><br>La police regarde maintenant la vidéosurveillance pour identifier les coupables.",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Que s'est-il passé à la bijouterie ?",
+              "answer": "Il y a eu un cambriolage (et la vitrine a été brisée)."
+            },
+            {
+              "id": "q2",
+              "prompt": "Pourquoi le témoin s'est-il caché ?",
+              "answer": "Parce qu'il avait peur (Ayant peur)."
+            },
+            {
+              "id": "q3",
+              "prompt": "Que fait la police pour trouver les suspects ?",
+              "answer": "Elle regarde la vidéosurveillance."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Bravo ! Vous avez bien compris les faits divers.",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_02",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Racontez une histoire en utilisant le vocabulaire.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+            "theme": "Imagina que eres un testigo de un evento extraño o un crimen misterioso en tu barrio. <br><br>Describe qué estabas haciendo, qué viste (usando el participio presente para describir acciones simultáneas, ej: 'comiendo', 'caminando') y cómo reaccionó la policía. Usa el vocabulario: <em>témoin, suspect, porter plainte, courir, étrange</em>.",
+            "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Excellent ! Utiliser le contexte policier aide à structurer le récit.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

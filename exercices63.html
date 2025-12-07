@@ -411,7 +411,53 @@
     "correct": "Bien. Contrastamos 'Feo' con 'Barato'.",
     "incorrect": "Recuerda: 'Par contre' es muy común en el oral para 'En cambio' o 'Por el contrario'."
     }
-    }
+    },
+    {
+        "id": "ex_reading_02",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez le dialogue, repérez les connecteurs logiques, puis répondez.",
+        "prompt": "Le bilan du projet",
+        "content": {
+          "text": "<strong>Marc :</strong> Alors, quel est ton avis sur la nouvelle stratégie marketing ?<br><br><strong>Lucie :</strong> C'est complexe. <em>Tout d'abord</em>, les visuels sont modernes et attirent l'attention. C'est un excellent début. <em>Certes</em>, la campagne coûte très cher et dépasse notre budget initial de 20%.<br><br><strong>Marc :</strong> C'est risqué pour nos finances...<br><br><strong>Lucie :</strong> Oui. <em>En revanche</em>, les premiers tests montrent que les clients adorent le concept. Les ventes pourraient doubler rapidement. <em>Par conséquent</em>, je pense que nous devons prendre ce risque. <em>Finalement</em>, c'est l'audace qui paie.",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Quel est le point négatif (l'inconvénient) mentionné par Lucie ?",
+              "answer": "La campagne coûte cher et dépasse le budget."
+            },
+            {
+              "id": "q2",
+              "prompt": "Pourquoi Lucie veut-elle continuer malgré le coût ?",
+              "answer": "Parce que les clients adorent le concept (ventes potentielles)."
+            },
+            {
+              "id": "q3",
+              "prompt": "Quel connecteur utilise-t-elle pour introduire sa conclusion ?",
+              "answer": "Elle utilise « Par conséquent »."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Parfait ! Vous avez bien suivi la logique de l'argumentation.",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_02",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Construisez une argumentation structurée.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+          "theme": "Defiende una decisión difícil o polémica (tienes que despedir a empleados por problemas financieros). <br><br>Imagina que debes convencer a un grupo de personas sobre un cambio radical (en una empresa, en la sociedad o en la vida personal). Debes conceder que hay problemas, pero demostrar que los beneficios son mayores. Usa el vocabulario: <em>d'abord, certes, en revanche, par conséquent, assumer</em>.",
+          "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Très bien ! L'utilisation des connecteurs comme 'Certes' et 'En revanche' rend le discours convaincant.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

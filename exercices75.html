@@ -401,7 +401,53 @@
     "correct": "Correcto. 'Habrá sido' un éxito (Explicación probable en el pasado).",
     "incorrect": "'Sera' es futuro simple (será). 'Est' es presente. Aquí buscamos la causa probable en el pasado."
     }
-    }
+    },
+    {
+        "id": "ex_reading_02",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez le courriel, trouvez les informations clés, puis répondez.",
+        "prompt": "Courriel à une amie",
+        "content": {
+          "text": "Salut Clara !<br><br>Je t'écris depuis mon petit appartement à Montmartre. Cela fait maintenant deux semaines que je travaille à l'agence. Le rythme est très rapide ! Mon patron, Monsieur Dubois, est assez exigeant, mais il est juste. Je travaille actuellement sur les plans d'un nouveau musée.<br><br>Le midi, je ne mange plus au restaurant car c'est trop cher. Je préfère acheter un sandwich et manger dans le jardin des Tuileries avec Julien. Il me donne des conseils pour visiter la ville. Hier, nous avons marché deux heures après le travail. Je suis épuisée, mais heureuse. Quand viens-tu me voir ?<br><br>Bises, Sophie.",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Sur quel type de projet travaille Sophie ?",
+              "answer": "Elle travaille sur les plans d'un nouveau musée."
+            },
+            {
+              "id": "q2",
+              "prompt": "Pourquoi Sophie ne mange-t-elle plus au restaurant ?",
+              "answer": "Parce que c'est trop cher."
+            },
+            {
+              "id": "q3",
+              "prompt": "Que fait Sophie avec Julien après le travail ?",
+              "answer": "Ils marchent dans la ville."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Parfait ! Vous avez bien compris les détails du quotidien de Sophie.",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_02",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Construisez une histoire cohérente.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+            "theme": "Imagina que has cometido un error importante en el trabajo (borraste un fichero importante de propuesta al cliente). <br><br>Explica qué pasó exactamente, cómo reaccionó tu jefe y cómo solucionaste el problema. Usa el vocabulario: <em>erreur, responsable, solution, stress, s'excuser</em>.",
+            "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Très bien ! Raconter une anecdote passée demande une bonne maîtrise des temps.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

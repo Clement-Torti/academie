@@ -333,7 +333,53 @@
     "correct": "Très bien! Je trouve que c'est efficace.",
     "incorrect": "Usa 'Je trouve que' y el adjetivo 'efficace'."
     }
-    }
+    },
+    {
+        "id": "ex_reading_03",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez le débat, identifiez les opinions et les nuances (doute/certitude), puis répondez.",
+        "prompt": "Un débat sur le design",
+        "content": {
+          "text": "Sophie présente son projet à l'équipe marketing. Elle montre les nouveaux plans pour le musée. <br><br>Marc, le directeur marketing, regarde les dessins et fronce les sourcils. « Je trouve que ce style est un peu <strong>dépassé</strong> », dit-il. « Notre <strong>cible</strong> est jeune. À mon avis, il faut être plus audacieux. »<br><br>Sophie respire calmement et répond : « Je ne suis pas d'accord. Je pense que ce design est intemporel, pas vieux. De plus, je ne crois pas que le budget <strong>soit</strong> suffisant pour tout changer maintenant. »<br><br>Julien intervient : « Vous avez raison tous les deux, mais selon moi, l'idée de Sophie est la plus <strong>efficace</strong> pour l'instant ».",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Quelle est l'opinion de Marc sur le design ?",
+              "answer": "Il trouve qu'il est dépassé (pas moderne)."
+            },
+            {
+              "id": "q2",
+              "prompt": "Pourquoi Sophie utilise-t-elle le subjonctif (« que le budget soit ») ?",
+              "answer": "Parce qu'elle exprime une opinion négative ou un doute (Je ne crois pas que...)."
+            },
+            {
+              "id": "q3",
+              "prompt": "Qui pense que le projet est efficace ?",
+              "answer": "C'est Julien (selon lui)."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Bravo ! Vous avez bien distingué les opinions (Indicatif) et les doutes (Subjonctif).",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_03",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Exprimez votre opinion et vos doutes.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+          "theme": "Imagina que estás en una reunión y debes opinar sobre una propuesta polémica (por ejemplo: eliminar las reuniones presenciales o cambiar el logo de la empresa). <br><br>Debes alternar entre afirmar lo que piensas (<em>Je pense que c'est...</em>) y expresar dudas o desacuerdos usando el subjuntivo (<em>Je ne crois pas que ce soit...</em>). Usa palabras como: <em>efficace, raison, tort, avis</em>.",
+          "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Excellent ! Maîtriser l'alternance Indicatif/Subjonctif est la clé du débat.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

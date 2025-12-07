@@ -336,7 +336,53 @@
     "correct": "Muy bien. 'L'idée est bonne, cependant je doute'.",
     "incorrect": "Cependant introduce la duda formalmente después de una afirmación positiva."
     }
-    }
+    },
+    {
+        "id": "ex_reading_04",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez le texte, identifiez les oppositions, puis répondez.",
+        "prompt": "Un choix difficile pour Sophie",
+        "content": {
+          "text": "Sophie cherche un nouvel appartement à Paris. Hier, elle a visité un studio dans le centre. <strong>Bien que</strong> l'appartement soit petit, il est très lumineux et moderne. Sophie l'aime beaucoup, <strong>pourtant</strong> le loyer est un peu élevé pour son budget.<br><br>Elle en parle à Julien. Il pense qu'elle devrait le prendre <strong>malgré</strong> le prix, car le quartier est génial. Sophie hésite. Elle sait que c'est une bonne occasion, <strong>par contre</strong> elle a peur de ne pas avoir assez d'argent pour ses sorties. <strong>Même si</strong> la décision est difficile, elle va rappeler l'agence demain.",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Pourquoi Sophie hésite-t-elle à prendre l'appartement ?",
+              "answer": "Parce que le loyer est un peu élevé (trop cher)."
+            },
+            {
+              "id": "q2",
+              "prompt": "Quel est l'avis de Julien ?",
+              "answer": "Il pense qu'elle devrait le prendre malgré le prix."
+            },
+            {
+              "id": "q3",
+              "prompt": "Quel est le point positif de l'appartement (bien qu'il soit petit) ?",
+              "answer": "Il est très lumineux et moderne."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Excellent ! Vous avez bien repéré les nuances d'opposition.",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_04",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Comparez et opposez.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+          "theme": "Compara dos situaciones diferentes (por ejemplo: vivir en la ciudad vs. vivir en el campo, o trabajar en oficina vs. teletrabajo).<br><br>Debes resaltar lo bueno de uno y lo malo del otro usando contrastes. Usa conectores de oposición: <em>bien que (+ subjuntivo), par contre, alors que, pourtant, malgré</em>.",
+          "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Très bien ! N'oubliez pas que 'Bien que' demande toujours le Subjonctif (ex: bien qu'il soit).",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

@@ -341,7 +341,53 @@
     "correct": "¡Excelente! 'Qu'est-ce QUI' (sujeto) se convierte en 'CE QUI'.",
     "incorrect": "Como 'qui' es el sujeto de la frase (lo que pasa), usamos 'ce qui', no 'ce que'."
     }
-    }
+    },
+    {
+        "id": "ex_reading_04",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez le rapport du journaliste et analysez le discours indirect.",
+        "prompt": "L'interview politique",
+        "content": {
+          "text": "Hier, j'ai interviewé le maire pour le journal de 20 heures. L'ambiance était tendue. Je lui ai demandé <strong>ce qu'il</strong> comptait faire pour les transports publics. Il a répondu <strong>qu'il</strong> étudiait le dossier, mais c'était clairement de la langue de bois.<br><br>Ensuite, je lui ai demandé <strong>s'il</strong> allait augmenter les impôts l'année prochaine. Il a affirmé <strong>que</strong> ce n'était pas prévu. Pourtant, une fois le micro éteint, <strong>en off</strong>, son conseiller m'a avoué que la situation budgétaire était critique.",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Quelle question le journaliste a-t-il posée sur les impôts ?",
+              "answer": "Il a demandé s'il allait augmenter les impôts."
+            },
+            {
+              "id": "q2",
+              "prompt": "Que signifie « en off » dans ce contexte ?",
+              "answer": "C'est une information donnée hors micro / confidentielle."
+            },
+            {
+              "id": "q3",
+              "prompt": "Comment le journaliste qualifie-t-il la première réponse du maire ?",
+              "answer": "De la langue de bois (une réponse vague)."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Excellent ! Vous maîtrisez bien la distinction entre ce qui est dit publiquement et « en off ».",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_04",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Rapportez une conversation (Discours Indirect).",
+        "prompt": "Sujet libre : 3 minutes",
+        "content": {
+            "theme": "Imagina que eres un asistente personal y debes contarle a tu jefe una llamada telefónica importante que recibiste mientras él no estaba. <br><br>Debes reportar quién llamó y qué quería, transformando las preguntas y afirmaciones al <strong>discurso indirecto</strong>. <br>Usa las estructuras: <em>Il a demandé si..., Il voulait savoir ce que..., Il a dit que...</em>",
+            "duration_seconds": 180
+        },
+        "feedback": {
+          "correct": "Bravo ! L'exercice de transformation (est-ce que -> si, qu'est-ce que -> ce que) est essentiel ici.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

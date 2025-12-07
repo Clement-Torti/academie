@@ -336,7 +336,53 @@
     "correct": "¡Exacto! C'est n'importe quoi.",
     "incorrect": "La expresión fija es 'C'est n'importe quoi'."
     }
-    }
+    },
+    {
+        "id": "ex_reading_04",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez la dispute, repérez les désaccords et la négociation, puis répondez.",
+        "prompt": "Une négociation difficile",
+        "content": {
+          "text": "La réunion avec le client est tendue. Monsieur Dupont regarde le devis et s'énerve : « C'est trop cher ! Ce prix, c'est <strong>n'importe quoi</strong> ! Vous n'avez pas cherché d'autres options ? »<br><br>Sophie reste calme et répond fermement : « <strong>Si</strong>, j'ai comparé trois fournisseurs. La qualité a un coût. Vous dites que c'est inutile, mais je pense que vous <strong>avez tort</strong>. »<br><br>Monsieur Dupont soupire. Il sait que Sophie est une architecte <strong>convaincante</strong>. « D'accord, je ne suis pas <strong>tout à fait</strong> d'accord, mais faisons un <strong>compromis</strong> sur les délais », dit-il finalement.",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Est-ce que Sophie a cherché d'autres options ?",
+              "answer": "Oui (elle répond « Si » à la question négative du client)."
+            },
+            {
+              "id": "q2",
+              "prompt": "Que pense Monsieur Dupont du prix au début ?",
+              "answer": "Il pense que c'est n'importe quoi (ridicule/trop cher)."
+            },
+            {
+              "id": "q3",
+              "prompt": "Comment se termine la discussion ?",
+              "answer": "Ils trouvent un compromis."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Excellent ! Vous avez bien compris la nuance du 'Si' et la résolution du conflit.",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_04",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Gérez un conflit et négociez.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+          "theme": "Imagina que estás en medio de un desacuerdo con un amigo o un colega que te acusa de haber cometido un error. <br><br>Tienes que defenderte, decir que él está equivocado y finalmente proponer una solución media. Intenta usar las expresiones: <em>Si</em> (para contradecir una negación), <em>avoir tort</em>, <em>pas du tout</em> y <em>compromis</em>.",
+          "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Bravo ! Savoir défendre son point de vue avec politesse est essentiel.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

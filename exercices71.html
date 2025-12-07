@@ -396,7 +396,53 @@
     "correct": "Bien. Para archivos informáticos pesados solemos usar 'gros' o 'lourd'.",
     "incorrect": "El sustantivo es masculino (Le fichier)."
     }
-    }
+    },
+    {
+        "id": "ex_reading_04",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez l'échange de courriels entre un employé et le support technique, puis répondez.",
+        "prompt": "Problème technique urgent",
+        "content": {
+          "text": "<strong>De :</strong> Marc <marc@entreprise.com><br><strong>À :</strong> Support IT<br>Bonjour, j'ai un gros problème. Ce matin, j'ai reçu un courriel d'un expéditeur inconnu avec une pièce jointe nommée 'Facture_Urgente'. Si j'essaie de l'ouvrir, mon écran devient noir. Est-ce un bogue ?<br><br><strong>De :</strong> Sarah (Support IT)<br><strong>À :</strong> Marc<br>Salut Marc. <strong>Ne clique surtout pas</strong> encore sur la pièce jointe ! C'est une tentative d'hameçonnage. Si tu l'ouvrais, un virus effacerait probablement tout ton disque dur. Éteins ton ordinateur immédiatement. Si tu avais un antivirus à jour, il t'aurait prévenu. On arrive pour vérifier.",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Quel est le problème de Marc ?",
+              "answer": "Il a reçu un courriel suspect et son écran devient noir s'il essaie d'ouvrir la pièce jointe."
+            },
+            {
+              "id": "q2",
+              "prompt": "Selon Sarah, quelle est la conséquence si Marc ouvrait le fichier (hypothèse) ?",
+              "answer": "Un virus effacerait son disque dur."
+            },
+            {
+              "id": "q3",
+              "prompt": "Quelle instruction impérative Sarah donne-t-elle ?",
+              "answer": "Ne clique pas sur la pièce jointe / Éteins ton ordinateur."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Excellent ! Vous avez bien identifié les risques de sécurité informatique.",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_04",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Racontez une anecdote technologique.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+            "theme": "Describe una 'pesadilla tecnológica' que te haya ocurrido (o invéntala).<br><br>Cuenta qué estabas haciendo en el ordenador, qué fallo ocurrió (un virus, un pantallazo negro, un archivo perdido) y usa estructuras condicionales para expresar arrepentimiento o hipótesis (ej: 'Si hubiera guardado el archivo...', 'Si tuviera un mejor antivirus...'). Usa el vocabulario: <em>sauvegarder, planter, écran, données, panique</em>.",
+            "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Bravo ! L'utilisation du conditionnel pour exprimer des regrets est très avancée.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

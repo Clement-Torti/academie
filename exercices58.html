@@ -335,7 +335,53 @@
     "correct": "Excelente. 'Puisque tu es là' (Ya que estás aquí).",
     "incorrect": "Usa Puisque para una causa obvia en el momento presente."
     }
-    }
+    },
+    {
+        "id": "ex_reading_03",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez le texte, repérez les causes et les conséquences, puis répondez.",
+        "prompt": "Une journée imprévue",
+        "content": {
+          "text": "Ce matin, tout a changé pour l'équipe. La réunion a été annulée à la dernière minute <strong>à cause d'</strong>un problème technique dans la salle de conférence. <br><br><strong>Comme</strong> le directeur n'était pas content, il a demandé un rapport urgent. Heureusement, <strong>grâce à</strong> l'aide de Marie, j'ai fini le travail à temps. <strong>Du coup</strong>, nous avons pu partir plus tôt que prévu. <br><br>Le soir, j'ai raté mon bus <strong>en raison de</strong> la pluie, mais j'ai finalement pris un taxi. C'était une journée stressante, <strong>par conséquent</strong> je vais me coucher tôt ce soir.",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "Pourquoi la réunion a-t-elle été annulée ?",
+              "answer": "À cause d'un problème technique."
+            },
+            {
+              "id": "q2",
+              "prompt": "Comment la narratrice a-t-elle réussi à finir le rapport ?",
+              "answer": "Grâce à l'aide de Marie."
+            },
+            {
+              "id": "q3",
+              "prompt": "Quelle est la conséquence de cette journée stressante ?",
+              "answer": "Elle va se coucher tôt."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Excellent ! Vous maîtrisez bien la logique de cause et conséquence.",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_03",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Argumentez et expliquez.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+          "theme": "Explica un cambio importante en tu vida (personal o profesional).<br><br>Debes detallar las <strong>causas</strong> (por qué tomaste esa decisión o por qué ocurrió) y las <strong>consecuencias</strong> (qué pasó después, qué cambió). Usa conectores como: <em>grâce à, à cause de, du coup, c'est pourquoi, donc</em>.",
+          "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Bravo ! L'utilisation variée des connecteurs logiques rend votre histoire plus structurée et intéressante.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>

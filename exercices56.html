@@ -399,7 +399,53 @@
     "correct": "Correcto. 'C'est une tragédie'.",
     "incorrect": "Cuidado con el acento agudo: Tragédie."
     }
-    }
+    },
+    {
+        "id": "ex_reading_03",
+        "type": "reading_comprehension",
+        "difficulty": "hard",
+        "instruction": "Lisez la courte biographie, faites attention aux temps du passé (Passé Simple), puis répondez.",
+        "prompt": "Le destin d'un auteur méconnu",
+        "content": {
+          "text": "Arthur Rimbaud naquit à Charleville en 1854. Élève brillant mais rebelle, il commença à écrire des poèmes très jeune. À 17 ans, il partit pour Paris où il rencontra Paul Verlaine. Leur relation fut tumultueuse et marqua profondément son œuvre.<br><br>Il écrivit ses textes les plus célèbres, comme 'Une saison en enfer', en seulement quelques années. Cependant, à l'âge de 20 ans, il décida brusquement d'arrêter la littérature. Il voyagea alors en Afrique et devint commerçant. Il ne publia plus jamais de poésie.<br><br>Il mourut à Marseille en 1891, à l'âge de 37 ans. Bien qu'il fût peu connu de son vivant, il est aujourd'hui considéré comme l'un des plus grands poètes français, et son œuvre a influencé le Symbolisme.",
+          "questions": [
+            {
+              "id": "q1",
+              "prompt": "À quel âge Rimbaud a-t-il arrêté d'écrire ?",
+              "answer": "Il a arrêté d'écrire à 20 ans."
+            },
+            {
+              "id": "q2",
+              "prompt": "Qu'a-t-il fait après avoir quitté la littérature ?",
+              "answer": "Il a voyagé en Afrique et est devenu commerçant."
+            },
+            {
+              "id": "q3",
+              "prompt": "Comment son œuvre a-t-elle été reçue de son vivant ?",
+              "answer": "Il était peu connu de son vivant, le succès est venu après."
+            }
+          ]
+        },
+        "feedback": {
+          "correct": "Excellent ! Vous avez bien navigué entre le Passé Simple et le sens du texte.",
+          "incorrect": null
+        }
+      },
+      {
+        "id": "ex_speaking_03",
+        "type": "expression",
+        "difficulty": "hard",
+        "instruction": "Pratique orale : Racontez une histoire.",
+        "prompt": "Sujet libre : 4 minutes",
+        "content": {
+            "theme": "Crea la biografía de un escritor o artista imaginario famoso. <br><br>Narra dónde nació, cuál fue su gran obra maestra (<em>chef-d'œuvre</em>), qué dificultades enfrentó (críticas, pobreza, amor) y cómo se convirtió en una leyenda. Intenta usar tiempos del pasado. Usa el vocabulario: <em>naître, écrire, succès, échec, mourir</em>.",
+            "duration_seconds": 240
+        },
+        "feedback": {
+          "correct": "Bravo ! Raconter une vie entière demande une bonne maîtrise des temps du passé.",
+          "incorrect": null
+        }
+      }
     ]
     }
     </script>
