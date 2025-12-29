@@ -133,55 +133,131 @@
             transform: scale(1);
             transition: all 0.2s ease-out;
         }
-/* --- CONJUGAISON CHALLENGE STYLES --- */
-.conj-card {
-        background: #eff6ff;
-        border: 2px solid #dbeafe;
-        border-radius: 16px;
-        padding: 1.5rem;
-        text-align: center;
-        transition: all 0.3s ease;
-        position: relative;
-        /* Prevent it from being too wide on desktop */
-        width: 100%;
-    }
-    .conj-card.is-negative { background: #fef2f2; border-color: #fecaca; }
-    
-    .tense-badge { 
-        display: inline-flex; align-items: center; gap: 5px;
-        background: #2563eb; color: white; padding: 6px 16px; 
-        border-radius: 20px; font-size: 0.85rem; font-weight: bold;
-        cursor: pointer; transition: transform 0.2s;
-    }
-    .tense-badge:hover { transform: scale(1.05); background: #1d4ed8; }
-    
-    .neg-badge {
-        background: #dc2626; color: white; padding: 6px 16px;
-        border-radius: 20px; font-size: 0.85rem; font-weight: bold;
-        display: none; animation: pulse 1.5s infinite;
-    }
 
-    .verb-source { font-size: 2rem; font-weight: 800; text-transform: uppercase; color: #1e3a8a; margin: 10px 0; }
-    
-    .correct-answer { 
-        font-size: 1.5rem; color: #059669; font-weight: bold; 
-        padding: 1rem; border: 2px dashed #059669;
-        border-radius: 12px; background: #ecfdf5; margin-top: 1rem;
-        animation: slideIn 0.3s ease-out forwards;
-    }
-    
-    /* Help Modal Styles */
-    .cj-modal-backdrop {
-        position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100;
-        display: flex; justify-content: center; align-items: center; padding: 20px;
-        backdrop-filter: blur(2px);
-    }
-    .cj-rule-box {
-        background: #f0f9ff; padding: 10px; border-left: 4px solid #2563eb; 
-        margin: 10px 0; text-align: left; font-size: 0.9rem;
-    }
+        /* --- CONJUGAISON CHALLENGE STYLES --- */
+        .conj-card {
+            background: #eff6ff;
+            border: 2px solid #dbeafe;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            /* Prevent it from being too wide on desktop */
+            width: 100%;
+        }
 
-    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        .conj-card.is-negative {
+            background: #fef2f2;
+            border-color: #fecaca;
+        }
+
+        .tense-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #2563eb;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .tense-badge:hover {
+            transform: scale(1.05);
+            background: #1d4ed8;
+        }
+
+        .neg-badge {
+            background: #dc2626;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: none;
+            animation: pulse 1.5s infinite;
+        }
+
+        .verb-source {
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #1e3a8a;
+            margin: 10px 0;
+        }
+
+        .correct-answer {
+            font-size: 1.5rem;
+            color: #059669;
+            font-weight: bold;
+            padding: 1rem;
+            border: 2px dashed #059669;
+            border-radius: 12px;
+            background: #ecfdf5;
+            margin-top: 1rem;
+            animation: slideIn 0.3s ease-out forwards;
+        }
+
+        /* Help Modal Styles */
+        .cj-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(2px);
+        }
+
+        .cj-rule-box {
+            background: #f0f9ff;
+            padding: 10px;
+            border-left: 4px solid #2563eb;
+            margin: 10px 0;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse-gold {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .animate-pulse-gold {
+            animation: pulse-gold 2s infinite;
+        }
     </style>
 </head>
 
@@ -221,7 +297,7 @@
                 </button>
             </div>
         </div>
-        
+
         <div class="h-1 w-full flex">
             <div class="w-1/3 bg-blue-600"></div>
             <div class="w-1/3 bg-white"></div>
@@ -246,53 +322,56 @@
 
     <script>
 
-const conjApp = {
-    dataUrl: "https://clement-torti.github.io/academie/verbs.html",
-    db: {},
-    roundsPlayed: 0,
-    maxRounds: 3,
-    score: 0,
-    bestScore: parseInt(localStorage.getItem('acad_cj_best') || '0'), // Load best score
-    timer: 60,
-    interval: null,
-    currentCard: null,
-    tenses: ['present', 'pc', 'imparfait', 'futur', 'subjonctif', 'conditionnel', 'imperatif'],
-    
-    pronounsEs: ["Yo", "Tú", "Él/Ella/Usted", "Nosotros", "Vosotros", "Ellos/Ustedes"],
-    pronounsFr: ["Je", "Tu", "Il/Elle", "Nous", "Vous", "Ils/Elles"],
+        const conjApp = {
+            dataUrl: "https://clement-torti.github.io/academie/verbs.html",
+            db: {},
+            roundsPlayed: 0,
+            maxRounds: 3,
+            score: 0,
+            bestScore: parseInt(localStorage.getItem('acad_cj_best') || '0'), // Load best score
+            timer: 60,
+            interval: null,
+            currentCard: null,
+            tenses: ['present', 'pc', 'imparfait', 'futur', 'subjonctif', 'conditionnel', 'imperatif'],
 
-    rules: {
-    "present": "Action actuelle / vérité générale.<br><div class='cj-rule-box'><strong>Formation :</strong> Radical + terminaisons selon le groupe.<br><table class='cj-table'><thead><tr><th></th><th>1er groupe<br>(-ER)</th><th>2e groupe<br>(-IR)</th><th>3e groupe<br>(modèle -RE)</th></tr></thead><tbody><tr><td>je</td><td>-e</td><td>-is</td><td>-s</td></tr><tr><td>tu</td><td>-es</td><td>-is</td><td>-s</td></tr><tr><td>il / elle</td><td>-e</td><td>-it</td><td>—</td></tr><tr><td>nous</td><td>-ons</td><td>-issons</td><td>-ons</td></tr><tr><td>vous</td><td>-ez</td><td>-issez</td><td>-ez</td></tr><tr><td>ils / elles</td><td>-ent</td><td>-issent</td><td>-ent</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> parle <em>pas</em>.</div>",
-    "pc": "Passé terminé / actions ponctuelles.<br><div class='cj-rule-box'><strong>Formation :</strong> Auxiliaire présent + participe passé.<br><table class='cj-table'><thead><tr><th></th><th>Avoir (présent)</th><th>Être (présent)</th><th>Participe passé<br>1er / 2e / 3e groupe</th></tr></thead><tbody><tr><td>je</td><td>ai</td><td>suis</td><td>-é / -i / -u</td></tr><tr><td>tu</td><td>as</td><td>es</td><td>-é / -i / -u</td></tr><tr><td>il</td><td>a</td><td>est</td><td>-é / -i / -u</td></tr><tr><td>nous</td><td>avons</td><td>sommes</td><td>-é / -i / -u</td></tr><tr><td>vous</td><td>avez</td><td>êtes</td><td>-é / -i / -u</td></tr><tr><td>ils</td><td>ont</td><td>sont</td><td>-é / -i / -u</td></tr></tbody></table><strong>Négation :</strong> Je <em>n'</em>ai <em>pas</em> mangé.</div>",
-    "imparfait": "Description / habitude / action longue au passé.<br><div class='cj-rule-box'><strong>Formation :</strong> Radical = nous (présent) – ons + terminaisons.<br><table class='cj-table'><thead><tr><th></th><th>Terminaison (tous groupes)</th></tr></thead><tbody><tr><td>je</td><td>-ais</td></tr><tr><td>tu</td><td>-ais</td></tr><tr><td>il / elle</td><td>-ait</td></tr><tr><td>nous</td><td>-ions</td></tr><tr><td>vous</td><td>-iez</td></tr><tr><td>ils / elles</td><td>-aient</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> mangeais <em>pas</em>.</div>",
-    "futur": "Projet ou certitude dans l'avenir.<br><div class='cj-rule-box'><strong>Formation :</strong> Infinitif (ou radical irrégulier) + terminaisons.<br><table class='cj-table'><thead><tr><th></th><th>Terminaison (tous groupes)</th></tr></thead><tbody><tr><td>je</td><td>-ai</td></tr><tr><td>tu</td><td>-as</td></tr><tr><td>il / elle</td><td>-a</td></tr><tr><td>nous</td><td>-ons</td></tr><tr><td>vous</td><td>-ez</td></tr><tr><td>ils / elles</td><td>-ont</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> partirai <em>pas</em>.</div>",
-    "imperatif": "Ordre ou conseil.<br><div class='cj-rule-box'><strong>Formation :</strong> 3 formes : tu / nous / vous. Terminaisons proches du présent.<br><table class='cj-table'><thead><tr><th></th><th>1er groupe</th><th>2e groupe</th><th>3e groupe</th></tr></thead><tbody><tr><td>tu</td><td>-e</td><td>-is</td><td>-s</td></tr><tr><td>nous</td><td>-ons</td><td>-issons</td><td>-ons</td></tr><tr><td>vous</td><td>-ez</td><td>-issez</td><td>-ez</td></tr></tbody></table><strong>Négation :</strong> <em>Ne</em> parle <em>pas</em> !</div>",
-    "conditionnel": "Politesse / hypothèse / souhait.<br><div class='cj-rule-box'><strong>Formation :</strong> Infinitif (ou radical irrégulier) + terminaisons de l’imparfait.<br><table class='cj-table'><thead><tr><th></th><th>Terminaisons (tous groupes)</th></tr></thead><tbody><tr><td>je</td><td>-ais</td></tr><tr><td>tu</td><td>-ais</td></tr><tr><td>il / elle</td><td>-ait</td></tr><tr><td>nous</td><td>-ions</td></tr><tr><td>vous</td><td>-iez</td></tr><tr><td>ils / elles</td><td>-aient</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> voudrais <em>pas</em>.</div>",
-    "subjonctif": "Souhait / obligation / doute / émotion.<br><div class='cj-rule-box'><strong>Formation :</strong> Radical = ils (présent) – ent + terminaisons du subjonctif.<br><table class='cj-table'><thead><tr><th></th><th>Terminaisons (tous groupes)</th></tr></thead><tbody><tr><td>je</td><td>-e</td></tr><tr><td>tu</td><td>-es</td></tr><tr><td>il / elle</td><td>-e</td></tr><tr><td>nous</td><td>-ions</td></tr><tr><td>vous</td><td>-iez</td></tr><tr><td>ils / elles</td><td>-ent</td></tr></tbody></table><strong>Négation :</strong> Il faut que tu <em>ne</em> viennes <em>pas</em>.</div>"
-},
+            pronounsEs: ["Yo", "Tú", "Él/Ella/Usted", "Nosotros", "Vosotros", "Ellos/Ustedes"],
+            pronounsFr: ["Je", "Tu", "Il/Elle", "Nous", "Vous", "Ils/Elles"],
 
-    async init() {
-        if (Object.keys(this.db).length === 0) {
-            try {
-                const res = await fetch(this.dataUrl);
-                const text = await res.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(text, 'text/html');
-                this.db = JSON.parse(doc.getElementById('verbs-data').textContent);
-            } catch (e) {
-                console.error("Verbs load failed", e);
-                this.db = { "parler": { "fr": "parler", "present": ["parle","parles","parle","parlons","parlez","parlent"], "pc": ["ai parlé","as parlé","a parlé","avons parlé","avez parlé","ont parlé"] } };
-            }
-        }
-        this.roundsPlayed = 0;
-        // Refresh best score in case it changed
-        this.bestScore = parseInt(localStorage.getItem('acad_cj_best') || '0');
-        this.renderIntro();
-    },
+            rules: {
+                "present": "Action actuelle / vérité générale.<br><div class='cj-rule-box'><strong>Formation :</strong> Radical + terminaisons selon le groupe.<br><table class='cj-table'><thead><tr><th></th><th>1er groupe<br>(-ER)</th><th>2e groupe<br>(-IR)</th><th>3e groupe<br>(modèle -RE)</th></tr></thead><tbody><tr><td>je</td><td>-e</td><td>-is</td><td>-s</td></tr><tr><td>tu</td><td>-es</td><td>-is</td><td>-s</td></tr><tr><td>il / elle</td><td>-e</td><td>-it</td><td>—</td></tr><tr><td>nous</td><td>-ons</td><td>-issons</td><td>-ons</td></tr><tr><td>vous</td><td>-ez</td><td>-issez</td><td>-ez</td></tr><tr><td>ils / elles</td><td>-ent</td><td>-issent</td><td>-ent</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> parle <em>pas</em>.</div>",
+                "pc": "Passé terminé / actions ponctuelles.<br><div class='cj-rule-box'><strong>Formation :</strong> Auxiliaire présent + participe passé.<br><table class='cj-table'><thead><tr><th></th><th>Avoir (présent)</th><th>Être (présent)</th><th>Participe passé<br>1er / 2e / 3e groupe</th></tr></thead><tbody><tr><td>je</td><td>ai</td><td>suis</td><td>-é / -i / -u</td></tr><tr><td>tu</td><td>as</td><td>es</td><td>-é / -i / -u</td></tr><tr><td>il</td><td>a</td><td>est</td><td>-é / -i / -u</td></tr><tr><td>nous</td><td>avons</td><td>sommes</td><td>-é / -i / -u</td></tr><tr><td>vous</td><td>avez</td><td>êtes</td><td>-é / -i / -u</td></tr><tr><td>ils</td><td>ont</td><td>sont</td><td>-é / -i / -u</td></tr></tbody></table><strong>Négation :</strong> Je <em>n'</em>ai <em>pas</em> mangé.</div>",
+                "imparfait": "Description / habitude / action longue au passé.<br><div class='cj-rule-box'><strong>Formation :</strong> Radical = nous (présent) – ons + terminaisons.<br><table class='cj-table'><thead><tr><th></th><th>Terminaison (tous groupes)</th></tr></thead><tbody><tr><td>je</td><td>-ais</td></tr><tr><td>tu</td><td>-ais</td></tr><tr><td>il / elle</td><td>-ait</td></tr><tr><td>nous</td><td>-ions</td></tr><tr><td>vous</td><td>-iez</td></tr><tr><td>ils / elles</td><td>-aient</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> mangeais <em>pas</em>.</div>",
+                "futur": "Projet ou certitude dans l'avenir.<br><div class='cj-rule-box'><strong>Formation :</strong> Infinitif (ou radical irrégulier) + terminaisons.<br><table class='cj-table'><thead><tr><th></th><th>Terminaison (tous groupes)</th></tr></thead><tbody><tr><td>je</td><td>-ai</td></tr><tr><td>tu</td><td>-as</td></tr><tr><td>il / elle</td><td>-a</td></tr><tr><td>nous</td><td>-ons</td></tr><tr><td>vous</td><td>-ez</td></tr><tr><td>ils / elles</td><td>-ont</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> partirai <em>pas</em>.</div>",
+                "imperatif": "Ordre ou conseil.<br><div class='cj-rule-box'><strong>Formation :</strong> 3 formes : tu / nous / vous. Terminaisons proches du présent.<br><table class='cj-table'><thead><tr><th></th><th>1er groupe</th><th>2e groupe</th><th>3e groupe</th></tr></thead><tbody><tr><td>tu</td><td>-e</td><td>-is</td><td>-s</td></tr><tr><td>nous</td><td>-ons</td><td>-issons</td><td>-ons</td></tr><tr><td>vous</td><td>-ez</td><td>-issez</td><td>-ez</td></tr></tbody></table><strong>Négation :</strong> <em>Ne</em> parle <em>pas</em> !</div>",
+                "conditionnel": "Politesse / hypothèse / souhait.<br><div class='cj-rule-box'><strong>Formation :</strong> Infinitif (ou radical irrégulier) + terminaisons de l’imparfait.<br><table class='cj-table'><thead><tr><th></th><th>Terminaisons (tous groupes)</th></tr></thead><tbody><tr><td>je</td><td>-ais</td></tr><tr><td>tu</td><td>-ais</td></tr><tr><td>il / elle</td><td>-ait</td></tr><tr><td>nous</td><td>-ions</td></tr><tr><td>vous</td><td>-iez</td></tr><tr><td>ils / elles</td><td>-aient</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> voudrais <em>pas</em>.</div>",
+                "subjonctif": "Souhait / obligation / doute / émotion.<br><div class='cj-rule-box'><strong>Formation :</strong> Radical = ils (présent) – ent + terminaisons du subjonctif.<br><table class='cj-table'><thead><tr><th></th><th>Terminaisons (tous groupes)</th></tr></thead><tbody><tr><td>je</td><td>-e</td></tr><tr><td>tu</td><td>-es</td></tr><tr><td>il / elle</td><td>-e</td></tr><tr><td>nous</td><td>-ions</td></tr><tr><td>vous</td><td>-iez</td></tr><tr><td>ils / elles</td><td>-ent</td></tr></tbody></table><strong>Négation :</strong> Il faut que tu <em>ne</em> viennes <em>pas</em>.</div>"
+            },
 
-    renderIntro() {
-        const remaining = this.maxRounds - this.roundsPlayed;
-        app.container.innerHTML = `
+            async init() {
+
+                window.speechSynthesis.getVoices();
+
+                if (Object.keys(this.db).length === 0) {
+                    try {
+                        const res = await fetch(this.dataUrl);
+                        const text = await res.text();
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(text, 'text/html');
+                        this.db = JSON.parse(doc.getElementById('verbs-data').textContent);
+                    } catch (e) {
+                        console.error("Verbs load failed", e);
+                        this.db = { "parler": { "fr": "parler", "present": ["parle", "parles", "parle", "parlons", "parlez", "parlent"], "pc": ["ai parlé", "as parlé", "a parlé", "avons parlé", "avez parlé", "ont parlé"] } };
+                    }
+                }
+                this.roundsPlayed = 0;
+                // Refresh best score in case it changed
+                this.bestScore = parseInt(localStorage.getItem('acad_cj_best') || '0');
+                this.renderIntro();
+            },
+
+            renderIntro() {
+                const remaining = this.maxRounds - this.roundsPlayed;
+                app.container.innerHTML = `
             <div class="h-full flex flex-col items-center justify-center p-6 bg-frCream text-center">
                 <div class="mb-4 animate-bounce">
                     <i class="fa-solid fa-dumbbell text-5xl text-frBlue"></i>
@@ -308,9 +387,9 @@ const conjApp = {
                 <div class="bg-white p-5 rounded-xl border border-gray-200 mb-8 w-full max-w-xs shadow-sm">
                     <div class="text-[10px] uppercase tracking-widest text-gray-400 mb-3 font-bold">Progression de la session</div>
                     <div class="flex justify-center gap-2 mb-2">
-                        ${Array(this.maxRounds).fill(0).map((_, i) => 
-                            `<div class="h-2 flex-1 rounded-full transition-colors duration-500 ${i < this.roundsPlayed ? 'bg-green-500' : 'bg-gray-200'}"></div>`
-                        ).join('')}
+                        ${Array(this.maxRounds).fill(0).map((_, i) =>
+                    `<div class="h-2 flex-1 rounded-full transition-colors duration-500 ${i < this.roundsPlayed ? 'bg-green-500' : 'bg-gray-200'}"></div>`
+                ).join('')}
                     </div>
                     <div class="text-xs font-bold text-gray-500">${this.roundsPlayed} / ${this.maxRounds} terminées</div>
                 </div>
@@ -320,30 +399,30 @@ const conjApp = {
                 </button>
             </div>
         `;
-    },
+            },
 
-    startRound() {
-        this.score = 0;
-        this.timer = 60;
-        this.renderGame();
-        this.nextCard();
-        
-        if (this.interval) clearInterval(this.interval);
-        this.interval = setInterval(() => {
-            this.timer--;
-            const el = document.getElementById('cj-timer');
-            if(el) el.innerText = this.timer + 's';
-            
-            if (this.timer <= 0) {
-                clearInterval(this.interval);
-                this.endRound();
-            }
-        }, 1000);
-    },
+            startRound() {
+                this.score = 0;
+                this.timer = 60;
+                this.renderGame();
+                this.nextCard();
 
-    renderGame() {
-        // Updated Layout: Centered max-width container
-        app.container.innerHTML = `
+                if (this.interval) clearInterval(this.interval);
+                this.interval = setInterval(() => {
+                    this.timer--;
+                    const el = document.getElementById('cj-timer');
+                    if (el) el.innerText = this.timer + 's';
+
+                    if (this.timer <= 0) {
+                        clearInterval(this.interval);
+                        this.endRound();
+                    }
+                }, 1000);
+            },
+
+            renderGame() {
+                // Updated Layout: Centered max-width container
+                app.container.innerHTML = `
             <div class="h-full bg-gray-50 flex flex-col items-center pt-4 px-4 pb- safe-pb overflow-y-auto">
                 <div class="w-full max-w-md mx-auto flex flex-col h-full">
                     
@@ -373,65 +452,65 @@ const conjApp = {
             <!-- Modal Container (Hidden by default) -->
             <div id="cj-help-modal" class="hidden"></div>
         `;
-    },
+            },
 
-    nextCard() {
-        const qArea = document.getElementById('cj-question-area');
-        const aArea = document.getElementById('cj-answer-container');
-        const bArea = document.getElementById('cj-btn-area');
-        if (!qArea) return;
+            nextCard() {
+                const qArea = document.getElementById('cj-question-area');
+                const aArea = document.getElementById('cj-answer-container');
+                const bArea = document.getElementById('cj-btn-area');
+                if (!qArea) return;
 
-        aArea.innerHTML = '';
+                aArea.innerHTML = '';
 
-        const level = app.getHighestCompletedLesson();
+                const level = app.getHighestCompletedLesson();
 
-        // Map: tense → minimum lesson required
-        const unlock = {
-            present: 0,
-            pc: 22,
-            imparfait: 31,
-            futur: 25,
-            imperatif: 37,
-            subjonctif: 61,
-            conditionnel: 67
-        };
+                // Map: tense → minimum lesson required
+                const unlock = {
+                    present: 0,
+                    pc: 22,
+                    imparfait: 31,
+                    futur: 25,
+                    imperatif: 37,
+                    subjonctif: 61,
+                    conditionnel: 67
+                };
 
-        // Filter tenses based on level
-        const availableTenses = this.tenses.filter(t => level >= unlock[t]);
-        // Fallback safety: if somehow empty, default to present
-        const tense = availableTenses.length > 0
-            ? availableTenses[Math.floor(Math.random() * availableTenses.length)]
-            : 'present';
+                // Filter tenses based on level
+                const availableTenses = this.tenses.filter(t => level >= unlock[t]);
+                // Fallback safety: if somehow empty, default to present
+                const tense = availableTenses.length > 0
+                    ? availableTenses[Math.floor(Math.random() * availableTenses.length)]
+                    : 'present';
 
-        const keys = Object.keys(this.db);
-        const key = keys[Math.floor(Math.random() * keys.length)];
-        
-        const isNeg = Math.random() < 0.25;
+                const keys = Object.keys(this.db);
+                const key = keys[Math.floor(Math.random() * keys.length)];
 
-        let pIdx = Math.floor(Math.random() * 6);
+                const isNeg = Math.random() < 0.25;
 
-        if (tense === 'imperatif') {
-            const valid = [1, 3, 4];
-            if (this.db[key].imperatif && this.db[key].imperatif[1] === "-") { 
-                this.nextCard(); 
-                return; 
-            }
-            pIdx = valid[Math.floor(Math.random() * valid.length)];
-        }
+                let pIdx = Math.floor(Math.random() * 6);
 
-        this.currentCard = { key, tense, pIdx, isNeg };
+                if (tense === 'imperatif') {
+                    const valid = [1, 3, 4];
+                    if (this.db[key].imperatif && this.db[key].imperatif[1] === "-") {
+                        this.nextCard();
+                        return;
+                    }
+                    pIdx = valid[Math.floor(Math.random() * valid.length)];
+                }
 
-        const formatTense = t => ({
-            present:'Présent',
-            pc:'Passé Comp.',
-            imparfait:'Imparfait',
-            futur:'Futur',
-            imperatif:'Impératif',
-            subjonctif:'Subjonctif',
-            conditionnel:'Conditionnel'
-        }[t] || t);
+                this.currentCard = { key, tense, pIdx, isNeg };
 
-        qArea.innerHTML = `
+                const formatTense = t => ({
+                    present: 'Présent',
+                    pc: 'Passé Comp.',
+                    imparfait: 'Imparfait',
+                    futur: 'Futur',
+                    imperatif: 'Impératif',
+                    subjonctif: 'Subjonctif',
+                    conditionnel: 'Conditionnel'
+                }[t] || t);
+
+                qArea.innerHTML = `
             <div class="conj-card ${isNeg ? 'is-negative' : ''} shadow-sm">
                 <div class="flex justify-center gap-2 mb-4 flex-wrap">
                     <div class="tense-badge" onclick="conjApp.showHelp('${tense}')" title="Voir la règle">
@@ -444,56 +523,56 @@ const conjApp = {
             </div>
         `;
 
-        bArea.innerHTML = `
+                bArea.innerHTML = `
             <button onclick="conjApp.reveal()" class="w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-btn active:translate-y-1 transition uppercase tracking-widest text-sm hover:bg-blue-900">
                 Vérifier
             </button>
         `;
-    },
+            },
 
 
-    reveal() {
-        const { key, tense, pIdx, isNeg } = this.currentCard;
-        const data = this.db[key];
-        
-        // --- CONJUGATION CONSTRUCTION ---
-        const startsVowel = w => ['a','e','i','o','u','y','é','ê','h'].includes(w.charAt(0).toLowerCase());
-        let raw = (tense === 'pc') ? data.pc[pIdx] : (tense === 'imperatif' ? data.imperatif[pIdx] : data[tense][pIdx]);
-        
-        let conj = "";
-        
-        if (tense === 'pc') {
-            const [aux, ...rest] = raw.split(' ');
-            const pp = rest.join(' ');
-            if (isNeg) {
-                const ne = startsVowel(aux) ? "n'" : "ne ";
-                conj = `${ne}${aux} pas ${pp}`;
-            } else conj = raw;
-        } else if (tense === 'imperatif') {
-            if (isNeg) {
-                const ne = startsVowel(raw) ? "N'" : "Ne ";
-                conj = `${ne}${raw.toLowerCase()} pas !`;
-            } else conj = raw + " !";
-        } else {
-             if (isNeg) {
-                const ne = startsVowel(raw) ? "n'" : "ne ";
-                conj = `${ne}${raw} pas`;
-            } else conj = raw;
-        }
+            reveal() {
+                const { key, tense, pIdx, isNeg } = this.currentCard;
+                const data = this.db[key];
 
-        let full = conj;
-        if(tense !== 'imperatif') {
-            let pron = this.pronounsFr[pIdx].split('/')[0];
-            if(!isNeg && pIdx === 0 && startsVowel(conj)) full = `J'${conj}`;
-            else full = `${pron} ${conj}`;
-        }
-        // -------------------------
+                // --- CONJUGATION CONSTRUCTION ---
+                const startsVowel = w => ['a', 'e', 'i', 'o', 'u', 'y', 'é', 'ê', 'h'].includes(w.charAt(0).toLowerCase());
+                let raw = (tense === 'pc') ? data.pc[pIdx] : (tense === 'imperatif' ? data.imperatif[pIdx] : data[tense][pIdx]);
 
-        const aArea = document.getElementById('cj-answer-container');
-        const bArea = document.getElementById('cj-btn-area');
+                let conj = "";
 
-        // Append the answer card below the question
-        aArea.innerHTML = `
+                if (tense === 'pc') {
+                    const [aux, ...rest] = raw.split(' ');
+                    const pp = rest.join(' ');
+                    if (isNeg) {
+                        const ne = startsVowel(aux) ? "n'" : "ne ";
+                        conj = `${ne}${aux} pas ${pp}`;
+                    } else conj = raw;
+                } else if (tense === 'imperatif') {
+                    if (isNeg) {
+                        const ne = startsVowel(raw) ? "N'" : "Ne ";
+                        conj = `${ne}${raw.toLowerCase()} pas !`;
+                    } else conj = raw + " !";
+                } else {
+                    if (isNeg) {
+                        const ne = startsVowel(raw) ? "n'" : "ne ";
+                        conj = `${ne}${raw} pas`;
+                    } else conj = raw;
+                }
+
+                let full = conj;
+                if (tense !== 'imperatif') {
+                    let pron = this.pronounsFr[pIdx].split('/')[0];
+                    if (!isNeg && pIdx === 0 && startsVowel(conj)) full = `J'${conj}`;
+                    else full = `${pron} ${conj}`;
+                }
+                // -------------------------
+
+                const aArea = document.getElementById('cj-answer-container');
+                const bArea = document.getElementById('cj-btn-area');
+
+                // Append the answer card below the question
+                aArea.innerHTML = `
             <div class="text-center animate-slide-in">
                 <div class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Réponse</div>
                 <div class="correct-answer shadow-sm border-l-4 border-green-500">${full}</div>
@@ -501,29 +580,29 @@ const conjApp = {
             </div>
         `;
 
-        // Switch Button
-        bArea.innerHTML = `
+                // Switch Button
+                bArea.innerHTML = `
             <button onclick="conjApp.handleNext()" class="w-full bg-green-500 text-white font-bold py-4 rounded-xl shadow-btn active:translate-y-1 transition uppercase tracking-widest text-sm hover:bg-green-600">
                 Suivant (+1) <i class="fa-solid fa-arrow-right ml-2"></i>
             </button>
         `;
-        
-        // Auto scroll if needed on small screens
-        bArea.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    },
 
-    handleNext() {
-        this.score++;
-        document.getElementById('cj-score').innerText = this.score;
-        this.nextCard();
-    },
+                // Auto scroll if needed on small screens
+                bArea.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            },
 
-    showHelp(tense) {
-        const modal = document.getElementById('cj-help-modal');
-        const content = this.rules[tense] || "Pas de règle disponible.";
-        const title = tense.toUpperCase();
+            handleNext() {
+                this.score++;
+                document.getElementById('cj-score').innerText = this.score;
+                this.nextCard();
+            },
 
-        modal.innerHTML = `
+            showHelp(tense) {
+                const modal = document.getElementById('cj-help-modal');
+                const content = this.rules[tense] || "Pas de règle disponible.";
+                const title = tense.toUpperCase();
+
+                modal.innerHTML = `
             <div class="cj-modal-backdrop" onclick="document.getElementById('cj-help-modal').classList.add('hidden')">
                 <div class="bg-white p-6 rounded-2xl max-w-md w-full shadow-2xl animate-enter" onclick="event.stopPropagation()">
                     <div class="flex justify-between items-center mb-4">
@@ -534,29 +613,29 @@ const conjApp = {
                 </div>
             </div>
         `;
-        modal.classList.remove('hidden');
-    },
+                modal.classList.remove('hidden');
+            },
 
-    endRound() {
-        this.roundsPlayed++;
-        
-        // CHECK HIGH SCORE
-        if (this.score > this.bestScore) {
-            this.bestScore = this.score;
-            localStorage.setItem('acad_cj_best', this.bestScore);
-            // Optional: Celebration effect here
-            if (window.confetti) confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-        }
+            endRound() {
+                this.roundsPlayed++;
 
-        if (this.roundsPlayed >= this.maxRounds) {
-            app.completeLesson();
-        } else {
-            this.renderIntro();
-        }
-    }
-};    
+                // CHECK HIGH SCORE
+                if (this.score > this.bestScore) {
+                    this.bestScore = this.score;
+                    localStorage.setItem('acad_cj_best', this.bestScore);
+                    // Optional: Celebration effect here
+                    if (window.confetti) confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                }
 
-const app = {
+                if (this.roundsPlayed >= this.maxRounds) {
+                    app.completeLesson();
+                } else {
+                    this.renderIntro();
+                }
+            }
+        };
+
+        const app = {
             container: document.getElementById('app-container'),
             modal: document.getElementById('selection-modal'),
             modules: [],
@@ -1274,7 +1353,7 @@ const app = {
                     case 'expression':
                         // Hide the default "Check" button immediately using inline style
                         contentHtml += `<style>#btn-check { display: none !important; }</style>`;
-                        
+
                         // Theme Box
                         contentHtml += `
                         <div class="bg-white p-6 rounded-xl border-2 border-frBlue/10 shadow-lg mb-8 text-center relative overflow-hidden">
@@ -1421,7 +1500,7 @@ const app = {
             revealReadingAnswers() {
                 // 1. Show all answers
                 document.querySelectorAll('.reading-answer').forEach(el => el.classList.remove('hidden'));
-                
+
                 // 2. Hide the local reveal button
                 const btnReveal = document.getElementById('btn-reveal-reading');
                 if (btnReveal) btnReveal.classList.add('hidden');
@@ -1435,7 +1514,7 @@ const app = {
                 // 4. Update Score (Since it's self-assessed/reading, we give points for completing it)
                 if (this.currentLessonMeta.type === 'practice') {
                     const scoreDisplay = document.getElementById('score-display');
-                    this.currentScore++; 
+                    this.currentScore++;
                     // No negative score possible here
                     if (scoreDisplay) {
                         scoreDisplay.innerText = `${this.currentScore} / ${this.currentMaxScore}`;
@@ -1510,7 +1589,7 @@ const app = {
                     case 'expression':
                         // Hide the default "Check" button immediately using inline style
                         contentHtml += `<style>#btn-check { display: none !important; }</style>`;
-                        
+
                         // Theme Box
                         contentHtml += `
                         <div class="bg-white p-6 rounded-xl border-2 border-frBlue/10 shadow-lg mb-8 text-center relative overflow-hidden">
@@ -1646,7 +1725,7 @@ const app = {
                     this.renderLessonVocabReview();
                 } else {
                     // TRIGGER CHALLENGE INSTEAD OF COMPLETE
-                    this.startConjugationChallenge(); 
+                    this.startConjugationChallenge();
                 }
             },
 
@@ -1655,6 +1734,129 @@ const app = {
                 conjApp.init();
             },
 
+            // --- 1. NEW ROBUST AUDIO FUNCTION ---
+            currentUtterance: null, // Variable to prevent Chrome Garbage Collection bug
+
+            speakFrench(text) {
+                if (!text) return;
+
+                // Cancel any currently playing audio
+                window.speechSynthesis.cancel();
+
+                // Create the utterance
+                const utterance = new SpeechSynthesisUtterance(text);
+
+                // 1. VOICE SELECTION: Chrome on Mac works best if we explicitly pick "Google Français" or "Thomas"
+                const allVoices = window.speechSynthesis.getVoices();
+
+                // Priority: 1. Google Français (Best quality on Chrome), 2. Thomas (Mac Default), 3. Any 'fr-FR', 4. Any 'fr'
+                const preferredVoice = allVoices.find(v => v.name === "Google français") ||
+                    allVoices.find(v => v.name === "Thomas") ||
+                    allVoices.find(v => v.lang === "fr-FR") ||
+                    allVoices.find(v => v.lang.startsWith("fr"));
+
+                if (preferredVoice) {
+                    utterance.voice = preferredVoice;
+                    utterance.lang = preferredVoice.lang; // Ensure lang matches voice
+                } else {
+                    utterance.lang = 'fr-FR'; // Fallback
+                }
+
+                // 2. SETTINGS
+                utterance.rate = 0.85; // Slightly slower
+                utterance.pitch = 1;
+                utterance.volume = 1.0; // Force max volume
+
+                // 3. STORE REFERENCE (Critical fix for Chrome)
+                // We assign it to 'this.currentUtterance' so the browser doesn't delete it while speaking
+                this.currentUtterance = utterance;
+
+                // Cleanup reference when done
+                utterance.onend = () => { this.currentUtterance = null; };
+                utterance.onerror = (e) => { console.error("Audio error:", e); };
+
+                // 4. SPEAK
+                window.speechSynthesis.speak(utterance);
+            },
+
+            // --- 2. UPDATED CARD GENERATOR ---
+            getCardHTML(word, index, total) {
+                // Probability Logic
+                const rand = Math.random();
+                let frontContent, backContent, onRenderAction;
+
+                // Safe string for HTML attributes (escapes apostrophes)
+                const safeWord = word.fr.replace(/'/g, "\\'");
+
+                if (rand < 0.40) {
+                    // --- 40%: FRENCH TEXT (Read) ---
+                    frontContent = `
+            <span class="text-xs uppercase tracking-widest text-gray-400 mb-4">Français</span>
+            <h2 class="text-3xl font-serif font-bold text-frBlue text-center px-4">${word.fr}</h2>
+            <div class="mt-8 text-gray-300 text-xs flex items-center gap-2"><i class="fa-solid fa-rotate"></i> Toucher pour retourner</div>
+        `;
+                    backContent = `
+            <span class="text-xs uppercase tracking-widest text-blue-300 mb-4">Español</span>
+            <h2 class="text-3xl font-serif font-bold text-center px-4">${word.es}</h2>
+        `;
+                    onRenderAction = null;
+
+                } else if (rand < 0.70) {
+                    // --- 30%: SPANISH TEXT (Translate) ---
+                    frontContent = `
+            <span class="text-xs uppercase tracking-widest text-gray-400 mb-4">Español</span>
+            <h2 class="text-3xl font-serif font-bold text-frBlue text-center px-4">${word.es}</h2>
+            <div class="mt-8 text-gray-300 text-xs flex items-center gap-2"><i class="fa-solid fa-rotate"></i> Toucher pour retourner</div>
+        `;
+                    backContent = `
+            <span class="text-xs uppercase tracking-widest text-blue-300 mb-4">Français</span>
+            <h2 class="text-3xl font-serif font-bold text-center px-4">${word.fr}</h2>
+        `;
+                    onRenderAction = null;
+
+                } else {
+                    // --- 30%: AUDIO ONLY (Listen) ---
+
+                    // Define the action to run immediately when card renders
+                    onRenderAction = () => {
+                        this.speakFrench(word.fr);
+                    };
+
+                    frontContent = `
+            <div class="flex flex-col items-center justify-center h-full">
+                <div class="relative">
+                    <i class="fa-solid fa-headphones-simple text-6xl text-frBlue mb-6 animate-pulse-gold"></i>
+                </div>
+                <span class="text-xs uppercase tracking-widest text-gray-400 mb-2">Écoutez...</span>
+                
+                <!-- Replay Button -->
+                <button onclick="event.stopPropagation(); app.speakFrench('${safeWord}')" 
+                    class="mt-4 bg-frBlue/10 hover:bg-frBlue/20 text-frBlue px-4 py-2 rounded-full text-xs font-bold transition flex items-center gap-2 z-20 relative border border-frBlue/20">
+                    <i class="fa-solid fa-volume-high"></i> Rejouer
+                </button>
+            </div>
+            <div class="absolute bottom-8 text-gray-300 text-xs flex items-center gap-2"><i class="fa-solid fa-rotate"></i> Toucher pour voir</div>
+        `;
+
+                    backContent = `
+            <div class="flex flex-col items-center gap-4">
+                <div>
+                    <span class="text-[10px] uppercase tracking-widest text-blue-300 block mb-1"></span>
+                    <h2 class="text-3xl font-serif font-bold text-center px-4">${word.fr}</h2>
+                </div>
+                <div class="w-12 h-0.5 bg-white/30 rounded-full"></div>
+                <div>
+                    <span class="text-[10px] uppercase tracking-widest text-blue-300 block mb-1"></span>
+                    <h3 class="text-xl font-medium text-center px-4 text-blue-100">${word.es}</h3>
+                </div>
+            </div>
+        `;
+                }
+
+                return { frontContent, backContent, onRenderAction };
+            },
+
+            // --- UPDATED REVIEW LOGIC ---
             renderLessonVocabReview() {
                 if (this.reviewIndex >= this.reviewDeck.length) {
                     this.completeLesson();
@@ -1664,67 +1866,61 @@ const app = {
                 const word = this.reviewDeck[this.reviewIndex];
                 const isLast = this.reviewIndex === this.reviewDeck.length - 1;
                 const progressText = `Mot ${this.reviewIndex + 1} sur ${this.reviewDeck.length}`;
-
-                // Dynamic Title based on type
                 const isPractice = this.currentLessonMeta.type === 'practice';
                 const titleText = isPractice ? "Révision Globale" : "Mémorisation";
                 const subText = isPractice ? "Mots aléatoires de vos acquis" : "Vocabulaire de la leçon";
 
-                // Randomize Language Direction
-                const isFrenchFront = Math.random() > 0.5;
-                const frontLang = isFrenchFront ? 'Français' : 'Español';
-                const frontText = isFrenchFront ? word.fr : word.es;
-                const backLang = isFrenchFront ? 'Español' : 'Français';
-                const backText = isFrenchFront ? word.es : word.fr;
+                // GENERATE CONTENT
+                const { frontContent, backContent, onRenderAction } = this.getCardHTML(word, this.reviewIndex, this.reviewDeck.length);
 
                 this.container.innerHTML = `
-                    <div class="h-full flex flex-col bg-frCream">
-                        <div class="px-6 py-6 text-center">
-                            <h2 class="text-frBlue font-bold text-lg uppercase tracking-widest mb-1">${titleText}</h2>
-                            <p class="text-gray-500 text-sm">${subText}</p>
+            <div class="h-full flex flex-col bg-frCream">
+                <div class="px-6 py-6 text-center">
+                    <h2 class="text-frBlue font-bold text-lg uppercase tracking-widest mb-1">${titleText}</h2>
+                    <p class="text-gray-500 text-sm">${subText}</p>
+                </div>
+
+                <div class="flex-1 flex flex-col items-center justify-center perspective-1000 cursor-pointer group px-4 pb-10"
+                        onclick="document.querySelector('.card-inner').classList.toggle('rotate-y-180')">
+                        
+                    <div class="card-inner w-full max-w-[300px] h-[360px] relative transform-style-3d transition-transform duration-500">
+                        <!-- FRONT -->
+                        <div class="absolute inset-0 bg-white rounded-2xl shadow-card flex flex-col items-center justify-center backface-hidden border-b-4 border-gray-200">
+                            ${frontContent}
                         </div>
-
-                        <div class="flex-1 flex flex-col items-center justify-center perspective-1000 cursor-pointer group px-4 pb-10"
-                             onclick="document.querySelector('.card-inner').classList.toggle('rotate-y-180')">
-                             
-                            <div class="card-inner w-full max-w-[300px] h-[360px] relative transform-style-3d transition-transform duration-500">
-                                <!-- FRONT -->
-                                <div class="absolute inset-0 bg-white rounded-2xl shadow-card flex flex-col items-center justify-center backface-hidden border-b-4 border-gray-200">
-                                    <span class="text-xs uppercase tracking-widest text-gray-400 mb-4">${frontLang}</span>
-                                    <h2 class="text-3xl font-serif font-bold text-frBlue text-center px-4">${frontText}</h2>
-                                    <div class="mt-8 text-gray-300 text-xs flex items-center gap-2"><i class="fa-solid fa-rotate"></i> Toucher pour retourner</div>
-                                </div>
-                                
-                                <!-- BACK -->
-                                <div class="absolute inset-0 bg-frBlue rounded-2xl shadow-card flex flex-col items-center justify-center backface-hidden rotate-y-180 text-white border-b-4 border-blue-900">
-                                    <span class="text-xs uppercase tracking-widest text-blue-300 mb-4">${backLang}</span>
-                                    <h2 class="text-3xl font-serif font-bold text-center px-4">${backText}</h2>
-                                </div>
-                            </div>
-                            
-                            <div class="mt-8 text-sm font-bold text-gray-400">${progressText}</div>
+                        
+                        <!-- BACK -->
+                        <div class="absolute inset-0 bg-frBlue rounded-2xl shadow-card flex flex-col items-center justify-center backface-hidden rotate-y-180 text-white border-b-4 border-blue-900">
+                            ${backContent}
                         </div>
+                    </div>
+                    
+                    <div class="mt-8 text-sm font-bold text-gray-400">${progressText}</div>
+                </div>
 
-                        <div class="p-6 bg-white border-t border-gray-200 flex gap-3">
-    <button onclick="app.markCardWrong()" 
-            class="w-1/2 bg-red-500 hover:bg-red-600 text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">
-        Incorrecto
-    </button>
+                <div class="p-6 bg-white border-t border-gray-200 flex gap-3">
+                    <button onclick="app.markCardWrong()" 
+                            class="w-1/2 bg-red-500 hover:bg-red-600 text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">
+                        Incorrecto
+                    </button>
 
-    <button onclick="app.nextLessonReviewCard()" 
-            class="w-1/2 bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">
-        ${isLast ? 'Terminer' : 'Suivant'}
-    </button>
-</div>
+                    <button onclick="app.nextLessonReviewCard()" 
+                            class="w-1/2 bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">
+                        ${isLast ? 'Terminer' : 'Suivant'}
+                    </button>
+                </div>
+            </div>`;
 
-                    </div>`;
+                // Execute auto-play if it's an audio card
+                // IMPORTANT: We call this immediately after setting innerHTML so it happens in the same event loop as the user click
+                if (onRenderAction) onRenderAction();
             },
 
             nextLessonReviewCard() {
                 this.reviewIndex++;
                 if (this.reviewIndex >= this.reviewDeck.length) {
                     // TRIGGER CHALLENGE INSTEAD OF COMPLETE
-                    this.startConjugationChallenge(); 
+                    this.startConjugationChallenge();
                 } else {
                     this.renderLessonVocabReview();
                 }
@@ -1752,7 +1948,7 @@ const app = {
                 this.progress[uid] = newLevel;
                 localStorage.setItem('acad_progress', JSON.stringify(this.progress));
                 this.sendProgress();
-                
+
                 // 2. High Score Logic
                 const isPractice = this.currentLessonMeta.type === 'practice';
                 let isNewRecord = false;
@@ -1766,7 +1962,7 @@ const app = {
                         previousBest = savedData.score;
                     }
 
-                    
+
 
                     if (this.currentScore > previousBest) {
                         this.highScores[uid] = {
@@ -1911,31 +2107,28 @@ const app = {
                 if (this.cardIdx >= this.deck.length) {
                     this.container.innerHTML = `
             <div class="h-full flex items-center justify-center flex-col bg-frBlue text-white">
+                <i class="fa-solid fa-flag-checkered text-6xl mb-4 text-gold"></i>
                 <h2 class="text-xl font-bold mb-4">¡Repaso terminado!</h2>
-                <button onclick="app.renderMap()" class="bg-white/20 px-6 py-3 rounded-lg hover:bg-white/30 transition">Volver</button>
+                <button onclick="app.renderMap()" class="bg-white/20 px-6 py-3 rounded-lg hover:bg-white/30 transition font-bold">Volver al mapa</button>
             </div>`;
                     return;
                 }
 
                 const word = this.deck[this.cardIdx];
-                const isFrenchFront = Math.random() > 0.5;
-                const frontLang = isFrenchFront ? 'Français' : 'Español';
-                const frontText = isFrenchFront ? word.fr : word.es;
-                const backLang = isFrenchFront ? 'Español' : 'Français';
-                const backText = isFrenchFront ? word.es : word.fr;
-
-                // Progress text: "3/30"
                 const progressText = `${this.cardIdx + 1} / ${this.deck.length}`;
+
+                // GENERATE CONTENT (Uses same logic)
+                const { frontContent, backContent, onRenderAction } = this.getCardHTML(word, this.cardIdx, this.deck.length);
 
                 this.container.innerHTML = `
         <div class="h-full flex flex-col bg-gray-100">
             
-            <!-- TOP BAR WITH EXIT + PROGRESS -->
+            <!-- TOP BAR -->
             <div class="p-4 flex justify-between items-center">
-                <button onclick="app.renderMap()" class="bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center">
+                <button onclick="app.renderMap()" class="bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-300 transition">
                     <i class="fa-solid fa-xmark text-gray-500"></i>
                 </button>
-                <div class="text-gray-500 font-bold text-sm">${progressText}</div>
+                <div class="bg-white px-3 py-1 rounded-full text-gray-500 font-bold text-xs shadow-sm">${progressText}</div>
             </div>
 
             <div class="flex-1 flex items-center justify-center perspective-1000 cursor-pointer group px-4"
@@ -1945,33 +2138,33 @@ const app = {
                     
                     <!-- FRONT -->
                     <div class="absolute inset-0 bg-white rounded-2xl shadow-xl flex flex-col items-center justify-center backface-hidden border-b-4 border-gray-200">
-                        <span class="text-xs uppercase tracking-widest text-gray-400 mb-2">${frontLang}</span>
-                        <h2 class="text-3xl font-serif font-bold text-frBlue text-center px-2">${frontText}</h2>
+                        ${frontContent}
                     </div>
                     
                     <!-- BACK -->
                     <div class="absolute inset-0 bg-frBlue rounded-2xl shadow-xl flex flex-col items-center justify-center backface-hidden rotate-y-180 text-white border-b-4 border-blue-900">
-                        <span class="text-xs uppercase tracking-widest text-blue-300 mb-2">${backLang}</span>
-                        <h2 class="text-3xl font-serif font-bold text-center px-2">${backText}</h2>
+                        ${backContent}
                     </div>
                 </div>
             </div>
 
             <div class="p-6 pb-8 flex gap-4 justify-center">
-    <button onclick="app.markVoluntaryWrong()" 
-            class="bg-red-500 hover:bg-red-600 text-white font-bold px-6 py-4 rounded-xl w-full shadow-sm">
-        Me equivoqué
-    </button>
+                <button onclick="app.markVoluntaryWrong()" 
+                        class="bg-red-500 hover:bg-red-600 text-white font-bold px-6 py-4 rounded-xl w-full shadow-sm active:translate-y-1 transition">
+                    Me equivoqué
+                </button>
 
-    <button onclick="app.nextVoluntaryCard()" 
-            class="bg-white border-2 border-gray-200 px-6 py-4 rounded-xl font-bold text-gray-600 w-full shadow-sm">
-        Siguiente
-    </button>
-</div>
-
-
+                <button onclick="app.nextVoluntaryCard()" 
+                        class="bg-white border-2 border-gray-200 hover:border-frBlue text-gray-600 hover:text-frBlue px-6 py-4 rounded-xl font-bold w-full shadow-sm active:translate-y-1 transition">
+                    Siguiente
+                </button>
+            </div>
         </div>`;
+
+                // Execute auto-play immediately
+                if (onRenderAction) onRenderAction();
             },
+
             markVoluntaryWrong() {
                 const current = this.deck[this.cardIdx];
 
@@ -2050,14 +2243,14 @@ const app = {
 
                 let summary = `
                 ${new Date().toISOString()} - Lesson: ${this.currentLessonMeta ? this.currentLessonMeta.uid : 'unknown'} - vocab: ${this.userVocab.length} - Current streak: ${this.streak} days - Duration: ${timeString}`
-                .trim();
- 
+                    .trim();
+
                 // 2. Check if it is practice mode and append the score
                 if (this.currentLessonMeta && this.currentLessonMeta.type === 'practice') {
                     summary += ` - Score: ${this.currentScore}/${this.currentMaxScore}`;
                 }
-                    const formData = new FormData();
-                    formData.append("entry.571600580", summary);
+                const formData = new FormData();
+                formData.append("entry.571600580", summary);
 
                 // FIXED URL HERE:
                 fetch("https://docs.google.com/forms/d/e/1FAIpQLSfDW3YRnP52660mMAtB6Rtcj2cfdyllBRUEIqQxwr4Rpp_ZPQ/formResponse", {
@@ -2075,26 +2268,26 @@ const app = {
                 const ring = document.getElementById('timer-ring');
                 const btn = document.getElementById('btn-start-timer');
                 const hint = document.getElementById('timer-hint');
-                
+
                 // UI Updates
                 btn.classList.add('hidden');
                 ring.classList.replace('border-gray-100', 'border-frBlue');
                 hint.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> À vous de jouer !';
                 hint.classList.add('text-frBlue', 'font-bold');
-                
+
                 let remaining = duration;
-                
+
                 // Clear any existing interval
                 if (this.expressionInterval) clearInterval(this.expressionInterval);
-                
+
                 this.expressionInterval = setInterval(() => {
                     remaining--;
-                    
+
                     // Format MM:SS
                     const m = Math.floor(remaining / 60).toString().padStart(2, '0');
                     const s = (remaining % 60).toString().padStart(2, '0');
                     display.innerText = `${m}:${s}`;
-                    
+
                     // Visual warning last 10 seconds
                     if (remaining <= 10) {
                         display.classList.add('text-red-500');
@@ -2109,7 +2302,7 @@ const app = {
 
             endExpressionTimer() {
                 clearInterval(this.expressionInterval);
-                
+
                 // Play Success Sound
                 const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3');
                 audio.volume = 0.3; audio.play().catch(e => { });
@@ -2123,7 +2316,7 @@ const app = {
                 display.innerHTML = '<i class="fa-solid fa-check"></i>';
                 ring.classList.replace('border-red-500', 'border-green-500');
                 ring.classList.add('bg-green-50', 'text-green-600');
-                
+
                 hint.innerText = "Terminé !";
 
                 // Show Feedback Message
@@ -2138,7 +2331,7 @@ const app = {
                 // Add Score (Expression is simply "Completed = +1")
                 if (this.currentLessonMeta.type === 'practice') {
                     const scoreDisplay = document.getElementById('score-display');
-                    this.currentScore++; 
+                    this.currentScore++;
                     if (scoreDisplay) {
                         scoreDisplay.innerText = `${this.currentScore} / ${this.currentMaxScore}`;
                         scoreDisplay.classList.add('text-green-600', 'scale-125');
@@ -2151,7 +2344,7 @@ const app = {
                 this.currentLessonMeta = {
                     id: 'freestyle',
                     uid: 'freestyle_verbs',
-                    type: 'practice', 
+                    type: 'practice',
                     title: 'Entraînement Verbes',
                     vocabulary: [],
                     moduleIndex: 9999 // High number ensures "Next Lesson" button is hidden
@@ -2159,15 +2352,16 @@ const app = {
                 // Reset main app scores (Conjugation App keeps its own score)
                 this.currentScore = 0;
                 this.currentMaxScore = 0;
-                
+
                 // Launch the Challenge
                 conjApp.init();
             },
 
+
             getHighestCompletedLesson() {
                 // Get all keys from the progress object (e.g., ["1_theory", "1_practice", "2_theory"])
                 const keys = Object.keys(this.progress);
-                
+
                 if (keys.length === 0) return 0;
 
                 // Map keys to their integer IDs and find the maximum
