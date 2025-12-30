@@ -535,12 +535,15 @@
                 const { key, tense, pIdx, isNeg } = this.currentCard;
                 const data = this.db[key];
 
-                // --- CONJUGATION CONSTRUCTION ---
+                // --- 1. CONJUGAISON CONSTRUCTION LOGIC ---
                 const startsVowel = w => ['a', 'e', 'i', 'o', 'u', 'y', 'é', 'ê', 'h'].includes(w.charAt(0).toLowerCase());
+
+                // Get raw conjugation based on tense
                 let raw = (tense === 'pc') ? data.pc[pIdx] : (tense === 'imperatif' ? data.imperatif[pIdx] : data[tense][pIdx]);
 
                 let conj = "";
 
+                // Apply logic for Compound Tenses / Imperative / Negation
                 if (tense === 'pc') {
                     const [aux, ...rest] = raw.split(' ');
                     const pp = rest.join(' ');
@@ -560,35 +563,47 @@
                     } else conj = raw;
                 }
 
+                // Add Pronoun (if not Imperative)
                 let full = conj;
                 if (tense !== 'imperatif') {
                     let pron = this.pronounsFr[pIdx].split('/')[0];
                     if (!isNeg && pIdx === 0 && startsVowel(conj)) full = `J'${conj}`;
                     else full = `${pron} ${conj}`;
                 }
-                // -------------------------
 
+                // --- 2. UPDATE DOM ---
                 const aArea = document.getElementById('cj-answer-container');
                 const bArea = document.getElementById('cj-btn-area');
 
-                // Append the answer card below the question
+                // Prepare text for the onclick attribute (escape apostrophes)
+                const safeText = full.replace(/'/g, "\\'");
+
+                // Insert HTML (Includes a click-to-replay feature)
                 aArea.innerHTML = `
-            <div class="text-center animate-slide-in">
-                <div class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Réponse</div>
-                <div class="correct-answer shadow-sm border-l-4 border-green-500">${full}</div>
-                <div class="text-gray-400 text-lg italic mt-2"><strong> ${data.fr.toUpperCase()} </strong></div>
-            </div>
-        `;
+                    <div class="text-center animate-slide-in">
+                        <div class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Réponse</div>
+                        <div class="correct-answer shadow-sm border-l-4 border-green-500 cursor-pointer hover:bg-green-100 transition" onclick="app.speakFrench('${safeText}')">
+                            ${full} <i class="fa-solid fa-volume-high text-sm opacity-50 ml-2"></i>
+                        </div>
+                        <div class="text-gray-400 text-lg italic mt-2"><strong> ${data.fr.toUpperCase()} </strong></div>
+                    </div>
+                `;
 
-                // Switch Button
+                // Update Button to "Next"
                 bArea.innerHTML = `
-            <button onclick="conjApp.handleNext()" class="w-full bg-green-500 text-white font-bold py-4 rounded-xl shadow-btn active:translate-y-1 transition uppercase tracking-widest text-sm hover:bg-green-600">
-                Suivant (+1) <i class="fa-solid fa-arrow-right ml-2"></i>
-            </button>
-        `;
+                    <button onclick="conjApp.handleNext()" class="w-full bg-green-500 text-white font-bold py-4 rounded-xl shadow-btn active:translate-y-1 transition uppercase tracking-widest text-sm hover:bg-green-600">
+                        Suivant (+1) <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                `;
 
-                // Auto scroll if needed on small screens
+                // Auto-scroll on mobile
                 bArea.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+                // --- 3. TRIGGER AUTOMATIC SPEECH ---
+                // We use a tiny timeout to ensure the UI thread has updated first
+                setTimeout(() => {
+                    app.speakFrench(full);
+                }, 50);
             },
 
             handleNext() {
