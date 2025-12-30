@@ -1118,7 +1118,7 @@
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(html, 'text/html');
 
-                    this.setupDialoguePlayer(doc); 
+                    this.setupDialoguePlayer(doc);
 
                     // Extract sections
                     const contentDiv = doc.getElementById('lesson-content');
@@ -1141,11 +1141,20 @@
 
                         let vocabListHtml = `<div class="grid grid-cols-1 gap-2">`;
                         data.vocabulary.forEach(word => {
+                            // Escape apostrophes to prevent breaking the onclick string
+                            const safeWord = word.fr.replace(/'/g, "\\'");
+
                             vocabListHtml += `
-                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg border border-gray-100">
-                        <span class="font-bold text-sm  text-frBlue">${word.fr}</span>
-                        <span class="text-gray-500 text-sm italic">${word.es}</span>
-                    </div>`;
+        <div onclick="app.speakFrench('${safeWord}')" 
+             class="flex justify-between items-center p-3 bg-gray-50 rounded-lg border border-gray-100 cursor-pointer hover:bg-blue-50 active:bg-blue-100 transition group active:scale-[0.98]">
+            <div class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center group-hover:border-frBlue group-hover:text-frBlue transition text-gray-300">
+                    <i class="fa-solid fa-volume-high text-[10px]"></i>
+                </div>
+                <span class="font-bold text-sm text-frBlue">${word.fr}</span>
+            </div>
+            <span class="text-gray-500 text-sm italic">${word.es}</span>
+        </div>`;
                         });
                         vocabListHtml += `</div>`;
 
@@ -1224,11 +1233,19 @@
                     if (lessonData.vocabulary && lessonData.vocabulary.length > 0) {
                         let vocabListHtml = `<div class="grid grid-cols-1 gap-2">`;
                         lessonData.vocabulary.forEach(word => {
+                            const safeWord = word.fr.replace(/'/g, "\\'");
+
                             vocabListHtml += `
-                        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg border border-gray-100">
-                            <span class="font-bold text-frBlue">${word.fr}</span>
-                            <span class="text-gray-500 text-sm italic">${word.es}</span>
-                        </div>`;
+        <div onclick="app.speakFrench('${safeWord}')" 
+             class="flex justify-between items-center p-3 bg-gray-50 rounded-lg border border-gray-100 cursor-pointer hover:bg-blue-50 active:bg-blue-100 transition group active:scale-[0.98]">
+            <div class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center group-hover:border-frBlue group-hover:text-frBlue transition text-gray-300">
+                    <i class="fa-solid fa-volume-high text-[10px]"></i>
+                </div>
+                <span class="font-bold text-frBlue">${word.fr}</span>
+            </div>
+            <span class="text-gray-500 text-sm italic">${word.es}</span>
+        </div>`;
                         });
                         vocabListHtml += `</div>`;
 
@@ -2398,10 +2415,10 @@
                 // Strategy: Find the 3rd section (index 2), then the first div with class 'bg-gray-50'
                 const sections = doc.querySelectorAll('section');
                 if (sections.length < 3) return; // Safety check
-                
+
                 const dialogueSection = sections[2];
                 const container = dialogueSection.querySelector('div.bg-gray-50');
-                
+
                 if (!container) return;
 
                 // 2. EXTRACT PARAGRAPHS
@@ -2410,9 +2427,9 @@
 
                 // 3. INITIALIZE STATE
                 this.dialogueState = {
-                    paragraphs: pTags.map(p => ({ 
-                        text: p.innerText, 
-                        el: p 
+                    paragraphs: pTags.map(p => ({
+                        text: p.innerText,
+                        el: p
                     })),
                     currentIndex: 0,
                     isPlaying: false,
@@ -2423,7 +2440,7 @@
                 // 4. MODIFY DOM: BLUR TEXT & ADD HIGHLIGHT CLASS
                 container.id = "dialogue-container";
                 container.classList.add('transition-all', 'duration-500', 'blur-sm', 'select-none'); // Blur initially
-                
+
                 // Add styling for the active paragraph highlight
                 const style = document.createElement('style');
                 style.innerHTML = `.highlight-active { background-color: #fef3c7; border-left: 4px solid #D4AF37; padding-left: 10px; transition: all 0.3s; }`;
@@ -2506,7 +2523,7 @@
             dialogueNav(dir) {
                 const { paragraphs, currentIndex } = this.dialogueState;
                 let newIndex = currentIndex + dir;
-                
+
                 // Bounds check
                 if (newIndex < 0) newIndex = 0;
                 if (newIndex >= paragraphs.length) newIndex = paragraphs.length - 1;
@@ -2530,12 +2547,12 @@
                 window.speechSynthesis.cancel();
 
                 const { paragraphs, currentIndex, rate } = this.dialogueState;
-                
+
                 if (currentIndex >= paragraphs.length) {
                     // End of dialogue
                     this.dialogueState.isPlaying = false;
                     this.updatePlayerUI(false);
-                    
+
                     // Enable Reveal Button
                     const btnReveal = document.getElementById('btn-reveal-text');
                     btnReveal.disabled = false;
@@ -2562,14 +2579,14 @@
                 let textToRead = paragraphs[currentIndex].text;
 
                 const utterance = new SpeechSynthesisUtterance(textToRead);
-                
+
                 // Voice Selection (Reusing your preferred logic)
                 const voices = window.speechSynthesis.getVoices();
-                const frVoice = voices.find(v => v.name === "Google français") || 
-                                voices.find(v => v.name === "Thomas") || 
-                                voices.find(v => v.lang.startsWith("fr"));
+                const frVoice = voices.find(v => v.name === "Google français") ||
+                    voices.find(v => v.name === "Thomas") ||
+                    voices.find(v => v.lang.startsWith("fr"));
                 if (frVoice) utterance.voice = frVoice;
-                
+
                 utterance.rate = rate;
                 utterance.lang = 'fr-FR';
 
@@ -2581,7 +2598,7 @@
                             this.dialogueState.currentIndex++;
                             this.playDialogueStep();
                         }
-                    }, 500); 
+                    }, 500);
                 };
 
                 // Store ref to prevent GC
@@ -2591,8 +2608,8 @@
 
             updatePlayerUI(isPlaying) {
                 const btn = document.getElementById('btn-play-pause');
-                if(!btn) return;
-                
+                if (!btn) return;
+
                 if (isPlaying) {
                     btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
                     btn.classList.add('bg-blue-800');
@@ -2607,10 +2624,10 @@
                 const { paragraphs, currentIndex } = this.dialogueState;
                 const pct = ((currentIndex) / paragraphs.length) * 100;
                 const bar = document.getElementById('dialogue-progress');
-                if(bar) bar.style.width = `${pct}%`;
+                if (bar) bar.style.width = `${pct}%`;
 
                 const stepDisp = document.getElementById('current-step-disp');
-                if(stepDisp) stepDisp.innerText = Math.min(currentIndex + 1, paragraphs.length);
+                if (stepDisp) stepDisp.innerText = Math.min(currentIndex + 1, paragraphs.length);
             },
         };
         app.init();
