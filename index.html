@@ -662,6 +662,14 @@
             streak: 0,
             startTime: null,
 
+            dialogueState: {
+                paragraphs: [], // Holds the text and DOM elements
+                currentIndex: 0,
+                isPlaying: false,
+                rate: 0.9,
+                utterance: null
+            },
+
             // State
             lessonSteps: [],
             currentStepIdx: 0,
@@ -1110,6 +1118,8 @@
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(html, 'text/html');
 
+                    this.setupDialoguePlayer(doc); 
+
                     // Extract sections
                     const contentDiv = doc.getElementById('lesson-content');
                     let sections = Array.from(contentDiv.querySelectorAll('section'));
@@ -1154,9 +1164,6 @@
                         const insertIndex = (this.currentModIndex === 0) ? 2 : 3;
                         this.lessonSteps.splice(insertIndex, 0, vocabSection);
                     }
-
-
-
 
                     this.currentLessonMeta = {
                         ...data,
@@ -2384,6 +2391,226 @@
                 const maxId = Math.max(...keys.map(k => parseInt(k) || 0));
 
                 return maxId;
+            },
+
+            setupDialoguePlayer(doc) {
+                // 1. LOCATE THE DIALOGUE CONTAINER
+                // Strategy: Find the 3rd section (index 2), then the first div with class 'bg-gray-50'
+                const sections = doc.querySelectorAll('section');
+                if (sections.length < 3) return; // Safety check
+                
+                const dialogueSection = sections[2];
+                const container = dialogueSection.querySelector('div.bg-gray-50');
+                
+                if (!container) return;
+
+                // 2. EXTRACT PARAGRAPHS
+                const pTags = Array.from(container.querySelectorAll('p'));
+                if (pTags.length === 0) return;
+
+                // 3. INITIALIZE STATE
+                this.dialogueState = {
+                    paragraphs: pTags.map(p => ({ 
+                        text: p.innerText, 
+                        el: p 
+                    })),
+                    currentIndex: 0,
+                    isPlaying: false,
+                    rate: 0.75,
+                    utterance: null
+                };
+
+                // 4. MODIFY DOM: BLUR TEXT & ADD HIGHLIGHT CLASS
+                container.id = "dialogue-container";
+                container.classList.add('transition-all', 'duration-500', 'blur-sm', 'select-none'); // Blur initially
+                
+                // Add styling for the active paragraph highlight
+                const style = document.createElement('style');
+                style.innerHTML = `.highlight-active { background-color: #fef3c7; border-left: 4px solid #D4AF37; padding-left: 10px; transition: all 0.3s; }`;
+                document.head.appendChild(style);
+
+                // 5. BUILD THE PLAYER UI
+                const playerUI = document.createElement('div');
+                playerUI.className = "mb-6 bg-white rounded-xl shadow-card border-2 border-frBlue/10 p-4 sticky top-4 z-20";
+                playerUI.innerHTML = `
+                    <div class="flex flex-col gap-3">
+                        <!-- Top Row: Title & Reveal -->
+                        <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                            <div class="text-xs font-bold text-gray-400 uppercase tracking-widest"><i class="fa-solid fa-headphones mr-1"></i> Audio Dialogue</div>
+                            <button id="btn-reveal-text" onclick="app.toggleDialogueReveal()" class="text-xs font-bold text-frBlue hover:text-blue-700 transition opacity-50 cursor-not-allowed">
+                                <i class="fa-regular fa-eye"></i> Révéler le texte
+                            </button>
+                        </div>
+
+                        <!-- Controls Row -->
+                        <div class="flex items-center justify-between gap-2">
+                            
+                            <!-- Speed Control -->
+                            <div class="flex items-center gap-2">
+                                <span class="text-[10px] text-gray-400 font-bold">Vitesse</span>
+                                <input type="range" min="0.5" max="1" step="0.05" value="0.75" 
+                                    oninput="app.setDialogueSpeed(this.value)" 
+                                    class="w-16 h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                                <span id="speed-display" class="text-[10px] font-mono text-frBlue font-bold">0.75x</span>
+                            </div>
+
+                            <!-- Playback Buttons -->
+                            <div class="flex items-center gap-3">
+                                <button onclick="app.dialogueNav(-1)" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-frBlue transition flex items-center justify-center">
+                                    <i class="fa-solid fa-backward-step"></i>
+                                </button>
+
+                                <button id="btn-play-pause" onclick="app.toggleDialoguePlay()" class="w-12 h-12 rounded-full bg-frBlue text-white shadow-lg active:scale-95 hover:bg-blue-900 transition flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-play ml-1"></i>
+                                </button>
+
+                                <button onclick="app.dialogueNav(1)" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-frBlue transition flex items-center justify-center">
+                                    <i class="fa-solid fa-forward-step"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden mt-1">
+                            <div id="dialogue-progress" class="bg-gold h-full w-0 transition-all duration-300"></div>
+                        </div>
+                        <div class="text-center text-[10px] text-gray-400 font-bold mt-1">
+                            <span id="current-step-disp">1</span> / ${pTags.length}
+                        </div>
+                    </div>
+                `;
+
+                // Insert Player BEFORE the text container
+                container.parentNode.insertBefore(playerUI, container);
+            },
+
+            // --- DIALOGUE CONTROLLER METHODS ---
+
+            toggleDialogueReveal() {
+                const container = document.getElementById('dialogue-container');
+                const btn = document.getElementById('btn-reveal-text');
+                if (container.classList.contains('blur-sm')) {
+                    container.classList.remove('blur-sm', 'select-none');
+                    btn.innerHTML = '<i class="fa-regular fa-eye-slash"></i> Cacher';
+                } else {
+                    container.classList.add('blur-sm', 'select-none');
+                    btn.innerHTML = '<i class="fa-regular fa-eye"></i> Révéler le texte';
+                }
+            },
+
+            setDialogueSpeed(val) {
+                this.dialogueState.rate = parseFloat(val);
+                document.getElementById('speed-display').innerText = val + 'x';
+            },
+
+            dialogueNav(dir) {
+                const { paragraphs, currentIndex } = this.dialogueState;
+                let newIndex = currentIndex + dir;
+                
+                // Bounds check
+                if (newIndex < 0) newIndex = 0;
+                if (newIndex >= paragraphs.length) newIndex = paragraphs.length - 1;
+
+                this.dialogueState.currentIndex = newIndex;
+                this.playDialogueStep(); // Auto play on nav
+            },
+
+            toggleDialoguePlay() {
+                if (this.dialogueState.isPlaying) {
+                    window.speechSynthesis.cancel();
+                    this.dialogueState.isPlaying = false;
+                    this.updatePlayerUI(false);
+                } else {
+                    this.playDialogueStep();
+                }
+            },
+
+            playDialogueStep() {
+                // Cancel existing
+                window.speechSynthesis.cancel();
+
+                const { paragraphs, currentIndex, rate } = this.dialogueState;
+                
+                if (currentIndex >= paragraphs.length) {
+                    // End of dialogue
+                    this.dialogueState.isPlaying = false;
+                    this.updatePlayerUI(false);
+                    
+                    // Enable Reveal Button
+                    const btnReveal = document.getElementById('btn-reveal-text');
+                    btnReveal.disabled = false;
+                    btnReveal.classList.remove('opacity-50', 'cursor-not-allowed');
+                    btnReveal.classList.add('animate-bounce');
+                    return;
+                }
+
+                this.dialogueState.isPlaying = true;
+                this.updatePlayerUI(true);
+
+                // Highlight Logic
+                paragraphs.forEach((p, idx) => {
+                    if (idx === currentIndex) {
+                        p.el.classList.add('highlight-active', 'bg-yellow-50', 'scale-[1.02]', 'shadow-sm');
+                        p.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        p.el.classList.remove('highlight-active', 'bg-yellow-50', 'scale-[1.02]', 'shadow-sm');
+                    }
+                });
+
+                // Prepare Text (Remove names like "Antoine :" for smoother reading if desired, 
+                // or read as is. Let's read as is but maybe pause after colon)
+                let textToRead = paragraphs[currentIndex].text;
+
+                const utterance = new SpeechSynthesisUtterance(textToRead);
+                
+                // Voice Selection (Reusing your preferred logic)
+                const voices = window.speechSynthesis.getVoices();
+                const frVoice = voices.find(v => v.name === "Google français") || 
+                                voices.find(v => v.name === "Thomas") || 
+                                voices.find(v => v.lang.startsWith("fr"));
+                if (frVoice) utterance.voice = frVoice;
+                
+                utterance.rate = rate;
+                utterance.lang = 'fr-FR';
+
+                // On End: Move to next
+                utterance.onend = () => {
+                    // Small pause between paragraphs
+                    setTimeout(() => {
+                        if (this.dialogueState.isPlaying) {
+                            this.dialogueState.currentIndex++;
+                            this.playDialogueStep();
+                        }
+                    }, 500); 
+                };
+
+                // Store ref to prevent GC
+                this.dialogueState.utterance = utterance;
+                window.speechSynthesis.speak(utterance);
+            },
+
+            updatePlayerUI(isPlaying) {
+                const btn = document.getElementById('btn-play-pause');
+                if(!btn) return;
+                
+                if (isPlaying) {
+                    btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                    btn.classList.add('bg-blue-800');
+                    btn.classList.remove('bg-frBlue');
+                } else {
+                    btn.innerHTML = '<i class="fa-solid fa-play ml-1"></i>';
+                    btn.classList.remove('bg-blue-800');
+                    btn.classList.add('bg-frBlue');
+                }
+
+                // Update Progress
+                const { paragraphs, currentIndex } = this.dialogueState;
+                const pct = ((currentIndex) / paragraphs.length) * 100;
+                const bar = document.getElementById('dialogue-progress');
+                if(bar) bar.style.width = `${pct}%`;
+
+                const stepDisp = document.getElementById('current-step-disp');
+                if(stepDisp) stepDisp.innerText = Math.min(currentIndex + 1, paragraphs.length);
             },
         };
         app.init();
