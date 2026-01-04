@@ -716,6 +716,43 @@
                     clearTimeout(resizeTimer);
                     resizeTimer = setTimeout(() => this.drawMapPath(), 100);
                 });
+
+                // --- CHEAT CODE: Press '$' to skip current step ---
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === '$') {
+                        console.log("🚀 CHEAT CODE: Skipping step...");
+
+                        // 1. Handle Conjugation Game
+                        if (document.getElementById('cj-question-area')) {
+                            conjApp.handleNext();
+                            return;
+                        }
+
+                        // 2. Handle Flashcards / Review Mode (detected by card presence)
+                        if (document.querySelector('.card-inner')) {
+                            if (this.reviewDeck && this.reviewDeck.length > 0) {
+                                this.nextLessonReviewCard();
+                            } else if (this.deck && this.deck.length > 0) {
+                                this.nextVoluntaryCard();
+                            }
+                            return;
+                        }
+
+                        // 3. Handle Standard Lessons & Practice
+                        if (this.lessonSteps && this.lessonSteps.length > 0) {
+                            // If it's a practice mode, give a free point so you get a high score
+                            if (this.currentLessonMeta && this.currentLessonMeta.type === 'practice') {
+                                this.currentScore++;
+                                // Visual feedback on the score counter if it exists
+                                const scoreEl = document.getElementById('score-display');
+                                if (scoreEl) scoreEl.innerText = `${this.currentScore} / ${this.currentMaxScore}`;
+                            }
+
+                            // Force move to next step
+                            this.nextStep();
+                        }
+                    }
+                });
             },
 
             initMap() {
@@ -1071,63 +1108,63 @@
             },
 
             // --- 3A. LESSON ENGINE (Standard) ---
-async loadLesson(index) {
-        this.startTime = Date.now();
-        const mod = this.modules[index];
-        this.currentModIndex = index;
-        this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
+            async loadLesson(index) {
+                this.startTime = Date.now();
+                const mod = this.modules[index];
+                this.currentModIndex = index;
+                this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
 
-        this.lessonSteps = [];
+                this.lessonSteps = [];
 
-        // 1. LOAD PREVIOUS LESSON (Rappel)
-        if (index > 0) {
-            try {
-                const previousLessonRes = await fetch(this.modules[index - 1].url);
-                if (previousLessonRes.ok) {
-                    const previousLessonHtml = await previousLessonRes.text();
-                    const parser = new DOMParser();
-                    const prevDoc = parser.parseFromString(previousLessonHtml, "text/html");
-                    const prevSections = prevDoc.querySelectorAll("section");
+                // 1. LOAD PREVIOUS LESSON (Rappel)
+                if (index > 0) {
+                    try {
+                        const previousLessonRes = await fetch(this.modules[index - 1].url);
+                        if (previousLessonRes.ok) {
+                            const previousLessonHtml = await previousLessonRes.text();
+                            const parser = new DOMParser();
+                            const prevDoc = parser.parseFromString(previousLessonHtml, "text/html");
+                            const prevSections = prevDoc.querySelectorAll("section");
 
-                    if (prevSections.length >= 2) {
-                        this.lessonSteps.push({
-                            type: 'read',
-                            html: `
+                            if (prevSections.length >= 2) {
+                                this.lessonSteps.push({
+                                    type: 'read',
+                                    html: `
                             <div class="mb-4 pb-2 border-b border-gray-100">
                                 <span class="bg-frBlue text-white px-2 py-1 rounded text-[10px] font-bold uppercase">Rappel</span>
                             </div>
                             ${prevSections[1].innerHTML}`
-                        });
-                    }
+                                });
+                            }
+                        }
+                    } catch (e) { console.warn("Previous lesson error", e); }
                 }
-            } catch (e) { console.warn("Previous lesson error", e); }
-        }
 
-        // 2. LOAD CURRENT LESSON
-        try {
-            const res = await fetch(mod.url);
-            const html = await res.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
+                // 2. LOAD CURRENT LESSON
+                try {
+                    const res = await fetch(mod.url);
+                    const html = await res.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
 
-            this.setupDialoguePlayer(doc);
+                    this.setupDialoguePlayer(doc);
 
-            const contentDiv = doc.getElementById('lesson-content');
-            let sections = Array.from(contentDiv.querySelectorAll('section'));
-            if (sections.length === 0) sections = [contentDiv];
+                    const contentDiv = doc.getElementById('lesson-content');
+                    let sections = Array.from(contentDiv.querySelectorAll('section'));
+                    if (sections.length === 0) sections = [contentDiv];
 
-            const readSteps = sections.map(s => ({ type: 'read', html: s.innerHTML }));
-            this.lessonSteps.push(...readSteps);
+                    const readSteps = sections.map(s => ({ type: 'read', html: s.innerHTML }));
+                    this.lessonSteps.push(...readSteps);
 
-            const data = JSON.parse(doc.getElementById('lesson-data').textContent);
+                    const data = JSON.parse(doc.getElementById('lesson-data').textContent);
 
-            // 3. INSERT VOCAB LIST (In the middle, usually index 2 or 3)
-            let insertIndex = (this.currentModIndex === 0) ? 2 : 3;
-            if (data.vocabulary && data.vocabulary.length > 0) {
-                let vocabListHtml = `<div class="grid grid-cols-1 gap-2">`;
-                data.vocabulary.forEach(word => {
-                    const safeWord = word.fr.replace(/'/g, "\\'");
-                    vocabListHtml += `
+                    // 3. INSERT VOCAB LIST (In the middle, usually index 2 or 3)
+                    let insertIndex = (this.currentModIndex === 0) ? 2 : 3;
+                    if (data.vocabulary && data.vocabulary.length > 0) {
+                        let vocabListHtml = `<div class="grid grid-cols-1 gap-2">`;
+                        data.vocabulary.forEach(word => {
+                            const safeWord = word.fr.replace(/'/g, "\\'");
+                            vocabListHtml += `
                     <div onclick="app.speakFrench('${safeWord}')" 
                         class="flex justify-between items-center p-3 bg-gray-50 rounded-lg border border-gray-100 cursor-pointer hover:bg-blue-50 active:bg-blue-100 transition group active:scale-[0.98]">
                         <div class="flex items-center gap-3">
@@ -1138,41 +1175,41 @@ async loadLesson(index) {
                         </div>
                         <span class="text-gray-500 text-sm italic">${word.es}</span>
                     </div>`;
-                });
-                vocabListHtml += `</div>`;
+                        });
+                        vocabListHtml += `</div>`;
 
-                const vocabSection = {
-                    type: "read",
-                    html: `
+                        const vocabSection = {
+                            type: "read",
+                            html: `
                     <div class="text-center mb-6">
                         <i class="fa-solid fa-book-bookmark text-4xl text-gold mb-2"></i>
                         <h2 class="text-xl font-bold text-frBlue">Vocabulaire</h2>
                     </div>
                     ${vocabListHtml}`
-                };
+                        };
 
-                this.lessonSteps.splice(insertIndex, 0, vocabSection);
-            }
+                        this.lessonSteps.splice(insertIndex, 0, vocabSection);
+                    }
 
-            this.currentLessonMeta = {
-                ...data,
-                id: mod.id,
-                uid: mod.uid,
-                type: 'theory',
-                moduleIndex: index
-            };
+                    this.currentLessonMeta = {
+                        ...data,
+                        id: mod.id,
+                        uid: mod.uid,
+                        type: 'theory',
+                        moduleIndex: index
+                    };
 
-            this.currentStepIdx = 0;
-            this.renderStep();
+                    this.currentStepIdx = 0;
+                    this.renderStep();
 
-        } catch (e) {
-            console.error(e);
-            this.container.innerHTML = `<div class="p-10 text-center text-red-500">Error loading lesson.</div>`;
-        }
-    },
-            
+                } catch (e) {
+                    console.error(e);
+                    this.container.innerHTML = `<div class="p-10 text-center text-red-500">Error loading lesson.</div>`;
+                }
+            },
+
             // --- 3B. PRACTICE ENGINE (New) ---
-async loadPractice(index) {
+            async loadPractice(index) {
                 this.startTime = Date.now();
                 const mod = this.modules[index];
                 this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
@@ -1202,7 +1239,7 @@ async loadPractice(index) {
                     this.currentMaxScore = exData.interactive_exercises
                         ? exData.interactive_exercises.filter(ex => ex.type !== 'full_translation').length
                         : 0;
-                    
+
                     // BUILD STEPS
                     this.lessonSteps = [];
 
@@ -2619,72 +2656,110 @@ async loadPractice(index) {
             },
 
             // --- NEW: VIDEO LOGIC ---
-async getDailyVideoHtml() {
-        try {
-            const res = await fetch(this.baseUrl + 'videos.html');
-            if (!res.ok) return null;
-            
-            const text = await res.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(text, 'text/html');
-            const scriptContent = doc.getElementById('videos-data').textContent;
-            const links = JSON.parse(scriptContent);
-            
-            if (!links || links.length === 0) return null;
+            async getDailyVideoHtml() {
+                try {
+                    const res = await fetch(this.baseUrl + 'videos.html');
+                    if (!res.ok) return null;
 
-            const now = new Date();
-            const start = new Date(now.getFullYear(), 0, 0);
-            const diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
-            const oneDay = 1000 * 60 * 60 * 24;
-            const dayOfYear = Math.floor(diff / oneDay);
+                    const text = await res.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(text, 'text/html');
+                    const scriptContent = doc.getElementById('videos-data').textContent;
+                    const links = JSON.parse(scriptContent);
 
-            const videoUrl = links[dayOfYear % links.length];
-            let embedHtml = '';
-            
-            // Regex to catch standard, short, and embed URLs
-            const ytMatch = videoUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
-            
-            if (ytMatch && ytMatch[1]) {
-                const videoId = ytMatch[1];
-                // Using youtube-nocookie and removing stricter restrictions
-                embedHtml = `
-                    <div class="aspect-w-16 aspect-h-9 w-full relative pt-[56.25%] rounded-xl overflow-hidden shadow-lg border-2 border-gray-100 bg-black">
-                        <iframe 
-                            src="https://www.youtube-nocookie.com/embed/${videoId}?rel=0&playsinline=1&modestbranding=1" 
-                            class="absolute top-0 left-0 w-full h-full" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
+                    if (!links || links.length === 0) return null;
+
+                    // --- NEW LOGIC: Use LocalStorage Index ---
+                    // Default to 0 if not set
+                    let videoIndex = parseInt(localStorage.getItem('acad_video_index') || '0');
+
+                    // Use modulo so if we run out of videos, it loops back to the start
+                    const videoUrl = links[videoIndex % links.length];
+
+                    let embedHtml = '';
+
+                    // Regex to catch standard, short, and embed URLs
+                    const ytMatch = videoUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+
+                    if (ytMatch && ytMatch[1]) {
+                        const videoId = ytMatch[1];
+                        embedHtml = `
+                        <div class="aspect-w-16 aspect-h-9 w-full relative pt-[56.25%] rounded-xl overflow-hidden shadow-lg border-2 border-gray-100 bg-black">
+                            <iframe 
+                                src="https://www.youtube.com/embed/${videoId}" 
+                                class="absolute top-0 left-0 w-full h-full" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>`;
+                    } else {
+                        embedHtml = `
+                        <div class="w-full rounded-xl overflow-hidden shadow-lg border-2 border-gray-100 bg-black">
+                            <div class="p-4 bg-gray-100 text-center text-xs text-gray-500 mb-1">Format vidéo externe</div>
+                            <a href="${videoUrl}" target="_blank" class="block bg-frBlue text-white text-center py-8 font-bold hover:bg-blue-800 transition">
+                                <i class="fa-solid fa-play-circle text-4xl mb-2"></i><br>
+                                Regarder la vidéo
+                            </a>
+                        </div>`;
+                    }
+
+                    // --- NEW: Confirmation Button HTML ---
+                    const buttonHtml = `
+                    <div id="video-confirm-area" class="mt-6 text-center">
+                        <button onclick="app.markVideoComplete()" class="bg-green-100 text-green-700 border-2 border-green-200 px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wide hover:bg-green-200 active:scale-95 transition flex items-center justify-center gap-2 mx-auto shadow-sm">
+                            <i class="fa-solid fa-check"></i> J'ai terminé la vidéo
+                        </button>
+                        <p class="text-[10px] text-gray-400 mt-2">Cliquez pour passer à la vidéo suivante lors de votre prochaine visite.</p>
                     </div>`;
-            } else {
-                embedHtml = `
-                    <div class="w-full rounded-xl overflow-hidden shadow-lg border-2 border-gray-100 bg-black">
-                        <div class="p-4 bg-gray-100 text-center text-xs text-gray-500 mb-1">Format vidéo externe</div>
-                        <a href="${videoUrl}" target="_blank" class="block bg-frBlue text-white text-center py-8 font-bold hover:bg-blue-800 transition">
-                            <i class="fa-solid fa-play-circle text-4xl mb-2"></i><br>
-                            Regarder la vidéo
-                        </a>
-                    </div>`;
-            }
 
-            return `
-                <div class="text-center mb-6">
-                    <span class="bg-red-600 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest animate-pulse">
-                        <i class="fa-brands fa-youtube"></i> Vidéo du jour
-                    </span>
-                    <h2 class="text-xl font-bold text-frBlue mt-3">Immersion Quotidienne</h2>
-                    <p class="text-xs text-gray-400 mb-4">Regardez la vidéo avant de passer au défi.</p>
-                </div>
-                ${embedHtml}
-            `;
+                    return `
+                    <div class="text-center mb-6">
+                        <span class="bg-red-600 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest animate-pulse">
+                            <i class="fa-brands fa-youtube"></i> Vidéo d'immersion
+                        </span>
+                        <h2 class="text-xl font-bold text-frBlue mt-3">Pratique d'écoute</h2>
+                        <p class="text-xs text-gray-400 mb-4">Regardez la vidéo #${videoIndex + 1} avant de continuer.</p>
+                    </div>
+                    ${embedHtml}
+                    ${buttonHtml}
+                `;
 
-        } catch (e) {
-            console.warn("Could not load daily video", e);
-            return null;
-        }
-    },
+                } catch (e) {
+                    console.warn("Could not load video", e);
+                    return null;
+                }
+            },
+
+            markVideoComplete() {
+                // 1. Get current index
+                let currentIndex = parseInt(localStorage.getItem('acad_video_index') || '0');
+
+                // 2. Increment
+                let newIndex = currentIndex + 1;
+                localStorage.setItem('acad_video_index', newIndex);
+
+                // 3. UI Feedback
+                const area = document.getElementById('video-confirm-area');
+                if (area) {
+                    area.innerHTML = `
+                        <div class="bg-green-500 text-white px-6 py-3 rounded-full font-bold text-sm flex items-center justify-center gap-2 mx-auto animate-bounce shadow-md">
+                            <i class="fa-solid fa-thumbs-up"></i> C'est noté !
+                        </div>
+                        <p class="text-[10px] text-green-600 font-bold mt-2 uppercase tracking-wide">Prochaine vidéo chargée pour la prochaine fois.</p>
+                    `;
+
+                    // Optional: Play a small success sound
+                    const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3');
+                    audio.volume = 0.2;
+                    audio.play().catch(e => { });
+                }
+            },
+
         };
+
+
+
         app.init();
     </script>
 </body>
