@@ -1071,129 +1071,116 @@
             },
 
             // --- 3A. LESSON ENGINE (Standard) ---
-            async loadLesson(index) {
-                this.startTime = Date.now();
-                const mod = this.modules[index];
-                this.currentModIndex = index;
-                this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
+async loadLesson(index) {
+        this.startTime = Date.now();
+        const mod = this.modules[index];
+        this.currentModIndex = index;
+        this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
 
-                this.lessonSteps = [];
+        this.lessonSteps = [];
 
-                // ---------------------------------
-                // 1. LOAD PREVIOUS LESSON (Rappel)
-                // ---------------------------------
-                if (index > 0) {
-                    try {
-                        const previousLessonRes = await fetch(this.modules[index - 1].url);
-                        if (!previousLessonRes.ok) throw new Error("Previous lesson missing");
+        // 1. LOAD PREVIOUS LESSON (Rappel)
+        if (index > 0) {
+            try {
+                const previousLessonRes = await fetch(this.modules[index - 1].url);
+                if (previousLessonRes.ok) {
+                    const previousLessonHtml = await previousLessonRes.text();
+                    const parser = new DOMParser();
+                    const prevDoc = parser.parseFromString(previousLessonHtml, "text/html");
+                    const prevSections = prevDoc.querySelectorAll("section");
 
-                        const previousLessonHtml = await previousLessonRes.text();
-                        const parser = new DOMParser();
-                        const prevDoc = parser.parseFromString(previousLessonHtml, "text/html");
-
-                        const prevSections = prevDoc.querySelectorAll("section");
-
-                        if (prevSections.length >= 2) {
-                            this.lessonSteps.push({
-                                type: 'read',
-                                html: `
-                        <div class="mb-4 pb-2 border-b border-gray-100">
-                            <span class="bg-frBlue text-white px-2 py-1 rounded text-[10px] font-bold uppercase">Rappel</span>
-                        </div>
-                        ${prevSections[1].innerHTML}
-                    `
-                            });
-                        }
-                    } catch (e) {
-                        console.warn("Previous lesson could not be loaded:", e.message);
+                    if (prevSections.length >= 2) {
+                        this.lessonSteps.push({
+                            type: 'read',
+                            html: `
+                            <div class="mb-4 pb-2 border-b border-gray-100">
+                                <span class="bg-frBlue text-white px-2 py-1 rounded text-[10px] font-bold uppercase">Rappel</span>
+                            </div>
+                            ${prevSections[1].innerHTML}`
+                        });
                     }
                 }
+            } catch (e) { console.warn("Previous lesson error", e); }
+        }
 
-                // ---------------------------------
-                // 2. LOAD CURRENT LESSON (Normal)
-                // ---------------------------------
-                try {
-                    const res = await fetch(mod.url);
-                    const html = await res.text();
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
+        // 2. LOAD CURRENT LESSON
+        try {
+            const res = await fetch(mod.url);
+            const html = await res.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
 
-                    this.setupDialoguePlayer(doc);
+            this.setupDialoguePlayer(doc);
 
-                    // Extract sections
-                    const contentDiv = doc.getElementById('lesson-content');
-                    let sections = Array.from(contentDiv.querySelectorAll('section'));
-                    if (sections.length === 0) sections = [contentDiv];
+            const contentDiv = doc.getElementById('lesson-content');
+            let sections = Array.from(contentDiv.querySelectorAll('section'));
+            if (sections.length === 0) sections = [contentDiv];
 
-                    const readSteps = sections.map(s => ({
-                        type: 'read',
-                        html: s.innerHTML
-                    }));
+            const readSteps = sections.map(s => ({ type: 'read', html: s.innerHTML }));
+            this.lessonSteps.push(...readSteps);
 
-                    // Add them after the rappel step
-                    this.lessonSteps.push(...readSteps);
+            const data = JSON.parse(doc.getElementById('lesson-data').textContent);
 
-                    // Load metadata
-                    const data = JSON.parse(doc.getElementById('lesson-data').textContent);
+            // 3. INSERT VOCAB LIST (In the middle, usually index 2 or 3)
+            let insertIndex = (this.currentModIndex === 0) ? 2 : 3;
+            if (data.vocabulary && data.vocabulary.length > 0) {
+                let vocabListHtml = `<div class="grid grid-cols-1 gap-2">`;
+                data.vocabulary.forEach(word => {
+                    const safeWord = word.fr.replace(/'/g, "\\'");
+                    vocabListHtml += `
+                    <div onclick="app.speakFrench('${safeWord}')" 
+                        class="flex justify-between items-center p-3 bg-gray-50 rounded-lg border border-gray-100 cursor-pointer hover:bg-blue-50 active:bg-blue-100 transition group active:scale-[0.98]">
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center group-hover:border-frBlue group-hover:text-frBlue transition text-gray-300">
+                                <i class="fa-solid fa-volume-high text-[10px]"></i>
+                            </div>
+                            <span class="font-bold text-sm text-frBlue">${word.fr}</span>
+                        </div>
+                        <span class="text-gray-500 text-sm italic">${word.es}</span>
+                    </div>`;
+                });
+                vocabListHtml += `</div>`;
 
-                    // Insert vocab section as the 4th step (index 3)
-                    if (data.vocabulary && data.vocabulary.length > 0) {
-
-                        let vocabListHtml = `<div class="grid grid-cols-1 gap-2">`;
-                        data.vocabulary.forEach(word => {
-                            // Escape apostrophes to prevent breaking the onclick string
-                            const safeWord = word.fr.replace(/'/g, "\\'");
-
-                            vocabListHtml += `
-        <div onclick="app.speakFrench('${safeWord}')" 
-             class="flex justify-between items-center p-3 bg-gray-50 rounded-lg border border-gray-100 cursor-pointer hover:bg-blue-50 active:bg-blue-100 transition group active:scale-[0.98]">
-            <div class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center group-hover:border-frBlue group-hover:text-frBlue transition text-gray-300">
-                    <i class="fa-solid fa-volume-high text-[10px]"></i>
-                </div>
-                <span class="font-bold text-sm text-frBlue">${word.fr}</span>
-            </div>
-            <span class="text-gray-500 text-sm italic">${word.es}</span>
-        </div>`;
-                        });
-                        vocabListHtml += `</div>`;
-
-                        const vocabSection = {
-                            type: "read",
-                            html: `
+                const vocabSection = {
+                    type: "read",
+                    html: `
                     <div class="text-center mb-6">
                         <i class="fa-solid fa-book-bookmark text-4xl text-gold mb-2"></i>
                         <h2 class="text-xl font-bold text-frBlue">Vocabulaire</h2>
                     </div>
-                    ${vocabListHtml}
-                `
-                        };
+                    ${vocabListHtml}`
+                };
 
-                        // Insert at index 3 (4th position)
-                        const insertIndex = (this.currentModIndex === 0) ? 2 : 3;
-                        this.lessonSteps.splice(insertIndex, 0, vocabSection);
-                    }
+                this.lessonSteps.splice(insertIndex, 0, vocabSection);
+            }
 
-                    this.currentLessonMeta = {
-                        ...data,
-                        id: mod.id,
-                        uid: mod.uid,
-                        type: 'theory',
-                        moduleIndex: index
-                    };
+            // 4. INSERT VIDEO (AT THE VERY END)
+            // This ensures it appears after text and vocab list, but before the Challenge
+            const dailyVideoHtml = await this.getDailyVideoHtml();
+            if (dailyVideoHtml) {
+                this.lessonSteps.push({
+                    type: "read",
+                    html: dailyVideoHtml
+                });
+            }
 
-                    this.currentStepIdx = 0;
-                    this.renderStep();
+            this.currentLessonMeta = {
+                ...data,
+                id: mod.id,
+                uid: mod.uid,
+                type: 'theory',
+                moduleIndex: index
+            };
 
-                } catch (e) {
-                    console.error(e);
-                    this.container.innerHTML = `
-            <div class="p-10 text-center text-red-500">
-                Error loading lesson.
-            </div>`;
-                }
-            },
+            this.currentStepIdx = 0;
+            this.renderStep();
 
+        } catch (e) {
+            console.error(e);
+            this.container.innerHTML = `<div class="p-10 text-center text-red-500">Error loading lesson.</div>`;
+        }
+    },
+            
             // --- 3B. PRACTICE ENGINE (New) ---
             async loadPractice(index) {
                 this.startTime = Date.now();
@@ -2629,6 +2616,73 @@
                 const stepDisp = document.getElementById('current-step-disp');
                 if (stepDisp) stepDisp.innerText = Math.min(currentIndex + 1, paragraphs.length);
             },
+
+            // --- NEW: VIDEO LOGIC ---
+async getDailyVideoHtml() {
+        try {
+            const res = await fetch(this.baseUrl + 'videos.html');
+            if (!res.ok) return null;
+            
+            const text = await res.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(text, 'text/html');
+            const scriptContent = doc.getElementById('videos-data').textContent;
+            const links = JSON.parse(scriptContent);
+            
+            if (!links || links.length === 0) return null;
+
+            const now = new Date();
+            const start = new Date(now.getFullYear(), 0, 0);
+            const diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
+            const oneDay = 1000 * 60 * 60 * 24;
+            const dayOfYear = Math.floor(diff / oneDay);
+
+            const videoUrl = links[dayOfYear % links.length];
+            let embedHtml = '';
+            
+            // Regex to catch standard, short, and embed URLs
+            const ytMatch = videoUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+            
+            if (ytMatch && ytMatch[1]) {
+                const videoId = ytMatch[1];
+                // Using youtube-nocookie and removing stricter restrictions
+                embedHtml = `
+                    <div class="aspect-w-16 aspect-h-9 w-full relative pt-[56.25%] rounded-xl overflow-hidden shadow-lg border-2 border-gray-100 bg-black">
+                        <iframe 
+                            src="https://www.youtube-nocookie.com/embed/${videoId}?rel=0&playsinline=1&modestbranding=1" 
+                            class="absolute top-0 left-0 w-full h-full" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>`;
+            } else {
+                embedHtml = `
+                    <div class="w-full rounded-xl overflow-hidden shadow-lg border-2 border-gray-100 bg-black">
+                        <div class="p-4 bg-gray-100 text-center text-xs text-gray-500 mb-1">Format vidéo externe</div>
+                        <a href="${videoUrl}" target="_blank" class="block bg-frBlue text-white text-center py-8 font-bold hover:bg-blue-800 transition">
+                            <i class="fa-solid fa-play-circle text-4xl mb-2"></i><br>
+                            Regarder la vidéo
+                        </a>
+                    </div>`;
+            }
+
+            return `
+                <div class="text-center mb-6">
+                    <span class="bg-red-600 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest animate-pulse">
+                        <i class="fa-brands fa-youtube"></i> Vidéo du jour
+                    </span>
+                    <h2 class="text-xl font-bold text-frBlue mt-3">Immersion Quotidienne</h2>
+                    <p class="text-xs text-gray-400 mb-4">Regardez la vidéo avant de passer au défi.</p>
+                </div>
+                ${embedHtml}
+            `;
+
+        } catch (e) {
+            console.warn("Could not load daily video", e);
+            return null;
+        }
+    },
         };
         app.init();
     </script>
