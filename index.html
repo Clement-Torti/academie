@@ -1154,16 +1154,6 @@ async loadLesson(index) {
                 this.lessonSteps.splice(insertIndex, 0, vocabSection);
             }
 
-            // 4. INSERT VIDEO (AT THE VERY END)
-            // This ensures it appears after text and vocab list, but before the Challenge
-            const dailyVideoHtml = await this.getDailyVideoHtml();
-            if (dailyVideoHtml) {
-                this.lessonSteps.push({
-                    type: "read",
-                    html: dailyVideoHtml
-                });
-            }
-
             this.currentLessonMeta = {
                 ...data,
                 id: mod.id,
@@ -1182,14 +1172,14 @@ async loadLesson(index) {
     },
             
             // --- 3B. PRACTICE ENGINE (New) ---
-            async loadPractice(index) {
+async loadPractice(index) {
                 this.startTime = Date.now();
                 const mod = this.modules[index];
                 this.container.innerHTML = `<div class="h-full flex items-center justify-center"><div class="loader"></div></div>`;
                 this.currentScore = 0;
 
                 try {
-                    // 1. Load Lesson X (for Vocab + Section 2)
+                    // 1. Load Lesson Data (for Vocab)
                     const lessonRes = await fetch(mod.url);
                     if (!lessonRes.ok) throw new Error("Lesson not found");
                     const lessonHtml = await lessonRes.text();
@@ -1197,14 +1187,13 @@ async loadLesson(index) {
                     const lessonDoc = parser.parseFromString(lessonHtml, 'text/html');
                     const lessonData = JSON.parse(lessonDoc.getElementById('lesson-data').textContent);
 
-                    // 2. Load Exercices X
+                    // 2. Load Exercises Data
                     const exUrl = `${this.baseUrl}exercices${mod.id}.html`;
                     const exRes = await fetch(exUrl);
                     if (!exRes.ok) throw new Error("Exercices file not found");
                     const exHtml = await exRes.text();
                     const exDoc = parser.parseFromString(exHtml, 'text/html');
 
-                    // Parse JSON Data
                     const exScript = exDoc.getElementById('exercise-data');
                     if (!exScript) throw new Error("No JSON data found in exercise file");
                     const exData = JSON.parse(exScript.textContent);
@@ -1213,6 +1202,7 @@ async loadLesson(index) {
                     this.currentMaxScore = exData.interactive_exercises
                         ? exData.interactive_exercises.filter(ex => ex.type !== 'full_translation').length
                         : 0;
+                    
                     // BUILD STEPS
                     this.lessonSteps = [];
 
@@ -1221,18 +1211,17 @@ async loadLesson(index) {
                         let vocabListHtml = `<div class="grid grid-cols-1 gap-2">`;
                         lessonData.vocabulary.forEach(word => {
                             const safeWord = word.fr.replace(/'/g, "\\'");
-
                             vocabListHtml += `
-        <div onclick="app.speakFrench('${safeWord}')" 
-             class="flex justify-between items-center p-3 bg-gray-50 rounded-lg border border-gray-100 cursor-pointer hover:bg-blue-50 active:bg-blue-100 transition group active:scale-[0.98]">
-            <div class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center group-hover:border-frBlue group-hover:text-frBlue transition text-gray-300">
-                    <i class="fa-solid fa-volume-high text-[10px]"></i>
-                </div>
-                <span class="font-bold text-frBlue">${word.fr}</span>
-            </div>
-            <span class="text-gray-500 text-sm italic">${word.es}</span>
-        </div>`;
+                            <div onclick="app.speakFrench('${safeWord}')" 
+                                class="flex justify-between items-center p-3 bg-gray-50 rounded-lg border border-gray-100 cursor-pointer hover:bg-blue-50 active:bg-blue-100 transition group active:scale-[0.98]">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center group-hover:border-frBlue group-hover:text-frBlue transition text-gray-300">
+                                        <i class="fa-solid fa-volume-high text-[10px]"></i>
+                                    </div>
+                                    <span class="font-bold text-frBlue">${word.fr}</span>
+                                </div>
+                                <span class="text-gray-500 text-sm italic">${word.es}</span>
+                            </div>`;
                         });
                         vocabListHtml += `</div>`;
 
@@ -1259,7 +1248,7 @@ async loadLesson(index) {
                         });
                     }
 
-                    // Step 3: Interactive JSON Exercises
+                    // Step 3: Interactive Exercises
                     if (exData.interactive_exercises) {
                         exData.interactive_exercises.forEach(ex => {
                             this.lessonSteps.push({
@@ -1268,6 +1257,17 @@ async loadLesson(index) {
                             });
                         });
                     }
+
+                    // --- VIDEO INJECTION START ---
+                    // Step 4: Daily Video (Appears LAST, right before Vocab Challenge)
+                    const dailyVideoHtml = await this.getDailyVideoHtml();
+                    if (dailyVideoHtml) {
+                        this.lessonSteps.push({
+                            type: "read",
+                            html: dailyVideoHtml
+                        });
+                    }
+                    // --- VIDEO INJECTION END ---
 
                     this.currentLessonMeta = { ...lessonData, id: mod.id, uid: mod.uid, mode: 'practice', type: 'practice', moduleIndex: index };
                     this.currentStepIdx = 0;
@@ -1283,6 +1283,7 @@ async loadLesson(index) {
             </div>`;
                 }
             },
+
 
             prevStep() {
                 if (this.currentStepIdx > 0) {
