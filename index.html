@@ -348,9 +348,7 @@
             },
 
             async init() {
-
                 window.speechSynthesis.getVoices();
-
                 if (Object.keys(this.db).length === 0) {
                     try {
                         const res = await fetch(this.dataUrl);
@@ -363,14 +361,51 @@
                         this.db = { "parler": { "fr": "parler", "present": ["parle", "parles", "parle", "parlons", "parlez", "parlent"], "pc": ["ai parlé", "as parlé", "a parlé", "avons parlé", "avez parlé", "ont parlé"] } };
                     }
                 }
+                
+                // --- AJOUT : Réinitialiser les scores des manches ---
                 this.roundsPlayed = 0;
-                // Refresh best score in case it changed
+                this.roundScores = []; // Nouveau tableau pour stocker les scores individuels
+                
                 this.bestScore = parseInt(localStorage.getItem('acad_cj_best') || '0');
                 this.renderIntro();
             },
 
             renderIntro() {
-                const remaining = this.maxRounds - this.roundsPlayed;
+                // Génération de l'HTML pour les 3 boîtes de score
+                let roundsHtml = '';
+                for(let i = 0; i < this.maxRounds; i++) {
+                    const isDone = i < this.roundScores.length;
+                    const isCurrent = i === this.roundScores.length;
+                    
+                    let content, styleClass, titleClass;
+
+                    if (isDone) {
+                        // Manche terminée : Afficher le score
+                        const scoreVal = this.roundScores[i];
+                        const color = scoreVal > 0 ? 'text-green-600' : (scoreVal < 0 ? 'text-red-500' : 'text-gray-400');
+                        content = `<span class="text-xl font-bold ${color}">${scoreVal}</span>`;
+                        styleClass = "bg-white border-frBlue/20 border-2";
+                        titleClass = "text-frBlue";
+                    } else if (isCurrent) {
+                        // Manche à venir (Actuelle)
+                        content = `<i class="fa-solid fa-hourglass-start text-xl text-gold animate-pulse"></i>`;
+                        styleClass = "bg-white border-gold border-2 shadow-md scale-105 z-10";
+                        titleClass = "text-gold font-bold";
+                    } else {
+                        // Manche future
+                        content = `<span class="text-2xl text-gray-200 font-bold">?</span>`;
+                        styleClass = "bg-gray-50 border-gray-100 border";
+                        titleClass = "text-gray-300";
+                    }
+
+                    roundsHtml += `
+                        <div class="flex flex-col items-center justify-center w-20 h-24 rounded-xl transition-all ${styleClass}">
+                            <div class="text-[10px] uppercase tracking-widest mb-1 ${titleClass}">Série ${i + 1}</div>
+                            <div>${content}</div>
+                        </div>
+                    `;
+                }
+
                 app.container.innerHTML = `
             <div class="h-full flex flex-col items-center justify-center p-6 bg-frCream text-center">
                 <div class="mb-4 animate-bounce">
@@ -380,22 +415,17 @@
                 <p class="text-gray-500 mb-6 text-sm">Complétez ${this.maxRounds} séries de 60s.</p>
                 
                 <!-- Best Score Display -->
-                <div class="mb-6 flex items-center justify-center gap-2 text-gold font-bold bg-white px-4 py-2 rounded-full shadow-sm border border-orange-100">
+                <div class="mb-8 flex items-center justify-center gap-2 text-gold font-bold bg-white px-4 py-2 rounded-full shadow-sm border border-orange-100">
                     <i class="fa-solid fa-trophy"></i> Record : ${this.bestScore}
                 </div>
 
-                <div class="bg-white p-5 rounded-xl border border-gray-200 mb-8 w-full max-w-xs shadow-sm">
-                    <div class="text-[10px] uppercase tracking-widest text-gray-400 mb-3 font-bold">Progression de la session</div>
-                    <div class="flex justify-center gap-2 mb-2">
-                        ${Array(this.maxRounds).fill(0).map((_, i) =>
-                    `<div class="h-2 flex-1 rounded-full transition-colors duration-500 ${i < this.roundsPlayed ? 'bg-green-500' : 'bg-gray-200'}"></div>`
-                ).join('')}
-                    </div>
-                    <div class="text-xs font-bold text-gray-500">${this.roundsPlayed} / ${this.maxRounds} terminées</div>
+                <!-- NEW: SCOREBOARD DISPLAY -->
+                <div class="flex justify-center gap-3 mb-8 w-full">
+                    ${roundsHtml}
                 </div>
 
                 <button onclick="conjApp.startRound()" class="w-full max-w-xs bg-frBlue text-white font-bold py-4 rounded-xl shadow-btn active:translate-y-1 transition hover:bg-blue-900">
-                    ${this.roundsPlayed === 0 ? 'Commencer' : 'Série Suivante'}
+                    ${this.roundsPlayed === 0 ? 'Commencer' : 'Série Suivante'} <i class="fa-solid fa-arrow-right ml-2"></i>
                 </button>
             </div>
         `;
@@ -589,29 +619,98 @@
                     </div>
                 `;
 
-                // Update Button to "Next"
+                // --- CHANGED: TWO BUTTONS (SUCCESS / FAIL) ---
                 bArea.innerHTML = `
-                    <button onclick="conjApp.handleNext()" class="w-full bg-green-500 text-white font-bold py-4 rounded-xl shadow-btn active:translate-y-1 transition uppercase tracking-widest text-sm hover:bg-green-600">
-                        Suivant (+1) <i class="fa-solid fa-arrow-right ml-2"></i>
-                    </button>
+                    <div class="flex gap-3">
+                        <button onclick="conjApp.handleResult(false)" class="flex-1 bg-white border-2 border-red-100 text-red-500 font-bold py-4 rounded-xl shadow-btn active:translate-y-1 transition uppercase tracking-widest text-xs hover:bg-red-50 hover:border-red-300">
+                            <i class="fa-solid fa-xmark mr-1"></i> J'ai raté
+                        </button>
+                        <button onclick="conjApp.handleResult(true)" class="flex-1 bg-green-500 text-white font-bold py-4 rounded-xl shadow-btn active:translate-y-1 transition uppercase tracking-widest text-xs hover:bg-green-600">
+                            <i class="fa-solid fa-check mr-1"></i> J'ai réussi
+                        </button>
+                    </div>
                 `;
 
                 // Auto-scroll on mobile
                 bArea.scrollIntoView({ behavior: 'smooth', block: 'end' });
 
                 // --- 3. TRIGGER AUTOMATIC SPEECH ---
-                // We use a tiny timeout to ensure the UI thread has updated first
                 setTimeout(() => {
                     app.speakFrench(full);
                 }, 50);
             },
 
-            handleNext() {
-                this.score++;
-                document.getElementById('cj-score').innerText = this.score;
+            // --- NEW METHOD: Handle Success/Fail logic ---
+            handleResult(isSuccess) {
+                if (isSuccess) {
+                    this.score++;
+                } else {
+                    this.score--; 
+                    this.triggerFailEffect();
+                }
+                
+                // Update score UI
+                const scoreEl = document.getElementById('cj-score');
+                if(scoreEl) scoreEl.innerText = this.score;
+
+                // Move to next
                 this.nextCard();
             },
 
+            // --- NEW METHOD: Buzzer and Red Flash ---
+            triggerFailEffect() {
+                // 1. BUZZER SYNTHÉTIQUE (Plus fiable qu'un fichier mp3)
+                try {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContext) {
+                        const ctx = new AudioContext();
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+
+                        // Type de son : dent de scie (sonne comme un buzzer agressif)
+                        osc.type = 'sawtooth'; 
+                        
+                        // Fréquence basse (150Hz) qui descend
+                        osc.frequency.setValueAtTime(150, ctx.currentTime);
+                        osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.3);
+
+                        // Volume qui diminue rapidement
+                        gain.gain.setValueAtTime(0.5, ctx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+
+                        // Connexion
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+
+                        // Jouer pendant 0.3 secondes
+                        osc.start();
+                        osc.stop(ctx.currentTime + 0.3);
+                    }
+                } catch (e) {
+                    console.error("Audio context error", e);
+                }
+
+                // 2. FLASH ROUGE (Visuel)
+                const overlay = document.createElement('div');
+                overlay.style.position = 'fixed';
+                overlay.style.inset = '0';
+                overlay.style.backgroundColor = 'rgba(220, 38, 38, 0.5)'; // Rouge semi-transparent
+                overlay.style.zIndex = '9999';
+                overlay.style.pointerEvents = 'none'; // Permet de cliquer à travers si besoin
+                overlay.style.transition = 'opacity 0.7s ease-out';
+                
+                document.body.appendChild(overlay);
+
+                // Animation de disparition
+                requestAnimationFrame(() => {
+                    // Forcer le rendu
+                    overlay.getBoundingClientRect(); 
+                    overlay.style.opacity = '0';
+                    setTimeout(() => {
+                        overlay.remove();
+                    }, 300);
+                });
+            },
             showHelp(tense) {
                 const modal = document.getElementById('cj-help-modal');
                 const content = this.rules[tense] || "Pas de règle disponible.";
@@ -632,13 +731,15 @@
             },
 
             endRound() {
+                // --- AJOUT : Sauvegarder le score de cette manche ---
+                this.roundScores.push(this.score);
+
                 this.roundsPlayed++;
 
                 // CHECK HIGH SCORE
                 if (this.score > this.bestScore) {
                     this.bestScore = this.score;
                     localStorage.setItem('acad_cj_best', this.bestScore);
-                    // Optional: Celebration effect here
                     if (window.confetti) confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
                 }
 
@@ -647,7 +748,7 @@
                 } else {
                     this.renderIntro();
                 }
-            }
+            },
         };
 
         const app = {
