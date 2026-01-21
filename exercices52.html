@@ -1,384 +1,339 @@
+<!-- 3. EXERCISES (JSON) - TOTAL REPLACEMENT -->
 <script type="application/json" id="exercise-data">
-    {
-    "interactive_exercises": [
-    {
-    "id": "ex_201",
-    "type": "selection_single",
-    "difficulty": "medium",
-    "instruction": "Identifica la parte del cuadro que está más lejos del espectador.",
-    "prompt": "Dans ce tableau, la montagne est ______.",
-    "content": {
-    "options": [
-    { "id": "opt_1", "text": "au premier plan" },
-    { "id": "opt_2", "text": "à l'arrière-plan" },
-    { "id": "opt_3", "text": "sur le chevalet" }
-    ],
-    "correct_option_id": "opt_2"
-    },
-    "feedback": {
-    "correct": "¡Exacto! 'À l'arrière-plan' es el fondo o segundo plano.",
-    "incorrect": "'Au premier plan' es lo que está más cerca. Lo lejano está 'à l'arrière-plan'."
-    }
-    },
-    {
-    "id": "ex_202",
-    "type": "selection_single",
-    "difficulty": "medium",
-    "instruction": "Selecciona el término correcto para una pintura de frutas u objetos inanimados.",
-    "prompt": "C'est une ______ avec des pommes et des fleurs.",
-    "content": {
-    "options": [
-    { "id": "opt_1", "text": "nature morte" },
-    { "id": "opt_2", "text": "nature vivante" },
-    { "id": "opt_3", "text": "paysage" }
-    ],
-    "correct_option_id": "opt_1"
-    },
-    "feedback": {
-    "correct": "Correcto. 'Nature morte' es el término para 'Bodegón'.",
-    "incorrect": "En francés, un bodegón se llama literalmente 'Naturaleza muerta'."
-    }
-    },
-    {
-    "id": "ex_203",
-    "type": "sentence_builder",
-    "difficulty": "hard",
-    "instruction": "Ordena la descripción: 'Los colores son vivos en primer plano'.",
-    "prompt": null,
-    "content": {
-    "segments": ["Les", "couleurs", "sont", "vives", "au", "premier", "plan", "vifs"],
-    "correct_order": ["Les", "couleurs", "sont", "vives", "au", "premier", "plan"],
-    "distractors": ["vifs"]
-    },
-    "feedback": {
-    "correct": "¡Muy bien! Concordancia correcta (Couleurs = Femenino Plural -> Vives).",
-    "incorrect": "Cuidado con la concordancia: 'Couleur' es femenino, así que usamos 'vives', no 'vifs'."
-    }
-    },
-    {
-    "id": "ex_204",
-    "type": "full_translation",
-    "difficulty": "hard",
-    "instruction": "Traduce la frase: 'Es una obra maestra del impresionismo'.",
-    "prompt": "Es una obra maestra del impresionismo.",
-    "content": {
-    "placeholder": "Escribe la frase en francés...",
-    "accepted_answers": ["C'est un chef-d'œuvre de l'impressionnisme.", "C'est un chef-d'œuvre de l'impressionnisme"],
-    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "œ"]
-    },
-    "feedback": {
-    "correct": "Excellent! C'est un chef-d'œuvre.",
-    "incorrect": "Recuerda la palabra compuesta 'chef-d'œuvre' (obra maestra)."
-    }
-    },
-    {
-    "id": "ex_205",
-    "type": "selection_single",
-    "difficulty": "easy",
-    "instruction": "¿Qué adjetivo describe una imagen que no es nítida?",
-    "prompt": "Cette photo n'est pas nette, elle est ______.",
-    "content": {
-    "options": [
-    { "id": "opt_1", "text": "floue" },
-    { "id": "opt_2", "text": "claire" },
-    { "id": "opt_3", "text": "sombre" }
-    ],
-    "correct_option_id": "opt_1"
-    },
-    "feedback": {
-    "correct": "Correcto. 'Floue' significa borrosa o desenfocada.",
-    "incorrect": "'Sombre' es oscura. Para borroso usamos 'flou' o 'floue'."
-    }
-    },
-    {
-    "id": "ex_206",
-    "type": "true_false",
-    "difficulty": "medium",
-    "instruction": "Verdadero o Falso: 'Un croquis' o 'Un brouillon' artístico se llama 'Une esquisse'.",
-    "prompt": "Une esquisse es la versión final del cuadro.",
-    "content": {
-    "is_correct": false,
-    "explanation": "Falso. 'Une esquisse' es un boceto o borrador, no la obra final."
-    },
-    "feedback": null
-    },
-    {
-    "id": "ex_207",
-    "type": "selection_single",
-    "difficulty": "hard",
-    "instruction": "Elige la estructura correcta para identificar qué es el objeto.",
-    "prompt": "Regarde ! ______ une toile de Monet.",
-    "content": {
-    "options": [
-    { "id": "opt_1", "text": "C'est" },
-    { "id": "opt_2", "text": "Il est" },
-    { "id": "opt_3", "text": "Elle est" }
-    ],
-    "correct_option_id": "opt_1"
-    },
-    "feedback": {
-    "correct": "¡Bien! Usamos 'C'est' + sustantivo para identificar.",
-    "incorrect": "Para decir qué es una cosa (identificación), usamos 'C'est'. 'Il est' se usa más para adjetivos."
-    }
-    },
-    {
-    "id": "ex_208",
-    "type": "sentence_builder",
-    "difficulty": "medium",
-    "instruction": "Forma la frase: 'El pintor usa un pincel'.",
-    "prompt": null,
-    "content": {
-    "segments": ["Le", "peintre", "utilise", "un", "pinceau", "toile"],
-    "correct_order": ["Le", "peintre", "utilise", "un", "pinceau"],
-    "distractors": ["toile"]
-    },
-    "feedback": {
-    "correct": "Parfait. Le peintre utilise un pinceau.",
-    "incorrect": "Sujeto (Le peintre) + Verbo (utilise) + Objeto (un pinceau)."
-    }
-    },
-    {
-    "id": "ex_209",
-    "type": "full_translation",
-    "difficulty": "hard",
-    "instruction": "Traduce: 'La luz y la sombra son importantes.'",
-    "prompt": "La luz y la sombra son importantes.",
-    "content": {
-    "placeholder": "Escribe la frase completa...",
-    "accepted_answers": ["La lumière et l'ombre sont importantes."],
-    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-    },
-    "feedback": {
-    "correct": "Très bien. La lumière et l'ombre.",
-    "incorrect": "Recuerda el vocabulario: Lumière (luz) y Ombre (sombra)."
-    }
-    },
-    {
-    "id": "ex_210",
-    "type": "selection_single",
-    "difficulty": "medium",
-    "instruction": "¿Cómo se llama el evento de inauguración de una exposición?",
-    "prompt": "Ce soir, nous allons au ______ de l'exposition.",
-    "content": {
-    "options": [
-    { "id": "opt_1", "text": "vernissage" },
-    { "id": "opt_2", "text": "paysage" },
-    { "id": "opt_3", "text": "chevalet" }
-    ],
-    "correct_option_id": "opt_1"
-    },
-    "feedback": {
-    "correct": "Correcto. 'Le vernissage' es la inauguración.",
-    "incorrect": "'Paysage' es paisaje y 'Chevalet' es caballete."
-    }
-    },
-    {
-    "id": "ex_211",
-    "type": "sentence_builder",
-    "difficulty": "hard",
-    "instruction": "Ordena la frase descriptiva: 'Hay un árbol a la derecha'.",
-    "prompt": null,
-    "content": {
-    "segments": ["Il", "y", "a", "un", "arbre", "à", "droite", "gauche"],
-    "correct_order": ["Il", "y", "a", "un", "arbre", "à", "droite"],
-    "distractors": ["gauche"]
-    },
-    "feedback": {
-    "correct": "Bien. À droite (a la derecha).",
-    "incorrect": "Usa la expresión 'Il y a' (hay) y la ubicación 'à droite'."
-    }
-    },
-    {
-    "id": "ex_212",
-    "type": "selection_single",
-    "difficulty": "medium",
-    "instruction": "Elige la preposición correcta para 'En el centro'.",
-    "prompt": "Le sujet est ______ centre de la toile.",
-    "content": {
-    "options": [
-    { "id": "opt_1", "text": "au" },
-    { "id": "opt_2", "text": "en" },
-    { "id": "opt_3", "text": "à" }
-    ],
-    "correct_option_id": "opt_1"
-    },
-    "feedback": {
-    "correct": "Correcto: 'Au centre' o 'Au milieu'.",
-    "incorrect": "Decimos 'Au centre' (contracción de à + le)."
-    }
-    },
-    {
-    "id": "ex_213",
-    "type": "true_false",
-    "difficulty": "medium",
-    "instruction": "¿Es correcta la concordancia? 'Les nuances sont vifs'.",
-    "prompt": "Les nuances sont vifs.",
-    "content": {
-    "is_correct": false,
-    "explanation": "Falso. 'Nuance' es femenino, debería ser 'Les nuances sont VIVES'."
-    },
-    "feedback": null
-    },
-    {
-    "id": "ex_214",
-    "type": "full_translation",
-    "difficulty": "hard",
-    "instruction": "Traduce usando 'Il est': 'Es muy conmovedor'.",
-    "prompt": "Es muy conmovedor.",
-    "content": {
-    "placeholder": "Escribe la frase...",
-    "accepted_answers": ["Il est très émouvant.", "C'est très émouvant."],
-    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-    },
-    "feedback": {
-    "correct": "Bien. Il est très émouvant.",
-    "incorrect": "El adjetivo es 'émouvant' (que mueve emociones)."
-    }
-    },
-    {
-    "id": "ex_215",
-    "type": "selection_single",
-    "difficulty": "hard",
-    "instruction": "Identifica el material de pintura que tarda más en secar.",
-    "prompt": "Cet artiste préfère peindre à ______.",
-    "content": {
-    "options": [
-    { "id": "opt_1", "text": "l'huile" },
-    { "id": "opt_2", "text": "l'aquarelle" },
-    { "id": "opt_3", "text": "l'esquisse" }
-    ],
-    "correct_option_id": "opt_1"
-    },
-    "feedback": {
-    "correct": "Exacto. 'L'huile' (el óleo) es la técnica clásica espesa.",
-    "incorrect": "'L'aquarelle' es agua y pigmento. 'L'huile' es aceite."
-    }
-    },
-    {
-    "id": "ex_216",
-    "type": "sentence_builder",
-    "difficulty": "medium",
-    "instruction": "Construye la frase: 'Pon el lienzo sobre el caballete'.",
-    "prompt": null,
-    "content": {
-    "segments": ["Mets", "la", "toile", "sur", "le", "chevalet", "cadre"],
-    "correct_order": ["Mets", "la", "toile", "sur", "le", "chevalet"],
-    "distractors": ["cadre"]
-    },
-    "feedback": {
-    "correct": "Muy bien. Toile (lienzo) + Chevalet (caballete).",
-    "incorrect": "No confundas 'chevalet' (soporte) con 'cadre' (marco decorativo)."
-    }
-    },
-    {
-    "id": "ex_217",
-    "type": "selection_single",
-    "difficulty": "medium",
-    "instruction": "¿Qué palabra describe la representación de una persona?",
-    "prompt": "Ce tableau représente le visage d'une femme. C'est un ______.",
-    "content": {
-    "options": [
-    { "id": "opt_1", "text": "portrait" },
-    { "id": "opt_2", "text": "paysage" },
-    { "id": "opt_3", "text": "cadre" }
-    ],
-    "correct_option_id": "opt_1"
-    },
-    "feedback": {
-    "correct": "Oui! Un portrait.",
-    "incorrect": "Si muestra una persona, es un retrato (portrait), no un paisaje."
-    }
-    },
-    {
-    "id": "ex_218",
-    "type": "full_translation",
-    "difficulty": "hard",
-    "instruction": "Traduce: 'Me gusta el fondo oscuro'.",
-    "prompt": "Me gusta el fondo oscuro.",
-    "content": {
-    "placeholder": "Escribe en francés...",
-    "accepted_answers": ["J'aime l'arrière-plan sombre.", "J'aime le fond sombre."],
-    "special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "ù"]
-    },
-    "feedback": {
-    "correct": "Bien joué. Arrière-plan sombre.",
-    "incorrect": "Usa 'Arrière-plan' para fondo y 'Sombre' para oscuro."
-    }
-    },
-    {
-    "id": "ex_219",
-    "type": "true_false",
-    "difficulty": "easy",
-    "instruction": "¿El 'Cadre' es la tela donde se pinta?",
-    "prompt": "Le cadre est la surface où le peintre peint.",
-    "content": {
-    "is_correct": false,
-    "explanation": "Falso. Donde se pinta es 'La toile'. 'Le cadre' es el marco de madera/metal exterior."
-    },
-    "feedback": null
-    },
-    {
-    "id": "ex_220",
-    "type": "sentence_builder",
-    "difficulty": "hard",
-    "instruction": "Forma la frase: 'Esta exposición es magnífica'. (Usa C'est para presentar).",
-    "prompt": null,
-    "content": {
-    "segments": ["C'est", "une", "exposition", "magnifique", "est"],
-    "correct_order": ["C'est", "une", "exposition", "magnifique"],
-    "distractors": ["est"]
-    },
-    "feedback": {
-    "correct": "Correcto. C'est une exposition magnifique.",
-    "incorrect": "Para presentar el evento usamos 'C'est' + sustantivo + adjetivo."
-    }
-    },
-    {
-        "id": "ex_reading_03",
-        "type": "reading_comprehension",
-        "difficulty": "hard",
-        "instruction": "Lisez la critique d'art, réfléchissez aux questions, puis vérifiez.",
-        "prompt": "Un avis sur l'exposition",
-        "content": {
-          "text": "Hier, j'ai assisté au vernissage de l'artiste Paul Lemoine. C'était magnifique ! J'ai surtout aimé une grande toile à l'huile. <br><br>C'est un paysage mystérieux. Au premier plan, les couleurs sont très vives : on voit des fleurs rouges et oranges. Mais à l'arrière-plan, tout change : la forêt est sombre et un peu floue. Ce contraste est incroyable. <br><br>Beaucoup de gens disent que ce tableau est un chef-d'œuvre. Moi, je trouve qu'il est très émouvant.",
-          "questions": [
-            {
-              "id": "q1",
-              "prompt": "Où le narrateur est-il allé hier ?",
-              "answer": "Il est allé au vernissage de l'artiste Paul Lemoine."
-            },
-            {
-              "id": "q2",
-              "prompt": "Comment est l'arrière-plan du tableau décrit ?",
-              "answer": "Il est sombre et un peu flou."
-            },
-            {
-              "id": "q3",
-              "prompt": "Quelle est l'opinion générale sur ce tableau ?",
-              "answer": "Les gens disent que c'est un chef-d'œuvre."
-            }
-          ]
-        },
-        "feedback": {
-          "correct": "Bravo ! Vous maîtrisez bien le vocabulaire de la description artistique.",
-          "incorrect": null
-        }
-      },
-      {
-        "id": "ex_speaking_03",
-        "type": "expression",
-        "difficulty": "hard",
-        "instruction": "Pratique orale : Parlez sans vous arrêter.",
-        "prompt": "Sujet libre : 4 minutes",
-        "content": {
-            "theme": "Imagina que eres un crítico de arte describiendo tu cuadro favorito (real o inventado). <br><br>Describe qué hay en primer plano y en el fondo (arrière-plan). Habla sobre los colores (vifs, sombres), la técnica (huile, aquarelle) y las emociones que transmite. Usa vocabulario como: <em>toile, lumière, flou, chef-d'œuvre</em>.",
-            "duration_seconds": 240
-        },
-        "feedback": {
-          "correct": "Excellent ! Décrire l'art demande de la précision (premier plan/arrière-plan) et de l'émotion.",
-          "incorrect": null
-        }
-      }
-    ]
-    }
-    </script>
+{
+"interactive_exercises": [
+{
+"id": "ex_fut_1",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "Completa la frase con el futuro de 'ALLER' (ir).",
+"prompt": "Demain, nous ______ au musée d'Orsay.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "allons" },
+{ "id": "opt_2", "text": "irons" },
+{ "id": "opt_3", "text": "iront" }
+],
+"correct_option_id": "opt_2"
+},
+"feedback": {
+"correct": "¡Correcto! 'Irons' es la primera persona del plural del futuro de 'aller'.",
+"incorrect": "'Allons' es presente. La raíz de 'aller' en futuro es 'ir-'."
+}
+},
+{
+"id": "ex_fut_2",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "Conjuga 'ÊTRE' en futuro para la 3ra persona plural.",
+"prompt": "Ces tableaux ______ des chefs-d'œuvre éternels.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "seront" },
+{ "id": "opt_2", "text": "seronts" },
+{ "id": "opt_3", "text": "seron" }
+],
+"correct_option_id": "opt_1"
+},
+"feedback": {
+"correct": "¡Bien! La terminación para 'ils/elles' siempre es -ont.",
+"incorrect": "Cuidado, la terminación es -ont. La opción 2 tiene una 's' extra que no existe en el verbo."
+}
+},
+{
+"id": "ex_fut_3",
+"type": "sentence_builder",
+"difficulty": "hard",
+"instruction": "Ordena la frase: 'Yo pintaré un paisaje mañana'.",
+"prompt": null,
+"content": {
+"segments": ["Je", "peindrai", "un", "paysage", "demain", "peindrais"],
+"correct_order": ["Je", "peindrai", "un", "paysage", "demain"],
+"distractors": ["peindrais"]
+},
+"feedback": {
+"correct": "Excelente. Recuerda: Peindre -> Peindr- + ai.",
+"incorrect": "'Peindrais' (con s) sería condicional. En futuro es 'peindrai'."
+}
+},
+{
+"id": "ex_fut_4",
+"type": "full_translation",
+"difficulty": "hard",
+"instruction": "Traduce al francés: 'Tú verás la luz en el cuadro'.",
+"prompt": "Tú verás la luz en el cuadro.",
+"content": {
+"placeholder": "Tu...",
+"accepted_answers": ["Tu verras la lumière dans le tableau.", "Tu verras la lumière sur le tableau"],
+"special_characters": ["é", "è", "à", "ç", "ê", "î", "ô", "œ"]
+},
+"feedback": {
+"correct": "Très bien ! Voir -> verras.",
+"incorrect": "La raíz de 'voir' es 'verr-' + terminación 'as'."
+}
+},
+{
+"id": "ex_fut_5",
+"type": "selection_single",
+"difficulty": "easy",
+"instruction": "Elige la terminación correcta para 'Elle' en futuro.",
+"prompt": "Elle choisir______ une toile magnifique.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "ai" },
+{ "id": "opt_2", "text": "as" },
+{ "id": "opt_3", "text": "a" }
+],
+"correct_option_id": "opt_3"
+},
+"feedback": {
+"correct": "¡Exacto! Elle/Il lleva siempre la terminación -a.",
+"incorrect": "Para 'Elle', la terminación es simplemente -a."
+}
+},
+{
+"id": "ex_fut_6",
+"type": "true_false",
+"difficulty": "medium",
+"instruction": "¿Es correcta esta frase? 'Nous aurons beaucoup de temps'.",
+"prompt": "La frase significa 'Tendremos mucho tiempo'.",
+"content": {
+"is_correct": true,
+"explanation": "Correcto. 'Aurons' es el futuro de 'Avoir' (tener)."
+},
+"feedback": null
+},
+{
+"id": "ex_fut_7",
+"type": "sentence_builder",
+"difficulty": "medium",
+"instruction": "Forma la frase: 'Los colores serán vivos'.",
+"prompt": null,
+"content": {
+"segments": ["Les", "couleurs", "seront", "vives", "sera"],
+"correct_order": ["Les", "couleurs", "seront", "vives"],
+"distractors": ["sera"]
+},
+"feedback": {
+"correct": "Bravo. Colores (plural) -> seront.",
+"incorrect": "Usa 'seront' para el plural de 'couleurs'."
+}
+},
+{
+"id": "ex_fut_8",
+"type": "full_translation",
+"difficulty": "hard",
+"instruction": "Traduce: '¿Qué haremos en el museo?'",
+"prompt": "¿Qué haremos en el museo?",
+"content": {
+"placeholder": "Escribe la pregunta...",
+"accepted_answers": ["Qu'est-ce que nous ferons au musée ?", "Que ferons-nous au musée ?", "Que ferons nous au musee"],
+"special_characters": ["é", "è", "à", "ç", "ê"]
+},
+"feedback": {
+"correct": "Parfait. Hacer -> Faire -> Ferons.",
+"incorrect": "La raíz de 'faire' es 'fer-'."
+}
+},
+{
+"id": "ex_fut_9",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "Si el cuadro es borroso, ¿qué dirá el crítico en el futuro?",
+"prompt": "L'image ______ floue.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "sera" },
+{ "id": "opt_2", "text": "seras" },
+{ "id": "opt_3", "text": "serai" }
+],
+"correct_option_id": "opt_1"
+},
+"feedback": {
+"correct": "Correcto. 'L'image' es 3ra persona singular (elle).",
+"incorrect": "La terminación para 'Elle' (l'image) es -a."
+}
+},
+{
+"id": "ex_fut_10",
+"type": "sentence_builder",
+"difficulty": "hard",
+"instruction": "Ordena: 'Ellos admirarán el primer plano'.",
+"prompt": null,
+"content": {
+"segments": ["Ils", "admireront", "le", "premier", "plan", "admirerons"],
+"correct_order": ["Ils", "admireront", "le", "premier", "plan"],
+"distractors": ["admirerons"]
+},
+"feedback": {
+"correct": "¡Muy bien! Ils -> -ont.",
+"incorrect": "-ons es para 'nous'. Para 'ils' es -ont."
+}
+},
+{
+"id": "ex_fut_11",
+"type": "selection_single",
+"difficulty": "hard",
+"instruction": "Conjuga 'VENIR' (venir) en futuro (raíz irregular: viendr-).",
+"prompt": "Emily ______ au vernissage avec nous.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "viendra" },
+{ "id": "opt_2", "text": "viendras" },
+{ "id": "opt_3", "text": "viendrai" }
+],
+"correct_option_id": "opt_1"
+},
+"feedback": {
+"correct": "¡Exacto! Emily (elle) viendra.",
+"incorrect": "La raíz es viendr- y la terminación para ella es -a."
+}
+},
+{
+"id": "ex_fut_12",
+"type": "true_false",
+"difficulty": "easy",
+"instruction": "¿La terminación de 'Je' en futuro es '-ais'?",
+"prompt": "En futuro simple, 'Je' termina en '-ai'.",
+"content": {
+"is_correct": true,
+"explanation": "Verdadero. '-ai' es futuro, '-ais' es imperfecto o condicional."
+},
+"feedback": null
+},
+{
+"id": "ex_fut_13",
+"type": "full_translation",
+"difficulty": "hard",
+"instruction": "Traduce: 'Ustedes comprarán un pincel'.",
+"prompt": "Ustedes comprarán un pincel.",
+"content": {
+"placeholder": "Vous...",
+"accepted_answers": ["Vous achèterez un pinceau.", "Vous acheterez un pinceau"],
+"special_characters": ["è", "é", "à", "ç"]
+},
+"feedback": {
+"correct": "Bien. Acheter -> Achèterez.",
+"incorrect": "Para 'Vous', la terminación siempre es -ez."
+}
+},
+{
+"id": "ex_fut_14",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "Completa: 'El espectador (descubrir) la obra'.",
+"prompt": "Le spectateur ______ l'œuvre.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "découvrira" },
+{ "id": "opt_2", "text": "découvriront" },
+{ "id": "opt_3", "text": "découvrirai" }
+],
+"correct_option_id": "opt_1"
+},
+"feedback": {
+"correct": "¡Sí! El espectador (él) -> -a.",
+"incorrect": "Sujeto singular -> terminación -a."
+}
+},
+{
+"id": "ex_fut_15",
+"type": "sentence_builder",
+"difficulty": "hard",
+"instruction": "Ordena: 'Cambiaremos el marco del lienzo'.",
+"prompt": null,
+"content": {
+"segments": ["Nous", "changerons", "le", "cadre", "de", "la", "toile", "changerez"],
+"correct_order": ["Nous", "changerons", "le", "cadre", "de", "la", "toile"],
+"distractors": ["changerez"]
+},
+"feedback": {
+"correct": "Excelente uso de vocabulario y gramática.",
+"incorrect": "Nous -> -ons."
+}
+},
+{
+"id": "ex_fut_16",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "¿Cómo se dice 'Tú tendrás'?",
+"prompt": "Tu ______ une idée géniale.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "auras" },
+{ "id": "opt_2", "text": "aurai" },
+{ "id": "opt_3", "text": "auront" }
+],
+"correct_option_id": "opt_1"
+},
+"feedback": {
+"correct": "Correcto. Avoir -> Auras.",
+"incorrect": "Tu -> -as."
+}
+},
+{
+"id": "ex_fut_17",
+"type": "full_translation",
+"difficulty": "hard",
+"instruction": "Traduce: 'Ella buscará el fondo oscuro'.",
+"prompt": "Ella buscará el fondo oscuro.",
+"content": {
+"placeholder": "Elle...",
+"accepted_answers": ["Elle cherchera l'arrière-plan sombre.", "Elle cherchera le fond sombre."],
+"special_characters": ["é", "è", "à", "ç"]
+},
+"feedback": {
+"correct": "¡Muy bien!",
+"incorrect": "Buscar -> Chercher. Futuro -> Cherchera."
+}
+},
+{
+"id": "ex_fut_18",
+"type": "true_false",
+"difficulty": "medium",
+"instruction": "¿Es correcto? 'Je prendrai des photos'.",
+"prompt": "Prendre (tomar) en futuro para 'Je' es 'Prendrai'.",
+"content": {
+"is_correct": true,
+"explanation": "Sí. Quitamos la 'e' de 'prendre' y añadimos 'ai'."
+},
+"feedback": null
+},
+{
+"id": "ex_fut_19",
+"type": "selection_single",
+"difficulty": "medium",
+"instruction": "Elija el futuro de 'VOIR' para 'Ils'.",
+"prompt": "Ils ______ les nénuphars de Monet.",
+"content": {
+"options": [
+{ "id": "opt_1", "text": "verront" },
+{ "id": "opt_2", "text": "voiront" },
+{ "id": "opt_3", "text": "verrons" }
+],
+"correct_option_id": "opt_1"
+},
+"feedback": {
+"correct": "Correcto. Ver -> Verront.",
+"incorrect": "La raíz es irregular: 'verr-'."
+}
+},
+{
+"id": "ex_fut_20",
+"type": "sentence_builder",
+"difficulty": "hard",
+"instruction": "Forma la frase: 'Mañana seré una artista'.",
+"prompt": null,
+"content": {
+"segments": ["Demain", "je", "serai", "une", "artiste", "suis"],
+"correct_order": ["Demain", "je", "serai", "une", "artiste"],
+"distractors": ["suis"]
+},
+"feedback": {
+"correct": "¡Perfecto! Has dominado el futuro de être.",
+"incorrect": "Usa 'serai' para el futuro."
+}
+}
+]
+}
+</script>
