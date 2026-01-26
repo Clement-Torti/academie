@@ -493,128 +493,111 @@
 
                 aArea.innerHTML = '';
 
+                // 1. Determinar Nivel y Tiempos
                 const level = app.getHighestCompletedLesson();
-
-                // Map: tense → minimum lesson required
-                const unlock = {
-                    present: 0,
-                    pc: 22,
-                    futur_proche: 25, 
-                    imparfait: 31,
-                    futur: 52,
-                    imperatif: 37,
-                    subjonctif: 61,
-                    conditionnel: 67
-                };
-
-                // Filter tenses based on level
+                const unlock = { present: 0, pc: 22, futur_proche: 25, imparfait: 31, futur: 52, imperatif: 37, subjonctif: 61, conditionnel: 67 };
                 const availableTenses = this.tenses.filter(t => level >= unlock[t]);
-                // Fallback safety: if somehow empty, default to present
-                const tense = availableTenses.length > 0
-                    ? availableTenses[Math.floor(Math.random() * availableTenses.length)]
-                    : 'present';
+                const tense = availableTenses.length > 0 ? availableTenses[Math.floor(Math.random() * availableTenses.length)] : 'present';
 
+                // 2. Seleccionar Verbo y Pronombre
                 const keys = Object.keys(this.db);
                 const key = keys[Math.floor(Math.random() * keys.length)];
-
                 const isNeg = Math.random() < 0.25;
-
                 let pIdx = Math.floor(Math.random() * 6);
 
                 if (tense === 'imperatif') {
                     const valid = [1, 3, 4];
-                    if (this.db[key].imperatif && this.db[key].imperatif[1] === "-") {
-                        this.nextCard();
-                        return;
-                    }
+                    if (this.db[key].imperatif && this.db[key].imperatif[1] === "-") { this.nextCard(); return; }
                     pIdx = valid[Math.floor(Math.random() * valid.length)];
                 }
 
-                this.currentCard = { key, tense, pIdx, isNeg };
+                // 3. Lógica de Probabilidad (70% Standard, 20% Reverse, 10% Table)
+                const roll = Math.random();
+                let mode = 'standard';
+                if (roll > 0.85) mode = 'table';       // 15%
+                else if (roll > 0.60) mode = 'reverse'; // 25%
+                // else standard (60%)
 
-                const formatTense = t => ({
-                    present: 'Présent',
-                    pc: 'Passé Comp.',
-                    imparfait: 'Imparfait',
-                    futur_proche: 'Futur Proche', 
-                    futur: 'Futur',
-                    imperatif: 'Impératif',
-                    subjonctif: 'Subjonctif',
-                    conditionnel: 'Conditionnel'
-                }[t] || t);
+                this.currentCard = { key, tense, pIdx, isNeg, mode };
+                const formatTense = t => ({ present: 'Présent', pc: 'Passé Comp.', imparfait: 'Imparfait', futur_proche: 'Futur Proche', futur: 'Futur', imperatif: 'Impératif', subjonctif: 'Subjonctif', conditionnel: 'Conditionnel' }[t] || t);
 
-                qArea.innerHTML = `
-            <div class="conj-card ${isNeg ? 'is-negative' : ''} shadow-sm">
-                <div class="flex justify-center gap-2 mb-4 flex-wrap">
-                    <div class="tense-badge" onclick="conjApp.showHelp('${tense}')" title="Voir la règle">
-                        <i class="fa-regular fa-lightbulb mr-1"></i> ${formatTense(tense)}
-                    </div>
-                    <div class="neg-badge" style="display:${isNeg ? 'inline-flex' : 'none'}">NÉGATION</div>
-                </div>
-                <div class="verb-source">${key}</div>
-                <div class="text-gray-600">Pronom : <strong class="text-frBlue text-xl ml-1">${this.pronounsEs[pIdx]}</strong></div>
-            </div>
-        `;
+                // 4. Renderizar Pregunta según el MODO
+                let htmlContent = '';
+
+                if (mode === 'standard') {
+                    // MODO TRADICIONAL (Español -> Francés)
+                    htmlContent = `
+                        <div class="conj-card ${isNeg ? 'is-negative' : ''} shadow-sm">
+                            <div class="flex justify-center gap-2 mb-4 flex-wrap">
+                                <div class="tense-badge" onclick="conjApp.showHelp('${tense}')"><i class="fa-regular fa-lightbulb mr-1"></i> ${formatTense(tense)}</div>
+                                <div class="neg-badge" style="display:${isNeg ? 'inline-flex' : 'none'}">NÉGATION</div>
+                            </div>
+                            <div class="verb-source">${key}</div>
+                            <div class="text-gray-600">Pronom : <strong class="text-frBlue text-xl ml-1">${this.pronounsEs[pIdx]}</strong></div>
+                        </div>`;
+                } 
+                else if (mode === 'reverse') {
+                    // MODO INVERSO (Francés conjugado -> Analizar)
+                    const conjVerb = this.getConjugation(key, tense, pIdx, isNeg);
+                    let fullPhrase = conjVerb;
+                    
+                    if (tense !== 'imperatif') {
+                        const startsVowel = w => ['a', 'e', 'i', 'o', 'u', 'y', 'é', 'ê', 'h'].includes(w.charAt(0).toLowerCase());
+                        let pron = this.pronounsFr[pIdx].split('/')[0];
+                        if (!isNeg && pIdx === 0 && startsVowel(conjVerb)) fullPhrase = `J'${conjVerb}`;
+                        else fullPhrase = `${pron} ${conjVerb}`;
+                    }
+
+                    // Preparamos el texto seguro para el onclick
+                    const safeText = fullPhrase.replace(/'/g, "\\'");
+
+                    htmlContent = `
+                        <div class="conj-card bg-white border-2 border-gold shadow-md">
+                            <div class="text-xs font-bold text-gold uppercase tracking-widest mb-2"><i class="fa-solid fa-language"></i> Traduire en Espagnol</div>
+                            
+                            <!-- Texto + Icono alineados dentro de la tarjeta -->
+                            <div class="flex items-center justify-center gap-3 py-4">
+                                <span class="text-3xl font-serif font-bold text-frBlue">${fullPhrase}</span>
+                                <button onclick="app.speakFrench('${safeText}')" class="w-8 h-8 flex items-center justify-center rounded-full bg-blue-50 text-frBlue hover:bg-frBlue hover:text-white transition">
+                                    <i class="fa-solid fa-volume-high text-sm"></i>
+                                </button>
+                            </div>
+
+                             <div class="text-xs text-gray-400 italic">¿Qué tiempo, pronombre y verbo es?</div>
+                        </div>`;
+
+                    setTimeout(() => app.speakFrench(fullPhrase), 200);
+                }
+                else if (mode === 'table') {
+                    // MODO TABLA (Completar hueco)
+                    htmlContent = `
+                        <div class="conj-card bg-gray-50 border-2 border-gray-200">
+                             <div class="tense-badge mb-3" onclick="conjApp.showHelp('${tense}')">${formatTense(tense)}</div>
+                             <div class="text-sm text-gray-500 mb-2 font-bold uppercase">Complétez la terminaison :</div>
+                             <div class="verb-source text-lg mb-4">${key}</div>
+                             <div id="cj-table-placeholder" class="bg-white rounded-lg p-2 shadow-inner border border-gray-200 text-left text-sm">
+                                ${this.renderTable(key, tense, isNeg, pIdx, true)} <!-- True = ocultar respuesta -->
+                             </div>
+                        </div>`;
+                }
+
+                qArea.innerHTML = htmlContent;
 
                 bArea.innerHTML = `
-            <button onclick="conjApp.reveal()" class="w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-btn active:translate-y-1 transition uppercase tracking-widest text-sm hover:bg-blue-900">
-                Vérifier
-            </button>
-        `;
+                    <button onclick="conjApp.reveal()" class="w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-btn active:translate-y-1 transition uppercase tracking-widest text-sm hover:bg-blue-900">
+                        Vérifier
+                    </button>`;
             },
 
 
             reveal() {
-                const { key, tense, pIdx, isNeg } = this.currentCard;
-                const data = this.db[key];
-
-                // --- 1. CONJUGAISON CONSTRUCTION LOGIC ---
-                const startsVowel = w => ['a', 'e', 'i', 'o', 'u', 'y', 'é', 'ê', 'h'].includes(w.charAt(0).toLowerCase());
-
-                let conj = "";
-
-                // --- LOGIQUE FUTUR PROCHE (AJOUT) ---
-                if (tense === 'futur_proche') {
-                    const aller = ["vais", "vas", "va", "allons", "allez", "vont"];
-                    const aux = aller[pIdx];
-                    const infinitif = data.fr; 
-
-                    if (isNeg) {
-                        // Gestion du n' devant voyelle (allons/allez)
-                        const ne = startsVowel(aux) ? "n'" : "ne ";
-                        conj = `${ne}${aux} pas ${infinitif}`;
-                    } else {
-                        conj = `${aux} ${infinitif}`;
-                    }
-                } 
-                // --- FIN LOGIQUE FUTUR PROCHE ---
+                const { key, tense, pIdx, isNeg, mode } = this.currentCard;
                 
-                // --- LOGIQUE EXISTANTE POUR LES AUTRES TEMPS ---
-                else {
-                    // Get raw conjugation based on tense
-                    let raw = (tense === 'pc') ? data.pc[pIdx] : (tense === 'imperatif' ? data.imperatif[pIdx] : data[tense][pIdx]);
-
-                    if (tense === 'pc') {
-                        const [aux, ...rest] = raw.split(' ');
-                        const pp = rest.join(' ');
-                        if (isNeg) {
-                            const ne = startsVowel(aux) ? "n'" : "ne ";
-                            conj = `${ne}${aux} pas ${pp}`;
-                        } else conj = raw;
-                    } else if (tense === 'imperatif') {
-                        if (isNeg) {
-                            const ne = startsVowel(raw) ? "N'" : "Ne ";
-                            conj = `${ne}${raw.toLowerCase()} pas !`;
-                        } else conj = raw + " !";
-                    } else {
-                        if (isNeg) {
-                            const ne = startsVowel(raw) ? "n'" : "ne ";
-                            conj = `${ne}${raw} pas`;
-                        } else conj = raw;
-                    }
-                }
-
-                // Add Pronoun (if not Imperative)
+                // Obtenemos la conjugación pura
+                const conj = this.getConjugation(key, tense, pIdx, isNeg);
+                
+                // Construimos la frase completa para el audio/display
+                const startsVowel = w => ['a', 'e', 'i', 'o', 'u', 'y', 'é', 'ê', 'h'].includes(w.charAt(0).toLowerCase());
                 let full = conj;
                 if (tense !== 'imperatif') {
                     let pron = this.pronounsFr[pIdx].split('/')[0];
@@ -622,25 +605,69 @@
                     else full = `${pron} ${conj}`;
                 }
 
-                // --- 2. UPDATE DOM ---
+                // Prepare DOM
                 const aArea = document.getElementById('cj-answer-container');
                 const bArea = document.getElementById('cj-btn-area');
-
-                // Prepare text for the onclick attribute (escape apostrophes)
                 const safeText = full.replace(/'/g, "\\'");
+                
+                let answerHTML = '';
 
-                // Insert HTML (Includes a click-to-replay feature)
-                aArea.innerHTML = `
-                    <div class="text-center animate-slide-in">
-                        <div class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Réponse</div>
-                        <div class="correct-answer shadow-sm border-l-4 border-green-500 cursor-pointer hover:bg-green-100 transition" onclick="app.speakFrench('${safeText}')">
-                            ${full} <i class="fa-solid fa-volume-high text-sm opacity-50 ml-2"></i>
-                        </div>
-                        <div class="text-gray-400 text-lg italic mt-2"><strong> ${data.fr.toUpperCase()} </strong></div>
-                    </div>
-                `;
+                // --- Lógica de renderizado de RESPUESTA según Modo ---
+                if (mode === 'standard') {
+                    // Standard: Mostrar frase en Francés
+                     answerHTML = `
+                        <div class="text-center animate-slide-in">
+                            <div class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Réponse</div>
+                            <div class="correct-answer shadow-sm border-l-4 border-green-500 cursor-pointer hover:bg-green-100 transition" onclick="app.speakFrench('${safeText}')">
+                                ${full} <i class="fa-solid fa-volume-high text-sm opacity-50 ml-2"></i>
+                            </div>
+                        </div>`;
+                } 
+                else if (mode === 'reverse') {
+                    // Reverse: Mostrar datos en Español
+                    const formatTenseEs = t => ({ present: 'Presente', pc: 'Pasado Compuesto', imparfait: 'Imperfecto', futur_proche: 'Futuro Próximo', futur: 'Futuro', imperatif: 'Imperativo', subjonctif: 'Subjuntivo', conditionnel: 'Condicional' }[t] || t);
+                    
+                    answerHTML = `
+                        <div class="text-center animate-slide-in">
+                             <div class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Analyse Correcte</div>
+                             <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-left inline-block w-full">
+                                <div class="flex justify-between border-b border-gray-100 pb-2 mb-2">
+                                    <span class="text-gray-500 text-xs font-bold uppercase">Temps</span>
+                                    <span class="text-frBlue font-bold">${formatTenseEs(tense)}</span>
+                                </div>
+                                <div class="flex justify-between border-b border-gray-100 pb-2 mb-2">
+                                    <span class="text-gray-500 text-xs font-bold uppercase">Pronom</span>
+                                    <span class="text-frBlue font-bold">${this.pronounsEs[pIdx]}</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-500 text-xs font-bold uppercase">Verbe</span>
+                                    <span class="text-green-600 font-bold text-lg uppercase">${key}</span>
+                                </div>
+                             </div>
+                        </div>`;
+                } 
+                else if (mode === 'table') {
+                    // Table: Rellenar la tabla completa
+                    // Actualizamos el placeholder visualmente con la tabla llena
+                    const tableDiv = document.getElementById('cj-table-placeholder');
+                    if(tableDiv) {
+                        tableDiv.innerHTML = this.renderTable(key, tense, isNeg, pIdx, false); // False = mostrar todo
+                        tableDiv.classList.add('ring-2', 'ring-green-400', 'bg-green-50');
+                    }
+                    
+                    answerHTML = `
+                        <div class="text-center animate-slide-in mt-2">
+                            <div class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Mot manquant</div>
+                            <div class="text-xl font-bold text-green-600 bg-white px-4 py-2 rounded-lg shadow-sm border border-green-200 inline-block">
+                                ${full}
+                            </div>
+                            <div class="mt-2"><button onclick="app.speakFrench('${safeText}')" class="w-8 h-8 bg-frBlue text-white rounded-full"><i class="fa-solid fa-volume-high text-xs"></i></button></div>
+                        </div>`;
+                }
 
-                // --- CHANGED: TWO BUTTONS (SUCCESS / FAIL) ---
+                aArea.innerHTML = answerHTML;
+
+                // --- Botones de resultado (Igual para todos) ---
                 bArea.innerHTML = `
                     <div class="flex gap-3">
                         <button onclick="conjApp.handleResult(false)" class="flex-1 bg-white border-2 border-red-100 text-red-500 font-bold py-4 rounded-xl shadow-btn active:translate-y-1 transition uppercase tracking-widest text-xs hover:bg-red-50 hover:border-red-300">
@@ -649,16 +676,14 @@
                         <button onclick="conjApp.handleResult(true)" class="flex-1 bg-green-500 text-white font-bold py-4 rounded-xl shadow-btn active:translate-y-1 transition uppercase tracking-widest text-xs hover:bg-green-600">
                             <i class="fa-solid fa-check mr-1"></i> J'ai réussi
                         </button>
-                    </div>
-                `;
-
-                // Auto-scroll on mobile
+                    </div>`;
+                
                 bArea.scrollIntoView({ behavior: 'smooth', block: 'end' });
 
-                // --- 3. TRIGGER AUTOMATIC SPEECH ---
-                setTimeout(() => {
-                    app.speakFrench(full);
-                }, 50);
+                // Audio automático solo si es modo standard (los otros requieren análisis primero)
+                if(mode === 'standard' || mode === 'table') {
+                    setTimeout(() => { app.speakFrench(full); }, 50);
+                }
             },
 
             // --- NEW METHOD: Handle Success/Fail logic ---
@@ -770,6 +795,93 @@
                     this.renderIntro();
                 }
             },
+
+            getConjugation(key, tense, pIdx, isNeg) {
+                const data = this.db[key];
+                const startsVowel = w => ['a', 'e', 'i', 'o', 'u', 'y', 'é', 'ê', 'h'].includes(w.charAt(0).toLowerCase());
+                let conj = "";
+                let raw = "";
+
+                // Lógica de obtención del verbo crudo
+                if (tense === 'futur_proche') {
+                    const aller = ["vais", "vas", "va", "allons", "allez", "vont"];
+                    const aux = aller[pIdx];
+                    const infinitif = data.fr;
+                    if (isNeg) {
+                        const ne = startsVowel(aux) ? "n'" : "ne ";
+                        return `${ne}${aux} pas ${infinitif}`; // Return directo para futur proche neg
+                    } else {
+                        return `${aux} ${infinitif}`;
+                    }
+                } else if (tense === 'pc') {
+                    raw = data.pc[pIdx];
+                } else if (tense === 'imperatif') {
+                    raw = data.imperatif[pIdx];
+                } else {
+                    raw = data[tense][pIdx];
+                }
+
+                // Lógica de construcción (Negación y Pronombres)
+                if (tense === 'pc') {
+                    const [aux, ...rest] = raw.split(' ');
+                    const pp = rest.join(' ');
+                    if (isNeg) {
+                        const ne = startsVowel(aux) ? "n'" : "ne ";
+                        conj = `${ne}${aux} pas ${pp}`;
+                    } else conj = raw;
+                } else if (tense === 'imperatif') {
+                    if (isNeg) {
+                        const ne = startsVowel(raw) ? "N'" : "Ne ";
+                        conj = `${ne}${raw.toLowerCase()} pas !`;
+                    } else conj = raw + " !";
+                } else {
+                    if (isNeg) {
+                        const ne = startsVowel(raw) ? "n'" : "ne ";
+                        conj = `${ne}${raw} pas`;
+                    } else conj = raw;
+                }
+
+                return conj; // Devuelve solo la parte verbal conjugada
+            },
+
+            renderTable(key, tense, isNeg, targetIdx, hideTarget) {
+                let html = '<table class="w-full">';
+                const validImp = [1, 3, 4]; // Tu, Nous, Vous
+                
+                for(let i=0; i<6; i++) {
+                    if(tense === 'imperatif' && !validImp.includes(i)) continue;
+                    
+                    const verbForm = this.getConjugation(key, tense, i, isNeg);
+                    const pron = tense === 'imperatif' ? '' : this.pronounsFr[i].split('/')[0];
+                    
+                    const pronDisplay = tense === 'imperatif' 
+                        ? (i===1 ? '(Tu)' : (i===3 ? '(Nous)' : '(Vous)')) 
+                        : pron;
+
+                    // Detectar J' vs Je antes del if para usarlo en ambos casos
+                    const startsVowel = ['a', 'e', 'i', 'o', 'u', 'y', 'é'].includes(verbForm.charAt(0).toLowerCase());
+                    const isElision = tense !== 'imperatif' && !isNeg && i === 0 && startsVowel;
+
+                    let content = '';
+                    if (hideTarget && i === targetIdx) {
+                        // CAMBIO: Mostrar pronombre + hueco vacío
+                        const prefix = isElision ? "J'" : pronDisplay;
+                        const space = isElision ? "" : " "; 
+                        content = `<span class="text-gray-500 font-bold">${prefix}</span>${space}<span class="text-frRed font-bold bg-red-50 px-2 py-0.5 rounded border border-red-200 tracking-widest">________</span>`;
+                    } else {
+                        if(isElision) {
+                            content = `<span class="text-gray-400">J'</span><span class="font-bold text-frBlue">${verbForm}</span>`;
+                        } else {
+                            content = `<span class="text-gray-400">${pronDisplay}</span> <span class="font-bold text-frBlue">${verbForm}</span>`;
+                        }
+                    }
+
+                    html += `<tr class="${i === targetIdx ? 'bg-yellow-50' : ''} border-b border-gray-100 last:border-0"><td class="py-2 px-2">${content}</td></tr>`;
+                }
+                html += '</table>';
+                return html;
+            },
+
         };
 
         const app = {
