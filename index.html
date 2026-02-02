@@ -329,13 +329,13 @@
             maxRounds: 2,
             score: 0,
             bestScore: parseInt(localStorage.getItem('acad_cj_best') || '0'), // Load best score
-            timer: 60,
+            timer: 70,
             interval: null,
             currentCard: null,
             tenses: ['present', 'pc', 'imparfait', 'futur_proche', 'futur', 'subjonctif', 'conditionnel', 'imperatif'], 
 
-            pronounsEs: ["Yo", "Tú", "Él/Ella/Usted", "Nosotros", "Vosotros", "Ellos/Ustedes"],
-            pronounsFr: ["Je", "Tu", "Il/Elle", "Nous", "Vous", "Ils/Elles"],
+            pronounsEs: ["Yo", "Tú", "Él", "Nosotros", "Vosotros", "Ellos"],
+            pronounsFr: ["Je", "Tu", "Il", "Nous", "Vous", "Ils/Elles"],
 
             rules: {
                 "present": "Action actuelle / vérité générale.<br><div class='cj-rule-box'><strong>Formation :</strong> Radical + terminaisons selon le groupe.<br><table class='cj-table'><thead><tr><th></th><th>1er groupe<br>(-ER)</th><th>2e groupe<br>(-IR)</th><th>3e groupe<br>(modèle -RE)</th></tr></thead><tbody><tr><td>je</td><td>-e</td><td>-is</td><td>-s</td></tr><tr><td>tu</td><td>-es</td><td>-is</td><td>-s</td></tr><tr><td>il / elle</td><td>-e</td><td>-it</td><td>—</td></tr><tr><td>nous</td><td>-ons</td><td>-issons</td><td>-ons</td></tr><tr><td>vous</td><td>-ez</td><td>-issez</td><td>-ez</td></tr><tr><td>ils / elles</td><td>-ent</td><td>-issent</td><td>-ent</td></tr></tbody></table><strong>Négation :</strong> Je <em>ne</em> parle <em>pas</em>.</div>",
@@ -485,7 +485,7 @@
         `;
             },
 
-            nextCard() {
+           nextCard() {
                 const qArea = document.getElementById('cj-question-area');
                 const aArea = document.getElementById('cj-answer-container');
                 const bArea = document.getElementById('cj-btn-area');
@@ -493,51 +493,72 @@
 
                 aArea.innerHTML = '';
 
-                // 1. Determinar Nivel y Tiempos
+                // 1. Determine Level and Tenses
                 const level = app.getHighestCompletedLesson();
                 const unlock = { present: 0, pc: 22, futur_proche: 25, imparfait: 31, futur: 52, imperatif: 37, subjonctif: 61, conditionnel: 67 };
                 const availableTenses = this.tenses.filter(t => level >= unlock[t]);
                 const tense = availableTenses.length > 0 ? availableTenses[Math.floor(Math.random() * availableTenses.length)] : 'present';
 
-                // 2. Seleccionar Verbo y Pronombre
+                // 2. Select Verb and Pronoun
                 const keys = Object.keys(this.db);
                 const key = keys[Math.floor(Math.random() * keys.length)];
                 const isNeg = Math.random() < 0.25;
                 let pIdx = Math.floor(Math.random() * 6);
 
                 if (tense === 'imperatif') {
+                    // Check availability in French AND Spanish data just to be safe
                     const valid = [1, 3, 4];
-                    if (this.db[key].imperatif && this.db[key].imperatif[1] === "-") { this.nextCard(); return; }
+                    if ((this.db[key].imperatif && this.db[key].imperatif[1] === "-") || !this.db[key].es) { 
+                        this.nextCard(); return; 
+                    }
                     pIdx = valid[Math.floor(Math.random() * valid.length)];
                 }
 
-                // 3. Lógica de Probabilidad (70% Standard, 20% Reverse, 10% Table)
+                // 3. Probability Logic
                 const roll = Math.random();
                 let mode = 'standard';
-                if (roll > 0.85) mode = 'table';       // 15%
-                else if (roll > 0.60) mode = 'reverse'; // 25%
-                // else standard (60%)
+                if (roll > 0.85) mode = 'table';       
+                else if (roll > 0.60) mode = 'reverse'; 
 
                 this.currentCard = { key, tense, pIdx, isNeg, mode };
                 const formatTense = t => ({ present: 'Présent', pc: 'Passé Comp.', imparfait: 'Imparfait', futur_proche: 'Futur Proche', futur: 'Futur', imperatif: 'Impératif', subjonctif: 'Subjonctif', conditionnel: 'Conditionnel' }[t] || t);
 
-                // 4. Renderizar Pregunta según el MODO
+                // 4. Render Question
                 let htmlContent = '';
 
                 if (mode === 'standard') {
-                    // MODO TRADICIONAL (Español -> Francés)
+                    // MODO STANDARD: Mostrar frase completa en Español
+                    const verbEs = this.getSpanishConjugation(key, tense, pIdx, isNeg);
+                    const pronEs = this.pronounsEs[pIdx];
+                    
+                    // Build full Spanish phrase
+                    let fullEs = "";
+                    if (tense === 'imperatif') {
+                        // Imperative usually doesn't have pronoun, or it's "¡Hable usted!"
+                        // We will keep it simple: just the verb form capitalized
+                        fullEs = `¡${verbEs.charAt(0).toUpperCase() + verbEs.slice(1)}!`;
+                    } else {
+                        // Standard: "Yo no hablo" or "Yo hablo"
+                        if (isNeg) {
+                            // getSpanishConjugation returns "no hablo"
+                            fullEs = `${pronEs} ${verbEs}`; 
+                        } else {
+                            fullEs = `${pronEs} ${verbEs}`;
+                        }
+                    }
+
                     htmlContent = `
                         <div class="conj-card ${isNeg ? 'is-negative' : ''} shadow-sm">
                             <div class="flex justify-center gap-2 mb-4 flex-wrap">
                                 <div class="tense-badge" onclick="conjApp.showHelp('${tense}')"><i class="fa-regular fa-lightbulb mr-1"></i> ${formatTense(tense)}</div>
                                 <div class="neg-badge" style="display:${isNeg ? 'inline-flex' : 'none'}">NÉGATION</div>
                             </div>
-                            <div class="verb-source">${key}</div>
-                            <div class="text-gray-600">Pronom : <strong class="text-frBlue text-xl ml-1">${this.pronounsEs[pIdx]}</strong></div>
+                            <div class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-2">Traduisez en Français</div>
+                            <div class="verb-source text-3xl text-frBlue">${fullEs}</div>
                         </div>`;
                 } 
                 else if (mode === 'reverse') {
-                    // MODO INVERSO (Francés conjugado -> Analizar)
+                    // MODO REVERSE: Mostrar frase en Francés -> Pedir Español
                     const conjVerb = this.getConjugation(key, tense, pIdx, isNeg);
                     let fullPhrase = conjVerb;
                     
@@ -548,35 +569,31 @@
                         else fullPhrase = `${pron} ${conjVerb}`;
                     }
 
-                    // Preparamos el texto seguro para el onclick
                     const safeText = fullPhrase.replace(/'/g, "\\'");
 
                     htmlContent = `
                         <div class="conj-card bg-white border-2 border-gold shadow-md">
                             <div class="text-xs font-bold text-gold uppercase tracking-widest mb-2"><i class="fa-solid fa-language"></i> Traduire en Espagnol</div>
                             
-                            <!-- Texto + Icono alineados dentro de la tarjeta -->
                             <div class="flex items-center justify-center gap-3 py-4">
                                 <span class="text-3xl font-serif font-bold text-frBlue">${fullPhrase}</span>
                                 <button onclick="app.speakFrench('${safeText}')" class="w-8 h-8 flex items-center justify-center rounded-full bg-blue-50 text-frBlue hover:bg-frBlue hover:text-white transition">
                                     <i class="fa-solid fa-volume-high text-sm"></i>
                                 </button>
                             </div>
-
-                             <div class="text-xs text-gray-400 italic">¿Qué tiempo, pronombre y verbo es?</div>
                         </div>`;
 
                     setTimeout(() => app.speakFrench(fullPhrase), 200);
                 }
                 else if (mode === 'table') {
-                    // MODO TABLA (Completar hueco)
+                    // MODO TABLE (Same as before, visual will update in renderTable)
                     htmlContent = `
                         <div class="conj-card bg-gray-50 border-2 border-gray-200">
                              <div class="tense-badge mb-3" onclick="conjApp.showHelp('${tense}')">${formatTense(tense)}</div>
                              <div class="text-sm text-gray-500 mb-2 font-bold uppercase">Complétez la terminaison :</div>
                              <div class="verb-source text-lg mb-4">${key}</div>
                              <div id="cj-table-placeholder" class="bg-white rounded-lg p-2 shadow-inner border border-gray-200 text-left text-sm">
-                                ${this.renderTable(key, tense, isNeg, pIdx, true)} <!-- True = ocultar respuesta -->
+                                ${this.renderTable(key, tense, isNeg, pIdx, true)} 
                              </div>
                         </div>`;
                 }
@@ -589,69 +606,62 @@
                     </button>`;
             },
 
-
+            // 3. UPDATED REVEAL
             reveal() {
                 const { key, tense, pIdx, isNeg, mode } = this.currentCard;
                 
-                // Obtenemos la conjugación pura
+                // Get French
                 const conj = this.getConjugation(key, tense, pIdx, isNeg);
-                
-                // Construimos la frase completa para el audio/display
                 const startsVowel = w => ['a', 'e', 'i', 'o', 'u', 'y', 'é', 'ê', 'h'].includes(w.charAt(0).toLowerCase());
-                let full = conj;
+                let fullFr = conj;
                 if (tense !== 'imperatif') {
                     let pron = this.pronounsFr[pIdx].split('/')[0];
-                    if (!isNeg && pIdx === 0 && startsVowel(conj)) full = `J'${conj}`;
-                    else full = `${pron} ${conj}`;
+                    if (!isNeg && pIdx === 0 && startsVowel(conj)) fullFr = `J'${conj}`;
+                    else fullFr = `${pron} ${conj}`;
                 }
 
                 // Prepare DOM
                 const aArea = document.getElementById('cj-answer-container');
                 const bArea = document.getElementById('cj-btn-area');
-                const safeText = full.replace(/'/g, "\\'");
+                const safeText = fullFr.replace(/'/g, "\\'");
+                const formatTenseEs = t => ({ present: 'Presente', pc: 'Pasado Compuesto', imparfait: 'Imperfecto', futur_proche: 'Futuro Próximo', futur: 'Futuro', imperatif: 'Imperativo', subjonctif: 'Subjuntivo', conditionnel: 'Condicional' }[t] || t);
                 
                 let answerHTML = '';
 
-                // --- Lógica de renderizado de RESPUESTA según Modo ---
                 if (mode === 'standard') {
-                    // Standard: Mostrar frase en Francés
+                    // Standard: We asked for French, show French
                      answerHTML = `
                         <div class="text-center animate-slide-in">
                             <div class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Réponse</div>
                             <div class="correct-answer shadow-sm border-l-4 border-green-500 cursor-pointer hover:bg-green-100 transition" onclick="app.speakFrench('${safeText}')">
-                                ${full} <i class="fa-solid fa-volume-high text-sm opacity-50 ml-2"></i>
+                                ${fullFr} <i class="fa-solid fa-volume-high text-sm opacity-50 ml-2"></i>
                             </div>
                         </div>`;
                 } 
                 else if (mode === 'reverse') {
-                    // Reverse: Mostrar datos en Español
-                    const formatTenseEs = t => ({ present: 'Presente', pc: 'Pasado Compuesto', imparfait: 'Imperfecto', futur_proche: 'Futuro Próximo', futur: 'Futuro', imperatif: 'Imperativo', subjonctif: 'Subjuntivo', conditionnel: 'Condicional' }[t] || t);
-                    
+                    // Reverse: We asked for Spanish translation of the displayed French verb
+                    const verbEs = this.getSpanishConjugation(key, tense, pIdx, isNeg);
+                    const pronEs = this.pronounsEs[pIdx];
+                    let fullEs = "";
+                    if (tense === 'imperatif') fullEs = `¡${verbEs.charAt(0).toUpperCase() + verbEs.slice(1)}!`;
+                    else fullEs = isNeg ? `${pronEs} ${verbEs}` : `${pronEs} ${verbEs}`;
+
                     answerHTML = `
                         <div class="text-center animate-slide-in">
-                             <div class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Analyse Correcte</div>
-                             <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-left inline-block w-full">
-                                <div class="flex justify-between border-b border-gray-100 pb-2 mb-2">
-                                    <span class="text-gray-500 text-xs font-bold uppercase">Temps</span>
-                                    <span class="text-frBlue font-bold">${formatTenseEs(tense)}</span>
-                                </div>
-                                <div class="flex justify-between border-b border-gray-100 pb-2 mb-2">
-                                    <span class="text-gray-500 text-xs font-bold uppercase">Pronom</span>
-                                    <span class="text-frBlue font-bold">${this.pronounsEs[pIdx]}</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-gray-500 text-xs font-bold uppercase">Verbe</span>
-                                    <span class="text-green-600 font-bold text-lg uppercase">${key}</span>
+                             <div class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">En Espagnol</div>
+                             <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center inline-block w-full">
+                                <div class="text-xl font-bold text-frBlue mb-2">${fullEs}</div>
+                                <div class="text-sm text-gray-500 italic flex items-center justify-center gap-2">
+                                    <span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded">${formatTenseEs(tense)}</span>
                                 </div>
                              </div>
                         </div>`;
                 } 
                 else if (mode === 'table') {
-                    // Table: Rellenar la tabla completa
-                    // Actualizamos el placeholder visualmente con la tabla llena
+                    // Table: Update with full content
                     const tableDiv = document.getElementById('cj-table-placeholder');
                     if(tableDiv) {
-                        tableDiv.innerHTML = this.renderTable(key, tense, isNeg, pIdx, false); // False = mostrar todo
+                        tableDiv.innerHTML = this.renderTable(key, tense, isNeg, pIdx, false); 
                         tableDiv.classList.add('ring-2', 'ring-green-400', 'bg-green-50');
                     }
                     
@@ -659,7 +669,7 @@
                         <div class="text-center animate-slide-in mt-2">
                             <div class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Mot manquant</div>
                             <div class="text-xl font-bold text-green-600 bg-white px-4 py-2 rounded-lg shadow-sm border border-green-200 inline-block">
-                                ${full}
+                                ${fullFr}
                             </div>
                             <div class="mt-2"><button onclick="app.speakFrench('${safeText}')" class="w-8 h-8 bg-frBlue text-white rounded-full"><i class="fa-solid fa-volume-high text-xs"></i></button></div>
                         </div>`;
@@ -667,7 +677,6 @@
 
                 aArea.innerHTML = answerHTML;
 
-                // --- Botones de resultado (Igual para todos) ---
                 bArea.innerHTML = `
                     <div class="flex gap-3">
                         <button onclick="conjApp.handleResult(false)" class="flex-1 bg-white border-2 border-red-100 text-red-500 font-bold py-4 rounded-xl shadow-btn active:translate-y-1 transition uppercase tracking-widest text-xs hover:bg-red-50 hover:border-red-300">
@@ -680,9 +689,8 @@
                 
                 bArea.scrollIntoView({ behavior: 'smooth', block: 'end' });
 
-                // Audio automático solo si es modo standard (los otros requieren análisis primero)
                 if(mode === 'standard' || mode === 'table') {
-                    setTimeout(() => { app.speakFrench(full); }, 50);
+                    setTimeout(() => { app.speakFrench(fullFr); }, 50);
                 }
             },
 
@@ -844,35 +852,51 @@
                 return conj; // Devuelve solo la parte verbal conjugada
             },
 
-            renderTable(key, tense, isNeg, targetIdx, hideTarget) {
-                let html = '<table class="w-full">';
+           renderTable(key, tense, isNeg, targetIdx, hideTarget) {
+                let html = '<table class="w-full border-collapse">';
                 const validImp = [1, 3, 4]; // Tu, Nous, Vous
                 
                 for(let i=0; i<6; i++) {
                     if(tense === 'imperatif' && !validImp.includes(i)) continue;
                     
+                    // French Construction
                     const verbForm = this.getConjugation(key, tense, i, isNeg);
                     const pron = tense === 'imperatif' ? '' : this.pronounsFr[i].split('/')[0];
-                    
-                    const pronDisplay = tense === 'imperatif' 
-                        ? (i===1 ? '(Tu)' : (i===3 ? '(Nous)' : '(Vous)')) 
-                        : pron;
-
-                    // Detectar J' vs Je antes del if para usarlo en ambos casos
+                    const pronDisplay = tense === 'imperatif' ? (i===1 ? '(Tu)' : (i===3 ? '(Nous)' : '(Vous)')) : pron;
                     const startsVowel = ['a', 'e', 'i', 'o', 'u', 'y', 'é'].includes(verbForm.charAt(0).toLowerCase());
                     const isElision = tense !== 'imperatif' && !isNeg && i === 0 && startsVowel;
 
+                    // Spanish Construction
+                    const verbEs = this.getSpanishConjugation(key, tense, i, isNeg);
+                    const pronEs = this.pronounsEs[i];
+                    let fullEs = "";
+                    if (tense === 'imperatif') fullEs = verbEs; // Simplified for table
+                    else fullEs = isNeg ? `${pronEs} ${verbEs}` : `${pronEs} ${verbEs}`;
+
                     let content = '';
                     if (hideTarget && i === targetIdx) {
-                        // CAMBIO: Mostrar pronombre + hueco vacío
                         const prefix = isElision ? "J'" : pronDisplay;
                         const space = isElision ? "" : " "; 
-                        content = `<span class="text-gray-500 font-bold">${prefix}</span>${space}<span class="text-frRed font-bold bg-red-50 px-2 py-0.5 rounded border border-red-200 tracking-widest">________</span>`;
+                        content = `
+                        <div class="flex flex-col">
+                            <div>
+                                <span class="text-gray-500 font-bold">${prefix}</span>${space}<span class="text-frRed font-bold bg-red-50 px-2 py-0.5 rounded border border-red-200 tracking-widest">________</span>
+                            </div>
+                            <div class="text-[10px] text-gray-400 italic mt-0.5">${fullEs}</div>
+                        </div>`;
                     } else {
                         if(isElision) {
-                            content = `<span class="text-gray-400">J'</span><span class="font-bold text-frBlue">${verbForm}</span>`;
+                            content = `
+                            <div class="flex flex-col">
+                                <div><span class="text-gray-400">J'</span><span class="font-bold text-frBlue">${verbForm}</span></div>
+                                <div class="text-[10px] text-gray-400 italic mt-0.5">${fullEs}</div>
+                            </div>`;
                         } else {
-                            content = `<span class="text-gray-400">${pronDisplay}</span> <span class="font-bold text-frBlue">${verbForm}</span>`;
+                            content = `
+                            <div class="flex flex-col">
+                                <div><span class="text-gray-400">${pronDisplay}</span> <span class="font-bold text-frBlue">${verbForm}</span></div>
+                                <div class="text-[10px] text-gray-400 italic mt-0.5">${fullEs}</div>
+                            </div>`;
                         }
                     }
 
@@ -880,6 +904,43 @@
                 }
                 html += '</table>';
                 return html;
+            },
+
+            // 1. NEW HELPER FUNCTION
+            getSpanishConjugation(key, tense, pIdx, isNeg) {
+                // Safely access data
+                const data = this.db[key];
+                if (!data || !data.es) return "???";
+                
+                // Helper for "Ir a + infinitivo" (Futur Proche)
+                const irA = ["voy a", "vas a", "va a", "vamos a", "vais a", "van a"];
+                
+                let raw = "";
+                
+                // Handle special logic for constructed tenses vs stored tenses
+                if (tense === 'futur_proche') {
+                    // Dynamic construction for Spanish "Futuro Próximo"
+                    raw = `${irA[pIdx]} ${key}`; // key is usually the infinitive in the DB
+                } else if (tense === 'imperatif') {
+                    // Imperative logic (uses 1, 3, 4 mapping from DB)
+                    // If the specific pronoun index isn't in the object, return empty (shouldn't happen based on init logic)
+                    raw = data.es.imperatif ? (data.es.imperatif[pIdx] || "") : "";
+                } else {
+                    // Standard tenses (present, pc, etc) stored in array
+                    if (data.es[tense] && data.es[tense][pIdx]) {
+                        raw = data.es[tense][pIdx];
+                    } else {
+                        return "---"; // Fallback if data missing
+                    }
+                }
+
+                // Apply Negation (Spanish is simple: "no" before the verb group)
+                // Note: In Spanish, pronouns usually come *before* the "no" (Yo no hablo).
+                // This function returns just the verb part mostly, but we combine it below.
+                if (isNeg) {
+                    return `no ${raw}`;
+                }
+                return raw;
             },
 
         };
