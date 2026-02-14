@@ -258,6 +258,40 @@
         .animate-pulse-gold {
             animation: pulse-gold 2s infinite;
         }
+
+        /* Emily Chat Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        #emily-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #emily-messages::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        #emily-messages::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+
+        #emily-messages::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
     </style>
 </head>
 
@@ -1453,6 +1487,23 @@
 
                     const data = JSON.parse(doc.getElementById('lesson-data').textContent);
 
+                    // 2.5. INSERT EMILY CHAT (After Section 3 - Reading Comprehension)
+                    // Check if there's a section 3 (index 2 in sections array)
+                    if (sections.length >= 3) {
+                        const section3 = sections[2];
+                        const readingText = section3.textContent || '';
+
+                        // Only add Emily chat if section 3 has substantial content (likely reading comprehension)
+                        if (readingText.length > 300) {
+                            const emilyChatIndex = (this.currentModIndex === 0) ? 3 : 4;
+                            this.lessonSteps.splice(emilyChatIndex, 0, {
+                                type: 'emily-chat',
+                                readingContext: readingText,
+                                html: this.getEmilyChatHTML()
+                            });
+                        }
+                    }
+
                     // 3. INSERT VOCAB LIST (In the middle, usually index 2 or 3)
                     let insertIndex = (this.currentModIndex === 0) ? 2 : 3;
                     if (data.vocabulary && data.vocabulary.length > 0) {
@@ -1670,6 +1721,9 @@
                 if (step.type === 'read') {
                     html += `<div class="lesson-section bg-white p-5 sm:p-8 rounded-xl shadow-sm border border-gray-100 text-lg leading-relaxed">${step.html}</div>`;
                 }
+                else if (step.type === 'emily-chat') {
+                    html += `<div class="lesson-section">${step.html}</div>`;
+                }
                 else if (step.type === 'interactive_practice') {
                     html += `<div class="lesson-section bg-white p-5 rounded-xl shadow-sm border border-gray-100">
                         ${this.renderInteractiveExercise(step.data)}
@@ -1689,7 +1743,7 @@
                 </div>
                 <div class="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur border-t border-gray-200 p-4 z-40 safe-pb">
                     <div class="max-w-2xl mx-auto">
-                        ${step.type === 'read'
+                        ${(step.type === 'read' || step.type === 'emily-chat')
                         ? `<button onclick="app.nextStep()" class="w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">Continuer</button>`
                         : `<button id="btn-check" onclick="app.checkInteractive()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">Vérifier</button>
                            <button id="btn-next" onclick="app.nextStep()" class="hidden w-full bg-frBlue text-white font-bold py-4 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-wider text-sm">Continuer</button>`
@@ -1699,6 +1753,11 @@
             </div>
         `;
                 this.container.innerHTML = html;
+
+                // Initialize Emily chat if this is an emily-chat step
+                if (step.type === 'emily-chat') {
+                    this.initEmilyChat();
+                }
             },
 
             // --- GENERATE HTML FOR NEW EXERCISE TYPES ---
@@ -2136,6 +2195,401 @@
 
                 // 4. SPEAK
                 window.speechSynthesis.speak(utterance);
+            },
+
+            // --- EMILY CHAT SYSTEM ---
+            emilyMessageCount: 0,
+            emilyConversationHistory: [],
+            emilyReadingContext: '',
+            MAX_EMILY_MESSAGES: 3,
+            GEMINI_API_KEYS: [
+                'AIzaSyAS_r4Wq4QbN7fn9N81yP8EnM7UNE8x0mI',
+                'AIzaSyB4uxsKw5wqcIah7UnVekcdcmSkZoTZyZ0',
+                'AIzaSyB5Yfz2YehJoZmGxiNzKugT6UReXmCm1GA'
+                // 'YOUR_THIRD_API_KEY',
+            ],
+            currentApiKeyIndex: 0,
+
+            // Get current API key
+            getCurrentGeminiKey() {
+                return this.GEMINI_API_KEYS[this.currentApiKeyIndex];
+            },
+
+            // Try next API key if current one fails
+            rotateApiKey() {
+                this.currentApiKeyIndex = (this.currentApiKeyIndex + 1) % this.GEMINI_API_KEYS.length;
+                console.log(`Rotated to API key ${this.currentApiKeyIndex + 1}/${this.GEMINI_API_KEYS.length}`);
+                return this.getCurrentGeminiKey();
+            },
+
+            // Make Gemini API call with automatic key rotation on rate limit
+            async callGeminiAPI(contextPrompt, conversationHistory = []) {
+                const maxRetries = this.GEMINI_API_KEYS.length;
+                let lastError = null;
+
+                for (let attempt = 0; attempt < maxRetries; attempt++) {
+                    try {
+                        const apiKey = this.getCurrentGeminiKey();
+                        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                contents: [
+                                    { role: 'user', parts: [{ text: contextPrompt }] },
+                                    ...conversationHistory.map(msg => ({
+                                        role: msg.role === 'user' ? 'user' : 'model',
+                                        parts: [{ text: msg.content }]
+                                    }))
+                                ],
+                                generationConfig: {
+                                    temperature: 0.9,
+                                    maxOutputTokens: 150
+                                }
+                            })
+                        });
+
+                        if (response.ok) {
+                            const data = await response.json();
+                            return data.candidates[0].content.parts[0].text;
+                        }
+
+                        // Check if it's a rate limit error (429) or quota exceeded
+                        if (response.status === 429 || response.status === 403) {
+                            console.warn(`API key ${this.currentApiKeyIndex + 1} rate limited. Trying next key...`);
+                            this.rotateApiKey();
+                            lastError = new Error(`Rate limit on key ${attempt + 1}`);
+                            continue;
+                        }
+
+                        throw new Error(`API request failed: ${response.status}`);
+
+                    } catch (error) {
+                        lastError = error;
+                        if (attempt < maxRetries - 1) {
+                            console.warn(`Error with key ${this.currentApiKeyIndex + 1}, trying next...`);
+                            this.rotateApiKey();
+                        }
+                    }
+                }
+
+                throw lastError || new Error('All API keys exhausted');
+            },
+
+            getEmilyChatHTML() {
+                return `
+                <div class="bg-gradient-to-br from-pink-50 to-purple-50 p-6 rounded-xl border border-pink-200 shadow-lg">
+                    <div class="text-center mb-4">
+                        <i class="fa-brands fa-whatsapp text-4xl text-green-500 mb-2"></i>
+                        <h3 class="text-2xl font-bold text-gray-800">💬 Conversation avec Emily</h3>
+                        <p class="text-sm text-gray-600 mt-2">Emily veut discuter avec toi du texte que tu viens de lire !</p>
+                    </div>
+
+                    <!-- WhatsApp-like Chat Interface -->
+                    <div id="emily-chat-container" class="max-w-md mx-auto">
+                        <!-- Chat Header -->
+                        <div class="bg-green-600 text-white p-3 rounded-t-xl flex items-center gap-3 shadow">
+                            <img src="emily.png" alt="Emily" class="w-10 h-10 rounded-full border-2 border-white object-cover">
+                            <div>
+                                <div class="font-bold">Emily Cooper</div>
+                                <div class="text-xs opacity-90">En ligne</div>
+                            </div>
+                        </div>
+
+                        <!-- Chat Messages -->
+                        <div id="emily-messages" class="bg-gray-100 p-4 min-h-[300px] max-h-[500px] overflow-y-auto space-y-3">
+                            <!-- Messages will appear here -->
+                        </div>
+
+                        <!-- Input Area -->
+                        <div id="emily-input-area" class="bg-white p-3 rounded-b-xl border-t border-gray-200 flex gap-2">
+                            <input
+                                type="text"
+                                id="emily-user-input"
+                                placeholder="Écris ta réponse en français..."
+                                class="flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 text-sm"
+                                disabled
+                            >
+                            <button
+                                id="emily-send-btn"
+                                onclick="app.sendMessageToEmily()"
+                                class="bg-green-500 text-white px-5 py-2 rounded-full hover:bg-green-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                                disabled
+                            >
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+
+                        <!-- Loading Indicator -->
+                        <div id="emily-loading" class="text-center py-3 hidden">
+                            <div class="inline-flex items-center gap-2 text-gray-600">
+                                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                                <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                                <span class="text-sm ml-2">Emily est en train d'écrire...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            },
+
+            async initEmilyChat() {
+                const step = this.lessonSteps[this.currentStepIdx];
+                if (step && step.type === 'emily-chat') {
+                    this.emilyReadingContext = step.readingContext || '';
+                    this.emilyMessageCount = 0;
+                    this.emilyConversationHistory = [];
+
+                    // Show loading while getting first message
+                    setTimeout(() => {
+                        this.showEmilyLoading(true);
+                    }, 500);
+
+                    // Generate first message from Gemini based on the reading
+                    try {
+                        const contextPrompt = `Tu es Emily Cooper de "Emily in Paris". Tu discutes sur WhatsApp avec ton amie. Voici une scène que tu as vécue (ou que tes collègues Sylvie/Julien/Luc ont vécue):
+
+${this.emilyReadingContext.substring(0, 1500)}
+
+RÈGLES STRICTES:
+- TRÈS COURT: Maximum 2-3 phrases COURTES (30-40 mots MAX au total)
+- Parle en PREMIÈRE PERSONNE (je/moi) - TU ES EMILY
+- PAS de détails infinis. Une idée simple + question
+- Langage SIMPLE et naturel, style WhatsApp
+- TERMINE par une question courte et fun
+
+❌ TROP LONG (NE FAIS JAMAIS ÇA):
+"Oh là là, tu ne peux pas savoir ce que j'ai vécu ! Camille m'a emmenée faire les courses dans le Marais, on est passées chez le fromager, chez le boulanger, et même chez un marchand de légumes..."
+
+✅ BON (FAIS ÇA):
+"Salut ! J'ai fait les courses au Marais aujourd'hui, c'était trop cool ! Et toi, tu aimes faire les courses ?"
+
+Questions courtes: "Et toi ?" "Ça va ?" "Tu aimes ?" "C'est pareil chez toi ?"
+
+Commence par: "Coucou !", "Salut !", "Hey !"`;
+
+                        const firstMessage = await this.callGeminiAPI(contextPrompt);
+
+                        // Add Emily's first message to conversation history
+                        this.emilyConversationHistory.push({ role: 'assistant', content: firstMessage });
+
+                        this.showEmilyLoading(false);
+                        this.playNotificationSound();
+                        this.addEmilyMessage(firstMessage, true);
+                        this.enableEmilyInput();
+
+                    } catch (error) {
+                        console.error('Error getting first message:', error);
+                        this.showEmilyLoading(false);
+                        // Fallback to a generic message
+                        const fallbackMessage = "Coucou ! 👋 Alors, qu'as-tu pensé de ce texte ?";
+                        this.emilyConversationHistory.push({ role: 'assistant', content: fallbackMessage });
+                        this.playNotificationSound();
+                        this.addEmilyMessage(fallbackMessage, true);
+                        this.enableEmilyInput();
+                    }
+                }
+            },
+
+            addEmilyMessage(text, isEmily = true) {
+                const messagesContainer = document.getElementById('emily-messages');
+                if (!messagesContainer) return;
+
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `flex ${isEmily ? 'justify-start' : 'justify-end'} animate-fadeIn`;
+
+                const now = new Date();
+                const time = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+
+                if (isEmily) {
+                    messageDiv.innerHTML = `
+                        <div class="flex gap-2 max-w-[80%]">
+                            <img src="emily.png" alt="Emily" class="w-8 h-8 rounded-full self-end">
+                            <div class="bg-white p-3 rounded-lg shadow-sm">
+                                <p class="text-sm text-gray-800">${text}</p>
+                                <div class="text-xs text-gray-400 mt-1">${time}</div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    messageDiv.innerHTML = `
+                        <div class="max-w-[80%]">
+                            <div class="bg-green-500 text-white p-3 rounded-lg shadow-sm">
+                                <p class="text-sm">${text}</p>
+                                <div class="text-xs opacity-75 mt-1 text-right">${time}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                messagesContainer.appendChild(messageDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            },
+
+            enableEmilyInput() {
+                const input = document.getElementById('emily-user-input');
+                const btn = document.getElementById('emily-send-btn');
+                if (input) {
+                    input.disabled = false;
+                    input.focus();
+                    // Add Enter key listener
+                    input.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter' && !input.disabled) {
+                            this.sendMessageToEmily();
+                        }
+                    });
+                }
+                if (btn) btn.disabled = false;
+            },
+
+            disableEmilyInput() {
+                const input = document.getElementById('emily-user-input');
+                const btn = document.getElementById('emily-send-btn');
+                if (input) input.disabled = true;
+                if (btn) btn.disabled = true;
+            },
+
+            showEmilyLoading(show) {
+                const loading = document.getElementById('emily-loading');
+                if (loading) {
+                    loading.classList.toggle('hidden', !show);
+                }
+            },
+
+            async sendMessageToEmily() {
+                const input = document.getElementById('emily-user-input');
+                if (!input) return;
+
+                const userMessage = input.value.trim();
+                if (!userMessage) return;
+
+                // Add user message
+                this.playSendSound();
+                this.addEmilyMessage(userMessage, false);
+                this.emilyConversationHistory.push({ role: 'user', content: userMessage });
+                input.value = '';
+                this.disableEmilyInput();
+
+                // Check if we've reached the message limit
+                if (this.emilyMessageCount >= this.MAX_EMILY_MESSAGES) {
+                    setTimeout(() => {
+                        this.addEmilyMessage("C'était super de discuter avec toi ! À bientôt ! 😊💕", true);
+                    }, 1000);
+                    return;
+                }
+
+                // Show loading
+                this.showEmilyLoading(true);
+
+                try {
+                    // Build context for Gemini
+                    const contextPrompt = `Tu es Emily Cooper de "Emily in Paris". Tu discutes avec ton amie sur WhatsApp de cette scène:
+
+${this.emilyReadingContext.substring(0, 1500)}
+
+RÈGLES STRICTES:
+- TRÈS COURT: Maximum 2-3 phrases COURTES (30-40 mots MAX)
+- Parle en PREMIÈRE PERSONNE (je/moi) - TU ES EMILY
+- Réagis simplement à ce qu'elle dit
+- Langage SIMPLE, style WhatsApp
+- TERMINE par question courte et fun
+
+❌ TROP LONG:
+"OMG, tu as vu ça ? J'étais tellement stressée pour la réservation, je ne voulais pas gâcher ça ! Heureusement que j'ai pu trouver une solution..."
+
+✅ BON:
+"J'étais trop stressée ! Ça t'arrive aussi ?"
+
+Questions: "Et toi ?" "Ça va ?" "Tu aimes ?" "T'as déjà fait ?" "C'est pareil ?"
+
+But: Messages courts WhatsApp, pas des paragraphes !`;
+
+
+                    // Call Gemini API with automatic key rotation
+                    const emilyResponse = await this.callGeminiAPI(contextPrompt, this.emilyConversationHistory);
+
+                    this.emilyConversationHistory.push({ role: 'assistant', content: emilyResponse });
+                    this.emilyMessageCount++;
+
+                    this.showEmilyLoading(false);
+
+                    setTimeout(() => {
+                        this.playNotificationSound();
+                        this.addEmilyMessage(emilyResponse, true);
+
+                        // Check if this was the last dynamic message
+                        if (this.emilyMessageCount < this.MAX_EMILY_MESSAGES) {
+                            this.enableEmilyInput();
+                        } else {
+                            // Send goodbye message
+                            setTimeout(() => {
+                                this.playNotificationSound();
+                                this.addEmilyMessage("C'était super de discuter avec toi ! À bientôt ! 😊💕", true);
+                            }, 1500);
+                        }
+                    }, 800);
+
+                } catch (error) {
+                    console.error('Error calling Gemini API:', error);
+                    this.showEmilyLoading(false);
+                    this.addEmilyMessage("Désolée, j'ai un problème de connexion... 😅 Réessaye ?", true);
+                    this.enableEmilyInput();
+                }
+            },
+
+            // Sound effects for Emily chat
+            playNotificationSound() {
+                // WhatsApp-like notification sound using Web Audio API
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                // WhatsApp notification is typically two quick beeps
+                oscillator.frequency.value = 600;
+                oscillator.type = 'sine';
+
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.1);
+
+                // Second beep
+                setTimeout(() => {
+                    const osc2 = audioContext.createOscillator();
+                    const gain2 = audioContext.createGain();
+                    osc2.connect(gain2);
+                    gain2.connect(audioContext.destination);
+                    osc2.frequency.value = 800;
+                    osc2.type = 'sine';
+                    gain2.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gain2.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                    osc2.start(audioContext.currentTime);
+                    osc2.stop(audioContext.currentTime + 0.1);
+                }, 100);
+            },
+
+            playSendSound() {
+                // Soft "whoosh" sound for sending messages
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 0.15);
+                oscillator.type = 'sine';
+
+                gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.15);
             },
 
             // --- 2. UPDATED CARD GENERATOR ---
