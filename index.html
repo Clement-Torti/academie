@@ -329,6 +329,12 @@
                     class="bg-white/10 active:bg-white/20 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2">
                     <i class="fa-solid fa-layer-group text-gold"></i> <span>Vocab</span>
                 </button>
+
+                <!-- API Key Settings -->
+                <button onclick="app.showApiKeyModal()"
+                    class="bg-white/10 active:bg-white/20 text-white w-8 h-8 rounded-lg text-xs transition flex items-center justify-center">
+                    <i class="fa-solid fa-key text-gold"></i>
+                </button>
             </div>
         </div>
 
@@ -344,6 +350,32 @@
         class="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4"
         onclick="app.closeModal(event)">
         <!-- Content injected by JS -->
+    </div>
+
+    <!-- API KEY MODAL -->
+    <div id="api-key-modal" class="fixed inset-0 z-[70] bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4" onclick="if(event.target===this)app.hideApiKeyModal()">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 animate-slide-in">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold text-frBlue flex items-center gap-2">
+                    <i class="fa-solid fa-key text-gold"></i> Clés API Gemini
+                </h3>
+                <button onclick="app.hideApiKeyModal()" class="text-gray-400 hover:text-gray-600 text-xl">&times;</button>
+            </div>
+            <p class="text-sm text-gray-500 mb-4">
+                Pour discuter avec Emily, ajoute ta clé API Gemini gratuite.
+                <a href="https://aistudio.google.com/apikey" target="_blank" class="text-frBlue underline">Obtenir une clé</a>
+            </p>
+            <div id="api-keys-list" class="space-y-2 mb-4">
+                <!-- Keys will be rendered here -->
+            </div>
+            <div class="flex gap-2">
+                <input type="text" id="new-api-key-input" placeholder="AIzaSy..." onkeypress="if(event.key==='Enter')app.addApiKey()"
+                    class="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-frBlue">
+                <button onclick="app.addApiKey()" class="bg-frBlue text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-blue-800 transition">
+                    Ajouter
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- MAIN CONTENT -->
@@ -2202,29 +2234,93 @@
             emilyConversationHistory: [],
             emilyReadingContext: '',
             MAX_EMILY_MESSAGES: 3,
-            GEMINI_API_KEYS: [
-                'AIzaSyAS_r4Wq4QbN7fn9N81yP8EnM7UNE8x0mI',
-                'AIzaSyB4uxsKw5wqcIah7UnVekcdcmSkZoTZyZ0',
-                'AIzaSyB5Yfz2YehJoZmGxiNzKugT6UReXmCm1GA'
-                // 'YOUR_THIRD_API_KEY',
-            ],
             currentApiKeyIndex: 0,
+
+            // Load API keys from localStorage
+            getGeminiApiKeys() {
+                try {
+                    const keys = JSON.parse(localStorage.getItem('acad_gemini_keys') || '[]');
+                    return keys.filter(k => k && k.trim().length > 0);
+                } catch (e) { return []; }
+            },
+
+            saveGeminiApiKeys(keys) {
+                localStorage.setItem('acad_gemini_keys', JSON.stringify(keys));
+            },
+
+            hasGeminiKeys() {
+                return this.getGeminiApiKeys().length > 0;
+            },
+
+            showApiKeyModal() {
+                document.getElementById('api-key-modal').classList.remove('hidden');
+                this.renderApiKeysList();
+            },
+
+            hideApiKeyModal() {
+                document.getElementById('api-key-modal').classList.add('hidden');
+            },
+
+            renderApiKeysList() {
+                const keys = this.getGeminiApiKeys();
+                const container = document.getElementById('api-keys-list');
+                if (keys.length === 0) {
+                    container.innerHTML = '<p class="text-sm text-gray-400 italic text-center py-2">Aucune clé configurée</p>';
+                    return;
+                }
+                container.innerHTML = keys.map((key, i) => `
+                    <div class="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2 border border-gray-200">
+                        <span class="text-sm font-mono text-gray-600">${key.substring(0, 10)}...${key.slice(-4)}</span>
+                        <button onclick="app.removeApiKey(${i})" class="text-red-400 hover:text-red-600 text-sm">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                `).join('');
+            },
+
+            addApiKey() {
+                const input = document.getElementById('new-api-key-input');
+                const key = input.value.trim();
+                if (!key) return;
+                const keys = this.getGeminiApiKeys();
+                if (keys.includes(key)) { input.value = ''; return; }
+                keys.push(key);
+                this.saveGeminiApiKeys(keys);
+                input.value = '';
+                this.renderApiKeysList();
+            },
+
+            removeApiKey(index) {
+                const keys = this.getGeminiApiKeys();
+                keys.splice(index, 1);
+                this.saveGeminiApiKeys(keys);
+                this.currentApiKeyIndex = 0;
+                this.renderApiKeysList();
+            },
 
             // Get current API key
             getCurrentGeminiKey() {
-                return this.GEMINI_API_KEYS[this.currentApiKeyIndex];
+                const keys = this.getGeminiApiKeys();
+                if (keys.length === 0) return null;
+                return keys[this.currentApiKeyIndex % keys.length];
             },
 
             // Try next API key if current one fails
             rotateApiKey() {
-                this.currentApiKeyIndex = (this.currentApiKeyIndex + 1) % this.GEMINI_API_KEYS.length;
-                console.log(`Rotated to API key ${this.currentApiKeyIndex + 1}/${this.GEMINI_API_KEYS.length}`);
+                const keys = this.getGeminiApiKeys();
+                if (keys.length === 0) return null;
+                this.currentApiKeyIndex = (this.currentApiKeyIndex + 1) % keys.length;
+                console.log(`Rotated to API key ${this.currentApiKeyIndex + 1}/${keys.length}`);
                 return this.getCurrentGeminiKey();
             },
 
             // Make Gemini API call with automatic key rotation on rate limit
             async callGeminiAPI(contextPrompt, conversationHistory = []) {
-                const maxRetries = this.GEMINI_API_KEYS.length;
+                const keys = this.getGeminiApiKeys();
+                if (keys.length === 0) {
+                    throw new Error('NO_API_KEY');
+                }
+                const maxRetries = keys.length;
                 let lastError = null;
 
                 for (let attempt = 0; attempt < maxRetries; attempt++) {
@@ -2381,12 +2477,29 @@ Commence par: "Coucou !", "Salut !", "Hey !"`;
                     } catch (error) {
                         console.error('Error getting first message:', error);
                         this.showEmilyLoading(false);
-                        // Fallback to a generic message
-                        const fallbackMessage = "Coucou ! 👋 Alors, qu'as-tu pensé de ce texte ?";
-                        this.emilyConversationHistory.push({ role: 'assistant', content: fallbackMessage });
-                        this.playNotificationSound();
-                        this.addEmilyMessage(fallbackMessage, true);
-                        this.enableEmilyInput();
+
+                        if (error.message === 'NO_API_KEY') {
+                            // Show prompt to add API key
+                            const messagesContainer = document.getElementById('emily-messages');
+                            if (messagesContainer) {
+                                messagesContainer.innerHTML = `
+                                    <div class="flex flex-col items-center justify-center h-full text-center p-4">
+                                        <i class="fa-solid fa-key text-4xl text-gray-300 mb-3"></i>
+                                        <p class="text-gray-500 text-sm mb-3">Pour discuter avec Emily, configure ta clé API Gemini.</p>
+                                        <button onclick="app.showApiKeyModal()" class="bg-frBlue text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-blue-800 transition">
+                                            <i class="fa-solid fa-key mr-2"></i>Ajouter une clé
+                                        </button>
+                                    </div>
+                                `;
+                            }
+                        } else {
+                            // Fallback to a generic message
+                            const fallbackMessage = "Coucou ! 👋 Alors, qu'as-tu pensé de ce texte ?";
+                            this.emilyConversationHistory.push({ role: 'assistant', content: fallbackMessage });
+                            this.playNotificationSound();
+                            this.addEmilyMessage(fallbackMessage, true);
+                            this.enableEmilyInput();
+                        }
                     }
                 }
             },
