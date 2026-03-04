@@ -292,6 +292,49 @@
         #emily-messages::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
+
+        /* Correction display inside user bubble */
+        .correction-block {
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            font-size: 0.72rem;
+            line-height: 1.4;
+        }
+
+        .correction-block del {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+
+        .correction-block .correction-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3px;
+            margin-bottom: 2px;
+        }
+
+        .correction-block .corr-arrow {
+            opacity: 0.8;
+        }
+
+        .correction-block .corr-fix {
+            font-weight: 700;
+            background: rgba(255,255,255,0.25);
+            border-radius: 3px;
+            padding: 0 3px;
+        }
+
+        @keyframes correctPulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        .correction-checking {
+            animation: correctPulse 1s infinite;
+        }
     </style>
 </head>
 
@@ -2504,6 +2547,63 @@ Commence par: "Coucou !", "Salut !", "Hey !"`;
                 }
             },
 
+            addUserMessageWithCorrection(text) {
+                const messagesContainer = document.getElementById('emily-messages');
+                if (!messagesContainer) return null;
+
+                const msgId = 'umsg-' + Date.now();
+                const now = new Date();
+                const time = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'flex justify-end animate-fadeIn';
+                messageDiv.innerHTML = `
+                    <div class="max-w-[80%]">
+                        <div class="bg-green-500 text-white p-3 rounded-lg shadow-sm">
+                            <p class="text-sm">${text}</p>
+                            <div id="${msgId}" class="correction-block">
+                                <span class="correction-checking opacity-70">📝 Vérification...</span>
+                            </div>
+                            <div class="text-xs opacity-75 mt-1 text-right">${time}</div>
+                        </div>
+                    </div>
+                `;
+                messagesContainer.appendChild(messageDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                return msgId;
+            },
+
+            updateMessageCorrection(msgId, data) {
+                const el = document.getElementById(msgId);
+                if (!el) return;
+                if (data.correct) {
+                    el.innerHTML = '<span class="opacity-80">✅ Parfait !</span>';
+                } else {
+                    let html = '';
+                    for (const err of (data.errors || [])) {
+                        html += `<div class="correction-item"><del>${err.original}</del><span class="corr-arrow">→</span><span class="corr-fix">${err.correction}</span></div>`;
+                    }
+                    if (!data.errors || data.errors.length === 0) {
+                        html = `<div>✏️ <em>${data.corrected}</em></div>`;
+                    }
+                    el.innerHTML = html;
+                }
+            },
+
+            async correctFrenchMessage(text) {
+                const prompt = `Tu es un professeur de français. Analyse cette phrase d'un apprenant et corrige-la si nécessaire. Phrase: "${text.replace(/"/g, '\\"')}"
+
+Réponds UNIQUEMENT en JSON valide (sans markdown, sans backticks, sans commentaires).
+Si la phrase est correcte: {"correct":true,"corrected":"${text.replace(/"/g, '\\"')}","errors":[]}
+Si la phrase a des erreurs: {"correct":false,"corrected":"la phrase entièrement corrigée","errors":[{"original":"mot/groupe erroné","correction":"forme correcte"}]}`;
+                try {
+                    const raw = await this.callGeminiAPI(prompt, []);
+                    const match = raw.match(/\{[\s\S]*\}/);
+                    if (match) return JSON.parse(match[0]);
+                } catch (e) { /* silent */ }
+                return { correct: true, corrected: text, errors: [] };
+            },
+
             addEmilyMessage(text, isEmily = true) {
                 const messagesContainer = document.getElementById('emily-messages');
                 if (!messagesContainer) return;
@@ -2576,20 +2676,25 @@ Commence par: "Coucou !", "Salut !", "Hey !"`;
                 const userMessage = input.value.trim();
                 if (!userMessage) return;
 
-                // Add user message
+                // Add user message with correction placeholder
                 this.playSendSound();
-                this.addEmilyMessage(userMessage, false);
+                const corrMsgId = this.addUserMessageWithCorrection(userMessage);
                 this.emilyConversationHistory.push({ role: 'user', content: userMessage });
                 input.value = '';
                 this.disableEmilyInput();
 
                 // Check if we've reached the message limit
                 if (this.emilyMessageCount >= this.MAX_EMILY_MESSAGES) {
+                    this.correctFrenchMessage(userMessage).then(c => this.updateMessageCorrection(corrMsgId, c));
                     setTimeout(() => {
                         this.addEmilyMessage("C'était super de discuter avec toi ! À bientôt ! 😊💕", true);
                     }, 1000);
                     return;
                 }
+
+                // Correct user's sentence, then ask Emily
+                const correction = await this.correctFrenchMessage(userMessage);
+                this.updateMessageCorrection(corrMsgId, correction);
 
                 // Show loading
                 this.showEmilyLoading(true);
