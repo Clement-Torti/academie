@@ -192,21 +192,40 @@
       this.renderStats();
     },
 
-    renderPending() {
+    async renderPending() {
       const el = document.getElementById('pending-lessons-list');
       if (!this.pending.length) {
         el.innerHTML = '<span class="text-gray-400 italic text-sm">Ninguna lección pendiente.</span>';
         return;
       }
-      el.innerHTML = this.pending.map(n => {
+
+      // Check which reinforcement lessons already exist
+      const exists = await Promise.all(
+        this.pending.map(n =>
+          fetch(`pending_lesson/${n}.html`, { method: 'HEAD' })
+            .then(r => r.ok).catch(() => false)
+        )
+      );
+
+      el.innerHTML = this.pending.map((n, i) => {
         const title = this._titleCache[n] || `Lección ${n}`;
+        const hasLesson = exists[i];
+        const actionBtn = hasLesson
+          ? `<a href="pending_lesson/${n}.html" target="_blank"
+               class="flex items-center gap-1 text-xs font-bold text-frBlue bg-frBlue/10 hover:bg-frBlue/20 px-2 py-1 rounded-lg transition-colors"
+               title="Abrir lección de refuerzo">
+               <i class="fa-solid fa-book-open-reader"></i><span class="hidden sm:inline">Estudiar</span>
+             </a>`
+          : `<button onclick="app.copyLessonPrompt(${n}, this)"
+               class="flex items-center gap-1 text-xs font-bold text-gray-400 hover:text-frBlue hover:bg-frBlue/10 px-2 py-1 rounded-lg transition-colors"
+               title="Copiar prompt para generar lección de refuerzo">
+               <i class="fa-solid fa-copy"></i><span class="hidden sm:inline">Copiar prompt</span>
+             </button>`;
         return `<div class="flex items-center gap-2 py-1.5 border-b border-gray-50 last:border-0">
           <i class="fa-solid fa-circle-exclamation text-frRed text-xs shrink-0"></i>
           <span class="flex-1 text-gray-700 text-sm">${title}</span>
-          <button onclick="app.copyLessonPrompt(${n}, this)" class="text-gray-300 hover:text-frBlue transition-colors text-xs px-1" title="Copiar prompt de lección profunda">
-            <i class="fa-solid fa-copy"></i>
-          </button>
-          <button onclick="app.removeFromPending(${n})" class="text-gray-300 hover:text-frRed transition-colors text-xs px-1" title="Quitar de pendientes">
+          ${actionBtn}
+          <button onclick="app.removeFromPending(${n})" class="text-gray-300 hover:text-frRed transition-colors text-xs px-1 ml-1" title="Quitar de pendientes">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>`;
