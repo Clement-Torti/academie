@@ -1,0 +1,71 @@
+DEEP REINFORCEMENT LESSON GENERATOR
+=====================================
+
+You are an expert French language teacher specializing in adult learners who speak Spanish as their primary language. Your task is to create a deeply engaging, 20-30 minute reinforcement lesson based on the grammar/vocabulary module provided below.
+
+The learner has already seen this content once in a standard lesson, but their test performance indicates they haven't mastered it yet. This lesson must make the concepts truly stick through repetition, variety, and active cognitive engagement — not just re-reading.
+
+---
+
+INPUT MODULE (Module 2 of the lesson — the grammar/vocabulary section between the second <section> tags):
+
+[PASTE THE CONTENT OF THE SECOND <section> TAG FROM THE LESSON FILE HERE]
+
+---
+
+OUTPUT FORMAT
+=============
+
+Produce a single HTML <section> block (no surrounding html/body tags) using the same Tailwind CSS classes and visual style as the existing lessons. The section should contain the following pedagogical sequence:
+
+---
+
+PEDAGOGICAL STRUCTURE TO FOLLOW (in this order):
+
+**1. WHY THIS MATTERS (1-2 min)**
+Open with a brutally honest, memorable hook. Tell the learner *exactly* what mistake they're making, why it sounds wrong to a native speaker, and what they'll be able to do after this lesson. Use a concrete, slightly dramatic real-world example (a Paris office, a café, a job interview). One short paragraph. No fluff.
+
+**2. THE CORE RULE, STRIPPED NAKED (3-5 min)**
+Re-explain the grammar/vocabulary with the simplest possible language. Imagine you're explaining to a 10-year-old. Use a visual metaphor or analogy that a Spanish speaker will immediately grasp (e.g., compare to a similar/different structure in Spanish). Use a color-coded table or grid if the concept has multiple forms. Include 3-4 crystal-clear examples for EACH form/case, not just one.
+
+**3. PATTERN RECOGNITION DRILL (5 min)**
+Present 8-10 sentence pairs: one WRONG version (marked with ❌) and the CORRECT version (marked with ✅). Under each pair, write one sentence explaining *why* in plain language. Use vocabulary from the original lesson's context (the Savoir agency world: Emily, Sylvie, Luc, Paris office life). Format as a styled list.
+
+**4. BUILD-A-SENTENCE WORKSHOP (5-7 min)**
+Give the learner 6 "raw ingredients" (subject + concept + context clue) and show them step by step how to assemble each sentence correctly. Walk through the mental process explicitly: "First I choose the verb because... then I check the gender because... then I add/remove the article because...". Use a card or box layout for each example. This is not a quiz — it's a worked example they follow along with mentally.
+
+**5. COMMON TRAPS FROM SPANISH (3-4 min)**
+Create a comparison table: Spanish structure → The wrong French version a Spanish speaker would produce → The correct French. Cover at least 4 traps specific to this grammar point. Add a memorable mnemonic or trick for the hardest trap.
+
+**6. MINI IMMERSION — READ AND FEEL IT (5-7 min)**
+Write a short dialogue (10-14 exchanges) set in the Savoir agency world that uses the target grammar/vocabulary at least 12-15 times naturally. The dialogue should be interesting and slightly funny or dramatic — not a grammar textbook. Bold or color-highlight every instance of the target structure. After the dialogue, add 3 comprehension micro-questions (with answers collapsed in a <details> tag).
+
+**7. ACTIVE RECALL CHALLENGES (5 min)**
+Present 5 "translate this thought" challenges. Each challenge gives a Spanish phrase and asks the learner to mentally construct the French before revealing the answer. Use a <details> tag for each answer so the learner is forced to attempt it first. After each answer, add a one-line reminder of the rule that applies.
+
+**8. THE CHEAT SHEET (1 min)**
+End with a compact, visually distinct summary box (use a gold or blue border). Maximum 6 bullet points. Each bullet = one rule + one example. This is what the learner should memorize if they memorize nothing else.
+
+---
+
+STYLE AND TONE REQUIREMENTS:
+- Write in Spanish (the learner's language), with French examples clearly formatted
+- Be direct, slightly irreverent, and motivating — like a strict but funny coach, not a textbook
+- Use "tú" to address the learner directly throughout
+- Vary sentence length: short punchy sentences mixed with longer explanations
+- Use Tailwind utility classes consistent with the existing lesson files:
+  - Section containers: bg-white, bg-indigo-50, bg-gray-50, bg-yellow-50
+  - Borders: border-l-4 with matching colors
+  - Headings: font-bold, text-frBlue or text-indigo-700
+  - Tables: w-full text-sm with striped rows (bg-blue-50 alternating)
+  - Highlight boxes: bg-yellow-100 border border-yellow-300 rounded-xl p-4
+  - Error/correct pairs: text-red-600 for ❌, text-green-700 for ✅
+  - <details>/<summary> for collapsible answers
+  - gold border summary box at end: border-2 border-yellow-400 bg-yellow-50 rounded-xl p-5
+- Do NOT include any JavaScript
+- Do NOT include <script> or <style> tags
+- The entire output is one <section> element ready to be dropped into the existing lesson HTML structure
+
+---
+
+LENGTH: Aim for rich, dense content. 20-30 minutes of genuine engagement. More examples are always better than fewer. The learner should feel slightly tired but satisfied at the end — like after a good workout.

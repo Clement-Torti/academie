@@ -75,7 +75,7 @@
         <h2 class="font-bold text-frBlue text-base mb-3 flex items-center gap-2">
           <i class="fa-solid fa-chart-bar text-frBlue"></i> Tu progreso por lección
         </h2>
-        <div id="stats-list" class="space-y-2 text-sm">
+        <div id="stats-list" class="space-y-2 text-sm max-h-64 overflow-y-auto pr-1">
           <!-- Populated by JS -->
         </div>
       </div>
@@ -194,18 +194,20 @@
 
     renderPending() {
       const el = document.getElementById('pending-lessons-list');
-      // Logic left empty — pending list will be managed later
       if (!this.pending.length) {
         el.innerHTML = '<span class="text-gray-400 italic text-sm">Ninguna lección pendiente.</span>';
-      } else {
-        // placeholder for future logic
-        el.innerHTML = this.pending.map(n =>
-          `<div class="flex items-center gap-2 py-1">
-             <i class="fa-solid fa-circle-exclamation text-frRed text-xs"></i>
-             <a href="lesson${n}.html" target="_blank" class="text-frBlue hover:underline">Lección ${n}</a>
-           </div>`
-        ).join('');
+        return;
       }
+      el.innerHTML = this.pending.map(n => {
+        const title = this._titleCache[n] || `Lección ${n}`;
+        return `<div class="flex items-center gap-2 py-1.5 border-b border-gray-50 last:border-0">
+          <i class="fa-solid fa-circle-exclamation text-frRed text-xs shrink-0"></i>
+          <span class="flex-1 text-gray-700">${title}</span>
+          <button onclick="app.removeFromPending(${n})" class="text-gray-300 hover:text-frRed transition-colors text-xs" title="Quitar de pendientes">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>`;
+      }).join('');
     },
 
     renderStats() {
@@ -554,23 +556,36 @@
         const last5 = s.history.slice(-5);
         const successes = last5.filter(h => h.ok).length;
         if (successes < 3) {
-          // Mark as to study — logic to be implemented
-          // this.addToPending(num);
+          this.addToPending(num);
         }
       }
 
       saveJSON(STORAGE_SCORES, this.scores);
     },
 
-    // Placeholder — pending lesson logic left empty
     addToPending(num) {
-      // TODO: implement pending lesson logic
+      if (!this.pending.includes(num)) {
+        this.pending.push(num);
+        saveJSON(STORAGE_PENDING, this.pending);
+      }
+    },
+
+    removeFromPending(num) {
+      this.pending = this.pending.filter(n => n !== num);
+      saveJSON(STORAGE_PENDING, this.pending);
+      this.renderPending();
     },
 
     markToStudy() {
-      // TODO: implement pending lesson logic
-      // const num = this.currentLesson?.num;
-      // if (num && !this.pending.includes(num)) { ... }
+      const num = this.currentLesson?.num;
+      if (!num) return;
+      this.addToPending(num);
+      // Visual confirmation on the flag button
+      const btn = document.querySelector('button[title="No sé esta lección, añadirla a pendientes"]');
+      if (btn) {
+        btn.innerHTML = '<i class="fa-solid fa-flag text-frRed"></i> <span class="text-frRed font-semibold">Añadida</span>';
+        btn.disabled = true;
+      }
     },
 
     // ── NEXT QUESTION ─────────────────────────────────────────────────────────
