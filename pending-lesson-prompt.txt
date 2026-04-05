@@ -16,7 +16,16 @@ INPUT MODULE (Module 2 of the lesson — the grammar/vocabulary section between 
 OUTPUT FORMAT
 =============
 
-Produce a single HTML <section> block (no surrounding html/body tags) using the same Tailwind CSS classes and visual style as the existing lessons. The section should contain the following pedagogical sequence:
+Produce a complete, self-contained HTML page (full <!DOCTYPE html> with <head> and <body>). The page must:
+- Load Tailwind CSS from CDN: <script src="https://cdn.tailwindcss.com"></script>
+- Load Font Awesome from CDN: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+- Load Google Fonts (Merriweather + Montserrat) from CDN
+- Configure Tailwind with the custom theme colors: frBlue (#002654), frRed (#ED2939), gold (#D4AF37)
+- Have a clean, readable layout: max-w-2xl mx-auto px-4 py-8, background #fdfbf7, font Montserrat
+- Include a minimal sticky top bar with the lesson title and a back button (<a href="javascript:history.back()">)
+- No other JavaScript beyond Tailwind config — the page is purely static HTML
+
+The body content should contain the following pedagogical sequence (each step as its own <section> inside a <main> wrapper):
 
 ---
 
@@ -62,9 +71,9 @@ STYLE AND TONE REQUIREMENTS:
   - Error/correct pairs: text-red-600 for ❌, text-green-700 for ✅
   - <details>/<summary> for collapsible answers
   - gold border summary box at end: border-2 border-yellow-400 bg-yellow-50 rounded-xl p-5
-- Do NOT include any JavaScript
-- Do NOT include <script> or <style> tags
-- The entire output is one <section> element ready to be dropped into the existing lesson HTML structure
+- Only JavaScript allowed: the Tailwind CDN config script (custom colors). No other scripts.
+- No custom <style> tags — use Tailwind utility classes exclusively
+- Output must be a single, complete HTML file the user can open directly in a browser and read offline
 
 ---
 
