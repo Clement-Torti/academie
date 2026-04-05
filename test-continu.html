@@ -202,12 +202,66 @@
         const title = this._titleCache[n] || `Lección ${n}`;
         return `<div class="flex items-center gap-2 py-1.5 border-b border-gray-50 last:border-0">
           <i class="fa-solid fa-circle-exclamation text-frRed text-xs shrink-0"></i>
-          <span class="flex-1 text-gray-700">${title}</span>
-          <button onclick="app.removeFromPending(${n})" class="text-gray-300 hover:text-frRed transition-colors text-xs" title="Quitar de pendientes">
+          <span class="flex-1 text-gray-700 text-sm">${title}</span>
+          <button onclick="app.copyLessonPrompt(${n}, this)" class="text-gray-300 hover:text-frBlue transition-colors text-xs px-1" title="Copiar prompt de lección profunda">
+            <i class="fa-solid fa-copy"></i>
+          </button>
+          <button onclick="app.removeFromPending(${n})" class="text-gray-300 hover:text-frRed transition-colors text-xs px-1" title="Quitar de pendientes">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>`;
       }).join('');
+    },
+
+    async copyLessonPrompt(num, btn) {
+      const origHtml = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+      btn.disabled = true;
+
+      try {
+        // 1. Fetch lesson HTML
+        const res = await fetch(`lesson${num}.html`);
+        if (!res.ok) throw new Error('fetch failed');
+        const text = await res.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+
+        // 2. Extract second <section> inside #lesson-content
+        const lessonContent = doc.getElementById('lesson-content');
+        if (!lessonContent) throw new Error('no lesson-content');
+        const sections = lessonContent.querySelectorAll('section');
+        if (sections.length < 2) throw new Error('no second section');
+        const module2Html = sections[1].outerHTML;
+
+        // 3. Fetch the prompt template
+        const promptRes = await fetch('pending-lesson-prompt.txt');
+        if (!promptRes.ok) throw new Error('prompt fetch failed');
+        const promptTemplate = await promptRes.text();
+
+        // 4. Inject module content into the placeholder
+        const title = this._titleCache[num] || `Lección ${num}`;
+        const header = `LESSON: ${title}\n\n`;
+        const finalPrompt = promptTemplate.replace(
+          '[PASTE THE CONTENT OF THE SECOND <section> TAG FROM THE LESSON FILE HERE]',
+          module2Html
+        );
+
+        // 5. Copy to clipboard
+        await navigator.clipboard.writeText(header + finalPrompt);
+
+        btn.innerHTML = '<i class="fa-solid fa-check text-green-500"></i>';
+        setTimeout(() => {
+          btn.innerHTML = origHtml;
+          btn.disabled = false;
+        }, 2000);
+      } catch (err) {
+        console.error(err);
+        btn.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-frRed"></i>';
+        setTimeout(() => {
+          btn.innerHTML = origHtml;
+          btn.disabled = false;
+        }, 2000);
+      }
     },
 
     renderStats() {
