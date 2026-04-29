@@ -68,6 +68,15 @@
         <div id="pending-lessons-list" class="text-sm text-gray-500 italic">
           <!-- Populated by JS -->
         </div>
+        <div class="flex items-center gap-2 mt-3">
+          <input id="add-pending-input" type="number" min="1" max="200" placeholder="Nº lección"
+            class="w-28 border border-gray-200 rounded-lg px-2 py-1 text-sm text-gray-700 focus:outline-none focus:border-frBlue"
+            onkeydown="if(event.key==='Enter') app.addPendingManual()">
+          <button onclick="app.addPendingManual()"
+            class="flex items-center gap-1 text-xs font-bold text-frBlue bg-frBlue/10 hover:bg-frBlue/20 px-3 py-1.5 rounded-lg transition-colors">
+            <i class="fa-solid fa-plus"></i> Agregar
+          </button>
+        </div>
       </div>
 
       <!-- Stats per lesson -->
@@ -647,6 +656,15 @@
       this.pending = this.pending.filter(n => n !== num);
       saveJSON(STORAGE_PENDING, this.pending);
       this.renderPending();
+    },
+
+    addPendingManual() {
+      const input = document.getElementById('add-pending-input');
+      const num = parseInt(input.value);
+      if (!num || num < 1) return;
+      this.addToPending(num);
+      this.renderPending();
+      input.value = '';
     },
 
     markToStudy() {
