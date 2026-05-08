@@ -3077,6 +3077,23 @@ FRASE5|frase en francés|traducción española`;
                     }
                 }
 
+                // If Gemini failed entirely, warn the user and end the lesson
+                if (newSentences.length === 0) {
+                    this.container.innerHTML = `
+                        <div class="h-full flex flex-col items-center justify-center p-8 bg-frCream text-center gap-6">
+                            <i class="fa-solid fa-triangle-exclamation text-4xl text-amber-400"></i>
+                            <div>
+                                <p class="font-bold text-gray-700 mb-2">Impossible de générer les phrases</p>
+                            </div>
+                            <button onclick="app.completeLesson()"
+                                class="bg-frBlue text-white font-bold px-8 py-3 rounded-xl shadow-btn active:shadow-none active:translate-y-1 transition uppercase tracking-widest text-sm">
+                                Terminer la leçon
+                            </button>
+                        </div>
+                    `;
+                    return;
+                }
+
                 // Always save: clean up old entries + add new sentences
                 const updatedHistory = [...activeHistory, ...newSentences];
                 localStorage.setItem(HISTORY_KEY, JSON.stringify(updatedHistory));
