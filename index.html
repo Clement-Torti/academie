@@ -367,6 +367,12 @@
                     <i class="fa-solid fa-dumbbell text-gold"></i> <span class="hidden sm:inline">Verbes</span>
                 </button>
 
+                <!-- Translation Challenge Button -->
+                <button onclick="app.loadStandaloneTranslation()"
+                    class="bg-white/10 active:bg-white/20 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2">
+                    <i class="fa-solid fa-language text-gold"></i> <span class="hidden sm:inline">Traduction</span>
+                </button>
+
                 <!-- Renamed Vocab Button -->
                 <button onclick="app.renderFlashcards()"
                     class="bg-white/10 active:bg-white/20 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-2">
@@ -3571,6 +3577,20 @@ FRASE5|frase en francés|traducción española`;
 
                 // Launch the Challenge
                 conjApp.init();
+            },
+
+            loadStandaloneTranslation() {
+                this.currentLessonMeta = {
+                    id: 'translation',
+                    uid: 'standalone_translation',
+                    type: 'practice',
+                    title: 'Défi Traduction',
+                    vocabulary: [],
+                    moduleIndex: 9999
+                };
+                this.currentScore = 0;
+                this.currentMaxScore = 0;
+                this.startTranslationChallenge();
             },
 
 
