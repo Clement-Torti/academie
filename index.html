@@ -2225,19 +2225,27 @@
             // --- 1. NEW ROBUST AUDIO FUNCTION ---
             currentUtterance: null, // Variable to prevent Chrome Garbage Collection bug
 
-            speakFrench(text) {
+            _getVoicesAsync() {
+                return new Promise(resolve => {
+                    const voices = window.speechSynthesis.getVoices();
+                    if (voices.length > 0) return resolve(voices);
+                    window.speechSynthesis.addEventListener('voiceschanged', function handler() {
+                        window.speechSynthesis.removeEventListener('voiceschanged', handler);
+                        resolve(window.speechSynthesis.getVoices());
+                    });
+                });
+            },
+
+            async speakFrench(text) {
                 if (!text) return;
 
-                // Cancel any currently playing audio
                 window.speechSynthesis.cancel();
 
-                // Create the utterance
+                // Wait for voices to be loaded (Chrome loads them async on first call)
+                const allVoices = await this._getVoicesAsync();
+
                 const utterance = new SpeechSynthesisUtterance(text);
 
-                // 1. VOICE SELECTION: Chrome on Mac works best if we explicitly pick "Google Français" or "Thomas"
-                const allVoices = window.speechSynthesis.getVoices();
-
-                // Priority: 1. Google Français (Best quality on Chrome), 2. Thomas (Mac Default), 3. Any 'fr-FR', 4. Any 'fr'
                 const preferredVoice = allVoices.find(v => v.name === "Google français") ||
                     allVoices.find(v => v.name === "Thomas") ||
                     allVoices.find(v => v.lang === "fr-FR") ||
@@ -2245,25 +2253,19 @@
 
                 if (preferredVoice) {
                     utterance.voice = preferredVoice;
-                    utterance.lang = preferredVoice.lang; // Ensure lang matches voice
+                    utterance.lang = preferredVoice.lang;
                 } else {
-                    utterance.lang = 'fr-FR'; // Fallback
+                    utterance.lang = 'fr-FR';
                 }
 
-                // 2. SETTINGS
-                utterance.rate = 0.85; // Slightly slower
+                utterance.rate = 0.85;
                 utterance.pitch = 1;
-                utterance.volume = 1.0; // Force max volume
+                utterance.volume = 1.0;
 
-                // 3. STORE REFERENCE (Critical fix for Chrome)
-                // We assign it to 'this.currentUtterance' so the browser doesn't delete it while speaking
                 this.currentUtterance = utterance;
-
-                // Cleanup reference when done
                 utterance.onend = () => { this.currentUtterance = null; };
                 utterance.onerror = (e) => { console.error("Audio error:", e); };
 
-                // 4. SPEAK
                 window.speechSynthesis.speak(utterance);
             },
 
