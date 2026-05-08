@@ -3149,7 +3149,13 @@ FRASE5|frase en francés|traducción española`;
 
                             <div id="trans-answer" class="hidden text-center w-full">
                                 <div class="w-10 h-px bg-frBlue/20 rounded-full mx-auto mb-5"></div>
-                                <p class="text-xl font-serif font-bold text-frBlue text-center leading-relaxed">${sentence.french}</p>
+                                <div class="flex items-center justify-center gap-3">
+                                    <p class="text-xl font-serif font-bold text-frBlue leading-relaxed">${sentence.french}</p>
+                                    <button onclick="app.speakFrench('${sentence.french.replace(/'/g, "\\'")}')"
+                                        class="shrink-0 text-frBlue/50 hover:text-frBlue transition active:scale-90">
+                                        <i class="fa-solid fa-volume-high text-lg"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
