@@ -433,6 +433,9 @@
         </div>
     </div>
 
+    <!-- Persistent tense help modal (used by conjApp.showHelp and translation challenge) -->
+    <div id="cj-help-modal" class="hidden fixed inset-0 z-[80] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"></div>
+
     <!-- MAIN CONTENT -->
     <main id="app-container" class="flex-1 overflow-y-auto relative bg-[#fdfbf7] w-full">
         <div class="h-full flex flex-col items-center justify-center">
@@ -601,8 +604,6 @@
                 </div>
             </div>
             
-            <!-- Modal Container (Hidden by default) -->
-            <div id="cj-help-modal" class="hidden"></div>
         `;
             },
 
@@ -889,19 +890,18 @@
             showHelp(tense) {
                 const modal = document.getElementById('cj-help-modal');
                 const content = this.rules[tense] || "Pas de règle disponible.";
-                const title = tense.toUpperCase();
+                const label = { present: 'Présent', pc: 'Passé Composé', imparfait: 'Imparfait', futur_proche: 'Futur Proche', futur: 'Futur Simple', conditionnel: 'Conditionnel', imperatif: 'Impératif' }[tense] || tense;
 
+                modal.onclick = (e) => { if (e.target === modal) modal.classList.add('hidden'); };
                 modal.innerHTML = `
-            <div class="cj-modal-backdrop" onclick="document.getElementById('cj-help-modal').classList.add('hidden')">
-                <div class="bg-white p-6 rounded-2xl max-w-md w-full shadow-2xl animate-enter" onclick="event.stopPropagation()">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-bold text-frBlue text-lg">${title}</h3>
-                        <button onclick="document.getElementById('cj-help-modal').classList.add('hidden')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-times text-xl"></i></button>
+                    <div class="bg-white p-6 rounded-2xl max-w-md w-full shadow-2xl overflow-y-auto max-h-[80vh]" onclick="event.stopPropagation()">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-frBlue text-lg">${label}</h3>
+                            <button onclick="document.getElementById('cj-help-modal').classList.add('hidden')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-times text-xl"></i></button>
+                        </div>
+                        <div class="text-gray-700 leading-relaxed text-sm">${content}</div>
                     </div>
-                    <div class="text-gray-700 leading-relaxed">${content}</div>
-                </div>
-            </div>
-        `;
+                `;
                 modal.classList.remove('hidden');
             },
 
@@ -2992,14 +2992,16 @@ But: Messages courts WhatsApp, pas des paragraphes !`;
                 let newSentences = [];
 
                 if (sourceVocab.length > 0) {
-                    const selected = [...sourceVocab].sort(() => Math.random() - 0.5).slice(0, Math.min(5, sourceVocab.length));
+                    const selected = [...sourceVocab].sort(() => Math.random() - 0.5).slice(0, Math.min(4, sourceVocab.length));
                     const allTenses = ['present', 'pc', 'imparfait', 'futur_proche', 'futur', 'conditionnel', 'imperatif'];
-                    const chosenTenses = [...allTenses].sort(() => Math.random() - 0.5).slice(0, 5);
+                    const chosenTenses = [...allTenses].sort(() => Math.random() - 0.5).slice(0, 4);
                     const tenseNames = { present: 'présent', pc: 'passé composé', imparfait: 'imparfait', futur_proche: 'futur proche', futur: 'futur simple', conditionnel: 'conditionnel', imperatif: 'impératif' };
                     const wordList = selected.map((w, i) => `${i + 1}. ${w.fr} (español: ${w.es})`).join('\n');
                     const tenseList = chosenTenses.map((t, i) => `frase ${i + 1}: ${tenseNames[t]}`).join(', ');
 
-                    const prompt = `Eres un profesor de francés. Genera exactamente 5 frases en francés usando las palabras de abajo.
+                    const tenseKeys = { présent: 'present', 'passé composé': 'pc', imparfait: 'imparfait', 'futur proche': 'futur_proche', 'futur simple': 'futur', conditionnel: 'conditionnel', impératif: 'imperatif' };
+
+                    const prompt = `Eres un profesor de francés. Genera exactamente 4 frases en francés usando las palabras de abajo.
 
 Palabras (una por frase):
 ${wordList}
@@ -3010,13 +3012,17 @@ Reglas:
 - Varía los pronombres (je, tu, il, elle, nous, vous, ils)
 - Frases cortas: 5-9 palabras
 - Proporciona la traducción al español de cada frase
+- El 2° campo es la clave del tiempo en francés (exactamente una de: present, pc, imparfait, futur_proche, futur, conditionnel, imperatif)
 
-FORMATO EXACTO (usa separadores |):
-FRASE1|frase en francés|traducción española
-FRASE2|frase en francés|traducción española
-FRASE3|frase en francés|traducción española
-FRASE4|frase en francés|traducción española
-FRASE5|frase en francés|traducción española`;
+FORMATO EXACTO (4 campos separados por |):
+FRASE1|clave_tiempo|frase en francés|traducción española
+FRASE2|clave_tiempo|frase en francés|traducción española
+FRASE3|clave_tiempo|frase en francés|traducción española
+FRASE4|clave_tiempo|frase en francés|traducción española
+
+Ejemplo:
+FRASE1|present|Il mange une pomme.|Él come una manzana.
+FRASE2|pc|Nous avons visité Paris.|Hemos visitado París.`;
 
                     const statusEl = () => document.getElementById('trans-gen-status');
                     const setStatus = (msg) => { if (statusEl()) statusEl().textContent = msg; };
@@ -3057,21 +3063,27 @@ FRASE5|frase en francés|traducción española`;
                                 for (const line of rawResponse.trim().split('\n')) {
                                     const trimmed = line.trim();
                                     if (!trimmed) continue;
-                                    // Format A: FRASE1|french|spanish
-                                    let m = trimmed.match(/^FRASE\d+\|(.+)\|(.+)$/);
-                                    if (m) { newSentences.push({ french: m[1].trim(), spanish: m[2].trim(), date: currentCount }); continue; }
-                                    // Format B: french | spanish  (Gemini freestyles the format)
-                                    const parts = trimmed.split('|');
-                                    if (parts.length === 2) {
-                                        const fr = parts[0].trim(), es = parts[1].trim();
-                                        if (fr.length > 3 && es.length > 3) newSentences.push({ french: fr, spanish: es, date: currentCount });
+                                    const parts = trimmed.split('|').map(s => s.trim());
+                                    // Format A (new): FRASE1|tense_key|french|spanish
+                                    if (parts.length === 4 && /^FRASE\d+$/i.test(parts[0])) {
+                                        newSentences.push({ tense: parts[1], french: parts[2], spanish: parts[3], date: currentCount });
+                                        continue;
+                                    }
+                                    // Format B (legacy): FRASE1|french|spanish
+                                    if (parts.length === 3 && /^FRASE\d+$/i.test(parts[0])) {
+                                        newSentences.push({ french: parts[1], spanish: parts[2], date: currentCount });
+                                        continue;
+                                    }
+                                    // Format C: french | spanish (Gemini freestyles)
+                                    if (parts.length === 2 && parts[0].length > 3 && parts[1].length > 3) {
+                                        newSentences.push({ french: parts[0], spanish: parts[1], date: currentCount });
                                     }
                                 }
                             }
-                            if (newSentences.length >= 5) break;
+                            if (newSentences.length >= 4) break;
                             const gotCount = newSentences.length;
                             newSentences = [];
-                            if (attempt < MAX_ATTEMPTS) setStatus(`${gotCount > 0 ? `Seulement ${gotCount}/5 phrases reçues` : 'Aucune phrase reçue'}, nouvelle tentative dans 3s...`);
+                            if (attempt < MAX_ATTEMPTS) setStatus(`${gotCount > 0 ? `Seulement ${gotCount}/4 phrases reçues` : 'Aucune phrase reçue'}, nouvelle tentative dans 3s...`);
                         } catch (e) {
                             console.error(`Translation attempt ${attempt} error:`, e);
                             if (attempt < MAX_ATTEMPTS) setStatus(`Erreur, nouvelle tentative dans 3s...`);
@@ -3108,15 +3120,15 @@ FRASE5|frase en francés|traducción española`;
                 const displayPool = [...newSentences, ...dueSentences];
 
                 // Fill up to 25 with other sentences from history (not already in pool)
-                if (displayPool.length < 25) {
+                if (displayPool.length < 16) {
                     const alreadyIncluded = new Set(displayPool.map(s => s.french));
                     const filler = activeHistory
                         .filter(s => !alreadyIncluded.has(s.french))
                         .sort(() => Math.random() - 0.5);
-                    displayPool.push(...filler.slice(0, 25 - displayPool.length));
+                    displayPool.push(...filler.slice(0, 16 - displayPool.length));
                 }
 
-                this.transCurrentSentences = displayPool.slice(0, 25).sort(() => Math.random() - 0.5);
+                this.transCurrentSentences = displayPool.slice(0, 16).sort(() => Math.random() - 0.5);
                 this.transCurrentIndex = 0;
 
                 if (this.transCurrentSentences.length === 0) {
@@ -3145,6 +3157,12 @@ FRASE5|frase en francés|traducción española`;
                         </div>
 
                         <div class="flex-1 flex flex-col items-center justify-center px-8 gap-6">
+                            ${sentence.tense ? `
+                            <button onclick="conjApp.showHelp('${sentence.tense}')"
+                                class="flex items-center gap-1.5 bg-frBlue/10 hover:bg-frBlue/20 text-frBlue text-xs font-bold px-3 py-1.5 rounded-full transition border border-frBlue/20">
+                                <i class="fa-regular fa-lightbulb text-xs"></i>
+                                ${{ present: 'Présent', pc: 'Passé composé', imparfait: 'Imparfait', futur_proche: 'Futur proche', futur: 'Futur simple', conditionnel: 'Conditionnel', imperatif: 'Impératif' }[sentence.tense] || sentence.tense}
+                            </button>` : ''}
                             <p class="text-xl font-serif text-center text-gray-800 leading-relaxed">${sentence.spanish}</p>
 
                             <div id="trans-answer" class="hidden text-center w-full">
