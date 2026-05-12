@@ -1098,6 +1098,9 @@
             // Translation Challenge State
             transCurrentSentences: [],
             transCurrentIndex: 0,
+            transSentenceStartTime: null,
+            transCountdownInterval: null,
+            transAnswerRevealed: false,
 
             // Add these properties to the top of the 'app' object
             batchSize: 20,
@@ -3144,10 +3147,19 @@ FRASE2|pc|Nous avons visité Paris.|Hemos visitado París.`;
                     return;
                 }
 
+                // Clear any running countdown from previous sentence
+                if (this.transCountdownInterval) {
+                    clearInterval(this.transCountdownInterval);
+                    this.transCountdownInterval = null;
+                }
+                this.transAnswerRevealed = false;
+                this.transSentenceStartTime = Date.now();
+
                 const sentence = this.transCurrentSentences[this.transCurrentIndex];
                 const current = this.transCurrentIndex + 1;
                 const total = this.transCurrentSentences.length;
                 const isLast = current >= total;
+                const tenseLabels = { present: 'Présent', pc: 'Passé composé', imparfait: 'Imparfait', futur_proche: 'Futur proche', futur: 'Futur simple', conditionnel: 'Conditionnel', imperatif: 'Impératif' };
 
                 this.container.innerHTML = `
                     <div class="h-full flex flex-col bg-frCream" id="trans-sentence-display">
@@ -3161,20 +3173,10 @@ FRASE2|pc|Nous avons visité Paris.|Hemos visitado París.`;
                             <button onclick="conjApp.showHelp('${sentence.tense}')"
                                 class="flex items-center gap-1.5 bg-frBlue/10 hover:bg-frBlue/20 text-frBlue text-xs font-bold px-3 py-1.5 rounded-full transition border border-frBlue/20">
                                 <i class="fa-regular fa-lightbulb text-xs"></i>
-                                ${{ present: 'Présent', pc: 'Passé composé', imparfait: 'Imparfait', futur_proche: 'Futur proche', futur: 'Futur simple', conditionnel: 'Conditionnel', imperatif: 'Impératif' }[sentence.tense] || sentence.tense}
+                                ${tenseLabels[sentence.tense] || sentence.tense}
                             </button>` : ''}
                             <p class="text-xl font-serif text-center text-gray-800 leading-relaxed">${sentence.spanish}</p>
-
-                            <div id="trans-answer" class="hidden text-center w-full">
-                                <div class="w-10 h-px bg-frBlue/20 rounded-full mx-auto mb-5"></div>
-                                <div class="flex items-center justify-center gap-3">
-                                    <p class="text-xl font-serif font-bold text-frBlue leading-relaxed">${sentence.french}</p>
-                                    <button onclick="app.speakFrench('${sentence.french.replace(/'/g, "\\'")}')"
-                                        class="shrink-0 text-frBlue/50 hover:text-frBlue transition active:scale-90">
-                                        <i class="fa-solid fa-volume-high text-lg"></i>
-                                    </button>
-                                </div>
-                            </div>
+                            <div id="trans-answer" class="hidden text-center w-full"></div>
                         </div>
 
                         <div class="p-6 bg-white border-t border-gray-100">
@@ -3192,16 +3194,116 @@ FRASE2|pc|Nous avons visité Paris.|Hemos visitado París.`;
             },
 
             revealTranslation() {
-                document.getElementById('trans-answer')?.classList.remove('hidden');
-                document.getElementById('trans-reveal-btn')?.classList.add('hidden');
-                document.getElementById('trans-next-btn')?.classList.remove('hidden');
                 const sentence = this.transCurrentSentences[this.transCurrentIndex];
-                if (sentence) this.speakFrench(sentence.french);
+                if (!sentence) return;
+
+                // Measure thinking time, cap at 30s
+                const elapsed = this.transSentenceStartTime
+                    ? Math.round((Date.now() - this.transSentenceStartTime) / 1000)
+                    : 0;
+                const waitSeconds = Math.min(elapsed, 30);
+
+                // Build clickable words (pre-mark previously failed words)
+                const words = sentence.french.split(/\s+/).filter(w => w.length > 0);
+                const failedSet = new Set(sentence.failedWords || []);
+                const wordsHtml = words.map((word, i) => {
+                    const failed = failedSet.has(i);
+                    return `<span onclick="app.toggleTransWord(${i})" id="trans-word-${i}" data-failed="${failed}"
+                        class="cursor-pointer rounded px-0.5 transition-colors ${failed ? 'bg-red-200 text-red-800' : 'hover:bg-red-100'}">${word}</span>`;
+                }).join(' ');
+
+                const answerDiv = document.getElementById('trans-answer');
+                if (answerDiv) {
+                    answerDiv.innerHTML = `
+                        <div class="w-10 h-px bg-frBlue/20 rounded-full mx-auto mb-5"></div>
+                        <div class="flex items-center justify-center gap-3 flex-wrap mb-2">
+                            <p class="text-xl font-serif font-bold text-frBlue leading-relaxed">${wordsHtml}</p>
+                            <button onclick="app.speakFrench(app.transCurrentSentences[app.transCurrentIndex].french)"
+                                class="shrink-0 text-frBlue/50 hover:text-frBlue transition active:scale-90">
+                                <i class="fa-solid fa-volume-high text-lg"></i>
+                            </button>
+                        </div>
+                        <p class="text-[11px] text-gray-400">Toca las palabras que no supiste traducir</p>
+                    `;
+                    answerDiv.classList.remove('hidden');
+                }
+
+                document.getElementById('trans-reveal-btn')?.classList.add('hidden');
+                this.transAnswerRevealed = true;
+
+                const nextBtn = document.getElementById('trans-next-btn');
+                if (nextBtn) {
+                    nextBtn.classList.remove('hidden');
+                    const baseText = nextBtn.textContent.trim();
+                    if (waitSeconds > 1) {
+                        nextBtn.disabled = true;
+                        nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                        let remaining = waitSeconds;
+                        nextBtn.textContent = `${baseText} (${remaining}s)`;
+                        this.transCountdownInterval = setInterval(() => {
+                            remaining--;
+                            if (remaining <= 0) {
+                                clearInterval(this.transCountdownInterval);
+                                this.transCountdownInterval = null;
+                                nextBtn.disabled = false;
+                                nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                                nextBtn.textContent = baseText;
+                            } else {
+                                nextBtn.textContent = `${baseText} (${remaining}s)`;
+                            }
+                        }, 1000);
+                    }
+                }
+
+                this.speakFrench(sentence.french);
+            },
+
+            toggleTransWord(index) {
+                const el = document.getElementById(`trans-word-${index}`);
+                if (!el) return;
+                const isFailed = el.dataset.failed === 'true';
+                el.dataset.failed = String(!isFailed);
+                el.className = `cursor-pointer rounded px-0.5 transition-colors ${!isFailed ? 'bg-red-200 text-red-800' : 'hover:bg-red-100'}`;
             },
 
             nextTranslationSentence() {
+                const sentence = this.transCurrentSentences[this.transCurrentIndex];
+                if (sentence) {
+                    // Collect failed word indices from DOM
+                    const words = sentence.french.split(/\s+/).filter(w => w.length > 0);
+                    const failedWords = words.reduce((acc, _, i) => {
+                        const el = document.getElementById(`trans-word-${i}`);
+                        if (el && el.dataset.failed === 'true') acc.push(i);
+                        return acc;
+                    }, []);
+                    sentence.failedWords = failedWords;
+                    this._saveTransFailedWords(sentence.french, failedWords);
+
+                    // Confetti if answer was shown and no words failed
+                    if (this.transAnswerRevealed && failedWords.length === 0) {
+                        if (window.confetti) confetti({ particleCount: 60, spread: 50, origin: { y: 0.75 }, scalar: 0.9 });
+                    }
+                }
+
+                if (this.transCountdownInterval) {
+                    clearInterval(this.transCountdownInterval);
+                    this.transCountdownInterval = null;
+                }
                 this.transCurrentIndex++;
                 this.renderTranslationSentence();
+            },
+
+            _saveTransFailedWords(french, failedWords) {
+                try {
+                    const history = JSON.parse(localStorage.getItem('acad_trans_history') || '[]');
+                    for (let i = history.length - 1; i >= 0; i--) {
+                        if (history[i].french === french) {
+                            history[i].failedWords = failedWords;
+                            break;
+                        }
+                    }
+                    localStorage.setItem('acad_trans_history', JSON.stringify(history));
+                } catch (e) { console.error('Failed to save word marks:', e); }
             },
 
             completeLesson() {
