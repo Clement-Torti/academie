@@ -3201,7 +3201,7 @@ FRASE2|pc|Nous avons visité Paris.|Hemos visitado París.`;
                 const elapsed = this.transSentenceStartTime
                     ? Math.round((Date.now() - this.transSentenceStartTime) / 1000)
                     : 0;
-                const waitSeconds = Math.min(elapsed, 30);
+                const waitSeconds = Math.min(elapsed, 15);
 
                 // Build clickable words (pre-mark previously failed words)
                 const words = sentence.french.split(/\s+/).filter(w => w.length > 0);
