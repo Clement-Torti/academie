@@ -2227,6 +2227,7 @@
 
             // --- 1. NEW ROBUST AUDIO FUNCTION ---
             currentUtterance: null, // Variable to prevent Chrome Garbage Collection bug
+            _speakRequestId: 0,
 
             _getVoicesAsync() {
                 return new Promise(resolve => {
@@ -2242,10 +2243,15 @@
             async speakFrench(text) {
                 if (!text) return;
 
-                window.speechSynthesis.cancel();
+                const requestId = ++this._speakRequestId;
 
                 // Wait for voices to be loaded (Chrome loads them async on first call)
                 const allVoices = await this._getVoicesAsync();
+
+                // Bail out if a newer request has come in while we were awaiting
+                if (requestId !== this._speakRequestId) return;
+
+                window.speechSynthesis.cancel();
 
                 const utterance = new SpeechSynthesisUtterance(text);
 
@@ -2267,7 +2273,9 @@
 
                 this.currentUtterance = utterance;
                 utterance.onend = () => { this.currentUtterance = null; };
-                utterance.onerror = (e) => { console.error("Audio error:", e); };
+                utterance.onerror = (e) => {
+                    if (e.error !== 'interrupted') console.error("Audio error:", e);
+                };
 
                 window.speechSynthesis.speak(utterance);
             },
